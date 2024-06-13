@@ -1,0 +1,14 @@
+.App {
+  width: 100vw;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: #48b950;
+}
+body {
+  background-color: #b1cea3; /* Replace #f0f0f0 with your desired color */
+}
+.People {
+  background-color: #d9e0d5;
+}

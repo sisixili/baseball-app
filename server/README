@@ -1,0 +1,5 @@
+npm init -y
+
+Install libraries:
+
+npm install express cors mysql2 nodemon react-router-dom sequelize sequelize-cli bcrypt jsonwebtoken dotenv
