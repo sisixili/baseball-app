@@ -7,7 +7,7 @@ function Players() {
 
     useEffect(() => {
         // fetch always succeeds (besides network error), so need additional error checking
-        fetch("http://localhost:3001/people", {})
+        fetch("http://localhost:3001/player", {})
           .then((res) => {
             if (res.ok) {
               return res.json();
@@ -29,8 +29,8 @@ function Players() {
         setName(event.target.value);
     }
     
-    function checkName(person) {
-        return person.nameGiven.toLowerCase().includes(name.toLowerCase());
+    function checkName(player) {
+        return player.nameGiven.toLowerCase().includes(name.toLowerCase());
     }
 
   return (
@@ -38,12 +38,12 @@ function Players() {
         <input
         name="player"
         onChange={handleChange}
-        placeholder="Search by last name"
+        placeholder="Search by name"
       />
       {listOfForms.filter(checkName).map((player, key) => (
         <div className="playerName" key={player.ID}>
           <h4>
-            {player.nameFirst} {player.nameLast} {/* CAN ADD MORE FIELDS */}
+            {player.nameGiven} 
           </h4> 
         </div>
       ))}
