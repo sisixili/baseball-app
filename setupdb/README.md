@@ -10,10 +10,11 @@ In your project terminal, run:
 
 Create a .env file with your local MySQL db's login info. For example:
 
+```
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=69ROX!
-
+```
 
 NOTE: DO NOT upload your .env file. Some MySQL local db's don't have a password, so you can leave it blank.
 
