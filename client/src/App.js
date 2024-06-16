@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom'
 import Home from './pages/Home.js'
-import People from './pages/Players.js'
+import Players from './pages/Players.js'
 import Login from './pages/Login.js'
 import Register from './pages/Register.js'
 
@@ -17,7 +17,7 @@ function App() {
         </nav>
         <Routes>
           <Route path='/' element={<Home/>} />
-          <Route path='/player' element={<People/>} />
+          <Route path='/player' element={<Players/>} />
           <Route path='/login' element={<Login/>} />
           <Route path='/register' element={<Register/>} />
         </Routes>
