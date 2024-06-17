@@ -37,9 +37,9 @@ function Leaderboard() {
       <div>
         <div>
           <select value={column} onChange={(e) => setColumn(e.target.value)}>
-            <option value="birthYear">birthYear</option>
-            <option value="weight">weight</option>
-            <option value="height">height</option>
+            <option value="irthYear">Birth Year</option>
+            <option value="weight">Weight</option>
+            <option value="height">Height</option>
           </select>
 
           <select
@@ -54,8 +54,8 @@ function Leaderboard() {
         {listOfPlayers.map((player) => (
           <div className="player" key={player.playerID}>
             <Link to={`/allplayers/${player.playerID}`}>
-              {player.nameFirst} {player.nameLast} {player[column]}
-            </Link>
+              {player.nameFirst} {player.nameLast} 
+            </Link> {player[column]}
           </div>
         ))}
       </div>
