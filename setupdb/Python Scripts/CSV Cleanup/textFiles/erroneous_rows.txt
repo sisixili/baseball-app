@@ -1,0 +1,5 @@
+playerID,awardID,yearID,lgID
+ozunama01,Outstanding DH Award,2020,NaN
+ohtansh01,Outstanding DH Award,2021,NaN
+cruzne02,Outstanding DH Award,2019,NaN
+daviskh01,Outstanding DH Award,2018,NaN
