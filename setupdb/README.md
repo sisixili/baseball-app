@@ -13,13 +13,13 @@ DB_PASSWORD=password
 4. Download lahman_1871-2023_csv folder from `https://www.dropbox.com/scl/fi/hy0sxw6gaai7ghemrshi8/lahman_1871-2023_csv.7z?rlkey=edw1u63zzxg48gvpcmr3qpnhz&e=1&dl=0`
 5. Move this folder (`lahman_1871-2023_csv`) to `baseball-app/setupdb`
 6. Rename `lahman_1871-2023_csv` to `Production CSV Files`
-7. Run `python3 "Python Scripts"/"CSV Cleanup"/remove_unnecessary_csv_files.py "Python Scripts"/"CSV Cleanup"/textFiles/unnecessary_csv_files.txt "Production CSV Files"` from `baseball-app/setupdb`
-8. Run `python3 "Python Scripts"/"CSV Cleanup"/remove_unnecessary_columns.py "Python Scripts"/"CSV Cleanup"/textFiles/unnecessary_columns.txt "Production CSV Files"` from `baseball-app/setupdb`
-9. Run `python3 "Python Scripts"/"CSV Cleanup"/remove_duplicate_rows.py "Production CSV Files"` from `baseball-app/setupdb`
-10. Run `python3 "Python Scripts"/"CSV Cleanup"/remove_erroneous_rows.py "Python Scripts"/"CSV Cleanup"/textFiles/erroneous_rows.txt "Production CSV Files"` from `baseball-app/setupdb`
-11. Run `python3 "Python Scripts"/"CSV Cleanup"/rename_columns.py "Python Scripts"/"CSV Cleanup"/textFiles/column_renames.txt "Production CSV Files"` from `baseball-app/setupdb`
-12. Run `python3 "Python Scripts"/create_sample_csv_files.py "Production CSV Files" "Sample CSV Files"` from `baseball-app/setupdb`
-13. Run `python3 "Python Scripts"/initTables.py` from `baseball-app/setupdb`
+7. Run `python3 "Python Scripts/CSV Cleanup/remove_unnecessary_csv_files.py" "Python Scripts/CSV Cleanup/textFiles/unnecessary_csv_files.txt" "Production CSV Files"` from `baseball-app/setupdb`
+8. Run `python3 "Python Scripts/CSV Cleanup/remove_unnecessary_columns.py" "Python Scripts/CSV Cleanup/textFiles/unnecessary_columns.txt" "Production CSV Files"` from `baseball-app/setupdb`
+9. Run `python3 "Python Scripts/CSV Cleanup/remove_duplicate_rows.py" "Production CSV Files"` from `baseball-app/setupdb`
+10. Run `python3 "Python Scripts/CSV Cleanup/remove_erroneous_rows.py" "Python Scripts/CSV Cleanup/textFiles/erroneous_rows.txt" "Production CSV Files"` from `baseball-app/setupdb`
+11. Run `python3 "Python Scripts/CSV Cleanup/rename_columns.py" "Python Scripts/CSV Cleanup/textFiles/column_renames.txt" "Production CSV Files"` from `baseball-app/setupdb`
+12. Run `python3 "Python Scripts/create_sample_csv_files.py" "Production CSV Files" "Sample CSV Files"` from `baseball-app/setupdb`
+13. Run `python3 "Python Scripts/initTables.py"` from `baseball-app/setupdb`
 
 NOTE: To update the statistical data stored in both the CSV files (both sample and production) and database, start again from step 4
 
