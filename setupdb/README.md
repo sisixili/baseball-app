@@ -21,7 +21,7 @@ DB_PASSWORD=password
 12. Run `python3 "Python Scripts"/create_sample_csv_files.py "Production CSV Files" "Sample CSV Files"` from `baseball-app/setupdb`
 13. Run `python3 "Python Scripts"/initTables.py` from `baseball-app/setupdb`
 
-
+NOTE: To update the statistical data stored in both the CSV files (both sample and production) and database, start again from step 4
 
 Sisi Password Query Stuff:
 
