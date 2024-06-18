@@ -1,0 +1,17 @@
+DELETE FROM AllstarFull;
+DELETE FROM Appearances;
+DELETE FROM AwardsPlayers;
+DELETE FROM Batting;
+DELETE FROM Fielding;
+DELETE FROM FieldingOFSplit;
+DELETE FROM HallOfFame;
+DELETE FROM HomeGames;
+DELETE FROM Parks;
+DELETE FROM Players;
+DELETE FROM Pitching;
+DELETE FROM Teams;
+DELETE FROM Franchises;
+DELETE FROM Users
+DELETE FROM FavouriteFranchises;
+DELETE FROM FavouriteTeams;
+DELETE FROM FavouritePlayers;

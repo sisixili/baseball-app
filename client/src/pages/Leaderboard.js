@@ -37,7 +37,7 @@ function Leaderboard() {
       <div>
         <div>
           <select value={column} onChange={(e) => setColumn(e.target.value)}>
-            <option value="birthYear">Birth Year</option>
+            <option value="bbirthYear">Birth Year</option>
             <option value="weight">Weight</option>
             <option value="height">Height</option>
           </select>

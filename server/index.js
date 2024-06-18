@@ -23,7 +23,7 @@ app.use((err, req, res, next) => { // Express 5 middleware
 
 // URL/path: domain/people, so you can call this API by typing localhost:3000/player
 app.get("/allplayers", async (req, res) => { 
-    const players = await getAllPlayers()
+    const players = await getAllPlayers(20) // placeholder constant 20
     res.send(players)
 })
 

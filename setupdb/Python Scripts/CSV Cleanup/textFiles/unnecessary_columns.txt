@@ -1,0 +1,9 @@
+AllstarFull.csv:gameID
+Batting.csv:G_batting,G_old
+Fielding.csv:ZR
+FieldingOFsplit.csv:ZR
+HallOfFame.csv:votedBy,ballots,needed,votes,category,needed_note
+Parks.csv:ID
+People.csv:ID,birthState,birthCity,deathCountry,deathState,deathCity,nameGiven,retroID
+Teams.csv:BPF,PPF,teamIDBR,teamIDlahman45,teamIDretro
+TeamsFranchises.csv:NAassoc
