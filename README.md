@@ -12,6 +12,6 @@ MYSQL_DATABASE=baseball-dev
 ```
 5. Run `npm start` from `baseball-app/server`
 6. If you run into issues running nodemon, you may have to run the following to update it's permissions: `chmod +x baseball-app/server/node_modules/.bin/nodemon`
-7. Open another terminal and run `npm start` from `baseball-app/client`, note that you may have to change some permissions for some React stuff
-8. If you run into issues running react-scripts, you may have to run the following to update it's permissions: `chmod +x `baseball-app/client/node_modules/.bin/react-scripts`
+7. Open another terminal and run `npm start` from `baseball-app/client`
+8. If you run into issues running react-scripts, you may have to run the following to update it's permissions: `chmod +x baseball-app/client/node_modules/.bin/react-scripts`
 9. Go to localhost:3000 to access the website. 
