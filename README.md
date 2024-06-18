@@ -15,7 +15,8 @@ This project uses Express (backend web app framework for RESTful APIs in Node) a
 
 Run `git clone https://github.com/sisixili/baseball-app.git` into your desired local directory.
 
-`cd` into baseball-app/server and run `npm start`
+`cd` into baseball-app/server, copy the .env file from setupdb into this directory, and run `npm start`
+
 `cd` into baseball-app/client and run `npm start`
 
 Go to localhost:3001 to access the website. 
