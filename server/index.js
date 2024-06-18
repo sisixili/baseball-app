@@ -5,7 +5,7 @@
 
 import express from 'express'
 import cors from 'cors'
-import { getAllPlayers, getBatting } from './database.js'
+import { getAllPlayers, getLeaders, getPlayerByID } from './database.js' // This syntax is for "destructuring", a javascript technique to extract values from an object
 
 const app = express() 
 
@@ -22,18 +22,28 @@ app.use((err, req, res, next) => { // Express 5 middleware
 // ------------API's-------------------//
 
 // URL/path: domain/people, so you can call this API by typing localhost:3000/player
-app.get("/player", async (req, res) => { 
-    const players = await getAllPlayers(20) // placeholder constant 20
+app.get("/allplayers", async (req, res) => { 
+    const players = await getAllPlayers()
     res.send(players)
 })
 
-app.get("/leaderboard", async (req, res) => {
-    const players = await getBatting(2022, 20) 
-    res.send(players) // return to frontend
+app.get("/allplayers/:playerID", async (req, res) => {
+        const player = await getPlayerByID(req.params.playerID)
+        res.send(player); // Send response back to frontend
+}) 
 
-    // To access values from request:
-    // const {year, minGames} = req.body
-    // This syntax is for "destructuring", a javascript technique to extract values from an object
+app.get("/leaderboard", async (req, res) => {
+    const { column, orderDirection } = req.query;
+
+    try {
+        //const players = await getLeaders('birthMonth', 'asc')
+        const players = await getLeaders(column, orderDirection)
+        res.send(players); // Send response back to frontend
+      } 
+      catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
 }) 
 
 // Crash course on Javascript:
@@ -56,3 +66,24 @@ app.listen(3001, () => {
     console.log('Server is running on port 3001')
 })
 
+/**
+ * app.get("/leaderboard", async (req, res) => {
+    try {
+        // Convert query params into base ten integers
+        const year = parseInt(req.query.year, 10);
+        const minGames = parseInt(req.query.minGames, 10);
+
+        // Check if input params are valid
+        if (isNaN(year) || isNaN(minGames)) {
+          return res.status(400).json({ error: 'Invalid query parameters' });
+        }
+    
+        const players = await getBatting(year, minGames)
+        res.send(players); // Send response back to frontend
+      } 
+      catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+})
+ */
