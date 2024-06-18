@@ -14,14 +14,14 @@ def parse_arguments():
 # Example: conditions = { 'file1.csv': [{'column_name': 'value1'}, {'column_name': 'value2'}], ... }
 conditions = {
     'AllstarFull.csv': [
-        {'playerID': 'guerrvl02', 'yearID': '2022', 'gameNum': '0'},
-        {'playerID': 'guerrvl02', 'yearID': '2023', 'gameNum': '0'},
-        {'playerID': 'bettsmo01', 'yearID': '2022', 'gameNum': '0'},
-        {'playerID': 'bettsmo01', 'yearID': '2023', 'gameNum': '0'},
-        {'playerID': 'kershcl01', 'yearID': '2022', 'gameNum': '0'},
-        {'playerID': 'kershcl01', 'yearID': '2023', 'gameNum': '0'},
-        {'playerID': 'greggha01', 'yearID': '1945', 'gameNum': '0'},
-        {'playerID': 'galanau01', 'yearID': '1944', 'gameNum': '0'}
+        {'playerID': 'guerrvl02', 'yearID': '2022', 'gameNumber': '0'},
+        {'playerID': 'guerrvl02', 'yearID': '2023', 'gameNumber': '0'},
+        {'playerID': 'bettsmo01', 'yearID': '2022', 'gameNumber': '0'},
+        {'playerID': 'bettsmo01', 'yearID': '2023', 'gameNumber': '0'},
+        {'playerID': 'kershcl01', 'yearID': '2022', 'gameNumber': '0'},
+        {'playerID': 'kershcl01', 'yearID': '2023', 'gameNumber': '0'},
+        {'playerID': 'greggha01', 'yearID': '1945', 'gameNumber': '0'},
+        {'playerID': 'galanau01', 'yearID': '1944', 'gameNumber': '0'}
     ], 
     'Appearances.csv': [
         {'playerID': 'guerrvl02', 'yearID': '2022', 'teamID': 'TOR'},
@@ -48,12 +48,12 @@ conditions = {
         {'playerID': 'daleybi01', 'yearID': '1891', 'teamID': 'BS2'},
     ],
     'AwardsPlayers.csv': [
-        {'playerID': 'guerrvl02', 'awardID': 'Gold Glove', 'yearID': '2022', 'lgID': 'AL'},
-        {'playerID': 'bettsmo01', 'awardID': 'TSN All-Star', 'yearID': '2022', 'lgID': 'NL'},
-        {'playerID': 'bettsmo01', 'awardID': 'TSN All-Star', 'yearID': '2023', 'lgID': 'NL'},
-        {'playerID': 'bettsmo01', 'awardID': 'Silver Slugger', 'yearID': '2022', 'lgID': 'NL'},
-        {'playerID': 'bettsmo01', 'awardID': 'Silver Slugger', 'yearID': '2023', 'lgID': 'NL'},
-        {'playerID': 'bettsmo01', 'awardID': 'Gold Glove', 'yearID': '2022', 'lgID': 'NL'},
+        {'playerID': 'guerrvl02', 'awardID': 'Gold Glove', 'yearID': '2022', 'leagueID': 'AL'},
+        {'playerID': 'bettsmo01', 'awardID': 'TSN All-Star', 'yearID': '2022', 'leagueID': 'NL'},
+        {'playerID': 'bettsmo01', 'awardID': 'TSN All-Star', 'yearID': '2023', 'leagueID': 'NL'},
+        {'playerID': 'bettsmo01', 'awardID': 'Silver Slugger', 'yearID': '2022', 'leagueID': 'NL'},
+        {'playerID': 'bettsmo01', 'awardID': 'Silver Slugger', 'yearID': '2023', 'leagueID': 'NL'},
+        {'playerID': 'bettsmo01', 'awardID': 'Gold Glove', 'yearID': '2022', 'leagueID': 'NL'},
     ],
     'Batting.csv': [
         {'playerID': 'guerrvl02', 'yearID': '2022', 'stint': '1'},
@@ -77,87 +77,87 @@ conditions = {
         {'playerID': 'daleybi01', 'yearID': '1891', 'stint': '1'},
     ],    
     'Fielding.csv': [
-        {'playerID': 'guerrvl02', 'yearID': '2022', 'stint': '1', 'POS': '1B'},
-        {'playerID': 'guerrvl02', 'yearID': '2022', 'stint': '1', 'POS': '3B'},
-        {'playerID': 'guerrvl02', 'yearID': '2023', 'stint': '1', 'POS': '1B'},
+        {'playerID': 'guerrvl02', 'yearID': '2022', 'stint': '1', 'position': '1B'},
+        {'playerID': 'guerrvl02', 'yearID': '2022', 'stint': '1', 'position': '3B'},
+        {'playerID': 'guerrvl02', 'yearID': '2023', 'stint': '1', 'position': '1B'},
 
-        {'playerID': 'biggica01', 'yearID': '2022', 'stint': '1', 'POS': '1B'},
-        {'playerID': 'biggica01', 'yearID': '2022', 'stint': '1', 'POS': '2B'},
-        {'playerID': 'biggica01', 'yearID': '2022', 'stint': '1', 'POS': '3B'},
-        {'playerID': 'biggica01', 'yearID': '2022', 'stint': '1', 'POS': 'OF'},
-        {'playerID': 'biggica01', 'yearID': '2023', 'stint': '1', 'POS': '1B'},
-        {'playerID': 'biggica01', 'yearID': '2023', 'stint': '1', 'POS': '2B'},
-        {'playerID': 'biggica01', 'yearID': '2023', 'stint': '1', 'POS': '3B'},
-        {'playerID': 'biggica01', 'yearID': '2023', 'stint': '1', 'POS': 'SS'},
-        {'playerID': 'biggica01', 'yearID': '2023', 'stint': '1', 'POS': 'OF'},
+        {'playerID': 'biggica01', 'yearID': '2022', 'stint': '1', 'position': '1B'},
+        {'playerID': 'biggica01', 'yearID': '2022', 'stint': '1', 'position': '2B'},
+        {'playerID': 'biggica01', 'yearID': '2022', 'stint': '1', 'position': '3B'},
+        {'playerID': 'biggica01', 'yearID': '2022', 'stint': '1', 'position': 'OF'},
+        {'playerID': 'biggica01', 'yearID': '2023', 'stint': '1', 'position': '1B'},
+        {'playerID': 'biggica01', 'yearID': '2023', 'stint': '1', 'position': '2B'},
+        {'playerID': 'biggica01', 'yearID': '2023', 'stint': '1', 'position': '3B'},
+        {'playerID': 'biggica01', 'yearID': '2023', 'stint': '1', 'position': 'SS'},
+        {'playerID': 'biggica01', 'yearID': '2023', 'stint': '1', 'position': 'OF'},
 
-        {'playerID': 'kikucyu01', 'yearID': '2022', 'stint': '1', 'POS': 'P'},
-        {'playerID': 'kikucyu01', 'yearID': '2023', 'stint': '1', 'POS': 'P'},
+        {'playerID': 'kikucyu01', 'yearID': '2022', 'stint': '1', 'position': 'P'},
+        {'playerID': 'kikucyu01', 'yearID': '2023', 'stint': '1', 'position': 'P'},
 
-        {'playerID': 'bettsmo01', 'yearID': '2022', 'stint': '1', 'POS': '2B'},
-        {'playerID': 'bettsmo01', 'yearID': '2022', 'stint': '1', 'POS': 'OF'},
-        {'playerID': 'bettsmo01', 'yearID': '2023', 'stint': '1', 'POS': '2B'},
-        {'playerID': 'bettsmo01', 'yearID': '2023', 'stint': '1', 'POS': 'SS'},
-        {'playerID': 'bettsmo01', 'yearID': '2023', 'stint': '1', 'POS': 'OF'},
+        {'playerID': 'bettsmo01', 'yearID': '2022', 'stint': '1', 'position': '2B'},
+        {'playerID': 'bettsmo01', 'yearID': '2022', 'stint': '1', 'position': 'OF'},
+        {'playerID': 'bettsmo01', 'yearID': '2023', 'stint': '1', 'position': '2B'},
+        {'playerID': 'bettsmo01', 'yearID': '2023', 'stint': '1', 'position': 'SS'},
+        {'playerID': 'bettsmo01', 'yearID': '2023', 'stint': '1', 'position': 'OF'},
 
-        {'playerID': 'kershcl01', 'yearID': '2022', 'stint': '1', 'POS': 'P'},
-        {'playerID': 'kershcl01', 'yearID': '2023', 'stint': '1', 'POS': 'P'},
+        {'playerID': 'kershcl01', 'yearID': '2022', 'stint': '1', 'position': 'P'},
+        {'playerID': 'kershcl01', 'yearID': '2023', 'stint': '1', 'position': 'P'},
 
-        {'playerID': 'buehlwa01', 'yearID': '2022', 'stint': '1', 'POS': 'P'},
+        {'playerID': 'buehlwa01', 'yearID': '2022', 'stint': '1', 'position': 'P'},
 
-        {'playerID': 'bordafr01', 'yearID': '1944', 'stint': '1', 'POS': '3B'},
-        {'playerID': 'bordafr01', 'yearID': '1944', 'stint': '1', 'POS': 'OF'},
-        {'playerID': 'bordafr01', 'yearID': '1945', 'stint': '1', 'POS': '3B'},
+        {'playerID': 'bordafr01', 'yearID': '1944', 'stint': '1', 'position': '3B'},
+        {'playerID': 'bordafr01', 'yearID': '1944', 'stint': '1', 'position': 'OF'},
+        {'playerID': 'bordafr01', 'yearID': '1945', 'stint': '1', 'position': '3B'},
 
-        {'playerID': 'greggha01', 'yearID': '1944', 'stint': '1', 'POS': 'P'},
-        {'playerID': 'greggha01', 'yearID': '1945', 'stint': '1', 'POS': 'P'},
+        {'playerID': 'greggha01', 'yearID': '1944', 'stint': '1', 'position': 'P'},
+        {'playerID': 'greggha01', 'yearID': '1945', 'stint': '1', 'position': 'P'},
 
-        {'playerID': 'webbele01', 'yearID': '1944', 'stint': '1', 'POS': 'P'},
-        {'playerID': 'webbele01', 'yearID': '1945', 'stint': '1', 'POS': 'P'},
+        {'playerID': 'webbele01', 'yearID': '1944', 'stint': '1', 'position': 'P'},
+        {'playerID': 'webbele01', 'yearID': '1945', 'stint': '1', 'position': 'P'},
 
-        {'playerID': 'galanau01', 'yearID': '1944', 'stint': '1', 'POS': '2B'},
-        {'playerID': 'galanau01', 'yearID': '1944', 'stint': '1', 'POS': 'OF'},
-        {'playerID': 'galanau01', 'yearID': '1945', 'stint': '1', 'POS': '1B'},
-        {'playerID': 'galanau01', 'yearID': '1945', 'stint': '1', 'POS': '3B'},
-        {'playerID': 'galanau01', 'yearID': '1945', 'stint': '1', 'POS': 'OF'},
+        {'playerID': 'galanau01', 'yearID': '1944', 'stint': '1', 'position': '2B'},
+        {'playerID': 'galanau01', 'yearID': '1944', 'stint': '1', 'position': 'OF'},
+        {'playerID': 'galanau01', 'yearID': '1945', 'stint': '1', 'position': '1B'},
+        {'playerID': 'galanau01', 'yearID': '1945', 'stint': '1', 'position': '3B'},
+        {'playerID': 'galanau01', 'yearID': '1945', 'stint': '1', 'position': 'OF'},
 
-        {'playerID': 'quinnjo02', 'yearID': '1890', 'stint': '1', 'POS': '2B'},
+        {'playerID': 'quinnjo02', 'yearID': '1890', 'stint': '1', 'position': '2B'},
 
-        {'playerID': 'broutda01', 'yearID': '1890', 'stint': '1', 'POS': '1B'},
-        {'playerID': 'broutda01', 'yearID': '1891', 'stint': '1', 'POS': '1B'},
+        {'playerID': 'broutda01', 'yearID': '1890', 'stint': '1', 'position': '1B'},
+        {'playerID': 'broutda01', 'yearID': '1891', 'stint': '1', 'position': '1B'},
 
-        {'playerID': 'daleybi01', 'yearID': '1890', 'stint': '1', 'POS': 'OF'},
-        {'playerID': 'daleybi01', 'yearID': '1890', 'stint': '1', 'POS': 'P'},
-        {'playerID': 'daleybi01', 'yearID': '1891', 'stint': '1', 'POS': 'OF'},
-        {'playerID': 'daleybi01', 'yearID': '1891', 'stint': '1', 'POS': 'P'}
+        {'playerID': 'daleybi01', 'yearID': '1890', 'stint': '1', 'position': 'OF'},
+        {'playerID': 'daleybi01', 'yearID': '1890', 'stint': '1', 'position': 'P'},
+        {'playerID': 'daleybi01', 'yearID': '1891', 'stint': '1', 'position': 'OF'},
+        {'playerID': 'daleybi01', 'yearID': '1891', 'stint': '1', 'position': 'P'}
     ],
     'FieldingOFsplit.csv': [
-        {'playerID': 'biggica01', 'yearID': '2022', 'stint': '1', 'POS': 'LF'},
-        {'playerID': 'biggica01', 'yearID': '2022', 'stint': '1', 'POS': 'RF'},
-        {'playerID': 'biggica01', 'yearID': '2023', 'stint': '1', 'POS': 'RF'},
-        {'playerID': 'bettsmo01', 'yearID': '2022', 'stint': '1', 'POS': 'RF'},
-        {'playerID': 'bettsmo01', 'yearID': '2023', 'stint': '1', 'POS': 'RF'},
+        {'playerID': 'biggica01', 'yearID': '2022', 'stint': '1', 'position': 'LF'},
+        {'playerID': 'biggica01', 'yearID': '2022', 'stint': '1', 'position': 'RF'},
+        {'playerID': 'biggica01', 'yearID': '2023', 'stint': '1', 'position': 'RF'},
+        {'playerID': 'bettsmo01', 'yearID': '2022', 'stint': '1', 'position': 'RF'},
+        {'playerID': 'bettsmo01', 'yearID': '2023', 'stint': '1', 'position': 'RF'},
 
     ],
     'HallOfFame.csv': [
-        {'yearid': '1936', 'playerID': 'broutda01'},
-        {'yearid': '1945', 'playerID': 'broutda01'}
+        {'yearID': '1936', 'playerID': 'broutda01'},
+        {'yearID': '1945', 'playerID': 'broutda01'}
     ],
     'HomeGames.csv': [
-        {'yearkey': '1944', 'teamkey': 'BRO', 'parkkey': 'NYC15'},
-        {'yearkey': '1945', 'teamkey': 'BRO', 'parkkey': 'NYC15'},
-        {'yearkey': '2022', 'teamkey': 'LAN', 'parkkey': 'LOS03'},
-        {'yearkey': '2023', 'teamkey': 'LAN', 'parkkey': 'LOS03'},
-        {'yearkey': '2022', 'teamkey': 'TOR', 'parkkey': 'TOR02'},
-        {'yearkey': '2023', 'teamkey': 'TOR', 'parkkey': 'TOR02'},
-        {'yearkey': '1890', 'teamkey': 'BSP', 'parkkey': 'BOS04'},
-        {'yearkey': '1891', 'teamkey': 'BS2', 'parkkey': 'BOS04'},
+        {'yearID': '1944', 'teamID': 'BRO', 'parkID': 'NYC15'},
+        {'yearID': '1945', 'teamID': 'BRO', 'parkID': 'NYC15'},
+        {'yearID': '2022', 'teamID': 'LAN', 'parkID': 'LOS03'},
+        {'yearID': '2023', 'teamID': 'LAN', 'parkID': 'LOS03'},
+        {'yearID': '2022', 'teamID': 'TOR', 'parkID': 'TOR02'},
+        {'yearID': '2023', 'teamID': 'TOR', 'parkID': 'TOR02'},
+        {'yearID': '1890', 'teamID': 'BSP', 'parkID': 'BOS04'},
+        {'yearID': '1891', 'teamID': 'BS2', 'parkID': 'BOS04'},
     ],
     'Parks.csv': [
-        {'parkkey': 'NYC15'},
-        {'parkkey': 'LOS03'},
-        {'parkkey': 'TOR02'},
-        {'parkkey': 'BOS04'}
+        {'parkID': 'NYC15'},
+        {'parkID': 'LOS03'},
+        {'parkID': 'TOR02'},
+        {'parkID': 'BOS04'}
     ],
     'Pitching.csv': [
         {'playerID': 'kikucyu01', 'yearID': '2022', 'stint': '1'},
@@ -198,9 +198,9 @@ conditions = {
         {'yearID': '1891', 'teamID': 'BS2'},
     ],
     'TeamsFranchises.csv': [
-        {'franchID': 'TOR'},
-        {'franchID': 'LAD'},
-        {'franchID': 'BRS'},
+        {'franchiseID': 'TOR'},
+        {'franchiseID': 'LAD'},
+        {'franchiseID': 'BRS'},
     ]
 }
 
@@ -256,7 +256,7 @@ def main():
 
             filtered_df = df[df.apply(lambda row: row_matches_conditions(row, conditions[csv_file]), axis=1)]
 
-            output_file = os.path.join(output_directory, f"Sample{csv_file}")
+            output_file = os.path.join(output_directory, f"{csv_file}")
             filtered_df.to_csv(output_file, index=False)
             print(f"Created {output_file} with {len(filtered_df)} matching rows.")
 
