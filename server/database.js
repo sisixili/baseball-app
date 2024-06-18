@@ -17,13 +17,13 @@ export const pool = mysql.createPool({
 //------------Queries-------------//
 
 export async function getAllPlayers(limit) {
-    const [rows] = await pool.query("SELECT * FROM players LIMIT ?", [limit])
+    const [rows] = await pool.query("SELECT * FROM Players LIMIT ?", [limit])
     // math here if want, or call helpers (that you'd have to import)
     return rows
 }
 
 export async function getBatting(year, minGames) {
-    const [rows] = await pool.query("SELECT playerID, HR, G FROM batting_test WHERE year = ? AND G > ?", [year, minGames])
+    const [rows] = await pool.query("SELECT playerID, HR, G FROM Batting WHERE yearID = ? AND G > ?", [year, minGames])
     return rows
 }
 
