@@ -15,8 +15,8 @@ CREATE TABLE AllstarFull (
 CREATE TABLE Appearances (
     yearID SMALLINT(6) NOT NULL CHECK(yearID >= 1871),
     teamID CHAR(3) NOT NULL,
-    playerID VARCHAR(9) NOT NULL,
     leagueID CHAR(2) DEFAULT NULL,
+    playerID VARCHAR(9) NOT NULL,
     G SMALLINT(6) DEFAULT NULL CHECK(G IS NULL OR G >= 0),
     GS SMALLINT(6) DEFAULT NULL CHECK(GS IS NULL OR (GS >= 0 AND G IS NOT NULL AND GS <= G)),
     G_batting SMALLINT(6) DEFAULT NULL CHECK(G_batting IS NULL OR (G_batting >= 0 AND G IS NOT NULL AND G_batting <= G)),
@@ -85,9 +85,9 @@ CREATE TABLE Fielding (
     playerID VARCHAR(9) NOT NULL,
     yearID SMALLINT(6) NOT NULL CHECK(yearID >= 1871),
     stint SMALLINT(6) NOT NULL CHECK(stint >= 1),
-    position VARCHAR(2) NOT NULL CHECK(position = 'P' OR position = 'C' OR position = '1B' OR position = '2B' OR position = '3B' OR position = 'SS' OR position = 'OF'),
     teamID CHAR(3) NOT NULL,
     leagueID CHAR(2) DEFAULT NULL,
+    position VARCHAR(2) NOT NULL CHECK(position = 'P' OR position = 'C' OR position = '1B' OR position = '2B' OR position = '3B' OR position = 'SS' OR position = 'OF'),
     G SMALLINT(6) DEFAULT NULL CHECK(G IS NULL OR G >= 0),
     GS SMALLINT(6) DEFAULT NULL CHECK(GS IS NULL OR (GS >= 0 AND G IS NOT NULL AND GS <= G)),
     outsRecorded SMALLINT(6) DEFAULT NULL CHECK(outsRecorded IS NULL OR outsRecorded >= 0),
@@ -109,9 +109,9 @@ CREATE TABLE FieldingOFSplit (
     playerID VARCHAR(9) NOT NULL,
     yearID SMALLINT(6) NOT NULL CHECK(yearID >= 1871),
     stint SMALLINT(6) NOT NULL CHECK(stint >= 1),
-    position VARCHAR(2) NOT NULL CHECK(position = 'LF' OR position = 'CF' OR position = 'RF'),
     teamID CHAR(3) NOT NULL,
     leagueID CHAR(2) DEFAULT NULL,
+    position VARCHAR(2) NOT NULL CHECK(position = 'LF' OR position = 'CF' OR position = 'RF'),
     G SMALLINT(6) DEFAULT NULL CHECK(G IS NULL OR G >= 0),
     GS SMALLINT(6) DEFAULT NULL CHECK(GS IS NULL OR (GS >= 0 AND G IS NOT NULL AND GS <= G)),
     outsRecorded SMALLINT(6) DEFAULT NULL CHECK(outsRecorded IS NULL OR outsRecorded >= 0),
@@ -140,9 +140,9 @@ CREATE TABLE HallOfFame (
 
 CREATE TABLE HomeGames (
     yearID SMALLINT(6) NOT NULL CHECK(yearID >= 1871),          /* type change */
+    leagueID CHAR(2) DEFAULT NULL,
     teamID CHAR(3) NOT NULL,              
-    parkID VARCHAR(255) NOT NULL,         
-    leagueID CHAR(2) DEFAULT NULL,      
+    parkID VARCHAR(255) NOT NULL,              
     spanFirst VARCHAR(255) DEFAULT NULL,
     spanLast VARCHAR(255) DEFAULT NULL,
     gamesPlayedAtHome INT(11) DEFAULT NULL CHECK(gamesPlayedAtHome IS NULL OR gamesPlayedAtHome >= 0),
@@ -155,8 +155,8 @@ CREATE TABLE HomeGames (
 
 
 CREATE TABLE Parks (
-    parkID VARCHAR(255) NOT NULL,
     parkAlias VARCHAR(255) DEFAULT NULL,
+    parkID VARCHAR(255) NOT NULL,
     parkName VARCHAR(255) DEFAULT NULL,
     city VARCHAR(255) DEFAULT NULL,
     state VARCHAR(255) DEFAULT NULL,
@@ -225,9 +225,9 @@ CREATE TABLE Pitching (
 
 CREATE TABLE Teams (
     yearID SMALLINT(6) NOT NULL CHECK(yearID >= 1871),
+    leagueID CHAR(2) DEFAULT NULL,
     teamID CHAR(3) NOT NULL,
     franchiseID VARCHAR(3) NOT NULL,
-    leagueID CHAR(2) DEFAULT NULL,
     divisionID CHAR(1) DEFAULT NULL,
     teamRank SMALLINT(6) DEFAULT NULL,
     G SMALLINT(6) DEFAULT NULL CHECK(G IS NULL OR G >= 0),
