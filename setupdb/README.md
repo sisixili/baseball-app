@@ -31,12 +31,12 @@ VALUES
 
 NOTE: pwd will be encrypted, so in the db it will show up as a long string that is NOT the actual password (it’s the hashed pwd). 
 
-In client directory: 
+In `baseball-app/client` directory: 
 run `create-react-app` to initializa a react app in the current directory.
 run npm i on the package:
 	"react-router-dom": "^6.23.1"
 
-In server directory: run npm i on the following packages
+In `baseball-app/server` directory: run npm i on the following packages
 	"bcrypt": "^5.1.1",
         "cors": "^2.8.5",
         "dotenv": "^16.4.5",
