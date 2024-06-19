@@ -19,10 +19,11 @@ const db = knex({
 
 //------------Queries-------------//
 
-export const getAllPlayers = async () => {
+export const getAllPlayers = async (limit) => {
     // math here if want, or call helpers (that you'd have to import)
     return await db('players')
-        .select('*');
+        .select('*')
+        .limit(limit);
 }
 
 export const getPlayerByID = async (playerID) => {
@@ -36,13 +37,13 @@ export const getLeaders = async (column, orderDirection) => {
         .select('playerID', 'nameFirst', 'nameLast', column)
         .orderBy(column, orderDirection);
 }
-/*
+
 export const getBatting = async (year, minGames) => {
     return await db('batting_test')
         .select('playerID', 'HR', 'G')
-        .where('year', year)
+        .where('yearID', year)
         .andWhere('G', '>=', minGames);
 }
-*/
+
 
 
