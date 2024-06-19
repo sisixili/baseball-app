@@ -3,7 +3,7 @@
 Ensure Python3 version 3.11.4 is installed in the directory `baseball-app`
 
 In `baseball-app/client` directory: 
-run `npx create-react-app@18.3.1` to initialize a react app in the current directory.
+run `npx create-react-app@5.0.1` to initialize a react app in the current directory.
 run `npm init -y` and then run `npm i react-router-dom@6.23.1`
 
 In `baseball-app/server` directory: 
