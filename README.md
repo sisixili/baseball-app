@@ -1,5 +1,14 @@
 # Set Up
 
+client:
+`npx create-react-app@5.0.1 .`
+`npm i react-router-dom`
+
+server:
+`npm init -y`
+`npm i bcrypt@5.1.1 cors@2.8.5 dotenv@16.4.5 express@4.19.2 jsonwebtoken@9.0.2 knex@3.1.0 mysql2@3.10.1 nodemon@3.1.3`
+
+
 1. Run `git clone https://github.com/sisixili/baseball-app.git` into your desired local directory
 2. Follow the steps outlined in the setupdb README if you have not yet set up the database
 3. Install the latest stable version of [Node](https://nodejs.org/en/download/package-manager/). This project uses Express (backend web app framework for RESTful APIs in Node) and React (front end JS library for UI).
