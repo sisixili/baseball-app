@@ -22,18 +22,3 @@ DB_PASSWORD=password
 13. Run `python3 "Python Scripts"/initTables.py` from `baseball-app/setupdb`
 
 NOTE: To update the statistical data stored in both the CSV files (both sample and production) and database, start again from step 4
-
-Sisi Password Query Stuff:
-
-"CREATE TABLE IF NOT EXISTS Users (
-	ID INT AUTO_INCREMENT PRIMARY KEY,
-    nameFirst varchar(255) NOT NULL,
-    nameLast varchar(255) NOT NULL,
-    pwd varchar(255) NOT NULL
-);
-ALTER TABLE users AUTO_INCREMENT=1001;
-INSERT INTO users(nameFirst, nameLast, pwd)
-VALUES
-	("user1", "test", "69420@urmom");"
-
-NOTE: pwd will be encrypted, so in the db it will show up as a long string that is NOT the actual password (it’s the hashed pwd). 
