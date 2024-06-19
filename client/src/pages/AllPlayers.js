@@ -23,7 +23,11 @@ function Players() {
     const [name, setName] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:3001/allplayers", {})
+        fetch("http://localhost:3001/allplayers", {
+          headers: {
+            accessToken: sessionStorage.getItem("accessToken"),
+          },
+        })
           .then((res) => {
             if (res.ok) {
               return res.json();

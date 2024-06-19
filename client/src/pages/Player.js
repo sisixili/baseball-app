@@ -9,7 +9,11 @@ function Player() {
     const [PlayerStats, setPlayerStats] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/allplayers/${playerID}`, {})
+        fetch(`http://localhost:3001/allplayers/${playerID}`, {                                            
+          headers: {
+            accessToken: sessionStorage.getItem("accessToken"),
+          },
+        })
           .then((res) => {
             if (res.ok) {
               return res.json();
