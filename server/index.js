@@ -7,7 +7,15 @@ import express from "express";
 import cors from "cors";
 import bcrypt from "bcrypt"
 import jwt from 'jsonwebtoken';
-import { getAllPlayers, getLeaders, getPlayerByID, RegisterNewUser, findUserID } from "./database.js"; // This syntax is for "destructuring", a javascript technique to extract values from an object
+import {    getAllPlayers,                                                                                                                      // Search for player
+            getBattingLeaders, getPitchingLeaders,                                                                                              // Leaderboard
+            RegisterNewUser, findUserID,                                                                                                        // Login/Logout
+            getFavouriteFranchises, getFavouriteTeams, getFavouritePlayers,                                                                     // Favourites
+            getFranchises,                                                                                                                      // All franchises
+            getFanchiseBio, getFranchiseTotals, getFranchiseTeams,                                                                              // Franchise profile
+            getTeamBio, getTotalPitchersForTeam, getAllPitchersForTeam, getTotalBattersForTeam, getAllBattersForTeam,                           // Team profile
+            getPlayerBio, getCareerPitchingTotals, getSeasonBySeasonPitchingStats, getCareerBattingTotals, getSeasonBySeasonBattingStats        // Player profile
+} from "./database.js"; // This syntax is for "destructuring", a javascript technique to extract values from an object
 import { validateToken } from "./middlewares/AuthMiddleware.js";
 
 
@@ -17,7 +25,7 @@ const { sign } = jwt;
 app.use(express.json());
 app.use(cors());
 
-//-------------------------------------//
+
 
 app.use((err, req, res, next) => {
   // Express 5 middleware
@@ -27,27 +35,38 @@ app.use((err, req, res, next) => {
 
 // ------------API's-------------------//
 
-// URL/path: domain/people, so you can call this API by typing localhost:3000/player
+
+/**
+ * Search for player???
+ */
 app.get("/allplayers", validateToken, async (req, res) => {
   const players = await getAllPlayers(20); // placeholder constant 20
   res.send(players);
 });
 
-app.get("/allplayers/:playerID", validateToken, async (req, res) => {
-  const player = await getPlayerByID(req.params.playerID);
-  res.send(player); // Send response back to frontend
-});
 
+/**
+ * Leaderboard
+ */
 app.get("/leaderboard", validateToken, async (req, res) => {
-  const { column, orderDirection } = req.query;
+  const { hittingStatistic, pitchingStatistic, yearID, minGames, orderDirection } = req.query;
   try {
-    const players = await getLeaders(column, orderDirection);
-    res.send(players); // Send response back to frontend
+    const hittingLeaders = await getBattingLeaders(hittingStatistic, yearID, minGames, orderDirection)      // Batting leaderboard, hittingStatistic: H or HR or RBI
+    const pitchingLeaders = await getPitchingLeaders(pitchingStatistic, yearID, minGames, orderDirection)   // Pitching leaderboard, pitchingStatitic: W or ER or SO
+    const leaders = {
+        hittingLeaders: hittingLeaders,
+        pitchingLeaders: pitchingLeaders,
+    }
+    res.send(leaders)
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
+
+/**
+ * Login/Logout
+ */
 app.post("/register", async (req, res) => {
   const { userID, nameFirst, nameLast, pwd } = req.body;
 
@@ -84,6 +103,93 @@ app.post("/login", async (req, res) => {
 });
 
 
+/**
+ * Favourites
+ */
+app.get("/favourites/:userID", async (req, res) => {
+    const favouriteFranchises = await getFavouriteFranchises(req.params.userID)     // Favourite franchises
+    const favouriteTeams = await getFavouriteTeams(req.params.userID)               // Favourite teams
+    const favouritePlayers = await getFavouritePlayers(req.params.userID)           // Favourite players
+    const favourites = {
+        favouriteFranchises: favouriteFranchises,
+        favouriteTeams: favouriteTeams,
+        favouritePlayers: favouritePlayers
+    }
+    res.send(favourites)
+})
+
+
+/**
+ * All franchises
+ */
+app.get("/franchises", async (req, res) => {
+    const activeFranchises = await getFranchises('Y')           // Active franchises
+    const nonActiveFranchises = await getFranchises('N')        // Nonactive franchises
+    const franchises = {
+        activeFranchises: activeFranchises,
+        nonActiveFranchises: nonActiveFranchises
+    };
+    res.send(franchises)
+})
+
+
+/**
+ * Franchise profile
+ */
+app.get("/franchiseProfile/:franchiseID", async (req, res) => {
+    const franchiseBio = await getFanchiseBio(req.params.franchiseID)           // Franchise bio
+    const franchiseTotals = await getFranchiseTotals(req.params.franchiseID)    // Franchise all time total statistics
+    const franchiseTeams = await getFranchiseTeams(req.params.franchiseID)      // Year by year statistics for the franchise
+    const franchiseProfile = {
+        franchiseBio: franchiseBio,
+        franchiseTotals: franchiseTotals,
+        franchiseTeams: franchiseTeams
+    };
+    res.send(franchiseProfile)
+})
+
+
+/**
+ * Team profile
+ */
+app.get("/teamProfile/:teamID/:yearID", async (req, res) => {
+    const teamBio = await getTeamBio(req.params.teamID, req.params.yearID)                              // Team bio
+    const totalBattersForTeam = await getTotalBattersForTeam(req.params.teamID, req.params.yearID)      // Batting statistics totalled for all players on team
+    const allBattersForTeam = await getAllBattersForTeam(req.params.teamID, req.params.yearID)          // Batting statistics for each individual player
+    const totalPitchersForTeam = await getTotalPitchersForTeam(req.params.teamID, req.params.yearID)    // Pitching statistics totalled for all players on team
+    const allPitchersForTeam = await getAllPitchersForTeam(req.params.teamID, req.params.yearID)        // Pitching statistics for each individual player
+    const teamProfile = {
+        teamBio: teamBio,
+        totalBattersForTeam: totalBattersForTeam,
+        allBattersForTeam: allBattersForTeam,
+        totalPitchersForTeam: totalPitchersForTeam,
+        allPitchersForTeam: allPitchersForTeam
+    };
+    res.send(teamProfile)
+})
+
+
+/**
+ * Player Profile
+ */
+app.get("/playerProfile/:playerID", async (req, res) => {
+    const playerBio = await getPlayerBio(req.params.playerID)                                           // Player bio
+    const careerPitchingTotals = await getCareerPitchingTotals(req.params.playerID)                     // Career pitching totals
+    const seasonBySeasonPitchingStats = await getSeasonBySeasonPitchingStats(req.params.playerID)       // Season by season pitching statistics
+    const careerBattingTotals = await getCareerBattingTotals(req.params.playerID)                       // Career batting totals
+    const seasonBySeasonBattingStats = await getSeasonBySeasonBattingStats(req.params.playerID)         // Season by season batting statistics
+    const playerProfile = {
+        playerBio: playerBio,
+        careerPitchingTotals: careerPitchingTotals,
+        seasonBySeasonPitchingStats: seasonBySeasonPitchingStats,
+        careerBattingTotals: careerBattingTotals,
+        seasonBySeasonBattingStats: seasonBySeasonBattingStats
+    };
+    res.send(playerProfile)
+})
+
+
+
 // Crash course on Javascript:
 // In JS, you can have asynchronous code to execute "in the background" (JS is single-threaded so you won't
 // have truly concurrent lines running. async indicates that code inside the function may not run one line after the other
@@ -103,24 +209,3 @@ app.listen(3001, () => {
   console.log("Server is running on port 3001");
 });
 
-/**
- * app.get("/leaderboard", async (req, res) => {
-    try {
-        // Convert query params into base ten integers
-        const year = parseInt(req.query.year, 10);
-        const minGames = parseInt(req.query.minGames, 10);
-
-        // Check if input params are valid
-        if (isNaN(year) || isNaN(minGames)) {
-          return res.status(400).json({ error: 'Invalid query parameters' });
-        }
-    
-        const players = await getBatting(year, minGames)
-        res.send(players); // Send response back to frontend
-      } 
-      catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
-      }
-})
- */

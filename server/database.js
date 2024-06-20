@@ -20,25 +20,10 @@ const db = knex({
 
 //------------Queries-------------//
 
-export const getAllPlayers = async (limit) => {
-    // math here if want, or call helpers (that you'd have to import)
-    return await db('players')
-        .select('*')
-        .limit(limit);
-}
 
-export const getPlayerByID = async (playerID) => {
-    return await db('players')
-        .select('*')
-        .where('playerID', playerID);
-}
-
-export const getLeaders = async (column, orderDirection) => {
-    return await db('players')
-        .select('playerID', 'nameFirst', 'nameLast', column)
-        .orderBy(column, orderDirection);
-}
-
+/**
+ * Register user stuff
+ */
 export const findUserID = async(userID) => {
     const existingUser = await db("users").where({ userID }).first()
     if (existingUser) {
@@ -67,13 +52,212 @@ export const RegisterNewUser = async (userID, nameFirst, nameLast, pwd) => {
     });
 }
 
-export const getBatting = async (year, minGames) => {
-    return await db('batting_test')
-        .select('playerID', 'HR', 'G')
-        .where('yearID', year)
-        .andWhere('G', '>=', minGames);
+
+export const getAllPlayers = async (limit) => {
+    return await db('Players')
+        .select('*')
+        .limit(limit);
+}
+
+export const getBattingLeaders = async (hittingStatistic, yearID, minGames, orderDirection) => {
+    return await db('Batting')
+        .select('nameFirst', 'nameLast', 'playerID', hittingStatistic)
+        .where('yearID', yearID)
+        .andWhere('G', '>=', minGames)
+        .orderBy(hittingStatistic, orderDirection);
+}
+
+export const getPitchingLeaders = async (pitchingStatistic, yearID, minGames, orderDirection) => {
+    return await db('Pitching')
+        .select('nameFirst', 'nameLast', 'playerID', pitchingStatistic)
+        .where('yearID', yearID)
+        .andWhere('G', '>=', minGames)
+        .orderBy(pitchingStatistic, orderDirection);
 }
 
 
+// All time statistics displayed for each franchise
+const FRANCHISE_TOTALS = [              'G', 'W', 'L', 'R', 'AB', 'H', '2B', '3B', 'HR', 'BB', 'SO', 'SB', 'CS', 'HBP', 'SF', 
+                                        'RA', 'ER', 'CG', 'SHO', 'SV', 'HA', 'HRA', 'BBA', 'SOA', 'E', 'DP'];                                       // IP Calculated
+
+// Totalled statistics for all players on team displayed for a given team that is part of a franchise                                
+const TEAM_SINGLE_SEASON = [            'G', 'W', 'L', 'R', 'AB', 'H', '2B', '3B', 'HR', 'BB', 'SO', 'SB', 'CS', 'HBP', 'SF', 
+                                        'RA', 'ER', 'CG', 'SHO', 'SV', 'HA', 'HRA', 'BBA', 'SOA', 'E', 'DP', 'FP'];                                 // IP Calculated
+
+// Totalled pitching statistics for all players on a team displayed for a given team
+const TEAM_SINGLE_SEASON_PITCHING = [   'G', 'W', 'L', 'GS', 'CG', 'SHO', 'SV', 'H', 'R', 'ER', 'HR', 'BB', 'IBB', 'SO', 'HBP', 'BK', 'WP'];        // IP Calculated
+
+// Totalled batting statistics for all players on a team displayed for a given team
+const TEAM_SINGLE_SEASON_HITTING = [    'AB', 'R', 'H', '2B', '3B', 'HR', 'RBI', 'SB', 'CS', 'BB', 'SO', 'IBB', 'HBP', 'SH', 'SF', 'GIDP'];         // PA Calculated
+
+// Carreer pitching statistics displayed for a given player
+const PLAYER_CAREER_PITCHING = [        'G', 'W', 'L', 'GS', 'CG', 'SHO', 'SV', 'H', 'R', 'ER', 'HR', 'BB', 'IBB', 'SO', 'HBP', 'BK', 'WP'];        // IP Calculated
+
+// Season by season pitching statistics displayed for a given player
+const PLAYER_SINGLE_SEASON_PITCHING = [ 'G', 'W', 'L', 'GS', 'CG', 'SHO', 'SV', 'H', 'R', 'ER', 'HR', 'BB', 'IBB', 'SO', 'HBP', 'BK', 'WP'];        // IP Calculated
+
+// Carreer batting statistics displayed for a given player
+const PLAYER_CAREER_HITTING = [         'G', 'AB', 'R', 'H', '2B', '3B', 'HR', 'RBI', 'SB', 'CS', 'BB', 'SO', 'IBB', 'HBP', 'SH', 'SF', 'GIDP'];    // PA Calculated
+
+// Season by season batting statistics displayed for a given player
+const PLAYER_SINGLE_SEASON_HITTING = [  'G', 'AB', 'R', 'H', '2B', '3B', 'HR', 'RBI', 'SB', 'CS', 'BB', 'SO', 'IBB', 'HBP', 'SH', 'SF', 'GIDP'];    // PA Calculated
 
 
+export const getFranchises = async (isActive) => {
+    const franchiseTotals = await db('Franchises')
+        .join('Teams', 'Franchises.franchiseID', 'Teams.franchiseID')
+        .select(
+            'Franchises.franchiseName',
+            ...FRANCHISE_TOTALS.map(column => db.raw(`SUM(${column}) as ${column}`)),
+            db.raw('SUM(outsRecorded) / 3 AS IP')
+        )
+        .where('Franchises.isActive', isActive)
+        .groupBy('Franchises.franchiseID')
+        .orderBy(db.raw('SUM(W)'), 'desc');
+
+    return franchiseTotals;
+}
+
+export const getFanchiseBio = async (franchiseID) => {
+    return await db('Franchises')
+        .select('franchiseName', 'isActive')
+        .where('franchiseID', franchiseID);
+}
+
+export const getFranchiseTotals = async (franchiseID) => {
+    return await db('Teams')
+        .select(
+            ...FRANCHISE_TOTALS.map(column => db.raw(`SUM(${column}) as ${column}`)),
+            db.raw('SUM(outsRecorded) / 3 AS IP')
+        )
+        .where('franchiseID', franchiseID);
+}
+
+export const getFranchiseTeams = async (franchiseID) => {
+    return await db('Teams')
+        .select(
+            'name',
+            'yearID',
+            ...TEAM_SINGLE_SEASON,
+            db.raw('outsRecorded / 3 AS IP')
+        )
+        .where('franchiseID', franchiseID)
+        .orderBy('yearID', 'asc');
+}
+
+export const getFavouriteFranchises = async (userID) => {
+    return await db('FavouriteFranchises')
+        .select('Franchises.franchiseName', 'Franchises.franchiseID')
+        .join('Franchises', 'FavouriteFranchises.franchiseID', '=', 'Franchises.franchiseID')
+        .where('FavouriteFranchises.userID', userID);
+}
+
+export const getFavouriteTeams = async (userID) => {
+    return await db('FavouriteTeams')
+        .select('Teams.name', 'Teams.yearID', 'Teams.teamID')
+        .join('Teams', function() {
+            this.on('FavouriteTeams.teamID', '=', 'Teams.teamID')
+                .andOn('FavouriteTeams.yearID', '=', 'Teams.yearID'); 
+        })
+        .where('FavouriteTeams.userID', userID);
+}
+
+export const getFavouritePlayers = async (userID) => {
+    return await db('FavouritePlayers')
+        .select('Players.nameFirst', 'Players.nameLast', 'Players.playerID')
+        .join('Players', 'FavouritePlayers.playerID', '=', 'Players.playerID')
+        .where('FavouritePlayers.userID', userID);
+}
+
+export const getTeamBio = async (teamID, yearID) => {
+    return await db('Teams')
+        .select(
+            'Teams.name',
+            'Teams.franchiseID',
+            'Teams.G',
+            'Teams.W',
+            'Teams.L',
+            'Teams.park',
+            db.raw('Teams.attendance / HomeGames.gamesWithFans AS averageAttendance')
+        )
+        .join('HomeGames', function() {
+            this.on('Teams.teamID', '=', 'HomeGames.teamID')
+                .andOn('Teams.yearID', '=', 'HomeGames.yearID');
+        })
+        .where('Teams.teamID', teamID)
+        .andWhere('Teams.yearID', yearID);
+}
+
+export const getTotalBattersForTeam = async (teamID, yearID) => {
+    const sumColumns = TEAM_SINGLE_SEASON_HITTING.map(column => db.raw(`SUM(${column}) as ${column}`));
+    sumColumns.push(db.raw('SUM(COALESCE(AB, 0)) + SUM(COALESCE(BB, 0)) + SUM(COALESCE(HBP, 0)) + SUM(COALESCE(SH, 0)) + SUM(COALESCE(SF, 0)) AS PA'));
+    return await db('Batting')
+        .select(sumColumns)
+        .where('teamID', teamID)
+        .andWhere('yearID', yearID);
+}
+
+export const getAllBattersForTeam = async (teamID, yearID) => {
+    return await db('Batting')
+        .select('Players.nameFirst', 'Players.nameLast', 'Players.playerID', ...PLAYER_CAREER_HITTING)
+        .join('Players', 'Batting.playerID', '=', 'Players.playerID')
+        .where('Batting.teamID', teamID)
+        .andWhere('Batting.yearID', yearID);
+}
+
+export const getTotalPitchersForTeam = async (teamID, yearID) => {
+    return await db('Pitching')
+        .select(
+            ...TEAM_SINGLE_SEASON_PITCHING.map(column => db.raw(`SUM(${column}) as ${column}`)),
+            db.raw('SUM(outsRecorded) / 3 AS IP')
+        )
+        .where('teamID', teamID)
+        .andWhere('yearID', yearID);
+}
+
+export const getAllPitchersForTeam = async (teamID, yearID) => {
+    return await db('Pitching')
+        .select('Players.nameFirst', 'Players.nameLast', 'Players.playerID', ...PLAYER_SINGLE_SEASON_PITCHING)
+        .join('Players', 'Pitching.playerID', '=', 'Players.playerID')
+        .where('Pitching.teamID', teamID)
+        .andWhere('Pitching.yearID', yearID);
+}
+
+export const getPlayerBio = async (playerID) => {
+    return await db('Players')
+        .select('nameFirst', 'nameLast', 'weight', 'height', 'bats', 'throws', 'birthCountry')
+        .where('Players.playerID', playerID);
+}
+
+export const getCareerPitchingTotals = async (playerID) => {
+    const sumColumns = PLAYER_CAREER_PITCHING.map(column => db.raw(`SUM(??) AS ??`, [column, column]));
+    sumColumns.push(db.raw(`SUM(outsRecorded) / 3 AS IP`));
+    return await db('Pitching')
+        .select(...sumColumns)
+        .where('Pitching.playerID', playerID);
+}
+
+export const getSeasonBySeasonPitchingStats = async (playerID) => {
+    const columns = PLAYER_SINGLE_SEASON_PITCHING;
+    columns.push(db.raw(`outsRecorded / 3 AS IP`));
+
+    return await db('Pitching')
+        .select('yearID', 'teamID', ...columns)
+        .where('Pitching.playerID', playerID);
+}
+
+export const getCareerBattingTotals = async (playerID) => {
+    const sumColumns = PLAYER_CAREER_HITTING.map(column => db.raw(`SUM(??) AS ??`, [column, column]));
+    sumColumns.push(db.raw('SUM(COALESCE(AB, 0)) + SUM(COALESCE(BB, 0)) + SUM(COALESCE(HBP, 0)) + SUM(COALESCE(SH, 0)) + SUM(COALESCE(SF, 0)) AS PA'));
+    return await db('Batting')
+        .select(...sumColumns)
+        .where('Batting.playerID', playerID);
+}
+
+export const getSeasonBySeasonBattingStats = async (playerID) => {
+    const columns = PLAYER_SINGLE_SEASON_HITTING;
+    columns.push(db.raw('COALESCE(AB ,0) + COALESCE(BB ,0) + COALESCE(HBP ,0) + COALESCE(SH ,0) + COALESCE(SF ,0) AS PA'));
+    return await db('Batting')
+        .select('yearID', 'teamID', ...columns)
+        .where('Batting.playerID', playerID);
+}
