@@ -59,13 +59,13 @@ function Leaderboard() {
         <h4>Hitting</h4>
       </div>
       <div className="dropdown">
-        <select value={hitColumn} onChange={(e) => setHitColumn(e.target.value)}>
+        <select className="dropdown" value={hitColumn} onChange={(e) => setHitColumn(e.target.value)}>
           <option value="H">H</option>
           <option value="HR">HR</option>
           <option value="RBI">RBI</option>
         </select>
 
-        <select value={hitYearID} onChange={(e) => setHitYearID(parseInt(e.target.value, 10))}>
+        <select className="dropdown" value={hitYearID} onChange={(e) => setHitYearID(parseInt(e.target.value, 10))}>
           <option value="1890">1890</option>
           <option value="1891">1891</option>
           <option value="1944">1944</option>
@@ -74,7 +74,7 @@ function Leaderboard() {
           <option value="2023">2023</option>
         </select>
 
-        <select
+        <select className="dropdown" 
           value={hitOrderDirection}
           onChange={(e) => setHitOrderDirection(e.target.value)}
         >
@@ -112,7 +112,7 @@ function Leaderboard() {
           <option value="SO">SO</option>
         </select>
 
-        <select value={pitchYearID} onChange={(e) => setPitchYearID(parseInt(e.target.value, 10))}>
+        <select className="dropdown" value={pitchYearID} onChange={(e) => setPitchYearID(parseInt(e.target.value, 10))}>
           <option value="1890">1890</option>
           <option value="1891">1891</option>
           <option value="1944">1944</option>
@@ -121,7 +121,7 @@ function Leaderboard() {
           <option value="2023">2023</option>
         </select>
 
-        <select
+        <select className="dropdown" 
           value={pitchOrderDirection}
           onChange={(e) => setPitchOrderDirection(e.target.value)}
         >
