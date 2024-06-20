@@ -40,11 +40,12 @@ function Player() {
 
   return (
     <div>
-
       <div className="pageTitle">
         {PlayerStats.playerBio.map((player, key) => (
         <div className="pageTitle" key={key}>
+          <h2>
           {player.nameFirst} {player.nameLast}
+          </h2>
         </div>
         ))}
       </div>
