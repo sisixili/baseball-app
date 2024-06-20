@@ -78,6 +78,7 @@ body {
   background-color: #23B5D3;
 }
 .ListWrap{
+  font-size: 10;
   margin-right: 15px;
   margin-left: 15px;
   display: flex;
