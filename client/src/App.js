@@ -43,7 +43,7 @@ function App() {
         <div className="NavBar">
           <h3> </h3>
           <nav className = "navBar">
-          <Link to="/home"> | Home |</Link> 
+          <Link to="/home">      | Home |</Link> 
           <Link to="/players"> Search All Players |</Link> 
           <Link to="/leaderboard"> Leaderboard |</Link> 
           {isLoggedIn ? (
