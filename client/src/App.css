@@ -51,6 +51,35 @@ body {
   margin-bottom: 0;
 }
 
+/*==========Images==========*/
+
+.floatImg {
+  background: #F5FEFF;
+  border: transparent;
+  float: right;
+  margin: 0 0 0 0;
+  padding: 0px;
+
+  position:absolute;
+  bottom:-10px;
+  left:0px;
+  width:250px;
+  height:250px;
+}
+.floatBall {
+  background: #F5FEFF;
+  border: transparent;
+  float: right;
+  margin: 0 0 0 0;
+  padding: 0px;
+
+  position:absolute;
+  bottom:400px;
+  left:1320px;
+  width:200px;
+  height:200px;
+}
+
 
 /* ===== List Things ===== */
 ul {
@@ -177,4 +206,20 @@ li {
   margin-top: 5px;
   margin-bottom: 5px;
   margin-left: 92px;
+}
+
+
+/*================ Individual Player Stats ===============*/
+
+.TableStyle{
+  margin-top: 0;
+  margin-bottom: 0;
+  background-color: #000000;
+  color: #F5FEFF; 
+}
+.TableResults{
+  margin-top: 0;
+  margin-bottom: 0;
+  background-color: #23B5D3;
+  color: #000000; 
 }
