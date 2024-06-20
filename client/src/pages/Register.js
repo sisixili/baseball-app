@@ -22,41 +22,38 @@ function Register() {
     });
   };
 
-  // TODO: add form validation
+  // TODO: add form validation 
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
 
-    fetch("http://localhost:3001/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userID: formData.username,
-        nameFirst: formData.firstName,
-        nameLast: formData.lastName,
-        pwd: formData.password,
-      }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
+    try {
+        const response = await fetch("http://localhost:3001/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userID: formData.username,
+                nameFirst: formData.firstName,
+                nameLast: formData.lastName,
+                pwd: formData.password,
+            }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("Successfully created new account");
+            navigate("/");
         } else {
-          console.log("FETCH failed"); // BUG: Hittting here when username already taken...
+            alert(data.error || "An error occurred");
         }
-      })
-      .then(data => {
-        if(data.error) {
-          alert(data)
-        }
-        else {
-          alert("Successfully created new account")  
-          navigate("/")  
-        }
-      })
-      .catch((error) => console.log("ERROR", error));
-  }
+    } catch (error) {
+        alert("ERROR", error);
+        //alert("An error occurred while submitting the form");
+    }
+};
 
   return (
     <div className="Register">

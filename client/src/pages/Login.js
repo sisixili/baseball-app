@@ -8,31 +8,40 @@ function Login() {
 
   const navigate = useNavigate()
 
-  const login = () => {
-    fetch("http://localhost:3001/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userID: username,
-        pwd: password,
-      }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json() // Parse JSON asynchronously
-        }        
-      })
-      .then(data => {
+  const login = async () => {
+    const token = sessionStorage.getItem("accessToken");
+    if (token) {
+      alert("You have already logged in!");
+      navigate("/home");
+      return;
+    }
+    try {
+      const response = await fetch("http://localhost:3001/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userID: username,
+          pwd: password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
         if (data.error) {
-          alert(data.error)
-        } else { // Sucessful login
-          sessionStorage.setItem("accessToken", data) // Using session storage for quick and dirty JWT auth
-          navigate("/home") // go to home after login
-        }        
-      })
-      .catch((error) => console.log("ERROR", error));
+          alert(data.error);
+        } else {
+          sessionStorage.setItem("accessToken", data); // Using session storage for quick and dirty JWT auth
+          navigate("/home"); // go to home after login
+        }
+      }
+    } catch (error) {
+      alert("ERROR", error);
+    }
+
+    window.location.reload(); // Refresh page so logout button can show up in navbar
   };
 
 
