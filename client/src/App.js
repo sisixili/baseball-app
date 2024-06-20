@@ -48,7 +48,7 @@ function App() {
           <Link to="/leaderboard"> Leaderboard |</Link> 
           {isLoggedIn ? (
             <Link to="/logout"> Logout |</Link>
-          ):(
+          ):( 
             <Link to="/"> Login |</Link>
           )}
           </nav>

@@ -19,7 +19,7 @@ body {
   width: 100vw;
   height: auto;
   display: flex;
-  align-items: center;
+  align-items: start;
   flex-direction: column;
   background: #23B5D3; /*Header Colour*/
 }
