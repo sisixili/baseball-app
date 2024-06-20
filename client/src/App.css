@@ -1,14 +1,180 @@
+/* ==================== GENERAL ==================== */
 .App {
   width: 100vw;
   height: auto;
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: #459c5d;
+  background: #F5FEFF; /*BG Colour*/ 
 }
-body {
-  background-color: #b1cea3; /* Replace #f0f0f0 with your desired color */
+body { 
+  background-color: #F5FEFF; /* BG Colour */
 }
+.Centered {
+  display: flex;
+  align-items: table;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.pageTitle {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  background-color: #F5FEFF;
+}
+.subTitle {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: -20px;
+  margin-bottom: 0px;
+  background-color: #F5FEFF;
+}
+.SearchBar{
+  width: auto + 30;
+  align-items: center;
+  background-color: #000000;
+  background: transparent;
+  color: #F5FEFF;
+  margin-bottom: 0;
+} 
+.input{
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  background-color: #000000;
+  border: 10px solid var(--input-border);
+  border-radius: 0px;
+  color: #F5FEFF;
+  margin-bottom: 0;
+}
+
+
+/* ===== List Things ===== */
+ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: start;
+  margin-top: 0px;
+}
+li {
+  align-items: flex-start;
+  display: inline-block;
+  margin-bottom: -10px;
+}
+
+
+/* ====================== DROPDOWN THINGS ========================= */
+.dropdown{
+  font-size: inherit;
+  font-family: inherit;
+  border: 10px solid var(--input-border);
+  border-radius: 0px;
+  background-color: #000000;
+  background: #000000;
+  color: #F5FEFF;
+  padding: 0.25em 0.5em;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+.dropdown option:hover{ /*not working :(*/
+  background-color: #8CC04E;
+  color: #000000;
+}
+
+
+/* ==================== NAV BAR ==================== */
+.NavBar {
+  width: 100vw;
+  height: auto;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  background: #23B5D3; /*Header Colour*/
+}
+.NavText {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: start;
+  margin-left: 18px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  flex-direction: column;
+  background: #23B5D3; /*Header Colour*/
+}
+
+
+/* ==================== HOMEPAGE ==================== */
+.HomepageBody {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #F5FEFF;
+}
+
+
+/* ==================== SEARCH ALL PLAYERS ==================== */
 .Players {
-  background-color: #d4e1ca;
+  background-color: #23B5D3;
+}
+.NameList{
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-top: 0px;
+  background-color: #23B5D3;
+}
+.ListWrap{
+  font-size: 10;
+  margin-right: 15px;
+  margin-left: 15px;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  background: #23B5D3; /*Header Colour*/
+}
+
+/* ================Login ================== */
+.CenteredWithMargins {
+  display: flex;
+  align-items: table;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 72px;
+}
+.LoginButton{
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  background-color: #000000;
+  border: 10px solid var(--input-border);
+  border-radius: 0px;
+  color: #F5FEFF;
+  margin-bottom: 0px;
+  margin-top: 5px;
+}
+.RegisterFontSize{
+  font-size: 8;
+  margin-top: 5px;
+}
+
+
+/*================Form Sub===============*/
+.FormSub{
+  font-size: 8;
+  margin-top: 5px;
+  display: inline-block;
+  width: auto;
+}
+.InputBox{
+  width:100px;
+}
+.RegCenteredWithMargins {
+  display: flex;
+  align-items: table;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 92px;
 }

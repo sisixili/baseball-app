@@ -48,21 +48,38 @@ function Login() {
 
   return (
     <div>
-      <Link to="/register">New? Register Here</Link>
-      <input
+      <div className="pageTitle">
+        <h2>Login</h2>
+      </div>
+      <div className="Centered">
+      <input className="input"
         type="text"
+        placeholder="Username"
         onChange={(event) => {
           setUsername(event.target.value);
         }}
       />
-      <input
+      </div>
+      <div className="Centered">
+      <input className="input"
         type="password"
+        placeholder="Password"
         onChange={(event) => {
           setPassword(event.target.value);
         }}
       />
-
-      <button onClick={login}>Login</button>
+      </div>
+      <div className="Centered">
+        <div className="RegisterFontSize">
+          <Link to="/register">New? Register Here</Link>
+        </div>
+      </div>
+      <h3> </h3>
+      <div className="CenteredWithMargins" >
+        <button className="LoginButton" onClick={login}>
+          Login
+        </button>
+      </div>
     </div>
   );
 }
