@@ -49,10 +49,10 @@ app.get("/players", validateToken, async (req, res) => {
  * Leaderboard
  */
 app.get("/leaderboard", validateToken, async (req, res) => {
-  const { hittingStatistic, pitchingStatistic, yearID, minGames, orderDirection } = req.query;
+  const { hittingStatistic, pitchingStatistic, yearID, orderDirection } = req.query;
   try {
-    const hittingLeaders = await getBattingLeaders(hittingStatistic, yearID, minGames, orderDirection)      // Batting leaderboard, hittingStatistic: H or HR or RBI
-    const pitchingLeaders = await getPitchingLeaders(pitchingStatistic, yearID, minGames, orderDirection)   // Pitching leaderboard, pitchingStatitic: W or ER or SO
+    const hittingLeaders = await getBattingLeaders(hittingStatistic, yearID, orderDirection)      // Batting leaderboard, hittingStatistic: H or HR or RBI
+    const pitchingLeaders = await getPitchingLeaders(pitchingStatistic, yearID, orderDirection)   // Pitching leaderboard, pitchingStatitic: W or ER or SO
     const leaders = {
         hittingLeaders: hittingLeaders,
         pitchingLeaders: pitchingLeaders,
