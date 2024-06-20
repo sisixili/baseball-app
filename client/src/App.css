@@ -19,7 +19,7 @@ body {
   background-color: #F5FEFF;
 }
 .SearchBar{
-  width: auto;
+  width: auto + 30;
   height: auto;
   align-items: center;
   margin-top: 15px;
