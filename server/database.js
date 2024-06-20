@@ -145,6 +145,15 @@ export const getFranchiseTeams = async (franchiseID) => {
         .orderBy('yearID', 'asc');
 }
 
+export const createFavouriteFranchise = async (franchiseID, userID) => {
+    const exists = await db('FavouriteFranchises')
+        .select('*')
+        .where({ userID, franchiseID });
+    if (!exists) {
+        await db('FavouriteFranchises').insert({ userID, franchiseID });
+    }
+}
+
 export const getFavouriteFranchises = async (userID) => {
     return await db('FavouriteFranchises')
         .select('Franchises.franchiseName', 'Franchises.franchiseID')
@@ -188,6 +197,15 @@ export const getTeamBio = async (teamID, yearID) => {
         .andWhere('Teams.yearID', yearID);
 }
 
+export const createFavouriteTeam = async (teamID, yearID, userID) => {
+    const exists = await db('FavouriteTeams')
+        .select('*')
+        .where({ userID, yearID, teamID });
+    if (!exists) {
+        await db('FavouriteTeams').insert({ userID, yearID, teamID });
+    }
+}
+
 export const getTotalBattersForTeam = async (teamID, yearID) => {
     const sumColumns = TEAM_SINGLE_SEASON_HITTING.map(column => db.raw(`SUM(${column}) as ${column}`));
     sumColumns.push(db.raw('SUM(COALESCE(AB, 0)) + SUM(COALESCE(BB, 0)) + SUM(COALESCE(HBP, 0)) + SUM(COALESCE(SH, 0)) + SUM(COALESCE(SF, 0)) AS PA'));
@@ -227,6 +245,15 @@ export const getPlayerBio = async (playerID) => {
     return await db('Players')
         .select('nameFirst', 'nameLast', 'weight', 'height', 'bats', 'throws', 'birthCountry')
         .where('Players.playerID', playerID);
+}
+
+export const createFavouritePlayer = async (playerID, userID) => {
+    const exists = await db('FavouritePlayers')
+        .select('*')
+        .where({ userID, playerID });
+    if (!exists) {
+        await db('FavouritePlayers').insert({ userID, playerID });
+    }
 }
 
 export const getCareerPitchingTotals = async (playerID) => {

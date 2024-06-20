@@ -7,14 +7,14 @@ import express from "express";
 import cors from "cors";
 import bcrypt from "bcrypt"
 import jwt from 'jsonwebtoken';
-import {    getAllPlayers,                                                                                                                      // Search for player
-            getBattingLeaders, getPitchingLeaders,                                                                                              // Leaderboard
-            RegisterNewUser, findUserID,                                                                                                        // Login/Logout
-            getFavouriteFranchises, getFavouriteTeams, getFavouritePlayers,                                                                     // Favourites
-            getFranchises,                                                                                                                      // All franchises
-            getFanchiseBio, getFranchiseTotals, getFranchiseTeams,                                                                              // Franchise profile
-            getTeamBio, getTotalPitchersForTeam, getAllPitchersForTeam, getTotalBattersForTeam, getAllBattersForTeam,                           // Team profile
-            getPlayerBio, getCareerPitchingTotals, getSeasonBySeasonPitchingStats, getCareerBattingTotals, getSeasonBySeasonBattingStats        // Player profile
+import {    getAllPlayers,                                                                                                                                              // Search for player
+            getBattingLeaders, getPitchingLeaders,                                                                                                                      // Leaderboard
+            RegisterNewUser, findUserID,                                                                                                                                // Login/Logout
+            getFavouriteFranchises, getFavouriteTeams, getFavouritePlayers,                                                                                             // Favourites
+            getFranchises,                                                                                                                                              // All franchises
+            getFanchiseBio, getFranchiseTotals, getFranchiseTeams, createFavouriteFranchise,                                                                            // Franchise profile
+            getTeamBio, getTotalPitchersForTeam, getAllPitchersForTeam, getTotalBattersForTeam, getAllBattersForTeam, createFavouriteTeam,                              // Team profile
+            getPlayerBio, getCareerPitchingTotals, getSeasonBySeasonPitchingStats, getCareerBattingTotals, getSeasonBySeasonBattingStats, createFavouritePlayer         // Player profile
 } from "./database.js"; // This syntax is for "destructuring", a javascript technique to extract values from an object
 import { validateToken } from "./middlewares/AuthMiddleware.js";
 
@@ -148,6 +148,13 @@ app.get("/franchiseProfile/:franchiseID", async (req, res) => {
     res.send(franchiseProfile)
 })
 
+/**
+ * Create favourite franchise
+ */
+app.post("/createFavouriteFranchise/:franchiseID", async (req, res) => {
+    await createFavouriteFranchise(req.params.franchiseID, req.params.userID)
+})
+    
 
 /**
  * Team profile
@@ -170,6 +177,14 @@ app.get("/teamProfile/:teamID/:yearID", async (req, res) => {
 
 
 /**
+ * Create favourite team
+ */
+app.post("/createFavouriteTeam/:teamID/:yearID", async (req, res) => {
+    await createFavouriteTeam(req.params.teamID, req.params.yearID, req.params.userID)
+})
+
+
+/**
  * Player Profile
  */
 app.get("/playerProfile/:playerID", async (req, res) => {
@@ -186,6 +201,15 @@ app.get("/playerProfile/:playerID", async (req, res) => {
         seasonBySeasonBattingStats: seasonBySeasonBattingStats
     };
     res.send(playerProfile)
+})
+
+
+
+/**
+ * Create favourite player
+ */
+app.post("/createFavouritePlayer/:playerID", async (req, res) => {
+    await createFavouriteTeam(req.params.playerID, req.params.userID)
 })
 
 
