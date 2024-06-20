@@ -142,7 +142,7 @@ li {
   align-items: table;
   margin-top: 5px;
   margin-bottom: 5px;
-  margin-left: 70px;
+  margin-left: 72px;
 }
 .LoginButton{
   font-size: inherit;
@@ -153,4 +153,5 @@ li {
   border-radius: 0px;
   color: #F5FEFF;
   margin-bottom: 0;
+  margin-top: 10;
 }
