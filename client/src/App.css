@@ -72,9 +72,10 @@ li {
   padding: 0.25em 0.5em;
   margin-bottom: 0;
   border-radius: 0;
-  option:hover {
-    background-color: #8CC04E;
-  }
+}
+.dropdown option:hover{
+  background-color: #8CC04E;
+  color: #000000;
 }
 
 
