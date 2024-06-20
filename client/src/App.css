@@ -37,7 +37,6 @@ body {
   margin-bottom: 0;
 }
 .dropdown{
-  display: none;
   position: absolute;
   border: 10px solid var(--input-border);
   border-radius: 0px;
