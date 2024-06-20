@@ -77,3 +77,11 @@ body {
   margin-left: 15px;
   background-color: #23B5D3;
 }
+.ListWrap{
+  margin-right: 15px;
+  margin-left: 15px;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  background: #23B5D3; /*Header Colour*/
+}
