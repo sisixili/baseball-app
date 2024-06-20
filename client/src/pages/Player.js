@@ -43,7 +43,7 @@ function Player() {
 
       <div>
         {PlayerStats.playerBio.map((player, key) => (
-        <div key={key}>
+        <div className="pageTitle" key={key}>
           {player.nameFirst} {player.nameLast}
         </div>
         ))}
