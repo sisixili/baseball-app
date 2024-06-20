@@ -59,19 +59,17 @@ export const getAllPlayers = async (limit) => {
         .limit(limit);
 }
 
-export const getBattingLeaders = async (hittingStatistic, yearID, minGames, orderDirection) => {
+export const getBattingLeaders = async (hittingStatistic, yearID, orderDirection) => {
     return await db('Batting')
         .select('nameFirst', 'nameLast', 'playerID', hittingStatistic)
         .where('yearID', yearID)
-        .andWhere('G', '>=', minGames)
         .orderBy(hittingStatistic, orderDirection);
 }
 
-export const getPitchingLeaders = async (pitchingStatistic, yearID, minGames, orderDirection) => {
+export const getPitchingLeaders = async (pitchingStatistic, yearID, orderDirection) => {
     return await db('Pitching')
         .select('nameFirst', 'nameLast', 'playerID', pitchingStatistic)
         .where('yearID', yearID)
-        .andWhere('G', '>=', minGames)
         .orderBy(pitchingStatistic, orderDirection);
 }
 
