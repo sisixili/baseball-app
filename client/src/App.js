@@ -41,18 +41,24 @@ function App() {
     <div className="App">
       <Router>
         <div className="NavBar">
-          <h3> </h3>
           <nav className = "navBar">
-          <Link to="/home">      | Home |</Link> 
-          <Link to="/players"> Search All Players |</Link> 
-          <Link to="/leaderboard"> Leaderboard |</Link> 
-          {isLoggedIn ? (
-            <Link to="/logout"> Logout |</Link>
-          ):( 
-            <Link to="/"> Login |</Link>
-          )}
+          <div className = "NavText">
+            <h3>  ⚾  | 
+            <Link to="/home"> Home </Link> 
+            |
+            <Link to="/players"> Search All Players </Link> 
+            |
+            <Link to="/leaderboard"> Leaderboard </Link> 
+            |
+            {isLoggedIn ? (
+              <Link to="/logout"> Logout </Link>
+            ):( 
+              <Link to="/"> Login </Link>
+            )}
+            |
+            </h3>
+          </div>
           </nav>
-          <h3> </h3>
         </div>
         <Routes>
           <Route path='/home' element={<Home/>} />

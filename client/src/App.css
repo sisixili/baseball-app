@@ -23,6 +23,17 @@ body {
   flex-direction: column;
   background: #23B5D3; /*Header Colour*/
 }
+.NavText {
+  width: 100vw;
+  height: auto;
+  display: flex;
+  align-items: start;
+  margin-left: 18px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  flex-direction: column;
+  background: #23B5D3; /*Header Colour*/
+}
 .HomepageBody {
   display: flex;
   align-items: center;
