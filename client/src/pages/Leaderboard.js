@@ -54,6 +54,8 @@ function Leaderboard() {
     <div>
       <div className="pageTitle">
         <h2>Leaderboard</h2>
+        <h4> </h4>
+        <h4>Hitting</h4>
       </div>
       <div className="dropdown">
         <select value={hitColumn} onChange={(e) => setHitColumn(e.target.value)}>
@@ -90,6 +92,10 @@ function Leaderboard() {
           </div>
         ))}
       </div></div>
+
+      <div className="pageTitle">
+        <h4>Pitching</h4>
+      </div>
 
       <div className="dropdown">
         <select value={pitchColumn} onChange={(e) => setPitchColumn(e.target.value)}>
