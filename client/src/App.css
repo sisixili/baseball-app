@@ -15,15 +15,15 @@ body {
   align-items: center;
   flex-direction: column;
   margin-top: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   background-color: #F5FEFF;
 }
 .subTitle {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 7px;
-  margin-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 2px;
   background-color: #F5FEFF;
 }
 .SearchBar{
