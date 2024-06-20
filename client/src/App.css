@@ -54,7 +54,7 @@ ul {
 }
 li {
   align-items: start;
-  display: inline-block;
+  display: list-item;
 }
 
 
