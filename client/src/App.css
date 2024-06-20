@@ -20,7 +20,6 @@ body {
 }
 .SearchBar{
   width: auto + 30;
-  height: auto;
   align-items: center;
   background-color: #000000;
   background: transparent;
@@ -32,6 +31,7 @@ body {
   font-family: inherit;
   padding: 0.25em 0.5em;
   background-color: #000000;
+  border: 10px solid var(--input-border);
   border-radius: 0px;
   color: #F5FEFF;
   margin-bottom: 0;
