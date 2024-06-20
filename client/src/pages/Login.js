@@ -69,7 +69,11 @@ function Login() {
         }}
       />
       </div>
-      <div className="Centered"><Link to="/register">New? Register Here</Link></div>
+      <div className="Centered">
+        <div className="RegisterFontSize">
+          <Link to="/register">New? Register Here</Link>
+        </div>
+      </div>
       <h3> </h3>
       <div className="CenteredWithMargins" >
         <button className="LoginButton" onClick={login}>
