@@ -46,11 +46,13 @@ function Players() {
       <div className="pageTitle">
         <h2>Search All Players</h2>
       </div>
+      <div className="SearchBar">
         <input
         onChange={handleChange}
         placeholder="Search by Last Name"
       />
-      <div className="Players">
+      </div>
+      <div className="NameList">
       {listOfPlayers.filter(checkName).map((player) => (
         <div className="player" key={player.playerID}>
           <Link to={`/players/${player.playerID}`}>
