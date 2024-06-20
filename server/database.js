@@ -2,6 +2,7 @@
 // REMEMBER: must import each function below in index.js (or wherever it's being used)
 
 import knex from 'knex'
+import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -38,12 +39,41 @@ export const getLeaders = async (column, orderDirection) => {
         .orderBy(column, orderDirection);
 }
 
+export const findUserID = async(userID) => {
+    const existingUser = await db("users").where({ userID }).first()
+    if (existingUser) {
+        return existingUser
+    }
+    else {
+        return null
+    }
+} 
+
+export const RegisterNewUser = async (userID, nameFirst, nameLast, pwd) => {
+    // Check if the username already exists
+    const existingUser = await findUserID(userID);
+    if (existingUser) {
+      throw "Username already taken";
+    }
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(pwd, 10);
+
+    // Insert the new user into the database
+    await db("users").insert({
+      userID: userID,
+      nameFirst: nameFirst,
+      nameLast: nameLast,
+      pwd: hashedPassword,
+    });
+}
+
 export const getBatting = async (year, minGames) => {
     return await db('batting_test')
         .select('playerID', 'HR', 'G')
         .where('yearID', year)
         .andWhere('G', '>=', minGames);
 }
+
 
 
 

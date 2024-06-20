@@ -12,7 +12,11 @@ function Leaderboard() {
     useEffect(() => {
         console.log("User submitted: ", column, orderDirection)
         try {
-            fetch(`http://localhost:3001/leaderboard?column=${encodeURIComponent(column)}&orderDirection=${encodeURIComponent(orderDirection)}`)
+            fetch(`http://localhost:3001/leaderboard?column=${encodeURIComponent(column)}&orderDirection=${encodeURIComponent(orderDirection)}`, {
+              headers: {
+                accessToken: sessionStorage.getItem("accessToken"),
+              },
+            })
             .then((res) => {
                 if (res.ok) {
                   return res.json();
