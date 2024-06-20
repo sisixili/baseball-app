@@ -53,7 +53,7 @@ function Leaderboard() {
   return (
     <div>
       <div className="pageTitle">
-        <h2>Search All Players</h2>
+        <h2>Leaderboard</h2>
       </div>
       <div className="dropdown">
         <select value={hitColumn} onChange={(e) => setHitColumn(e.target.value)}>
