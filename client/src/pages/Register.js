@@ -62,30 +62,40 @@ function Register() {
       </div>
       <div className="FormSub">
         <form onSubmit={handleSubmit}>
+          <ul id="registerForm">
           <div>
+            <li>
             <label>Username</label>
+            </li>
             <li>
               <input type="text" name="username" value={formData.username} onChange={handleChange} required />
             </li>
           </div>
           <div>
+            <li>
             <label>First Name</label>
+            </li>
             <li>
             <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
             </li>
           </div>
           <div>
+            <li>
             <label>Last Name</label>
+            </li>
             <li>
             <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
             </li>
           </div>
           <div>
+            <li>
             <label>Password</label>
+            </li>
             <li>
             <input type="password" name="password" value={formData.password} onChange={handleChange} required />
             </li>
           </div>
+          </ul>
           <h2> </h2>
           <button className="CenteredWithMargins" type="submit">Register</button>
         </form>
