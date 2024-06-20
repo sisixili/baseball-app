@@ -51,7 +51,7 @@ function Players() {
       placeholder="Search by Last Name"
       />
       <div className="Players">
-        <h3> </h3>
+        <h3 className="NavBar"> </h3>
         <div className="NameList">
         {listOfPlayers.filter(checkName).map((player) => (
           <div className="player" key={player.playerID}>
