@@ -80,14 +80,16 @@ function Leaderboard() {
         </select>
       </div>
 
-      {listOfPlayers.hittingLeaders.map((player) => (
-        <div className="player" key={player.playerID}>
-          <Link to={`/players/${player.playerID}`}>
-            {player.playerID}
-          </Link> {player[hitColumn]}
- 
-        </div>
-      ))}
+      <div className="NameList">
+        {listOfPlayers.hittingLeaders.map((player) => (
+          <div className="player" key={player.playerID}>
+            <Link to={`/players/${player.playerID}`}>
+              {player.playerID}
+            </Link> {player[hitColumn]}
+  
+          </div>
+        ))}
+      </div>
 
       <div className="dropdown">
         <select value={pitchColumn} onChange={(e) => setPitchColumn(e.target.value)}>
@@ -114,6 +116,7 @@ function Leaderboard() {
         </select>
       </div>
 
+      <div className="NameList">
       {listOfPlayers.pitchingLeaders.map((player) => (
         <div className="player" key={player.playerID}>
           <Link to={`/players/${player.playerID}`}>
@@ -121,6 +124,7 @@ function Leaderboard() {
           </Link> {player[pitchColumn]}
         </div>
       ))}
+      </div>
 
     </div>
   );

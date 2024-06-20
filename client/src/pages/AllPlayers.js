@@ -52,7 +52,6 @@ function Players() {
       />
       <div className="Players">
         <div className="NameList">
-        <h4 className="ListWrap"> </h4>
           {listOfPlayers.filter(checkName).map((player) => (
             <div className="player" key={player.playerID}>
               <Link to={`/players/${player.playerID}`}>
