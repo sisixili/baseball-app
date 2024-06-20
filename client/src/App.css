@@ -11,9 +11,10 @@ body {
   background-color: #F5FEFF; /* BG Colour */
 }
 .Centered {
+  display: flex;
   align-items: center;
-  margin-top: 3px;
-  margin-bottom: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .pageTitle {
   display: flex;
