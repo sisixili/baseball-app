@@ -48,6 +48,9 @@ function Login() {
 
   return (
     <div>
+      <div className="pageTitle">
+        <h2>Login</h2>
+      </div>
       <Link to="/register">New? Register Here</Link>
       <input
         type="text"
