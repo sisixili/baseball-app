@@ -51,7 +51,7 @@ ul {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: start;
-  margin-top: 0px;
+  margin-top: 3px;
 }
 li {
   align-items: start;
@@ -73,7 +73,7 @@ li {
   margin-bottom: 0;
   border-radius: 0;
 }
-.dropdown option:hover{
+.dropdown option:hover{ /*not working :(*/
   background-color: #8CC04E;
   color: #000000;
 }
