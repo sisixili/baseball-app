@@ -120,7 +120,7 @@ function Player() {
     </table>
 
     <h2>Season by Season Pitching Stats</h2>
-    <table>
+    <table className="TableStyle">
       <thead>
         <tr>
           <th>Year</th>
@@ -145,7 +145,7 @@ function Player() {
           <th>IP</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="TableResults">
         {PlayerStats.seasonBySeasonPitchingStats.length > 0 ? (
           PlayerStats.seasonBySeasonPitchingStats.map((player, key) => (
             <tr key={key}>
@@ -181,7 +181,7 @@ function Player() {
   </div>
 
   <h2>Career Hitting Totals</h2>
-    <table>
+    <table className="TableStyle">
       <thead>
         <tr>
           <th>G</th>
@@ -204,7 +204,7 @@ function Player() {
           <th>PA</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="TableResults">
         {PlayerStats.careerBattingTotals.length === 0 || PlayerStats.careerBattingTotals.every(player => 
           player.G == null && player.AB == null && player.R == null && player.H == null &&
           player["2B"] == null && player["3B"] == null && player.HR == null && player.RBI == null &&
@@ -243,7 +243,7 @@ function Player() {
     </table>
 
     <h2>Season by Season Hitting Statistics</h2>
-    <table>
+    <table className="TableStyle">
       <thead>
         <tr>
           <th>Year</th>
@@ -268,7 +268,7 @@ function Player() {
           <th>PA</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="TableResults">
         {PlayerStats.seasonBySeasonBattingStats.length > 0 ? (
           PlayerStats.seasonBySeasonBattingStats.map((player, key) => (
             <tr key={key}>
