@@ -52,7 +52,7 @@ function Login() {
         <h2>Login</h2>
       </div>
       <div className="subTitle">
-        <h2>Username</h2>
+        <h3>Username</h3>
       </div>
       <div>
       <input className="input"
@@ -63,7 +63,7 @@ function Login() {
       />
       </div>
       <div className="subTitle">
-        <h2>Password</h2>
+        <h3>Password</h3>
       </div>
       <div>
       <input className="input"
