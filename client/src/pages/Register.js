@@ -57,26 +57,30 @@ function Register() {
 
   return (
     <div className="Register">
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username</label>
-          <input type="text" name="username" value={formData.username} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>First Name</label>
-          <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Last Name</label>
-          <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Password</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-        </div>
-        <button type="submit">Register</button>
-      </form>
+      <div className="pageTitle">
+        <h2>Register</h2>
+      </div>
+      <div className="FormSub">
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Username</label>
+            <input type="text" name="username" value={formData.username} onChange={handleChange} required />
+          </div>
+          <div>
+            <label>First Name</label>
+            <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
+          </div>
+          <div>
+            <label>Last Name</label>
+            <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+          </div>
+          <div>
+            <label>Password</label>
+            <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+          </div>
+          <button className="CenteredWithMargins" type="submit">Register</button>
+        </form>
+      </div>
     </div>
   );
 }
