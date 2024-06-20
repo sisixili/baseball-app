@@ -71,6 +71,7 @@ function Login() {
       </div>
       <div className="Centered"><Link to="/register">New? Register Here</Link></div>
       <div className="CenteredWithMargins" >
+        <h3> </h3>
         <button className="LoginButton" onClick={login}>
           Login
         </button>
