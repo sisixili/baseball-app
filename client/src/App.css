@@ -152,9 +152,10 @@ li {
   border: 10px solid var(--input-border);
   border-radius: 0px;
   color: #F5FEFF;
-  margin-bottom: 0;
-  margin-top: 10;
+  margin-bottom: 0px;
+  margin-top: 10px;
 }
 .RegisterFontSize{
-  font-size: 10;
+  font-size: 8;
+  margin-top: 5px;
 }
