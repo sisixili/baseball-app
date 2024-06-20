@@ -42,16 +42,18 @@ function App() {
       <Router>
         <nav className = "navBar">
         <Link to="/home"> | Home |</Link> 
-        <Link to="/allplayers"> Search All Players |</Link> 
+        <Link to="/players"> Search All Players |</Link> 
         <Link to="/leaderboard"> Leaderboard |</Link> 
         {isLoggedIn ? (
           <Link to="/logout"> Logout |</Link>
-        ):(' ')}
+        ):(
+          <Link to="/"> Login |</Link>
+        )}
         </nav>
         <Routes>
           <Route path='/home' element={<Home/>} />
-          <Route path="/allplayers/:playerID" element={<Player />} />
-          <Route path='/allplayers' element={<Players/>} />
+          <Route path="/players/:playerID" element={<Player />} />
+          <Route path='/players' element={<Players/>} />
           <Route path='/leaderboard' element={<Leaderboard/>} />
           <Route path='/' element={<Login/>} />
           <Route path='/register' element={<Register/>} />

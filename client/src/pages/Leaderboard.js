@@ -5,78 +5,123 @@ import { Link } from "react-router-dom";
 // Leaderboard page
 
 function Leaderboard() {
-    const [listOfPlayers, setListOfPlayers] = useState([]);
-    const [column, setColumn] = useState('birthYear');
-    const [orderDirection, setOrderDirection] = useState('asc');
+  const [listOfPlayers, setListOfPlayers] = useState({
+    hittingLeaders: [],
+    pitchingLeaders: [],
+  });
+  const [hitColumn, setHitColumn] = useState('H');
+  const [pitchColumn, setPitchColumn] = useState('W');
+  const [hitYearID, setHitYearID] = useState(2023);
+  const [pitchYearID, setPitchYearID] = useState(2023);
+  const [hitOrderDirection, setHitOrderDirection] = useState('asc');
+  const [pitchOrderDirection, setPitchOrderDirection] = useState('asc');
+
+  useEffect(() => {
+    const url = `http://localhost:3001/leaderboard?hittingStatistic=${encodeURIComponent(hitColumn)}`
+    +`&pitchingStatistic=${encodeURIComponent(pitchColumn)}`
+    +`&hitYearID=${encodeURIComponent(hitYearID)}`
+    +`&pitchYearID=${encodeURIComponent(pitchYearID)}`
+    +`&hitOrderDirection=${encodeURIComponent(hitOrderDirection)}`
+    +`&pitchOrderDirection=${encodeURIComponent(pitchOrderDirection)}`
     
-    useEffect(() => {
-        console.log("User submitted: ", column, orderDirection)
-        try {
-            fetch(`http://localhost:3001/leaderboard?column=${encodeURIComponent(column)}&orderDirection=${encodeURIComponent(orderDirection)}`, {
-              headers: {
-                accessToken: sessionStorage.getItem("accessToken"),
-              },
-            })
-            .then((res) => {
-                if (res.ok) {
-                  return res.json();
-                } else {
-                  console.log("FETCH failed");
-                }
-              })
-              .then((data) => {
-                if (data.error) {
-                  console.log(data.error);
-                } else {
-                  setListOfPlayers(data);
-                }
-              })
-              .catch((error) => console.log("ERROR", error));
-          } catch (error) {
-            console.error('Error fetching data:', error);
+    try {
+      fetch(url, {
+        headers: {
+          accessToken: sessionStorage.getItem("accessToken"),
+        },
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            console.log("FETCH failed", res.status);
           }
-        }, [column, orderDirection])
+        })
+        .then((data) => {
+          if (data.error) {
+            console.log(data.error);
+          } else {
+            setListOfPlayers(data);
+          }
+        })
+        .catch((error) => console.log("ERROR", error));
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }, [hitColumn, pitchColumn, hitYearID, pitchYearID, hitOrderDirection, pitchOrderDirection]);
 
-    return (
+  return (
+    <div>
       <div>
-        <div>
-          <select value={column} onChange={(e) => setColumn(e.target.value)}>
-            <option value="birthYear">Birth Year</option>
-            <option value="weight">Weight</option>
-            <option value="height">Height</option>
-          </select>
+        <select value={hitColumn} onChange={(e) => setHitColumn(e.target.value)}>
+          <option value="H">H</option>
+          <option value="HR">HR</option>
+          <option value="RBI">RBI</option>
+        </select>
 
-          <select
-            value={orderDirection}
-            onChange={(e) => setOrderDirection(e.target.value)}
-          >
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
-          </select>
-        </div>
+        <select value={hitYearID} onChange={(e) => setHitYearID(parseInt(e.target.value, 10))}>
+          <option value="1890">1890</option>
+          <option value="1891">1891</option>
+          <option value="1944">1944</option>
+          <option value="1945">1945</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+        </select>
 
-        {listOfPlayers.map((player) => (
-          <div className="player" key={player.playerID}>
-            <Link to={`/allplayers/${player.playerID}`}>
-              {player.nameFirst} {player.nameLast} 
-            </Link> {player[column]}
-          </div>
-        ))}
+        <select
+          value={hitOrderDirection}
+          onChange={(e) => setHitOrderDirection(e.target.value)}
+        >
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
       </div>
-    );
 
+      {listOfPlayers.hittingLeaders.map((player) => (
+        <div className="player" key={player.playerID}>
+          <Link to={`/players/${player.playerID}`}>
+            {player.playerID}
+          </Link> {player[hitColumn]}
+ 
+        </div>
+      ))}
+
+      <div>
+        <select value={pitchColumn} onChange={(e) => setPitchColumn(e.target.value)}>
+          <option value="W">W</option>
+          <option value="ER">ER</option>
+          <option value="SO">SO</option>
+        </select>
+
+        <select value={pitchYearID} onChange={(e) => setPitchYearID(parseInt(e.target.value, 10))}>
+          <option value="1890">1890</option>
+          <option value="1891">1891</option>
+          <option value="1944">1944</option>
+          <option value="1945">1945</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+        </select>
+
+        <select
+          value={pitchOrderDirection}
+          onChange={(e) => setPitchOrderDirection(e.target.value)}
+        >
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+      </div>
+
+      {listOfPlayers.pitchingLeaders.map((player) => (
+        <div className="player" key={player.playerID}>
+          <Link to={`/players/${player.playerID}`}>
+            {player.playerID}
+          </Link> {player[pitchColumn]}
+        </div>
+      ))}
+
+    </div>
+  );
 }
 
 export default Leaderboard;
 
-/*
-{listOfPlayers.map((player) => (
-          <div key={player.playerID}> { TODO: unique key <div key={`${player.playerID}-${player.year}-${player.stint}`}>}
-          <h2>{player.playerID}</h2> 
-          <p>Home Runs: {player.HR}</p>
-          <p>Games Played: {player.G}</p>
-        </div>
-      ))}
-*/
-
-// BUG: 
