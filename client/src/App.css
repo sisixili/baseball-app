@@ -53,6 +53,7 @@ ul {
   align-items: start;
 }
 li {
+  align-items: start;
   display: inline-block;
 }
 
