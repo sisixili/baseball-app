@@ -86,10 +86,11 @@ function Leaderboard() {
       <div className="Players"><div className="NameList">
         {listOfPlayers.hittingLeaders.map((player) => (
           <div className="player" key={player.playerID}>
-            <Link to={`/players/${player.playerID}`}>
-              {player.playerID}
-            </Link> {player[hitColumn]}
-  
+            <li>
+              <Link to={`/players/${player.playerID}`}>
+                {player.playerID}
+              </Link> {player[hitColumn]}
+            </li>
           </div>
         ))}
         <h3 className="ListWrap"> </h3>
