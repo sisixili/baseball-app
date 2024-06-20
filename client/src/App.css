@@ -135,3 +135,12 @@ li {
   flex-direction: column;
   background: #23B5D3; /*Header Colour*/
 }
+
+/* ================Login ================== */
+.CenteredWithMargins {
+  display: flex;
+  align-items: table;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 20px;
+}
