@@ -60,8 +60,8 @@ ul {
   margin-top: 0px;
 }
 li {
-  align-items: start;
-  display: contents;
+  align-items: flex-start;
+  display: inline-block;
   margin-bottom: -10px;
 }
 
