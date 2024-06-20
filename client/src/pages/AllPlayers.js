@@ -51,7 +51,7 @@ function Players() {
       placeholder="Search by Last Name"
       />
       <div className="Players">
-        <h3 className="ListWrap"> </h3>
+        <h4 className="ListWrap"> </h4>
         <div className="NameList">
         {listOfPlayers.filter(checkName).map((player) => (
           <div className="player" key={player.playerID}>
@@ -60,6 +60,7 @@ function Players() {
             </Link>    
           </div>
         ))}
+        <h4 className="ListWrap"> </h4>
         </div>
       </div>
     </div>
