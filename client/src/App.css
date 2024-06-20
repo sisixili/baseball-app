@@ -48,7 +48,8 @@ body {
 
 /* ===== List Things ===== */
 ul {
-  width: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 li {
   width: auto;
