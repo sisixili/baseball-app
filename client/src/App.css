@@ -51,6 +51,7 @@ body {
   border-radius: 0px;
   background-color: #000000;
   color: #F5FEFF;
+  padding: 0.25em 0.5em;
 }
 
 
@@ -92,8 +93,6 @@ body {
 .NameList{
   margin-right: 15px;
   margin-left: 15px;
-  margin-top: 15px;
-  margin-bottom: 15px;
   background-color: #23B5D3;
 }
 .ListWrap{
