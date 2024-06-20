@@ -106,7 +106,7 @@ function Leaderboard() {
       </div>
 
       <div className="dropdown">
-        <select className="dropdown"> value={pitchColumn} onChange={(e) => setPitchColumn(e.target.value)}>
+        <select className="dropdown"> value={pitchColumn} onChange={(e) => setPitchColumn(e.target.value)}
           <option value="W">W</option>
           <option value="ER">ER</option>
           <option value="SO">SO</option>
