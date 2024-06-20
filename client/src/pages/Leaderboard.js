@@ -54,7 +54,8 @@ function Leaderboard() {
     <div>
       <div className="pageTitle">
         <h2>Leaderboard</h2>
-        <h4> </h4>
+      </div>
+      <div className="subTitle">
         <h4>Hitting</h4>
       </div>
       <div className="dropdown">
@@ -93,7 +94,7 @@ function Leaderboard() {
         ))}
       </div></div>
 
-      <div className="pageTitle">
+      <div className="subTitle">
         <h4>Pitching</h4>
       </div>
 
