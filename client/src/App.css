@@ -51,7 +51,7 @@ ul {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: start;
-  margin-top: -1px;
+  margin-top: 0px;
 }
 li {
   align-items: start;
