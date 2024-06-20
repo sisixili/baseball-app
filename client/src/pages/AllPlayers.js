@@ -45,7 +45,7 @@ function Players() {
     <div className="Players">
         <input
         onChange={handleChange}
-        placeholder="Search by Last name"
+        placeholder="Search by Last Name"
       />
       {listOfPlayers.filter(checkName).map((player) => (
         <div className="player" key={player.playerID}>

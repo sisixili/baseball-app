@@ -1,3 +1,4 @@
+/* ==================== GENERAL ==================== */
 .App {
   width: 100vw;
   height: auto;
@@ -9,12 +10,9 @@
 body {
   background-color: #F5FEFF; /* BG Colour */
 }
-.Players {
-  background-color: #F5FEFF; /* BG Colour */
-}
 
-/* ======================Celias BS Starts============================== */
 
+/* ==================== NAV BAR ==================== */
 .NavBar {
   width: 100vw;
   height: auto;
@@ -34,9 +32,20 @@ body {
   flex-direction: column;
   background: #23B5D3; /*Header Colour*/
 }
+
+
+/* ==================== HOMEPAGE ==================== */
 .HomepageBody {
   display: flex;
   align-items: center;
   flex-direction: column;
   background-color: #F5FEFF;
+}
+
+
+/* ==================== SEARCH ALL PLAYERS ==================== */
+.Players {
+  background-color: #F5FEFF; /* BG Colour */
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
