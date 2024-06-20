@@ -52,14 +52,16 @@ function Players() {
         placeholder="Search by Last Name"
       />
       </div>
-      <div className="NameList">
-      {listOfPlayers.filter(checkName).map((player) => (
-        <div className="player" key={player.playerID}>
-          <Link to={`/players/${player.playerID}`}>
-            {player.nameFirst} {player.nameLast}
-          </Link>    
+      <div className="Players">
+        <div className="NameList">
+        {listOfPlayers.filter(checkName).map((player) => (
+          <div className="player" key={player.playerID}>
+            <Link to={`/players/${player.playerID}`}>
+              {player.nameFirst} {player.nameLast}
+            </Link>    
+          </div>
+        ))}
         </div>
-      ))}
       </div>
     </div>
   );
