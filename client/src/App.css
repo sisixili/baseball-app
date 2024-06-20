@@ -22,20 +22,11 @@ body {
   width: auto + 30;
   height: auto;
   align-items: center;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  margin-right: 15px;
-  margin-left: 15px;
   background-color: #000000;
   background: transparent;
   color: #F5FEFF
 } 
 .input{
-  margin-top: 15px;
-  margin-bottom: 15px;
-  margin-right: 15px;
-  margin-left: 15px;
-  
   font-size: inherit;
   font-family: inherit;
   padding: 0.25em 0.5em;
