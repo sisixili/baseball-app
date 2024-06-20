@@ -81,7 +81,7 @@ function Player() {
           <th>IP</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="TableResults">
         {PlayerStats.careerPitchingTotals.length === 0 || PlayerStats.careerPitchingTotals.every(player => 
           player.G === null && player.W === null && player.L === null && player.GS === null &&
           player.CG === null && player.SHO === null && player.SV === null && player.H === null &&

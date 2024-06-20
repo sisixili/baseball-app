@@ -188,3 +188,9 @@ li {
   background-color: #000000;
   color: #F5FEFF; 
 }
+.TableResults{
+  margin-top: 0;
+  margin-bottom: 0;
+  background-color: #23B5D3;
+  color: #000000; 
+}
