@@ -95,7 +95,7 @@ li {
   background: #23B5D3; /*Header Colour*/
 }
 .NavText {
-  width: 100vw;
+  width: auto;
   height: auto;
   display: flex;
   align-items: start;
