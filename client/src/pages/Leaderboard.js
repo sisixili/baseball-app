@@ -52,7 +52,7 @@ function Leaderboard() {
 
   return (
     <div>
-      <div className="dropdown">
+      <div className="input">
         <select value={hitColumn} onChange={(e) => setHitColumn(e.target.value)}>
           <option value="H">H</option>
           <option value="HR">HR</option>
@@ -86,7 +86,7 @@ function Leaderboard() {
         </div>
       ))}
 
-      <div className="dropdown">
+      <div className="input">
         <select value={pitchColumn} onChange={(e) => setPitchColumn(e.target.value)}>
           <option value="W">W</option>
           <option value="ER">ER</option>
