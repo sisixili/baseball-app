@@ -4,11 +4,13 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: #459c5d;
+  background: #23B5D3; /*Header Colour*/
 }
 body {
-  background-color: #b1cea3; /* Replace #f0f0f0 with your desired color */
+  background-color: #F5FEFF; /* BG Colour */
 }
 .Players {
-  background-color: #d4e1ca;
+  background-color: #F5FEFF; /* BG Colour */
 }
+
+/* ======================Celias BS Starts============================== */
