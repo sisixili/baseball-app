@@ -3,7 +3,7 @@ import React from "react";
 function Home() {
   return (
     <div className="pageTitle">
-        <h2>⚾ DataBaseBall ⚾</h2>
+        <h1>⚾ DataBaseBall ⚾</h1>
     </div>
   );
 }

@@ -58,7 +58,7 @@ function Player() {
       </div>
 
       <div>
-      <h2>Career Pitching Totals</h2>
+      <h3>Career Pitching Totals</h3>
     <table className="TableStyle">
       <thead>
         <tr>
@@ -120,7 +120,7 @@ function Player() {
       </tbody>
     </table>
 
-    <h2>Season by Season Pitching Stats</h2>
+    <h3>Season by Season Pitching Stats</h3>
     <table className="TableStyle">
       <thead>
         <tr>
@@ -181,7 +181,7 @@ function Player() {
     </table>
   </div>
 
-  <h2>Career Hitting Totals</h2>
+  <h3>Career Hitting Totals</h3>
     <table className="TableStyle">
       <thead>
         <tr>
@@ -243,7 +243,7 @@ function Player() {
       </tbody>
     </table>
 
-    <h2>Season by Season Hitting Statistics</h2>
+    <h3>Season by Season Hitting Statistics</h3>
     <table className="TableStyle">
       <thead>
         <tr>
