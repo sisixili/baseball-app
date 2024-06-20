@@ -52,7 +52,7 @@ function Leaderboard() {
 
   return (
     <div>
-      <div>
+      <div className="input">
         <select value={hitColumn} onChange={(e) => setHitColumn(e.target.value)}>
           <option value="H">H</option>
           <option value="HR">HR</option>
