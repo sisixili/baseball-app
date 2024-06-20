@@ -37,13 +37,13 @@ body {
   margin-bottom: 0;
 }
 .dropdown{
-  position: absolute;
+  font-size: inherit;
+  font-family: inherit;
   border: 10px solid var(--input-border);
   border-radius: 0px;
   background-color: #000000;
   color: #F5FEFF;
   padding: 0.25em 0.5em;
-  z-index: 1;
 }
 
 
