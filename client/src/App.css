@@ -28,6 +28,14 @@ body {
   background: transparent;
   color: #F5FEFF
 } 
+.input{
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  background-color: #000000;
+  border: 2px solid var(--input-border);
+  border-radius: 4px;
+  color: #F5FEFF;
+}
 
 
 /* ==================== NAV BAR ==================== */
@@ -64,6 +72,8 @@ body {
 /* ==================== SEARCH ALL PLAYERS ==================== */
 .Players {
   background-color: #23B5D3;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 .NameList{
   margin-top: 15px;
