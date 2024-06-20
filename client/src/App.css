@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: #23B5D3; /*Header Colour*/
+  background: #F5FEFF; /*BG Colour*/
 }
 body {
   background-color: #F5FEFF; /* BG Colour */
@@ -21,7 +21,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: #23B5D3; /* Header Colour #23B5D3 */ 
+  background: #23B5D3; /*Header Colour*/
 }
 .HomepageBody {
   display: flex;
