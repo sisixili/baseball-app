@@ -51,21 +51,24 @@ function Login() {
       <div className="pageTitle">
         <h2>Login</h2>
       </div>
-      <Link to="/register">New? Register Here</Link>
+      <div>
       <input
         type="text"
         onChange={(event) => {
           setUsername(event.target.value);
         }}
       />
+      </div>
+      <div>
       <input
         type="password"
         onChange={(event) => {
           setPassword(event.target.value);
         }}
       />
-
-      <button onClick={login}>Login</button>
+      </div>
+      <div><Link to="/register">New? Register Here</Link></div>
+      <div><button onClick={login}>Login</button></div>
     </div>
   );
 }
