@@ -52,8 +52,6 @@ ul {
   grid-template-columns: repeat(2, 1fr);
 }
 li {
-  width: auto;
-  height: auto;
   display: inline-block;
 }
 
