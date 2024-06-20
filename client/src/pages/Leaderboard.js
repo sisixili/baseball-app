@@ -52,14 +52,20 @@ function Leaderboard() {
 
   return (
     <div>
-      <div>
-        <select value={hitColumn} onChange={(e) => setHitColumn(e.target.value)}>
+      <div className="pageTitle">
+        <h2>Leaderboard</h2>
+      </div>
+      <div className="subTitle">
+        <h4>Hitting</h4>
+      </div>
+      <div className="dropdown">
+        <select className="dropdown" value={hitColumn} onChange={(e) => setHitColumn(e.target.value)}>
           <option value="H">H</option>
           <option value="HR">HR</option>
           <option value="RBI">RBI</option>
         </select>
 
-        <select value={hitYearID} onChange={(e) => setHitYearID(parseInt(e.target.value, 10))}>
+        <select className="dropdown" value={hitYearID} onChange={(e) => setHitYearID(parseInt(e.target.value, 10))}>
           <option value="1890">1890</option>
           <option value="1891">1891</option>
           <option value="1944">1944</option>
@@ -68,7 +74,7 @@ function Leaderboard() {
           <option value="2023">2023</option>
         </select>
 
-        <select
+        <select className="dropdown" 
           value={hitOrderDirection}
           onChange={(e) => setHitOrderDirection(e.target.value)}
         >
@@ -77,23 +83,36 @@ function Leaderboard() {
         </select>
       </div>
 
-      {listOfPlayers.hittingLeaders.map((player) => (
-        <div className="player" key={player.playerID}>
-          <Link to={`/players/${player.playerID}`}>
-            {player.playerID}
-          </Link> {player[hitColumn]}
- 
-        </div>
-      ))}
+      <div className="Players"><div className="NameList">
+        {listOfPlayers.hittingLeaders.map((player) => (
+          <div className="player" key={player.playerID}>
+            <ul id="hittingList">
+              <li>
+                <Link to={`/players/${player.playerID}`}>
+                  {player.playerID}
+                </Link> 
+              </li>
+              <li> 
+                {player[hitColumn]}
+              </li>
+            </ul>
+          </div>
+        ))}
+        <h3 className="ListWrap"> </h3>
+      </div></div>
 
-      <div>
-        <select value={pitchColumn} onChange={(e) => setPitchColumn(e.target.value)}>
+      <div className="subTitle">
+        <h4>Pitching</h4>
+      </div>
+
+      <div className="dropdown">
+        <select className="dropdown"> value={pitchColumn} onChange={(e) => setPitchColumn(e.target.value)}
           <option value="W">W</option>
           <option value="ER">ER</option>
           <option value="SO">SO</option>
         </select>
 
-        <select value={pitchYearID} onChange={(e) => setPitchYearID(parseInt(e.target.value, 10))}>
+        <select className="dropdown" value={pitchYearID} onChange={(e) => setPitchYearID(parseInt(e.target.value, 10))}>
           <option value="1890">1890</option>
           <option value="1891">1891</option>
           <option value="1944">1944</option>
@@ -102,7 +121,7 @@ function Leaderboard() {
           <option value="2023">2023</option>
         </select>
 
-        <select
+        <select className="dropdown" 
           value={pitchOrderDirection}
           onChange={(e) => setPitchOrderDirection(e.target.value)}
         >
@@ -111,14 +130,25 @@ function Leaderboard() {
         </select>
       </div>
 
-      {listOfPlayers.pitchingLeaders.map((player) => (
-        <div className="player" key={player.playerID}>
-          <Link to={`/players/${player.playerID}`}>
-            {player.playerID}
-          </Link> {player[pitchColumn]}
-        </div>
-      ))}
-
+      <div className="Players">
+      <div className="NameList">
+        {listOfPlayers.pitchingLeaders.map((player) => (
+          <div className="player" key={player.playerID}>
+            <ul id="pitchingList">
+              <li>
+              <Link to={`/players/${player.playerID}`}>
+                {player.playerID}
+              </Link> 
+              </li>
+              <li>
+                {player[pitchColumn]}
+              </li>
+            </ul>
+          </div>
+        ))}
+        <h3 className="ListWrap"> </h3>
+      </div>
+      </div>
     </div>
   );
 }

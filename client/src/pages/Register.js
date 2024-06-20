@@ -57,26 +57,55 @@ function Register() {
 
   return (
     <div className="Register">
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username</label>
-          <input type="text" name="username" value={formData.username} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>First Name</label>
-          <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Last Name</label>
-          <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Password</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-        </div>
-        <button type="submit">Register</button>
-      </form>
+      <div className="pageTitle">
+        <h2>Register</h2>
+      </div>
+      <div className="FormSub">
+        <form onSubmit={handleSubmit}>
+          <div>
+            <ul id="username">
+            <li>
+            <label>Username</label>
+            </li>
+            <li>
+              <input className="InputBox" type="text" name="username" value={formData.username} onChange={handleChange} required />
+            </li>
+            </ul>
+          </div>
+          <div>
+          <ul id="FirstName">
+            <li>
+            <label>First Name</label>
+            </li>
+            <li>
+            <input className="InputBox" type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
+            </li>
+            </ul>
+          </div>
+          <div>
+          <ul id="LastName">
+            <li>
+            <label>Last Name</label>
+            </li>
+            <li>
+            <input className="InputBox" type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+            </li>
+            </ul>
+          </div>
+          <div>
+          <ul id="Password">
+            <li>
+            <label>Password</label>
+            </li>
+            <li>
+            <input className="InputBox" type="password" name="password" value={formData.password} onChange={handleChange} required />
+            </li>
+            </ul>
+          </div>
+          <h2> </h2>
+          <button className="RegCenteredWithMargins" type="submit">Register</button>
+        </form>
+      </div>
     </div>
   );
 }

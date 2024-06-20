@@ -42,18 +42,26 @@ function Players() {
     }
 
   return (
-    <div className="Players">
-        <input
-        onChange={handleChange}
-        placeholder="Search by Last name"
+    <div>
+      <div className="pageTitle">
+        <h2>Search All Players</h2>
+      </div>
+      <input class="input"
+      onChange={handleChange}
+      placeholder="Search by Last Name"
       />
-      {listOfPlayers.filter(checkName).map((player) => (
-        <div className="player" key={player.playerID}>
-          <Link to={`/players/${player.playerID}`}>
-            {player.nameFirst} {player.nameLast}
-          </Link>    
+      <div className="Players">
+        <div className="NameList">
+          {listOfPlayers.filter(checkName).map((player) => (
+            <div className="player" key={player.playerID}>
+              <Link to={`/players/${player.playerID}`}>
+                {player.nameFirst} {player.nameLast}
+              </Link>    
+            </div>
+          ))}
+          <h4 className="ListWrap"> </h4>
         </div>
-      ))}
+      </div>
     </div>
   );
 }
