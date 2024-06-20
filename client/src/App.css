@@ -14,3 +14,18 @@ body {
 }
 
 /* ======================Celias BS Starts============================== */
+
+.NavBar {
+  width: 100vw;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: #23B5D3; /* Header Colour #23B5D3 */ 
+}
+.HomepageBody {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #F5FEFF;
+}
