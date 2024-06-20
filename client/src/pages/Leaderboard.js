@@ -90,7 +90,10 @@ function Leaderboard() {
               <li>
                 <Link to={`/players/${player.playerID}`}>
                   {player.playerID}
-                </Link> {player[hitColumn]}
+                </Link> 
+              </li>
+              <li> 
+                {player[hitColumn]}
               </li>
             </ul>
           </div>
