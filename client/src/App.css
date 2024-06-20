@@ -29,6 +29,7 @@ body {
 .input{
   font-size: inherit;
   font-family: inherit;
+  padding: 0.25em 0.5em;
   background-color: #000000;
   border: 10px solid var(--input-border);
   border-radius: 0px;
