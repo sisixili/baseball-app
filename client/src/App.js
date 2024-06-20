@@ -40,16 +40,20 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <nav className = "navBar">
-        <Link to="/home"> | Home |</Link> 
-        <Link to="/players"> Search All Players |</Link> 
-        <Link to="/leaderboard"> Leaderboard |</Link> 
-        {isLoggedIn ? (
-          <Link to="/logout"> Logout |</Link>
-        ):(
-          <Link to="/"> Login |</Link>
-        )}
-        </nav>
+        <div className="NavBar">
+          <h3> </h3>
+          <nav className = "navBar">
+          <Link to="/home"> | Home |</Link> 
+          <Link to="/players"> Search All Players |</Link> 
+          <Link to="/leaderboard"> Leaderboard |</Link> 
+          {isLoggedIn ? (
+            <Link to="/logout"> Logout |</Link>
+          ):(
+            <Link to="/"> Login |</Link>
+          )}
+          </nav>
+          <h3> </h3>
+        </div>
         <Routes>
           <Route path='/home' element={<Home/>} />
           <Route path="/players/:playerID" element={<Player />} />
