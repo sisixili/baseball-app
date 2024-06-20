@@ -64,20 +64,29 @@ function Register() {
         <form onSubmit={handleSubmit}>
           <div>
             <label>Username</label>
-            <input type="text" name="username" value={formData.username} onChange={handleChange} required />
+            <li>
+              <input type="text" name="username" value={formData.username} onChange={handleChange} required />
+            </li>
           </div>
           <div>
             <label>First Name</label>
+            <li>
             <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
+            </li>
           </div>
           <div>
             <label>Last Name</label>
+            <li>
             <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+            </li>
           </div>
           <div>
             <label>Password</label>
+            <li>
             <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+            </li>
           </div>
+          <h2> </h2>
           <button className="CenteredWithMargins" type="submit">Register</button>
         </form>
       </div>
