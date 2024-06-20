@@ -39,7 +39,7 @@ app.use((err, req, res, next) => {
 /**
  * Search for player???
  */
-app.get("/allplayers", validateToken, async (req, res) => {
+app.get("/players", validateToken, async (req, res) => {
   const players = await getAllPlayers(20); // placeholder constant 20
   res.send(players);
 });
@@ -106,7 +106,7 @@ app.post("/login", async (req, res) => {
 /**
  * Favourites
  */
-app.get("/favourites/:userID", async (req, res) => {
+app.get("/favourites/:userID", validateToken, async (req, res) => {
     const favouriteFranchises = await getFavouriteFranchises(req.params.userID)     // Favourite franchises
     const favouriteTeams = await getFavouriteTeams(req.params.userID)               // Favourite teams
     const favouritePlayers = await getFavouritePlayers(req.params.userID)           // Favourite players
@@ -122,7 +122,7 @@ app.get("/favourites/:userID", async (req, res) => {
 /**
  * All franchises
  */
-app.get("/franchises", async (req, res) => {
+app.get("/franchises", validateToken, async (req, res) => {
     const activeFranchises = await getFranchises('Y')           // Active franchises
     const nonActiveFranchises = await getFranchises('N')        // Nonactive franchises
     const franchises = {
@@ -132,11 +132,10 @@ app.get("/franchises", async (req, res) => {
     res.send(franchises)
 })
 
-
 /**
  * Franchise profile
  */
-app.get("/franchiseProfile/:franchiseID", async (req, res) => {
+app.get("/franchises/:franchiseID", validateToken, async (req, res) => {
     const franchiseBio = await getFanchiseBio(req.params.franchiseID)           // Franchise bio
     const franchiseTotals = await getFranchiseTotals(req.params.franchiseID)    // Franchise all time total statistics
     const franchiseTeams = await getFranchiseTeams(req.params.franchiseID)      // Year by year statistics for the franchise
@@ -152,7 +151,7 @@ app.get("/franchiseProfile/:franchiseID", async (req, res) => {
 /**
  * Team profile
  */
-app.get("/teamProfile/:teamID/:yearID", async (req, res) => {
+app.get("/teams/:teamID:yearID", validateToken, async (req, res) => {
     const teamBio = await getTeamBio(req.params.teamID, req.params.yearID)                              // Team bio
     const totalBattersForTeam = await getTotalBattersForTeam(req.params.teamID, req.params.yearID)      // Batting statistics totalled for all players on team
     const allBattersForTeam = await getAllBattersForTeam(req.params.teamID, req.params.yearID)          // Batting statistics for each individual player
@@ -172,7 +171,7 @@ app.get("/teamProfile/:teamID/:yearID", async (req, res) => {
 /**
  * Player Profile
  */
-app.get("/playerProfile/:playerID", async (req, res) => {
+app.get("/players/:playerID", validateToken, async (req, res) => {
     const playerBio = await getPlayerBio(req.params.playerID)                                           // Player bio
     const careerPitchingTotals = await getCareerPitchingTotals(req.params.playerID)                     // Career pitching totals
     const seasonBySeasonPitchingStats = await getSeasonBySeasonPitchingStats(req.params.playerID)       // Season by season pitching statistics
