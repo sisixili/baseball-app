@@ -13,7 +13,7 @@ body {
 .Centered {
   display: flex;
   align-items: table;
-  margin-top: 5px;
+  margin-top: 10px;
   margin-bottom: 5px;
 }
 .pageTitle {
@@ -153,7 +153,7 @@ li {
   border-radius: 0px;
   color: #F5FEFF;
   margin-bottom: 0px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 .RegisterFontSize{
   font-size: 8;
