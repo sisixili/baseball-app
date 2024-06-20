@@ -2,12 +2,6 @@ import os
 import argparse
 
 def remove_files_from_list(list_file, directory):
-    """
-    Remove files listed in a text file from a specified directory.
-
-    :param directory: Directory path where files should be removed
-    :param list_file: Path to the text file containing names of files to be removed
-    """
     # Read the list of files to remove
     with open(list_file, 'r') as file:
         files_to_remove = file.read().splitlines()
@@ -21,10 +15,8 @@ def remove_files_from_list(list_file, directory):
             print(f"File not found: {file_path}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Remove files listed in a text file from a specified directory.')
+    parser = argparse.ArgumentParser()
     parser.add_argument('list_file', type=str, help='The path to the text file containing names of files to be removed.')
     parser.add_argument('directory', type=str, help='The directory where files should be removed.')
-
     args = parser.parse_args()
-
     remove_files_from_list(args.list_file, args.directory)

@@ -4,7 +4,6 @@ import sys
 
 # Get the directory name from the command line arguments
 if len(sys.argv) != 2:
-    print("Usage: python remove_duplicates_from_dir.py <directory>")
     sys.exit(1)
 
 directory = sys.argv[1]
@@ -22,10 +21,10 @@ for filename in os.listdir(directory):
         # Read the CSV file
         df = pd.read_csv(file_path, encoding='ISO-8859-1')
 
-        # Remove duplicate rows considering all columns
+        # Remove duplicate rows
         df_no_duplicates = df.drop_duplicates()
 
-        # Save the cleaned CSV file, overwriting the original file
+        # Save the CSV file, overwriting the original file
         df_no_duplicates.to_csv(file_path, index=False)
 
         print(f"Duplicates removed from '{filename}'. File overwritten.")

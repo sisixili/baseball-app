@@ -14,8 +14,7 @@ def main(csv_files_dir):
     db_user = os.getenv("DB_USER")
     db_password = os.getenv("DB_PASSWORD")
 
-    # Define directory for SQL scripts
-    create_tables_dir = 'SQL Scripts'  # Update this path if needed
+    create_tables_dir = 'SQL Scripts'  
 
     # Connect to MySQL server
     conn = mysql.connector.connect(
@@ -26,15 +25,11 @@ def main(csv_files_dir):
     )
 
     cursor = conn.cursor()
-
     print("Successfully established connection to MySQL server")
 
     # Create database
     cursor.execute("CREATE DATABASE IF NOT EXISTS `baseball-dev`;")
     cursor.execute("USE `baseball-dev`;")
-
-    # CURRENTLY DELETING TABLES AND RE-ENTERING DATA WHENEVER THIS SCRIPT IS RUN
-    ##############################################
 
     # Read and execute the dropTables.sql file
     drop_tables_path = os.path.join(create_tables_dir, 'dropTables.sql')
@@ -42,10 +37,7 @@ def main(csv_files_dir):
         drop_tables_sql = file.read()
         for result in cursor.execute(drop_tables_sql, multi=True):
             pass  # This ensures all parts of the multi-statement SQL are executed
-
     print("Successfully dropped all tables if they exist")
-
-    ##############################################
 
     # Read and execute the createTables.sql file
     create_tables_path = os.path.join(create_tables_dir, 'createTables.sql')
@@ -54,7 +46,6 @@ def main(csv_files_dir):
         for result in cursor.execute(create_tables_sql, multi=True):
             pass  # This ensures all parts of the multi-statement SQL are executed
 
-    # Function to load CSV data into corresponding tables
     def load_data_into_table(table_name, csv_file):
         df = pd.read_csv(csv_file, encoding='ISO-8859-1')
 
@@ -106,9 +97,7 @@ def main(csv_files_dir):
     # Close the connection
     cursor.close()
     conn.close()
-
     print("All tables have been successfully populated")
-
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

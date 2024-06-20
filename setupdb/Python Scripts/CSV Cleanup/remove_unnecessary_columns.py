@@ -33,10 +33,8 @@ def process_multiple_tables(config_file, csv_directory):
         remove_columns_from_csv(input_file, columns_to_remove)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Remove specified columns from multiple CSV files.')
+    parser = argparse.ArgumentParser()
     parser.add_argument('config_file', type=str, help='Path to the text file containing columns to remove')
     parser.add_argument('csv_directory', type=str, help='Directory containing the CSV files')
-    
     args = parser.parse_args()
-    
     process_multiple_tables(args.config_file, args.csv_directory)

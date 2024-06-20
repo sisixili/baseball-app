@@ -3,15 +3,16 @@ import os
 import argparse
 
 
+# Read in argument
 def parse_arguments():
-    parser = argparse.ArgumentParser(description='Filter CSV files based on conditions and save to new directory.')
+    parser = argparse.ArgumentParser()
     parser.add_argument('input_directory', type=str, help='Path to the input directory containing the original CSV files')
-    parser.add_argument('output_directory', type=str, help='Path to the output directory to save the filtered CSV files')
+    parser.add_argument('output_directory', type=str, help='Path to the output directory to save the subset CSV files')
     return parser.parse_args()
 
 
-# Define the conditions for selecting rows
-# Example: conditions = { 'file1.csv': [{'column_name': 'value1'}, {'column_name': 'value2'}], ... }
+# Enumerate what rows we will be extracting from each table from
+# the production dataset for our sample data (using primary key)
 conditions = {
     'AllstarFull.csv': [
         {'playerID': 'guerrvl02', 'yearID': '2022', 'gameNumber': '0'},
@@ -137,7 +138,6 @@ conditions = {
         {'playerID': 'biggica01', 'yearID': '2023', 'stint': '1', 'position': 'RF'},
         {'playerID': 'bettsmo01', 'yearID': '2022', 'stint': '1', 'position': 'RF'},
         {'playerID': 'bettsmo01', 'yearID': '2023', 'stint': '1', 'position': 'RF'},
-
     ],
     'HallOfFame.csv': [
         {'yearID': '1936', 'playerID': 'broutda01'},
@@ -204,7 +204,6 @@ conditions = {
     ]
 }
 
-# Function to check if a row matches any condition
 def row_matches_conditions(row, conditions):
     for condition in conditions:
         if all(row.get(key) == str(value) for key, value in condition.items()):
@@ -218,7 +217,7 @@ def main():
     input_directory = args.input_directory
     output_directory = args.output_directory
 
-    # Define the paths to your original CSV files
+    # Defin e paths to original CSV files
     csv_files = [
         'AllstarFull.csv',
         'Appearances.csv',
@@ -235,11 +234,11 @@ def main():
         'TeamsFranchises.csv'
     ]
 
-    # Create the directory if it doesn't exist
+    # Create the output directory if it doesn't exist
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
 
-    # Create a sub CSV for each CSV file based on conditions
+    # Create a sub CSV for each CSV file
     for csv_file in csv_files:
         if csv_file in conditions:
             file_path = os.path.join(input_directory, csv_file)
@@ -251,11 +250,8 @@ def main():
                 print(f"Missing columns in {csv_file}: {set(required_columns) - set(df.columns)}")
                 continue
 
-            # Convert required columns to string for consistency
             df[required_columns] = df[required_columns].astype(str)
-
             filtered_df = df[df.apply(lambda row: row_matches_conditions(row, conditions[csv_file]), axis=1)]
-
             output_file = os.path.join(output_directory, f"{csv_file}")
             filtered_df.to_csv(output_file, index=False)
             print(f"Created {output_file} with {len(filtered_df)} matching rows.")
