@@ -60,15 +60,15 @@ export const getAllPlayers = async (limit) => {
 }
 
 export const getBattingLeaders = async (hittingStatistic, yearID, orderDirection) => {
-    return await db('Batting')
-        .select('nameFirst', 'nameLast', 'playerID', hittingStatistic)
-        .where('yearID', yearID)
-        .orderBy(hittingStatistic, orderDirection);
+    return await db('batting')
+    .select('playerID', hittingStatistic)
+    .where('yearID', yearID)
+    .orderBy(hittingStatistic, orderDirection);
 }
 
 export const getPitchingLeaders = async (pitchingStatistic, yearID, orderDirection) => {
-    return await db('Pitching')
-        .select('nameFirst', 'nameLast', 'playerID', pitchingStatistic)
+    return await db('pitching')
+        .select('playerID', pitchingStatistic)
         .where('yearID', yearID)
         .orderBy(pitchingStatistic, orderDirection);
 }

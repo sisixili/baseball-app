@@ -48,11 +48,12 @@ app.get("/players", validateToken, async (req, res) => {
 /**
  * Leaderboard
  */
+
 app.get("/leaderboard", validateToken, async (req, res) => {
-  const { hittingStatistic, pitchingStatistic, yearID, orderDirection } = req.query;
+  const { hittingStatistic, pitchingStatistic, hitYearID, pitchYearID, hitOrderDirection, pitchOrderDirection } = req.query;
   try {
-    const hittingLeaders = await getBattingLeaders(hittingStatistic, yearID, orderDirection)      // Batting leaderboard, hittingStatistic: H or HR or RBI
-    const pitchingLeaders = await getPitchingLeaders(pitchingStatistic, yearID, orderDirection)   // Pitching leaderboard, pitchingStatitic: W or ER or SO
+    const hittingLeaders = await getBattingLeaders(hittingStatistic, hitYearID, hitOrderDirection)      // Batting leaderboard, hittingStatistic: H or HR or RBI
+    const pitchingLeaders = await getPitchingLeaders(pitchingStatistic, pitchYearID, pitchOrderDirection)   // Pitching leaderboard, pitchingStatitic: W or ER or SO
     const leaders = {
         hittingLeaders: hittingLeaders,
         pitchingLeaders: pitchingLeaders,
@@ -62,7 +63,6 @@ app.get("/leaderboard", validateToken, async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
 
 /**
  * Login/Logout
