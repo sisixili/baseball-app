@@ -50,6 +50,7 @@ body {
   border: 10px solid var(--input-border);
   border-radius: 0px;
   background-color: #000000;
+  background: transparent;
   color: #F5FEFF;
   padding: 0.25em 0.5em;
 }
