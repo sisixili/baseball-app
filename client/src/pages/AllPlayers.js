@@ -44,7 +44,7 @@ function Players() {
   return (
     <div className="Players">
       <div className="pageTitle">
-        <h3>Search All Players</h3>
+        <h2>Search All Players</h2>
       </div>
         <input
         onChange={handleChange}
