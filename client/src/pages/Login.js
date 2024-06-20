@@ -51,7 +51,7 @@ function Login() {
       <div className="pageTitle">
         <h2>Login</h2>
       </div>
-      <div>
+      <div className="Centered">
       <input className="input"
         type="text"
         placeholder="Username"
@@ -60,7 +60,7 @@ function Login() {
         }}
       />
       </div>
-      <div>
+      <div className="Centered">
       <input className="input"
         type="password"
         placeholder="Password"
