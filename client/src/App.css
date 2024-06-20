@@ -165,7 +165,7 @@ li {
 .FormSub{
   font-size: 8;
   margin-top: 5px;
-  display: contents;
+  display: center;
   width: auto;
 }
 .InputBox{
