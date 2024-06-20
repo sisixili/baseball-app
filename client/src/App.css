@@ -168,3 +168,6 @@ li {
   display: contents;
   width: auto;
 }
+.InputBox{
+  width:50px;
+}

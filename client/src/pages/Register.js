@@ -68,7 +68,7 @@ function Register() {
             <label>Username</label>
             </li>
             <li>
-              <input type="text" name="username" value={formData.username} onChange={handleChange} required />
+              <input className="InputBox" type="text" name="username" value={formData.username} onChange={handleChange} required />
             </li>
             </ul>
           </div>
@@ -78,7 +78,7 @@ function Register() {
             <label>First Name</label>
             </li>
             <li>
-            <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
+            <input className="InputBox" type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
             </li>
             </ul>
           </div>
@@ -88,7 +88,7 @@ function Register() {
             <label>Last Name</label>
             </li>
             <li>
-            <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+            <input className="InputBox" type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
             </li>
             </ul>
           </div>
@@ -98,7 +98,7 @@ function Register() {
             <label>Password</label>
             </li>
             <li>
-            <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+            <input className="InputBox" type="password" name="password" value={formData.password} onChange={handleChange} required />
             </li>
             </ul>
           </div>
