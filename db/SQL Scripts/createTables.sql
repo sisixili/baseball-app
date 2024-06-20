@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS Players (
 CREATE TABLE IF NOT EXISTS Franchises (
     franchiseID VARCHAR(3) NOT NULL,
     franchiseName VARCHAR(50) DEFAULT NULL,
-    isActive VARCHAR(2) NOT NULL,        /* type change */
+    isActive VARCHAR(2) NOT NULL,       
     PRIMARY KEY (franchiseID),
     CHECK(isActive = 'Y' OR isActive = 'N' OR isActive = 'NA')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -347,7 +347,7 @@ CREATE TABLE IF NOT EXISTS HallOfFame (
 
 
 CREATE TABLE IF NOT EXISTS HomeGames (
-    yearID SMALLINT(6) NOT NULL CHECK(yearID >= 1871),          /* type change */
+    yearID SMALLINT(6) NOT NULL CHECK(yearID >= 1871),        
     leagueID CHAR(2) DEFAULT NULL,
     teamID CHAR(3) NOT NULL,              
     parkID VARCHAR(255) NOT NULL,              
