@@ -70,6 +70,7 @@ function App() {
           <Route path='/logout' element={<Logout/>} />
         </Routes>
       </Router>
+      <img className="floatImg" src="ballWbat.png" alt=""></img>
     </div>
   );
 }

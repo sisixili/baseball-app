@@ -51,6 +51,22 @@ body {
   margin-bottom: 0;
 }
 
+/*==========Images==========*/
+
+.floatImg {
+  background: #F5FEFF;
+  border: transparent;
+  float: right;
+  margin: 0 0 0 0;
+  padding: 0px;
+
+  position:absolute;
+  bottom:175px;
+  left:0px;
+  width:200px;
+  height:200px;
+}
+
 
 /* ===== List Things ===== */
 ul {
