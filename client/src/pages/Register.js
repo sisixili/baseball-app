@@ -103,7 +103,7 @@ function Register() {
             </ul>
           </div>
           <h2> </h2>
-          <button className="CenteredWithMargins" type="submit">Register</button>
+          <button className="RegCenteredWithMargins" type="submit">Register</button>
         </form>
       </div>
     </div>
