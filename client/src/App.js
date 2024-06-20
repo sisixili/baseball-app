@@ -39,6 +39,8 @@ function App() {
 
   return (
     <div className="App">
+      <img className="floatImg" src="batWball.jpg" alt=""></img>
+      <img className="floatBall" src="ball.jpg" alt=""></img>
       <Router>
         <div className="NavBar">
           <nav className = "navBar">
@@ -70,7 +72,6 @@ function App() {
           <Route path='/logout' element={<Logout/>} />
         </Routes>
       </Router>
-      <img className="floatImg" src="ballWbat.png" alt=""></img>
     </div>
   );
 }
