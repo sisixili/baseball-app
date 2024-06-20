@@ -46,12 +46,10 @@ function Players() {
       <div className="pageTitle">
         <h2>Search All Players</h2>
       </div>
-      <div className="SearchBar">
-        <input class="input"
-        onChange={handleChange}
-        placeholder="Search by Last Name"
+      <input class="input"
+      onChange={handleChange}
+      placeholder="Search by Last Name"
       />
-      </div>
       <div className="Players">
         <h3> </h3>
         <div className="NameList">
