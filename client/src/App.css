@@ -178,3 +178,13 @@ li {
   margin-bottom: 5px;
   margin-left: 92px;
 }
+
+
+/*================ Individual Player Stats ===============*/
+
+.TableStyle{
+  margin-top: 0;
+  margin-bottom: 0;
+  background-color: #000000;
+  color: #F5FEFF; 
+}

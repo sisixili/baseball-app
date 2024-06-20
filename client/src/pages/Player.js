@@ -41,7 +41,7 @@ function Player() {
   return (
     <div>
 
-      <div>
+      <div className="pageTitle">
         {PlayerStats.playerBio.map((player, key) => (
         <div className="pageTitle" key={key}>
           {player.nameFirst} {player.nameLast}
@@ -58,7 +58,7 @@ function Player() {
 
       <div>
       <h2>Career Pitching Totals</h2>
-    <table>
+    <table className="TableStyle">
       <thead>
         <tr>
           <th>G</th>
