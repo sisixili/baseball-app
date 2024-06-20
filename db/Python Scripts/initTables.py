@@ -5,6 +5,12 @@ from dotenv import load_dotenv
 import os
 import sys
 
+
+# TODO: If you try to load the production data into the database it will fail, as there
+#       are no Production CSV files for Account Information (login info, favourite teams, etc).
+#       This will be corrected at somepoint prior to milestone 2.
+
+
 def main(csv_files_dir):
     # Load environment variables from .env file
     load_dotenv()
