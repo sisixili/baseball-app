@@ -10,6 +10,9 @@
 body { 
   background-color: #F5FEFF; /* BG Colour */
 }
+.Centered {
+  align-items: center;
+}
 .pageTitle {
   display: flex;
   align-items: center;
