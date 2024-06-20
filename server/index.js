@@ -208,7 +208,7 @@ app.get("/players/:playerID", validateToken, async (req, res) => {
  * Create favourite player
  */
 app.post("/createFavouritePlayer/:playerID", async (req, res) => {
-    await createFavouriteTeam(req.params.playerID, req.params.userID)
+    await createFavouritePlayer(req.params.playerID, req.params.userID)
 })
 
 
