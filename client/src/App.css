@@ -49,9 +49,9 @@ body {
   font-family: inherit;
   border: 10px solid var(--input-border);
   border-radius: 0px;
-  background-color: #000000;
-  background: transparent;
-  color: #F5FEFF;
+  background-color: transparent;
+  background: #000000;
+  color: #000000;
   padding: 0.25em 0.5em;
 }
 
