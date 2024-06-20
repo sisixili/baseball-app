@@ -22,8 +22,8 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 5px;
-  margin-bottom: 2px;
+  margin-top: 2px;
+  margin-bottom: 1px;
   background-color: #F5FEFF;
 }
 .SearchBar{
