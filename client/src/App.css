@@ -5,9 +5,9 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: #F5FEFF; /*BG Colour*/
+  background: #F5FEFF; /*BG Colour*/ 
 }
-body {
+body { 
   background-color: #F5FEFF; /* BG Colour */
 }
 .pageTitle {
@@ -18,6 +18,13 @@ body {
   margin-bottom: 15px;
   background-color: #F5FEFF;
 }
+.SearchBar{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 15px;
+  margin-left: 15px;
+  background-color: #000000;
+} 
 
 
 /* ==================== NAV BAR ==================== */
@@ -53,9 +60,12 @@ body {
 
 /* ==================== SEARCH ALL PLAYERS ==================== */
 .Players {
+  background-color: #23B5D3;
+}
+.NameList{
   margin-top: 15px;
   margin-bottom: 15px;
-  margin-left:15px;
-  margin-right:15px;
+  margin-right: 15px;
+  margin-left: 15px;
   background-color: #23B5D3;
 }

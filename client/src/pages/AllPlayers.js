@@ -42,7 +42,7 @@ function Players() {
     }
 
   return (
-    <div className="Players">
+    <div>
       <div className="pageTitle">
         <h2>Search All Players</h2>
       </div>
@@ -50,6 +50,7 @@ function Players() {
         onChange={handleChange}
         placeholder="Search by Last Name"
       />
+      <div className="Players">
       {listOfPlayers.filter(checkName).map((player) => (
         <div className="player" key={player.playerID}>
           <Link to={`/players/${player.playerID}`}>
@@ -57,6 +58,7 @@ function Players() {
           </Link>    
         </div>
       ))}
+      </div>
     </div>
   );
 }
