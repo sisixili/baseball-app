@@ -85,8 +85,7 @@ function Team() {
               </thead>
               <tbody>
           {teamStats.totalBattersForTeam.map((team, key) => (
-            <div key={key}>
-              <tr>
+              <tr key={key}>
               <td>{team.AB}</td>
               <td>{team.R} </td>
               <td>{team.H} </td>
@@ -106,7 +105,6 @@ function Team() {
               <td>{team.GIDP}</td>
               <td>{team.PA}</td>
               </tr>
-              </div>
           ))}
           </tbody>
           </table>
