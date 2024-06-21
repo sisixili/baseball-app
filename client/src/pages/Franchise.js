@@ -51,7 +51,6 @@ function Franchise() {
         <table className="TableStyle">
         <thead>
         <tr>
-          <th>Name & Year</th>
           <th>G</th>
           <th>W</th>
           <th>L</th>
@@ -120,6 +119,40 @@ function Franchise() {
         
 
         <div>
+        <table className="TableStyle">
+        <thead>
+        <tr>
+          <th>Name & Year</th>
+          <th>G</th>
+          <th>W</th>
+          <th>L</th>
+          <th>R</th>
+          <th>AB</th>
+          <th>H</th>
+          <th>2B</th>
+          <th>3B</th>
+          <th>HR</th>
+          <th>BB</th>
+          <th>SO</th>
+          <th>SB</th>
+          <th>CS</th>
+          <th>HBP</th>
+          <th>SF</th>
+          <th>RA</th>
+          <th>ER</th>
+          <th>CG</th>
+          <th>SHO</th>
+          <th>SV</th>
+          <th>HA</th>
+          <th>HRA</th>
+          <th>BBA</th>
+          <th>SOA</th>
+          <th>E</th>
+          <th>DP</th>
+          <th>IP</th>
+        </tr>
+      </thead>
+      <tbody className="TableResults">
           {franchiseStats.franchiseTeams.map((franchise, key) => (           
             <div>
               <tr key={key}>
@@ -160,6 +193,8 @@ function Franchise() {
               </tr>
             </div>
           ))}
+          </tbody>
+          </table>
         </div>
 
       </div>
