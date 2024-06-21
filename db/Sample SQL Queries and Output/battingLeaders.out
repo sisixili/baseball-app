@@ -1,0 +1,8 @@
++-----------+------+-----------+----------+
+| playerID  | HR   | nameFirst | nameLast |
++-----------+------+-----------+----------+
+| bettsmo01 |   35 | Mookie    | Betts    |
+| guerrvl02 |   32 | Vladimir  | Guerrero |
+| biggica01 |    6 | Cavan     | Biggio   |
++-----------+------+-----------+----------+
+3 rows in set (0.00 sec)
