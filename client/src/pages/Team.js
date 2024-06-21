@@ -43,7 +43,7 @@ function Team() {
             <div className="pageTitle" key={key}>
               <h2>
               {team.name}
-              Franchise: 
+               Franchise: 
               <Link to={`/franchises/${team.franchiseID}`}>
                 {team.franchiseID}
               </Link>
