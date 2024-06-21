@@ -222,7 +222,8 @@ export const getAllBattersForTeam = async (teamID, yearID) => {
         .select('Players.nameFirst', 'Players.nameLast', 'Players.playerID', ...PLAYER_CAREER_HITTING)
         .join('Players', 'Batting.playerID', '=', 'Players.playerID')
         .where('Batting.teamID', teamID)
-        .andWhere('Batting.yearID', yearID);
+        .andWhere('Batting.yearID', yearID)
+        .orderBy('G', 'desc');
 }
 
 export const getTotalPitchersForTeam = async (teamID, yearID) => {
@@ -240,7 +241,8 @@ export const getAllPitchersForTeam = async (teamID, yearID) => {
         .select('Players.nameFirst', 'Players.nameLast', 'Players.playerID', ...PLAYER_SINGLE_SEASON_PITCHING)
         .join('Players', 'Pitching.playerID', '=', 'Players.playerID')
         .where('Pitching.teamID', teamID)
-        .andWhere('Pitching.yearID', yearID);
+        .andWhere('Pitching.yearID', yearID)
+        .orderBy('G', 'desc');
 }
 
 export const getPlayerBio = async (playerID) => {

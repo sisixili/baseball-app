@@ -1,5 +1,6 @@
 SELECT 
     name,
+    teamID,
     yearID,
     G,
     W,
