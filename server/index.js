@@ -40,7 +40,7 @@ app.use((err, req, res, next) => {
  * Search for player???
  */
 app.get("/players", validateToken, async (req, res) => {
-  const players = await getAllPlayers(20); // placeholder constant 20
+  const players = await getAllPlayers(20);              // Placeholder constant 20, adjust later when dealing with production dataset
   res.send(players);
 });
 

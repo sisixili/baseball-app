@@ -1,0 +1,3 @@
+SELECT *
+FROM Players
+LIMIT 20;
