@@ -33,7 +33,7 @@ function Team() {
           }
         })
         .catch((error) => console.log("ERROR", error));
-    }, [teamID]);
+    }, [teamID, yearID]);
 
     return (
       <div>
@@ -43,8 +43,9 @@ function Team() {
             <div className="pageTitle" key={key}>
               <h2>
               {team.name}
+               Franchise: 
               <Link to={`/franchises/${team.franchiseID}`}>
-                Franchise: {team.franchiseID}
+                {team.franchiseID}
               </Link>
               </h2>
               <h3>
@@ -59,7 +60,7 @@ function Team() {
         </div>
 
         <div>
-          <h3>All Batter Stats</h3>
+          <h3>Total Batter Stats</h3>
           <table className="TableStyle">
             <thead>
             <tr>
@@ -83,10 +84,9 @@ function Team() {
               <th>PA</th>
               </tr>
               </thead>
-              <tbody>
+              <tbody className="TableResults">
           {teamStats.totalBattersForTeam.map((team, key) => (
-            <div key={key}>
-              <tr>
+              <tr key={key}>
               <td>{team.AB}</td>
               <td>{team.R} </td>
               <td>{team.H} </td>
@@ -106,44 +106,168 @@ function Team() {
               <td>{team.GIDP}</td>
               <td>{team.PA}</td>
               </tr>
-              </div>
           ))}
           </tbody>
           </table>
         </div>
 
         <div>
+          <h3>All Batters</h3>
+          <table className="TableStyle">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>G</th>
+              <th>AB </th>
+              <th>R</th>
+              <th>H</th>
+              <th>2B</th>
+              <th>3B</th>
+              <th>HR</th>
+              <th>RBI</th>
+              <th>SB</th>
+              <th>CS</th>
+              <th>BB</th>
+              <th>SO</th>
+              <th>IBB</th>
+              <th>HBP</th>
+              <th>SH</th>
+              <th>SF</th>
+              <th>GIDP </th>
+              </tr>
+              </thead>
+              <tbody className="TableResults">
           {teamStats.allBattersForTeam.map((team, key) => (
-            <div key={key}>
-              <Link to={`/players/${team.playerID}`}>
+              <tr key={key}>
+              <td><Link to={`/players/${team.playerID}`}>
               {team.nameFirst} {team.nameLast}
-              </Link>
-              {team.G} {team.AB} {team.R} {team.H} {team["2B"]} {team["3B"]} {team.HR} {team.RBI}
-              {team.SB} {team.CS} {team.BB} {team.SO} {team.IBB} {team.HBP} {team.SH} {team.SF} {team.GIDP}
-            </div>
+              </Link></td>
+              <td>{team.G} </td>
+              <td>{team.AB} </td>
+              <td>{team.R} </td>
+              <td>{team.H} </td>
+              <td>{team["2B"]} </td>
+              <td>{team["3B"]} </td>
+              <td>{team.HR} </td>
+              <td>{team.RBI}</td>
+              <td>{team.SB} </td>
+              <td>{team.CS} </td>
+              <td>{team.BB} </td>
+              <td>{team.SO} </td>
+              <td>{team.IBB} </td>
+              <td>{team.HBP} </td>
+              <td>{team.SH} </td>
+              <td>{team.SF} </td>
+              <td>{team.GIDP}</td>
+              </tr>
           ))}
+          </tbody>
+          </table>
         </div>
 
         <div>
+          <h3>Total Pitcher Stats</h3>
+          <table className="TableStyle">
+            <thead>
+            <tr>
+              <th>G</th>
+              <th>W</th>
+              <th>L</th>
+              <th>GS</th>
+              <th>CG</th>
+              <th>SHO</th>
+              <th>SV</th>
+              <th>H</th>
+              <th>R</th>
+              <th>ER</th>
+              <th>HR</th>
+              <th>BB</th>
+              <th>IBB</th>
+              <th>SO</th>
+              <th>HBP</th>
+              <th>BK</th>
+              <th>WP</th>
+              <th>IP</th>
+              </tr>
+              </thead>
+          <tbody className="TableResults">
           {teamStats.totalPitchersForTeam.map((team, key) => (
-            <div key={key}>
-              {team.G} {team.W} {team.L} {team.GS} {team.CG} {team.SHO} {team.SV}
-              {team.H} {team.R} {team.ER} {team.HR} {team.BB} {team.IBB} {team.SO} 
-              {team.HBP} {team.BK} {team.WP} {team.IP}
-            </div>
+            <tr key={key}>
+              <td>{team.G} </td>
+              <td>{team.W}  </td>
+              <td>{team.L}  </td>
+              <td>{team.GS}  </td>
+              <td>{team.CG}  </td>
+              <td>{team.SHO}  </td>
+              <td>{team.SV} </td>
+              <td>{team.H}  </td>
+              <td>{team.R}  </td>
+              <td>{team.ER}  </td>
+              <td>{team.HR}  </td>
+              <td>{team.BB}  </td>
+              <td>{team.IBB}  </td>
+              <td>{team.SO}  </td>
+              <td>{team.HBP}  </td>
+              <td>{team.BK}  </td>
+              <td>{team.WP}  </td>
+              <td>{team.IP} </td>
+              </tr>
           ))}
+          </tbody>
+          </table>
         </div>
 
         <div>
+          <h3>All Pitchers For Team</h3>
+          <table className="TableStyle">
+            <thead>
+            <tr>
+            <th>G</th>
+              <th>W</th>
+              <th>L</th>
+              <th>GS</th>
+              <th>CG</th>
+              <th>SHO</th>
+              <th>SV</th>
+              <th>H</th>
+              <th>R</th>
+              <th>ER</th>
+              <th>HR</th>
+              <th>BB</th>
+              <th>IBB</th>
+              <th>SO</th>
+              <th>HBP</th>
+              <th>BK</th>
+              <th>WP</th>
+              </tr>
+              </thead>
+              <tbody className="TableResults">
           {teamStats.allPitchersForTeam.map((team, key) => (
-            <div key={key}>
-              <Link to={`/players/${team.playerID}`}>
+            <tr key={key}>
+              <td><Link to={`/players/${team.playerID}`}>
               {team.nameFirst} {team.nameLast}
-              </Link>
-              {team.G} {team.W} {team.L} {team.GS} {team.CG} {team.SHO} {team.SV} {team.H}
-              {team.R} {team.ER} {team.HR} {team.BB} {team.IBB} {team.SO} {team.HBP} {team.BK} {team.WP}
-            </div>
+              </Link></td>
+              <td>{team.G} </td>
+              <td>{team.W} </td>
+              <td>{team.L} </td>
+              <td>{team.GS} </td>
+              <td>{team.CG} </td>
+              <td>{team.SHO} </td>
+              <td>{team.SV} </td>
+              <td>{team.H}</td>
+              <td>{team.R} </td>
+              <td>{team.ER} </td>
+              <td>{team.HR} </td>
+              <td>{team.BB} </td>
+              <td>{team.IBB} </td>
+              <td>{team.SO} </td>
+              <td>{team.HBP} </td>
+              <td>{team.BK} </td>
+              <td>{team.WP}</td>
+            </tr>
           ))}
+          </tbody>
+          </table>
         </div>
 
       </div>
