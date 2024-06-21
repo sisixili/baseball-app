@@ -154,7 +154,6 @@ function Franchise() {
       </thead>
       <tbody className="TableResults">
           {franchiseStats.franchiseTeams.map((franchise, key) => (           
-            <div>
               <tr key={key}>
               <td>
               <Link to={`/teams/${franchise.teamID}/${franchise.yearID}`}>
@@ -191,7 +190,6 @@ function Franchise() {
               <td>{franchise.FP}</td> 
               <td>{franchise.IP}</td>
               </tr>
-            </div>
           ))}
           </tbody>
           </table>
