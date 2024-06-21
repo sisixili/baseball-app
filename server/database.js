@@ -107,6 +107,7 @@ export const getFranchises = async (isActive) => {
     const franchiseTotals = await db('Franchises')
         .join('Teams', 'Franchises.franchiseID', 'Teams.franchiseID')
         .select(
+            'Franchises.franchiseID',
             'Franchises.franchiseName',
             ...FRANCHISE_TOTALS.map(column => db.raw(`SUM(${column}) as ${column}`)),
             db.raw('SUM(outsRecorded) / 3 AS IP')
@@ -270,7 +271,8 @@ export const getSeasonBySeasonPitchingStats = async (playerID) => {
 
     return await db('Pitching')
         .select('yearID', 'teamID', ...columns)
-        .where('Pitching.playerID', playerID);
+        .where('Pitching.playerID', playerID)
+        .orderBy('yearID', 'asc');
 }
 
 export const getCareerBattingTotals = async (playerID) => {
@@ -286,5 +288,6 @@ export const getSeasonBySeasonBattingStats = async (playerID) => {
     columns.push(db.raw('COALESCE(AB ,0) + COALESCE(BB ,0) + COALESCE(HBP ,0) + COALESCE(SH ,0) + COALESCE(SF ,0) AS PA'));
     return await db('Batting')
         .select('yearID', 'teamID', ...columns)
-        .where('Batting.playerID', playerID);
+        .where('Batting.playerID', playerID)
+        .orderBy('yearID', 'asc');
 }
