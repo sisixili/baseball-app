@@ -36,10 +36,12 @@ function Franchise() {
 
     return (
       <div>
-        <div>
+        <div className="pageTitle">
           {franchiseStats.franchiseBio.map((franchise, key) => (
-            <div key={key}>
+            <div className="pageTitle" key={key}>
+              <h2>
               {franchise.franchiseName} Is Active: {franchise.isActive}
+              </h2>
             </div>
           ))}
         </div>
