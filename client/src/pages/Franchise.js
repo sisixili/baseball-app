@@ -51,6 +51,7 @@ function Franchise() {
         <table className="TableStyle">
         <thead>
         <tr>
+          <th>Name & Year</th>
           <th>G</th>
           <th>W</th>
           <th>L</th>
@@ -82,10 +83,36 @@ function Franchise() {
       </thead>
       <tbody className="TableResults">
           {franchiseStats.franchiseTotals.map((franchise, key) => (
-            <div key={key}>
-              {franchise.G} {franchise.W} {franchise.L} {franchise.R} {franchise.AB} {franchise.H} {franchise['2B']} {franchise['3B']} {franchise.HR}
-              {franchise.BB} {franchise.SO} {franchise.SB} {franchise.CS} {franchise.HBP} {franchise.SF} {franchise.RA} {franchise.ER} {franchise.CG}
-              {franchise.SHO} {franchise.SV} {franchise.HA} {franchise.HRA} {franchise.BBA} {franchise.SOA} {franchise.E} {franchise.DP} {franchise.IP}
+            <div>
+              <tr key="key">
+              <td>{franchise.G} </td>
+              <td>{franchise.W} </td>
+              <td>{franchise.L} </td>
+              <td>{franchise.R} </td>
+              <td>{franchise.AB} </td>
+              <td>{franchise.H} </td>
+              <td>{franchise['2B']} </td>
+              <td>{franchise['3B']} </td>
+              <td>{franchise.HR}</td>
+              <td>{franchise.BB} </td>
+              <td>{franchise.SO} </td>
+              <td>{franchise.SB} </td>
+              <td>{franchise.CS} </td>
+              <td>{franchise.HBP} </td>
+              <td>{franchise.SF} </td>
+              <td>{franchise.RA} </td>
+              <td>{franchise.ER} </td>
+              <td>{franchise.CG}</td>
+              <td>{franchise.SHO} </td>
+              <td>{franchise.SV} </td>
+              <td>{franchise.HA} </td>
+              <td>{franchise.HRA} </td>
+              <td>{franchise.BBA} </td>
+              <td>{franchise.SOA} </td>
+              <td>{franchise.E} </td>
+              <td>{franchise.DP} </td>
+              <td>{franchise.IP}</td>
+              </tr>
             </div>
           ))}
           </tbody>
