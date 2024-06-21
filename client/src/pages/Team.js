@@ -218,15 +218,56 @@ function Team() {
         </div>
 
         <div>
+          <h3>All Pitchers For Team</h3>
+          <table className="TableStyle">
+            <thead>
+            <tr>
+            <th>G</th>
+              <th>W</th>
+              <th>L</th>
+              <th>GS</th>
+              <th>CG</th>
+              <th>SHO</th>
+              <th>SV</th>
+              <th>H</th>
+              <th>R</th>
+              <th>ER</th>
+              <th>HR</th>
+              <th>BB</th>
+              <th>IBB</th>
+              <th>SO</th>
+              <th>HBP</th>
+              <th>BK</th>
+              <th>WP</th>
+              </tr>
+              </thead>
+              <tbody>
           {teamStats.allPitchersForTeam.map((team, key) => (
-            <div key={key}>
-              <Link to={`/players/${team.playerID}`}>
+            <tr key={key}>
+              <td><Link to={`/players/${team.playerID}`}>
               {team.nameFirst} {team.nameLast}
-              </Link>
-              {team.G} {team.W} {team.L} {team.GS} {team.CG} {team.SHO} {team.SV} {team.H}
-              {team.R} {team.ER} {team.HR} {team.BB} {team.IBB} {team.SO} {team.HBP} {team.BK} {team.WP}
-            </div>
+              </Link></td>
+              <td>{team.G} </td>
+              <td>{team.W} </td>
+              <td>{team.L} </td>
+              <td>{team.GS} </td>
+              <td>{team.CG} </td>
+              <td>{team.SHO} </td>
+              <td>{team.SV} </td>
+              <td>{team.H}</td>
+              <td>{team.R} </td>
+              <td>{team.ER} </td>
+              <td>{team.HR} </td>
+              <td>{team.BB} </td>
+              <td>{team.IBB} </td>
+              <td>{team.SO} </td>
+              <td>{team.HBP} </td>
+              <td>{team.BK} </td>
+              <td>{team.WP}</td>
+            </tr>
           ))}
+          </tbody>
+          </table>
         </div>
 
       </div>
