@@ -173,7 +173,7 @@ app.post("/createFavouriteFranchise/:franchiseID", validateToken, async (req, re
 /**
  * Team profile
  */
-app.get("/teams/:teamID:yearID", validateToken, async (req, res) => {
+app.get("/teams/:teamID/:yearID", validateToken, async (req, res) => {
     const teamBio = await getTeamBio(req.params.teamID, req.params.yearID)                              // Team bio
     const totalBattersForTeam = await getTotalBattersForTeam(req.params.teamID, req.params.yearID)      // Batting statistics totalled for all players on team
     const allBattersForTeam = await getAllBattersForTeam(req.params.teamID, req.params.yearID)          // Batting statistics for each individual player
