@@ -241,7 +241,7 @@ function Team() {
               <th>WP</th>
               </tr>
               </thead>
-              <tbody>
+              <tbody className="TableResults">
           {teamStats.allPitchersForTeam.map((team, key) => (
             <tr key={key}>
               <td><Link to={`/players/${team.playerID}`}>
