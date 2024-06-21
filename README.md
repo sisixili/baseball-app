@@ -20,3 +20,14 @@ To run the website:
 1. Run `npx nodemon index.js` from `baseball-app/server`
 2. Open another terminal and run `npm start` from `baseball-app/client`
 3. Go to localhost:3000 to access the website.
+
+
+# Currently Implemented Features
+
+1. Register account, log in, log out (you are required to register and log in to use the websites features)
+2. Player Search: Search for a specific player by name, and able to redirect to player profiles after selecting a player
+3. Leaderboard: See leaders in different hitting and pitching categories for a given year, sort in ascending or descending order
+4. Player Profile: Player bio, career hitting statistics, year by year hitting statistics, career pitching statistics, year by year pitching statistics. Able to redirect to a specific teams page for a given year (if the player whose profile you are viewing played on that team in that year)
+5. Franchise Search: Search for a specific franchise by name, and able to redirect to franchise profiles after selecting a franchise
+6. Franchise Profile: Franchise bio (active vs not active), all time franchise statistics, and year by year statistics for each year. Able to redirect to all team profiles for the franchise for all years. 
+7. Team Profile: Team bio, total team hitting statistics, player by player hitting statistics, total team pitching statistics, player by player pitching statistics. Able to redirect to player profiles for players that played on the team, as well as the franchise profile that the current team falls under.
