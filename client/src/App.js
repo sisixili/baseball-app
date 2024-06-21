@@ -40,10 +40,12 @@ function App() {
     
   }, []);
 
+
+  /**<img className="floatImg" src="batWball.jpg" alt=""></img>
+      <img className="floatBall" src="ball.jpg" alt=""></img> */
   return (
     <div className="App">
-      <img className="floatImg" src="batWball.jpg" alt=""></img>
-      <img className="floatBall" src="ball.jpg" alt=""></img>
+      
       <Router>
         <div className="NavBar">
           <nav className = "navBar">
