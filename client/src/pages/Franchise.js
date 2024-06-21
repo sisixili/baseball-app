@@ -97,11 +97,13 @@ function Franchise() {
         <div>
           {franchiseStats.franchiseTeams.map((franchise, key) => (           
             <div>
+              <tr key="key">
+              <td>
               <Link to={`/teams/${franchise.teamID}/${franchise.yearID}`}>
               {franchise.name} 
               {franchise.yearID}
-              </Link> 
-              <tr key="key">
+              </Link>
+              </td> 
               <td>{franchise.G}</td>
               <td>{franchise.W}</td> 
               <td>{franchise.L}</td> 
