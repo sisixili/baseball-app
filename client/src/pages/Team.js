@@ -37,7 +37,7 @@ function Team() {
 
     return (
 
-        <div></div>
+        <div>I add team stats soon...</div>
     )
 
 }
