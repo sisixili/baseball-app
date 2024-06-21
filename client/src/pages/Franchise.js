@@ -47,6 +47,40 @@ function Franchise() {
         </div>
 
         <div>
+        <h3>All Time Franchise Stats</h3>
+        <table className="TableStyle">
+        <thead>
+        <tr>
+          <th>G</th>
+          <th>W</th>
+          <th>L</th>
+          <th>R</th>
+          <th>AB</th>
+          <th>H</th>
+          <th>2B</th>
+          <th>3B</th>
+          <th>HR</th>
+          <th>BB</th>
+          <th>SO</th>
+          <th>SB</th>
+          <th>CS</th>
+          <th>HBP</th>
+          <th>SF</th>
+          <th>RA</th>
+          <th>ER</th>
+          <th>CG</th>
+          <th>SHO</th>
+          <th>SV</th>
+          <th>HA</th>
+          <th>HRA</th>
+          <th>BBA</th>
+          <th>SOA</th>
+          <th>E</th>
+          <th>DP</th>
+          <th>IP</th>
+        </tr>
+      </thead>
+      <tbody className="TableResults">
           {franchiseStats.franchiseTotals.map((franchise, key) => (
             <div key={key}>
               {franchise.G} {franchise.W} {franchise.L} {franchise.R} {franchise.AB} {franchise.H} {franchise['2B']} {franchise['3B']} {franchise.HR}
@@ -54,6 +88,8 @@ function Franchise() {
               {franchise.SHO} {franchise.SV} {franchise.HA} {franchise.HRA} {franchise.BBA} {franchise.SOA} {franchise.E} {franchise.DP} {franchise.IP}
             </div>
           ))}
+          </tbody>
+          </table>
         </div>
 
         
