@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 
 function Franchise() {
@@ -54,9 +54,12 @@ function Franchise() {
           ))}
         </div>
 
+        
+
         <div>
-          {franchiseStats.franchiseTeams.map((franchise, key) => (
+          {franchiseStats.franchiseTeams.map((franchise, key) => (           
             <div key={key}>
+              <Link to={``}></Link> 
               {franchise.name} {franchise.yearID} {franchise.G} {franchise.W} {franchise.L} {franchise.R} {franchise.AB} {franchise.H} {franchise['2B']} {franchise['3B']} 
               {franchise.HR} {franchise.BB} {franchise.SO} {franchise.SB} {franchise.SF} {franchise.HBP} {franchise.SF} {franchise.RA} {franchise.ER} {franchise.CG} 
               {franchise.SHO} {franchise.SV} {franchise.HA} {franchise.HRA} {franchise.BBA} {franchise.SOA} {franchise.E} {franchise.DP} {franchise.FP} {franchise.IP}
