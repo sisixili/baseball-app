@@ -138,6 +138,7 @@ export const getFranchiseTeams = async (franchiseID) => {
     return await db('Teams')
         .select(
             'name',
+            'teamID',
             'yearID',
             ...TEAM_SINGLE_SEASON,
             db.raw('outsRecorded / 3 AS IP')
