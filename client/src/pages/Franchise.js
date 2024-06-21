@@ -149,6 +149,7 @@ function Franchise() {
           <th>SOA</th>
           <th>E</th>
           <th>DP</th>
+          <th>FP</th>
           <th>IP</th>
         </tr>
       </thead>
@@ -173,7 +174,7 @@ function Franchise() {
               <td>{franchise.BB}</td> 
               <td>{franchise.SO}</td> 
               <td>{franchise.SB}</td> 
-              <td>{franchise.SF}</td> 
+              <td>{franchise.CS}</td> 
               <td>{franchise.HBP} </td>
               <td>{franchise.SF} </td>
               <td>{franchise.RA}</td> 
