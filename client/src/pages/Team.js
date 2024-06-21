@@ -38,26 +38,78 @@ function Team() {
     return (
       <div>
 
-        <div>
+        <div className="pageTitle">
           {teamStats.teamBio.map((team, key) => (
-            <div key={key}>
+            <div className="pageTitle" key={key}>
+              <h2>
               {team.name}
               <Link to={`/franchises/${team.franchiseID}`}>
                 Franchise: {team.franchiseID}
               </Link>
-              {team.G} {team.W} {team.L} {team.park} {team.averageAttendance}
+              </h2>
+              <h3>
+              Games: {team.G},
+              Wins: {team.W},
+              Losses: {team.L},
+              Team Park: {team.park},
+              Avg Attendance: {team.averageAttendance}
+              </h3>
             </div>
           ))}
         </div>
 
         <div>
+          <h3>All Batter Stats</h3>
+          <table className="TableStyle">
+            <thead>
+            <tr>
+              <th>AB</th>
+              <th>R </th>
+              <th>H</th>
+              <th>2B </th>
+              <th>3B </th>
+              <th>HR </th>
+              <th>RBI</th>
+              <th>SB </th>
+              <th>CS </th>
+              <th>BB </th>
+              <th>SO </th>
+              <th>IBB </th>
+              <th>HBP </th>
+              <th>SH </th>
+              <th>SF </th>
+              <th>SF</th>
+              <th>GIDP </th>
+              <th>PA</th>
+              </tr>
+              </thead>
+              <tbody>
           {teamStats.totalBattersForTeam.map((team, key) => (
             <div key={key}>
-              {team.AB} {team.R} {team.H} {team["2B"]} {team["3B"]} {team.HR} {team.RBI}
-              {team.SB} {team.CS} {team.BB} {team.SO} {team.IBB} {team.HBP} {team.SH} 
-              {team.SF} {team.GIDP} {team.PA}
-            </div>
+              <tr>
+              <td>{team.AB}</td>
+              <td>{team.R} </td>
+              <td>{team.H} </td>
+              <td>{team["2B"]} </td>
+              <td>{team["3B"]} </td>
+              <td>{team.HR} </td>
+              <td>{team.RBI}</td>
+              <td>{team.SB} </td>
+              <td>{team.CS} </td>
+              <td>{team.BB} </td>
+              <td>{team.SO} </td>
+              <td>{team.IBB} </td>
+              <td>{team.HBP} </td>
+              <td>{team.SH}</td>
+              <td>{team.SF}</td>
+              <td>{team.SF}</td>
+              <td>{team.GIDP}</td>
+              <td>{team.PA}</td>
+              </tr>
+              </div>
           ))}
+          </tbody>
+          </table>
         </div>
 
         <div>
