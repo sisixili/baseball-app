@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import Home from './pages/Home.js'
 import Player from './pages/Player.js'
 import Players from './pages/AllPlayers.js'
+import Franchise from './pages/Franchise.js'
+import Franchises from './pages/AllFranchises.js'
 import Leaderboard from './pages/Leaderboard.js'
 import Login from './pages/Login.js'
 import Register from './pages/Register.js'
@@ -50,6 +52,8 @@ function App() {
             |
             <Link to="/leaderboard"> Leaderboard </Link> 
             |
+            <Link to="/franchises"> Search All Franchises </Link> 
+            |
             {isLoggedIn ? (
               <Link to="/logout"> Logout </Link>
             ):( 
@@ -64,6 +68,8 @@ function App() {
           <Route path='/home' element={<Home/>} />
           <Route path="/players/:playerID" element={<Player />} />
           <Route path='/players' element={<Players/>} />
+          <Route path="/franchises/:franchiseID" element={<Franchise />} />
+          <Route path='/franchises' element={<Franchises/>} />
           <Route path='/leaderboard' element={<Leaderboard/>} />
           <Route path='/' element={<Login/>} />
           <Route path='/register' element={<Register/>} />

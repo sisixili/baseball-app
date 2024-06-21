@@ -37,13 +37,28 @@ app.use((err, req, res, next) => {
 
 
 /**
- * Search for player???
+ * Players
  */
 app.get("/players", validateToken, async (req, res) => {
   const players = await getAllPlayers(20);              // Placeholder constant 20, adjust later when dealing with production dataset
   res.send(players);
 });
 
+app.get("/players/:playerID", validateToken, async (req, res) => {
+  const playerBio = await getPlayerBio(req.params.playerID)                                           // Player bio
+  const careerPitchingTotals = await getCareerPitchingTotals(req.params.playerID)                     // Career pitching totals
+  const seasonBySeasonPitchingStats = await getSeasonBySeasonPitchingStats(req.params.playerID)       // Season by season pitching statistics
+  const careerBattingTotals = await getCareerBattingTotals(req.params.playerID)                       // Career batting totals
+  const seasonBySeasonBattingStats = await getSeasonBySeasonBattingStats(req.params.playerID)         // Season by season batting statistics
+  const playerProfile = {
+      playerBio: playerBio,
+      careerPitchingTotals: careerPitchingTotals,
+      seasonBySeasonPitchingStats: seasonBySeasonPitchingStats,
+      careerBattingTotals: careerBattingTotals,
+      seasonBySeasonBattingStats: seasonBySeasonBattingStats
+  };
+  res.send(playerProfile)
+})
 
 /**
  * Leaderboard
@@ -150,7 +165,7 @@ app.get("/franchises/:franchiseID", validateToken, async (req, res) => {
 /**
  * Create favourite franchise
  */
-app.post("/createFavouriteFranchise/:franchiseID", async (req, res) => {
+app.post("/createFavouriteFranchise/:franchiseID", validateToken, async (req, res) => {
     await createFavouriteFranchise(req.params.franchiseID, req.params.userID)
 })
     
@@ -158,7 +173,7 @@ app.post("/createFavouriteFranchise/:franchiseID", async (req, res) => {
 /**
  * Team profile
  */
-app.get("/teams/:teamID:yearID", validateToken, async (req, res) => {
+app.get("/teams/:teamID/:yearID", validateToken, async (req, res) => {
     const teamBio = await getTeamBio(req.params.teamID, req.params.yearID)                              // Team bio
     const totalBattersForTeam = await getTotalBattersForTeam(req.params.teamID, req.params.yearID)      // Batting statistics totalled for all players on team
     const allBattersForTeam = await getAllBattersForTeam(req.params.teamID, req.params.yearID)          // Batting statistics for each individual player
@@ -178,36 +193,15 @@ app.get("/teams/:teamID:yearID", validateToken, async (req, res) => {
 /**
  * Create favourite team
  */
-app.post("/createFavouriteTeam/:teamID/:yearID", async (req, res) => {
+app.post("/createFavouriteTeam/:teamID/:yearID", validateToken, async (req, res) => {
     await createFavouriteTeam(req.params.teamID, req.params.yearID, req.params.userID)
 })
 
 
 /**
- * Player Profile
- */
-app.get("/players/:playerID", validateToken, async (req, res) => {
-    const playerBio = await getPlayerBio(req.params.playerID)                                           // Player bio
-    const careerPitchingTotals = await getCareerPitchingTotals(req.params.playerID)                     // Career pitching totals
-    const seasonBySeasonPitchingStats = await getSeasonBySeasonPitchingStats(req.params.playerID)       // Season by season pitching statistics
-    const careerBattingTotals = await getCareerBattingTotals(req.params.playerID)                       // Career batting totals
-    const seasonBySeasonBattingStats = await getSeasonBySeasonBattingStats(req.params.playerID)         // Season by season batting statistics
-    const playerProfile = {
-        playerBio: playerBio,
-        careerPitchingTotals: careerPitchingTotals,
-        seasonBySeasonPitchingStats: seasonBySeasonPitchingStats,
-        careerBattingTotals: careerBattingTotals,
-        seasonBySeasonBattingStats: seasonBySeasonBattingStats
-    };
-    res.send(playerProfile)
-})
-
-
-
-/**
  * Create favourite player
  */
-app.post("/createFavouritePlayer/:playerID", async (req, res) => {
+app.post("/createFavouritePlayer/:playerID", validateToken, async (req, res) => {
     await createFavouritePlayer(req.params.playerID, req.params.userID)
 })
 
