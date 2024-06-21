@@ -6,6 +6,7 @@ import Player from './pages/Player.js'
 import Players from './pages/AllPlayers.js'
 import Franchise from './pages/Franchise.js'
 import Franchises from './pages/AllFranchises.js'
+import Team from './pages/Team.js'
 import Leaderboard from './pages/Leaderboard.js'
 import Login from './pages/Login.js'
 import Register from './pages/Register.js'
@@ -41,6 +42,8 @@ function App() {
 
   return (
     <div className="App">
+      <img className="floatImg" src="batWball.jpg" alt=""></img>
+      <img className="floatBall" src="ball.jpg" alt=""></img>
       <Router>
         <div className="NavBar">
           <nav className = "navBar">
@@ -70,6 +73,7 @@ function App() {
           <Route path='/players' element={<Players/>} />
           <Route path="/franchises/:franchiseID" element={<Franchise />} />
           <Route path='/franchises' element={<Franchises/>} />
+          <Route path="/teams/:teamID/:yearID" element={<Team />} />
           <Route path='/leaderboard' element={<Leaderboard/>} />
           <Route path='/' element={<Login/>} />
           <Route path='/register' element={<Register/>} />
