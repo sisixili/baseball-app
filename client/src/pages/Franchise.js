@@ -117,7 +117,7 @@ function Franchise() {
         </div>
 
         
-
+          <h3>Teams</h3>
         <div>
         <table className="TableStyle">
         <thead>
