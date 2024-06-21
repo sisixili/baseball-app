@@ -2,7 +2,7 @@
 // To be in Leaderboard, Players
 
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 function Player() {
   const { playerID } = useParams();
@@ -150,7 +150,7 @@ function Player() {
         {PlayerStats.seasonBySeasonPitchingStats.length > 0 ? (
           PlayerStats.seasonBySeasonPitchingStats.map((player, key) => (
             <tr key={key}>
-              <td>{player.yearID}</td>
+              <td><Link to={`/teams/${player.teamID}/${player.yearID}`}> {player.yearID} </Link></td>
               <td>{player.teamID}</td>
               <td>{player.G}</td>
               <td>{player.W}</td>
@@ -273,7 +273,7 @@ function Player() {
         {PlayerStats.seasonBySeasonBattingStats.length > 0 ? (
           PlayerStats.seasonBySeasonBattingStats.map((player, key) => (
             <tr key={key}>
-              <td>{player.yearID}</td>
+              <td><Link to={`/teams/${player.teamID}/${player.yearID}`}> {player.yearID} </Link></td>
               <td>{player.teamID}</td>
               <td>{player.G}</td>
               <td>{player.AB}</td>
