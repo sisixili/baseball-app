@@ -52,9 +52,9 @@ function Franchises() {
         <h2>Search All Franchises</h2>
       </div>
       <input
-        class="input"
+        class="franchiseInput"
         onChange={handleChange}
-        placeholder="Search by Franchise Name"
+        placeholder="Search by Franchise Name ..."
       />
       <div className="Players">
         <div className="NameList">
@@ -65,6 +65,12 @@ function Franchises() {
               </Link>    
             </div>
           ))}
+          </div>
+          </div>
+
+          <div className="Players">
+          <div className="NameList">
+
           {filteredNonActiveFranchises.map((franchise, key) => (
             <div className="player" key={key}>
               <Link to={`/franchises/${franchise.franchiseID}`}>
