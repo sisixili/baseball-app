@@ -1,3 +1,5 @@
+-- Get the summed hitting statistics for all players that played on the specified team in the specified year
+
 SELECT 
     SUM(AB) AS AB,
     SUM(R) AS R,

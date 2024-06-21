@@ -1,3 +1,5 @@
+-- Display all active franchises with their total statistics, sort in descending order in terms of number of total wins
+
 SELECT 
     Franchises.franchiseID,
     Franchises.franchiseName,

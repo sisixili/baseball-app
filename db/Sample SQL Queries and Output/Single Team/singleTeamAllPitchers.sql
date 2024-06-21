@@ -1,3 +1,5 @@
+-- Get the pitching statistics for all players that played on the specified team in the specified year, sort by games descending
+
 SELECT 
     Players.nameFirst,
     Players.nameLast,

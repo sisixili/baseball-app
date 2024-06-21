@@ -1,3 +1,5 @@
+-- Get the bio information for the specified team and the specified year
+
 SELECT 
     Teams.name,
     Teams.franchiseID,

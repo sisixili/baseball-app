@@ -1,3 +1,5 @@
+-- Get the summed pitching statistics for all players that played on the specified team in the specified year
+
 SELECT 
     SUM(G) AS G,
     SUM(W) AS W,

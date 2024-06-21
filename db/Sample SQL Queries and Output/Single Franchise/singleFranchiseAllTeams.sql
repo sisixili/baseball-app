@@ -1,3 +1,5 @@
+-- Get the statistics for each team that was a member of the specified franchise, sort by year ascending
+
 SELECT 
     name,
     teamID,

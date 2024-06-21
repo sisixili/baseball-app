@@ -1,3 +1,5 @@
+-- Get the all time statistics for the specified franchiseID
+
 SELECT 
     SUM(G) AS G,
     SUM(W) AS W,

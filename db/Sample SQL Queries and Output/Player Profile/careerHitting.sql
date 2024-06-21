@@ -1,3 +1,5 @@
+-- Get the career hitting totals for the entered playerID
+
 SELECT 
     SUM(G) AS G,
     SUM(AB) AS AB,
