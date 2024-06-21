@@ -74,8 +74,8 @@ body {
   padding: 0px;
 
   position:absolute;
-  bottom:400px;
-  left:1320px;
+  top:200px;
+  right: 0px;
   width:200px;
   height:200px;
 }
