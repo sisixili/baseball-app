@@ -117,24 +117,23 @@ function Team() {
             <thead>
             <tr>
               <th>Name</th>
-              <th>AB</th>
-              <th>R </th>
+              <th>G</th>
+              <th>AB </th>
+              <th>R</th>
               <th>H</th>
-              <th>2B </th>
-              <th>3B </th>
-              <th>HR </th>
+              <th>2B</th>
+              <th>3B</th>
+              <th>HR</th>
               <th>RBI</th>
-              <th>SB </th>
-              <th>CS </th>
-              <th>BB </th>
-              <th>SO </th>
-              <th>IBB </th>
-              <th>HBP </th>
-              <th>SH </th>
-              <th>SF </th>
+              <th>SB</th>
+              <th>CS</th>
+              <th>BB</th>
+              <th>SO</th>
+              <th>IBB</th>
+              <th>HBP</th>
+              <th>SH</th>
               <th>SF</th>
               <th>GIDP </th>
-              <th>PA</th>
               </tr>
               </thead>
               <tbody className="TableResults">
@@ -167,13 +166,55 @@ function Team() {
         </div>
 
         <div>
+          <h3>Total Pitcher Stats</h3>
+          <table className="TableStyle">
+            <thead>
+            <tr>
+              <th>G</th>
+              <th>W</th>
+              <th>L</th>
+              <th>GS</th>
+              <th>CG</th>
+              <th>SHO</th>
+              <th>SV</th>
+              <th>H</th>
+              <th>R</th>
+              <th>ER</th>
+              <th>HR</th>
+              <th>BB</th>
+              <th>IBB</th>
+              <th>SO</th>
+              <th>HBP</th>
+              <th>BK</th>
+              <th>WP</th>
+              <th>IP</th>
+              </tr>
+              </thead>
+          <tbody className="TableResults">
           {teamStats.totalPitchersForTeam.map((team, key) => (
-            <div key={key}>
-              {team.G} {team.W} {team.L} {team.GS} {team.CG} {team.SHO} {team.SV}
-              {team.H} {team.R} {team.ER} {team.HR} {team.BB} {team.IBB} {team.SO} 
-              {team.HBP} {team.BK} {team.WP} {team.IP}
-            </div>
+            <tr key={key}>
+              <td>{team.G} </td>
+              <td>{team.W}  </td>
+              <td>{team.L}  </td>
+              <td>{team.GS}  </td>
+              <td>{team.CG}  </td>
+              <td>{team.SHO}  </td>
+              <td>{team.SV} </td>
+              <td>{team.H}  </td>
+              <td>{team.R}  </td>
+              <td>{team.ER}  </td>
+              <td>{team.HR}  </td>
+              <td>{team.BB}  </td>
+              <td>{team.IBB}  </td>
+              <td>{team.SO}  </td>
+              <td>{team.HBP}  </td>
+              <td>{team.BK}  </td>
+              <td>{team.WP}  </td>
+              <td>{team.IP} </td>
+              </tr>
           ))}
+          </tbody>
+          </table>
         </div>
 
         <div>
