@@ -83,8 +83,7 @@ function Franchise() {
       </thead>
       <tbody className="TableResults">
           {franchiseStats.franchiseTotals.map((franchise, key) => (
-            <div>
-              <tr key="key">
+              <tr key={key}>
               <td>{franchise.G} </td>
               <td>{franchise.W} </td>
               <td>{franchise.L} </td>
@@ -113,7 +112,6 @@ function Franchise() {
               <td>{franchise.DP} </td>
               <td>{franchise.IP}</td>
               </tr>
-            </div>
           ))}
           </tbody>
           </table>
@@ -124,7 +122,7 @@ function Franchise() {
         <div>
           {franchiseStats.franchiseTeams.map((franchise, key) => (           
             <div>
-              <tr key="key">
+              <tr key={key}>
               <td>
               <Link to={`/teams/${franchise.teamID}/${franchise.yearID}`}>
               {franchise.name} 
