@@ -36,35 +36,164 @@ function Franchise() {
 
     return (
       <div>
-        <div>
+        <div className="pageTitle">
           {franchiseStats.franchiseBio.map((franchise, key) => (
-            <div key={key}>
+            <div className="pageTitle" key={key}>
+              <h2>
               {franchise.franchiseName} Is Active: {franchise.isActive}
+              </h2>
             </div>
           ))}
         </div>
 
         <div>
+        <h3>All Time Franchise Stats</h3>
+        <table className="TableStyle">
+        <thead>
+        <tr>
+          <th>G</th>
+          <th>W</th>
+          <th>L</th>
+          <th>R</th>
+          <th>AB</th>
+          <th>H</th>
+          <th>2B</th>
+          <th>3B</th>
+          <th>HR</th>
+          <th>BB</th>
+          <th>SO</th>
+          <th>SB</th>
+          <th>CS</th>
+          <th>HBP</th>
+          <th>SF</th>
+          <th>RA</th>
+          <th>ER</th>
+          <th>CG</th>
+          <th>SHO</th>
+          <th>SV</th>
+          <th>HA</th>
+          <th>HRA</th>
+          <th>BBA</th>
+          <th>SOA</th>
+          <th>E</th>
+          <th>DP</th>
+          <th>IP</th>
+        </tr>
+      </thead>
+      <tbody className="TableResults">
           {franchiseStats.franchiseTotals.map((franchise, key) => (
-            <div key={key}>
-              {franchise.G} {franchise.W} {franchise.L} {franchise.R} {franchise.AB} {franchise.H} {franchise['2B']} {franchise['3B']} {franchise.HR}
-              {franchise.BB} {franchise.SO} {franchise.SB} {franchise.CS} {franchise.HBP} {franchise.SF} {franchise.RA} {franchise.ER} {franchise.CG}
-              {franchise.SHO} {franchise.SV} {franchise.HA} {franchise.HRA} {franchise.BBA} {franchise.SOA} {franchise.E} {franchise.DP} {franchise.IP}
-            </div>
+              <tr key={key}>
+              <td>{franchise.G} </td>
+              <td>{franchise.W} </td>
+              <td>{franchise.L} </td>
+              <td>{franchise.R} </td>
+              <td>{franchise.AB} </td>
+              <td>{franchise.H} </td>
+              <td>{franchise['2B']} </td>
+              <td>{franchise['3B']} </td>
+              <td>{franchise.HR}</td>
+              <td>{franchise.BB} </td>
+              <td>{franchise.SO} </td>
+              <td>{franchise.SB} </td>
+              <td>{franchise.CS} </td>
+              <td>{franchise.HBP} </td>
+              <td>{franchise.SF} </td>
+              <td>{franchise.RA} </td>
+              <td>{franchise.ER} </td>
+              <td>{franchise.CG}</td>
+              <td>{franchise.SHO} </td>
+              <td>{franchise.SV} </td>
+              <td>{franchise.HA} </td>
+              <td>{franchise.HRA} </td>
+              <td>{franchise.BBA} </td>
+              <td>{franchise.SOA} </td>
+              <td>{franchise.E} </td>
+              <td>{franchise.DP} </td>
+              <td>{franchise.IP}</td>
+              </tr>
           ))}
+          </tbody>
+          </table>
         </div>
 
         
-
+          <h3>Teams</h3>
         <div>
+        <table className="TableStyle">
+        <thead>
+        <tr>
+          <th>Name & Year</th>
+          <th>G</th>
+          <th>W</th>
+          <th>L</th>
+          <th>R</th>
+          <th>AB</th>
+          <th>H</th>
+          <th>2B</th>
+          <th>3B</th>
+          <th>HR</th>
+          <th>BB</th>
+          <th>SO</th>
+          <th>SB</th>
+          <th>CS</th>
+          <th>HBP</th>
+          <th>SF</th>
+          <th>RA</th>
+          <th>ER</th>
+          <th>CG</th>
+          <th>SHO</th>
+          <th>SV</th>
+          <th>HA</th>
+          <th>HRA</th>
+          <th>BBA</th>
+          <th>SOA</th>
+          <th>E</th>
+          <th>DP</th>
+          <th>FP</th>
+          <th>IP</th>
+        </tr>
+      </thead>
+      <tbody className="TableResults">
           {franchiseStats.franchiseTeams.map((franchise, key) => (           
-            <div key={key}>
-              <Link to={`/teams/${franchise.teamID}/${franchise.yearID}`}>{franchise.name} {franchise.yearID}</Link> 
-              {franchise.G} {franchise.W} {franchise.L} {franchise.R} {franchise.AB} {franchise.H} {franchise['2B']} {franchise['3B']} 
-              {franchise.HR} {franchise.BB} {franchise.SO} {franchise.SB} {franchise.SF} {franchise.HBP} {franchise.SF} {franchise.RA} {franchise.ER} {franchise.CG} 
-              {franchise.SHO} {franchise.SV} {franchise.HA} {franchise.HRA} {franchise.BBA} {franchise.SOA} {franchise.E} {franchise.DP} {franchise.FP} {franchise.IP}
-            </div>
+              <tr key={key}>
+              <td>
+              <Link to={`/teams/${franchise.teamID}/${franchise.yearID}`}>
+              {franchise.name} 
+              {franchise.yearID}
+              </Link>
+              </td> 
+              <td>{franchise.G}</td>
+              <td>{franchise.W}</td> 
+              <td>{franchise.L}</td> 
+              <td>{franchise.R}</td> 
+              <td>{franchise.AB}</td> 
+              <td>{franchise.H}</td> 
+              <td>{franchise['2B']}</td> 
+              <td>{franchise['3B']}</td> 
+              <td>{franchise.HR}</td> 
+              <td>{franchise.BB}</td> 
+              <td>{franchise.SO}</td> 
+              <td>{franchise.SB}</td> 
+              <td>{franchise.CS}</td> 
+              <td>{franchise.HBP} </td>
+              <td>{franchise.SF} </td>
+              <td>{franchise.RA}</td> 
+              <td>{franchise.ER} </td>
+              <td>{franchise.CG}</td> 
+              <td>{franchise.SHO}</td> 
+              <td>{franchise.SV}</td> 
+              <td>{franchise.HA}</td> 
+              <td>{franchise.HRA}</td> 
+              <td>{franchise.BBA}</td> 
+              <td>{franchise.SOA}</td> 
+              <td>{franchise.E}</td> 
+              <td>{franchise.DP}</td> 
+              <td>{franchise.FP}</td> 
+              <td>{franchise.IP}</td>
+              </tr>
           ))}
+          </tbody>
+          </table>
         </div>
 
       </div>
