@@ -1,88 +1,99 @@
-# Setup production and sample database
+# Setup
 
-PYTHON = python3
+# Determine which Python version to use
+PYTHON3 := $(shell command -v python3 2>/dev/null)
+PYTHON := $(if $(PYTHON3),$(PYTHON3),$(shell command -v python 2>/dev/null))
 
-# Renanme downloaded CSV directory
-OLD_CSV_FILE_DIRECTORY_NAME = lahman_1871-2023_csv
-PRODUCTION_CSV_FILES_DIRECTORY = Production_CSV_Files
+# Directories
+IMPORTED_CSV_FILE_DIRECTORY = lahman_1871-2023_csv
 SAMPLE_CSV_FILES_DIRECTORY = Sample_CSV_Files
+PRODUCTION_CSV_FILES_DIRECTORY = Production_CSV_Files
+PYTHON_SCRIPTS = Python_Scripts
+PRODUCTION_CSV_CLEANUP = Production_CSV_Cleanup
 
 
-# Remove unnecessary CSV files
-REMOVE_UNNECESSARY_CSV_FILES = Python_Scripts/Production_CSV_Cleanup/remove_unnecessary_csv_files.py
-REMOVE_UNNECESSARY_CSV_FILES_ARGS = Python_Scripts/Production_CSV_Cleanup/textFiles/unnecessary_csv_files.txt $(PRODUCTION_CSV_FILES_DIRECTORY)
+# Transfer imported CSV files to the Production CSV File directory (only the CSV files we use)
+TRANSFER_IMPORTED_PRODUCTION_CSV_FILES = $(PYTHON_SCRIPTS)/Transfer_Imported_Production_CSV_Files/transfer_imported_production_csv_files.txt
+TRANSFER_IMPORTED_PRODUCTION_CSV_FILES_ARGS = $(IMPORTED_CSV_FILE_DIRECTORY) $(PRODUCTION_CSV_FILES_DIRECTORY) $(PYTHON_SCRIPTS)/Transfer_Imported_Production_CSV_Files/imported_production_csv_files_to_use.txt
 
-# Remove unnecessary columns from CSV files
-REMOVE_UNNECESSARY_CSV_FILE_COLUMNS = Python_Scripts/Production_CSV_Cleanup/remove_unnecessary_columns.py
-REMOVE_UNNECESSARY_CSV_FILE_COLUMNS_ARGS = Python_Scripts/Production_CSV_Cleanup/textFiles/unnecessary_columns.txt $(PRODUCTION_CSV_FILES_DIRECTORY)
+# Rename files in Production CSV Files
+RENAME_FILES = $(PYTHON_SCRIPTS)/$(PRODUCTION_CSV_CLEANUP)/Rename_Files/rename_files.py
+RENAME_FILES_ARGS = $(PRODUCTION_CSV_FILES_DIRECTORY) $(PYTHON_SCRIPTS)/$(PRODUCTION_CSV_CLEANUP)/Rename_Files/file_renames.txt 
 
-# Remove duplicate rows from all CSV files
-REMOVE_DUPLICATE_ROWS = Python_Scripts/Production_CSV_Cleanup/remove_duplicate_rows.py
+# Remove unnecessary columns from Production CSV files
+REMOVE_UNNECESSARY_COLUMNS = $(PYTHON_SCRIPTS)/$(PRODUCTION_CSV_CLEANUP)/Remove_Unnecessary_Columns/remove_unnecessary_columns.py
+REMOVE_UNNECESSARY_COLUMNS_ARGS = $(PYTHON_SCRIPTS)/$(PRODUCTION_CSV_CLEANUP)/Remove_Unnecessary_Columns/unnecessary_columns.txt $(PRODUCTION_CSV_FILES_DIRECTORY)
+
+# Rename columns in Production CSV files
+RENAME_COLUMNS = $(PYTHON_SCRIPTS)/$(PRODUCTION_CSV_CLEANUP)/Rename_Columns/rename_columns.py
+RENAME_COLUMNS_ARGS = $(PYTHON_SCRIPTS)/$(PRODUCTION_CSV_CLEANUP)/Rename_Columns/column_renames.txt $(PRODUCTION_CSV_FILES_DIRECTORY)
+
+# Remove duplicate rows from all Production CSV files
+REMOVE_DUPLICATE_ROWS = $(PYTHON_SCRIPTS)/$(PRODUCTION_CSV_CLEANUP)/remove_duplicate_rows.py
 REMOVE_DUPLICATE_ROWS_ARGS = $(PRODUCTION_CSV_FILES_DIRECTORY)
 
-# Remove erroneous rows from CSV files
-REMOVE_ERRONEOUS_ROWS = Python_Scripts/Production_CSV_Cleanup/remove_erroneous_rows.py
-REMOVE_ERRONEOUS_ROWS_ARGS = Python_Scripts/Production_CSV_Cleanup/textFiles/erroneous_rows.txt $(PRODUCTION_CSV_FILES_DIRECTORY)
+# Remove erroneous rows from Production CSV files
+REMOVE_ERRONEOUS_ROWS = $(PYTHON_SCRIPTS)/$(PRODUCTION_CSV_CLEANUP)/Remove_Erroneous_Rows/remove_erroneous_rows.py
+REMOVE_ERRONEOUS_ROWS_ARGS = $(PYTHON_SCRIPTS)/$(PRODUCTION_CSV_CLEANUP)/Remove_Erroneous_Rows/erroneous_rows.txt $(PRODUCTION_CSV_FILES_DIRECTORY)
 
-# Rename columns from CSV files
-RENAME_COLUMNS = Python_Scripts/Production_CSV_Cleanup/rename_columns.py
-RENAME_COLUMNS_ARGS = Python_Scripts/Production_CSV_Cleanup/textFiles/column_renames.txt $(PRODUCTION_CSV_FILES_DIRECTORY)
-
-# Create sample CSV files
-CREATE_SAMPLE_CSV_FILES = Python_Scripts/create_sample_csv_files.py
+# Create sample CSV files using Production CSV files
+CREATE_SAMPLE_CSV_FILES = $(PYTHON_SCRIPTS)/create_sample_csv_files.py
 CREATE_SAMPLE_CSV_FILES_ARGS = $(PRODUCTION_CSV_FILES_DIRECTORY)  $(SAMPLE_CSV_FILES_DIRECTORY)
 
 # Create and populate tables
-CREATE_AND_POPULATE = Python_Scripts/initTables.py
-CREATE_AND_POPULATE_ARGS = $(SAMPLE_CSV_FILES_DIRECTORY)
-
-all: run_all
-
-run_all: rename_production_directory remove_unnecessary_csv_files remove_unnecessary_columns remove_duplicate_rows remove_erroneous_rows rename_columns create_sample_csv_files create_and_populate_tables
-
-
-# Move the files we need to the correct directory and delete the imported directory
-configure_imported_production_csv_files: 
-
-
-
+CREATE_AND_POPULATE = $(PYTHON_SCRIPTS)/initTables.py
 
 
 # TODO: Update dependencies for each of these targets, .PHONY, option to run scripts via python3 or python, option to load sample data or production data into database
 
 
-# Rename downloaded production dataset
-rename_production_directory:
-	mv $(OLD_CSV_FILE_DIRECTORY_NAME) $(PRODUCTION_CSV_FILES_DIRECTORY)
+.PHONY: default
+default:
+	@echo "Warning: carefully read what each targets do"
 
-# Remove CSV files from downloaded production dataset that we won't need
-remove_unnecessary_csv_files:
-	$(PYTHON) $(REMOVE_UNNECESSARY_CSV_FILES) $(REMOVE_UNNECESSARY_CSV_FILES_ARGS)
 
-# Remove columns from downloaded production CSV files that we won't need
+.PHONY: configure_imported_production_csv_files
+configure_imported_production_csv_files: transfer_imported_production_csv_files delete_imported_csv_file_directory rename_files remove_unnecessary_columns rename_columns remove_duplicate_rows remove_erroneous_rows
+
+.PHONY: transfer_imported_production_csv_files
+transfer_imported_production_csv_files:
+	$(PYTHON) $(TRANSFER_IMPORTED_PRODUCTION_CSV_FILES) $(TRANSFER_IMPORTED_PRODUCTION_CSV_FILES_ARGS)
+
+.PHONY: delete_imported_csv_file_directory
+delete_imported_csv_file_directory:
+	if [ -d $(IMPORTED_CSV_FILE_DIRECTORY) ]; then rm -rf $(IMPORTED_CSV_FILE_DIRECTORY); fi
+	@echo "Deleted $(IMPORTED_CSV_FILE_DIRECTORY) if it existed."
+
+.PHONY: rename_files
+rename_files: 
+	$(PYTHON) $(RENAME_COLUMNS) $(RENAME_COLUMNS_ARGS)
+
+.PHONY: remove_unnecessary_columns
 remove_unnecessary_columns:
-	$(PYTHON) $(REMOVE_UNNECESSARY_CSV_FILE_COLUMNS) $(REMOVE_UNNECESSARY_CSV_FILE_COLUMNS_ARGS)
+	$(PYTHON) $(REMOVE_UNNECESSARY_COLUMNS) $(REMOVE_UNNECESSARY_COLUMNS_ARGS)
 
-# Remove any duplicate rows in any of the downloaded CSV files
-remove_duplicate_rows:
-	$(PYTHON) $(REMOVE_DUPLICATE_ROWS) $(REMOVE_DUPLICATE_ROWS_ARGS)
-
-# Remove any rows from the downloaded CSV files that contain a null value for a primary key value 
-remove_erroneous_rows:
-	$(PYTHON) $(REMOVE_ERRONEOUS_ROWS) $(REMOVE_ERRONEOUS_ROWS_ARGS)
-
-# Rename columns in the downloaded CSV files to match our database
+.PHONY: rename_columns
 rename_columns:
 	$(PYTHON) $(RENAME_COLUMNS) $(RENAME_COLUMNS_ARGS)
 
+.PHONY: remove_duplicate_rows
+remove_duplicate_rows:
+	$(PYTHON) $(REMOVE_DUPLICATE_ROWS) $(REMOVE_DUPLICATE_ROWS_ARGS)
+
+.PHONY: remove_erroneous_rows
+remove_erroneous_rows:
+	$(PYTHON) $(REMOVE_ERRONEOUS_ROWS) $(REMOVE_ERRONEOUS_ROWS_ARGS)
 
 
-# Generate sample CSV files
+.PHONY: create_sample_csv_files
 create_sample_csv_files:
 	$(PYTHON) $(CREATE_SAMPLE_CSV_FILES) $(CREATE_SAMPLE_CSV_FILES_ARGS)
 
 
+.PHONY: create_and_populate_tables_with_sample_data
+create_and_populate_tables_with_sample_data:
+	$(PYTHON) $(CREATE_AND_POPULATE) $(SAMPLE_CSV_FILES_DIRECTORY)
 
-# Create tables and load sample CSV files into database
-create_and_populate_tables:
-	$(PYTHON) $(CREATE_AND_POPULATE) $(CREATE_AND_POPULATE_ARGS)
+.PHONY: create_and_populate_tables_with_production_data
+create_and_populate_tables_with_production_data:
+	$(PYTHON) $(CREATE_AND_POPULATE) $(PRODUCTION_CSV_FILES_DIRECTORY)

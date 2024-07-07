@@ -1,4 +1,4 @@
-playerID,awardID,yearID,lgID
+AwardsPlayers.csv:playerID,awardID,yearID,leagueID
 ozunama01,Outstanding DH Award,2020,NaN
 ohtansh01,Outstanding DH Award,2021,NaN
 cruzne02,Outstanding DH Award,2019,NaN

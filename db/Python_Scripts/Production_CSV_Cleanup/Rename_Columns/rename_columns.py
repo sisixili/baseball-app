@@ -7,21 +7,20 @@ def read_mappings(mapping_file):
     with open(mapping_file, 'r') as file:
         lines = file.readlines()
         
-    current_csv = None
     for line in lines:
         line = line.strip()
         if not line:
             continue
-        if line.endswith('.csv'):
-            current_csv = line
-            mappings[current_csv] = {}
-        else:
-            parts = line.split(',')
-            if len(parts) == 2:
-                old_name, new_name = parts
-                mappings[current_csv][old_name] = new_name
-            else:
-                print(f"Skipping invalid mapping line: {line}")
+        parts = line.split(':')
+        if len(parts) < 2:
+            print(f"Skipping invalid mapping line: {line}")
+            continue
+        
+        csv_file = parts[0]
+        mappings[csv_file] = {}
+        for mapping in parts[1:]:
+            old_name, new_name = mapping.split(',')
+            mappings[csv_file][old_name] = new_name
     
     for csv, mapping in mappings.items():
         print(f"Mappings for {csv}: {mapping}")
@@ -29,7 +28,6 @@ def read_mappings(mapping_file):
     return mappings
 
 def rename_columns_in_csv(csv_file_path, column_mapping, output_csv_file_path):
-
     # Load the CSV file into a DataFrame
     df = pd.read_csv(csv_file_path, encoding='ISO-8859-1')
     
@@ -49,7 +47,7 @@ def main():
     mappings = read_mappings(args.mapping_file)
     for csv_file, column_mapping in mappings.items():
         csv_file_path = os.path.join(args.csv_dir, csv_file)
-        output_csv_file_path = os.path.join(args.csv_dir, f"{os.path.splitext(csv_file)[0]}.csv")
+        output_csv_file_path = os.path.join(args.csv_dir, f"{os.path.splitext(csv_file)[0]}_renamed.csv")
         rename_columns_in_csv(csv_file_path, column_mapping, output_csv_file_path)
 
 if __name__ == "__main__":
