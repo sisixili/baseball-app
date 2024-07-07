@@ -9,24 +9,24 @@ SAMPLE_CSV_FILES_DIRECTORY = Sample_CSV_Files
 
 
 # Remove unnecessary CSV files
-REMOVE_UNNECESSARY_CSV_FILES = Python_Scripts/CSV_Cleanup/remove_unnecessary_csv_files.py
-REMOVE_UNNECESSARY_CSV_FILES_ARGS = Python_Scripts/CSV_Cleanup/textFiles/unnecessary_csv_files.txt $(PRODUCTION_CSV_FILES_DIRECTORY)
+REMOVE_UNNECESSARY_CSV_FILES = Python_Scripts/Production_CSV_Cleanup/remove_unnecessary_csv_files.py
+REMOVE_UNNECESSARY_CSV_FILES_ARGS = Python_Scripts/Production_CSV_Cleanup/textFiles/unnecessary_csv_files.txt $(PRODUCTION_CSV_FILES_DIRECTORY)
 
 # Remove unnecessary columns from CSV files
-REMOVE_UNNECESSARY_CSV_FILE_COLUMNS = Python_Scripts/CSV_Cleanup/remove_unnecessary_columns.py
-REMOVE_UNNECESSARY_CSV_FILE_COLUMNS_ARGS = Python_Scripts/CSV_Cleanup/textFiles/unnecessary_columns.txt $(PRODUCTION_CSV_FILES_DIRECTORY)
+REMOVE_UNNECESSARY_CSV_FILE_COLUMNS = Python_Scripts/Production_CSV_Cleanup/remove_unnecessary_columns.py
+REMOVE_UNNECESSARY_CSV_FILE_COLUMNS_ARGS = Python_Scripts/Production_CSV_Cleanup/textFiles/unnecessary_columns.txt $(PRODUCTION_CSV_FILES_DIRECTORY)
 
 # Remove duplicate rows from all CSV files
-REMOVE_DUPLICATE_ROWS = Python_Scripts/CSV_Cleanup/remove_duplicate_rows.py
+REMOVE_DUPLICATE_ROWS = Python_Scripts/Production_CSV_Cleanup/remove_duplicate_rows.py
 REMOVE_DUPLICATE_ROWS_ARGS = $(PRODUCTION_CSV_FILES_DIRECTORY)
 
 # Remove erroneous rows from CSV files
-REMOVE_ERRONEOUS_ROWS = Python_Scripts/CSV_Cleanup/remove_erroneous_rows.py
-REMOVE_ERRONEOUS_ROWS_ARGS = Python_Scripts/CSV_Cleanup/textFiles/erroneous_rows.txt $(PRODUCTION_CSV_FILES_DIRECTORY)
+REMOVE_ERRONEOUS_ROWS = Python_Scripts/Production_CSV_Cleanup/remove_erroneous_rows.py
+REMOVE_ERRONEOUS_ROWS_ARGS = Python_Scripts/Production_CSV_Cleanup/textFiles/erroneous_rows.txt $(PRODUCTION_CSV_FILES_DIRECTORY)
 
 # Rename columns from CSV files
-RENAME_COLUMNS = Python_Scripts/CSV_Cleanup/rename_columns.py
-RENAME_COLUMNS_ARGS = Python_Scripts/CSV_Cleanup/textFiles/column_renames.txt $(PRODUCTION_CSV_FILES_DIRECTORY)
+RENAME_COLUMNS = Python_Scripts/Production_CSV_Cleanup/rename_columns.py
+RENAME_COLUMNS_ARGS = Python_Scripts/Production_CSV_Cleanup/textFiles/column_renames.txt $(PRODUCTION_CSV_FILES_DIRECTORY)
 
 # Create sample CSV files
 CREATE_SAMPLE_CSV_FILES = Python_Scripts/create_sample_csv_files.py
@@ -81,7 +81,7 @@ rename_columns:
 create_sample_csv_files:
 	$(PYTHON) $(CREATE_SAMPLE_CSV_FILES) $(CREATE_SAMPLE_CSV_FILES_ARGS)
 
-	
+
 
 # Create tables and load sample CSV files into database
 create_and_populate_tables:
