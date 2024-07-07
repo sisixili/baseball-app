@@ -41,6 +41,13 @@ all: run_all
 run_all: rename_production_directory remove_unnecessary_csv_files remove_unnecessary_columns remove_duplicate_rows remove_erroneous_rows rename_columns create_sample_csv_files create_and_populate_tables
 
 
+# Move the files we need to the correct directory and delete the imported directory
+configure_imported_production_csv_files: 
+
+
+
+
+
 # TODO: Update dependencies for each of these targets, .PHONY, option to run scripts via python3 or python, option to load sample data or production data into database
 
 
@@ -68,9 +75,13 @@ remove_erroneous_rows:
 rename_columns:
 	$(PYTHON) $(RENAME_COLUMNS) $(RENAME_COLUMNS_ARGS)
 
+
+
 # Generate sample CSV files
 create_sample_csv_files:
 	$(PYTHON) $(CREATE_SAMPLE_CSV_FILES) $(CREATE_SAMPLE_CSV_FILES_ARGS)
+
+	
 
 # Create tables and load sample CSV files into database
 create_and_populate_tables:
