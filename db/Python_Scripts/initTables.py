@@ -5,12 +5,6 @@ from dotenv import load_dotenv
 import os
 import sys
 
-
-# TODO: If you try to load the production data into the database it will fail, as there
-#       are no Production CSV files for Account Information (login info, favourite teams, etc).
-#       This will be corrected at somepoint prior to milestone 2.
-
-
 def main(csv_files_dir):
     # Load environment variables from .env file
     load_dotenv()
@@ -20,7 +14,7 @@ def main(csv_files_dir):
     db_user = os.getenv("DB_USER")
     db_password = os.getenv("DB_PASSWORD")
 
-    create_tables_dir = 'SQL_Scripts'  
+    create_tables_dir = 'SQL_Scripts'
 
     # Connect to MySQL server
     conn = mysql.connector.connect(
@@ -52,6 +46,14 @@ def main(csv_files_dir):
         for result in cursor.execute(create_tables_sql, multi=True):
             pass  # This ensures all parts of the multi-statement SQL are executed
 
+    # Get the table creation order from the createTables.sql script
+    table_creation_order = []
+    with open(create_tables_path, 'r') as file:
+        for line in file:
+            if line.strip().upper().startswith("CREATE TABLE IF NOT EXISTS"):
+                table_name = line.split()[5].strip('()`')
+                table_creation_order.append(table_name)
+
     def load_data_into_table(table_name, csv_file):
         df = pd.read_csv(csv_file, encoding='ISO-8859-1')
 
@@ -69,19 +71,24 @@ def main(csv_files_dir):
 
         # Insert data into the table
         for data in data_tuples:
-            cursor.execute(insert_query, data)
+            try:
+                cursor.execute(insert_query, data)
+            except mysql.connector.Error as err:
+                print(f"Error inserting row into {table_name}: {err}")
+                print(f"Problematic row: {data}")
+                sys.exit(1)
 
         conn.commit()
         print(f"Successfully populated {table_name} table")
 
-    # Get a list of all CSV files in the directory
-    csv_files = [f for f in os.listdir(csv_files_dir) if f.endswith('.csv')]
-
-    # Load data for all tables based on CSV filenames
-    for csv_file in csv_files:
-        table_name = os.path.splitext(csv_file)[0]  # Use the filename without the extension as the table name
+    # Load data for all tables in the creation order
+    for table in table_creation_order:
+        csv_file = f"{table}.csv"
         csv_path = os.path.join(csv_files_dir, csv_file)
-        load_data_into_table(table_name, csv_path)
+        if os.path.exists(csv_path):
+            load_data_into_table(table, csv_path)
+        else:
+            print(f"CSV file for table {table} not found, skipping.")
 
     # Close the connection
     cursor.close()

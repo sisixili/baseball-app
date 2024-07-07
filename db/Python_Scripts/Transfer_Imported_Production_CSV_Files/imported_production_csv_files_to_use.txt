@@ -1,13 +1,13 @@
 People.csv
 Teams.csv
-TeamFranchises.csv
+TeamsFranchises.csv
 Parks.csv
 Batting.csv
 Pitching.csv
 Fielding.csv
 FieldingOFsplit.csv
 Appearances.csv
-AllStarFull.csv
+AllstarFull.csv
 BattingPost.csv
 PitchingPost.csv
 FieldingPost.csv

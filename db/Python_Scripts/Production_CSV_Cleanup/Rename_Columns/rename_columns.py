@@ -47,7 +47,7 @@ def main():
     mappings = read_mappings(args.mapping_file)
     for csv_file, column_mapping in mappings.items():
         csv_file_path = os.path.join(args.csv_dir, csv_file)
-        output_csv_file_path = os.path.join(args.csv_dir, f"{os.path.splitext(csv_file)[0]}_renamed.csv")
+        output_csv_file_path = os.path.join(args.csv_dir, f"{os.path.splitext(csv_file)[0]}.csv")
         rename_columns_in_csv(csv_file_path, column_mapping, output_csv_file_path)
 
 if __name__ == "__main__":

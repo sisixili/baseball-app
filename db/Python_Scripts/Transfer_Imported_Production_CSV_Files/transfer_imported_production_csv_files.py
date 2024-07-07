@@ -16,8 +16,8 @@ def move_files(old_dir, new_dir, files):
         old_path = os.path.join(old_dir, file)
         new_path = os.path.join(new_dir, file)
         if os.path.exists(old_path):
-            shutil.move(old_path, new_path)
-            print(f"Moved {old_path} to {new_path}")
+            shutil.copy2(old_path, new_path)
+            print(f"Copied {old_path} to {new_path}")
         else:
             print(f"File {old_path} does not exist")
 

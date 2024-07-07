@@ -5,8 +5,12 @@ AllstarFull.csv:gameNum,gameNumber:lgID,leagueID:GP,playedInGame:startingPos,sta
 Appearances.csv:lgID,leagueID:G_all,G
 AwardsPlayers.csv:lgID,leagueID:tie,didTie:notes,note
 Batting.csv:lgID,leagueID
+BattingPost.csv:lgID,leagueID
 Fielding.csv:lgID,leagueID:InnOuts,outsRecorded:POS,position
+FieldingPost.csv:lgID,leagueID:InnOuts,outsRecorded:POS,position
 FieldingOFSplit.csv:lgID,leagueID:InnOuts,outsRecorded:POS,position
 HallOfFame.csv:yearid,yearID:inducted,wasInducted
 HomeGames.csv:yearkey,yearID:leaguekey,leagueID:teamkey,teamID:parkkey,parkID:games,gamesPlayedAtHome:openings,gamesWithFans:attendance,totalAttendance
 Pitching.csv:lgID,leagueID:IPouts,outsRecorded:BAOpp,BAOpponents
+PitchingPost.csv:lgID,leagueID:IPouts,outsRecorded:BAOpp,BAOpponents
+SeriesPost.csv:teamIDwinner,winningTeamID:lgIDwinner,winningLeagueID:teamIDloser,losingTeamID:lgIDloser,losingLeagueID

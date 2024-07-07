@@ -1,0 +1,11 @@
+AwardsPlayers.csv:playerID,awardID,yearID,leagueID,didTie,note
+ozunama01,Outstanding DH Award,2020,nan,nan,nan;ozunama01,Outstanding DH Award,2020,NL,nan,nan
+ohtansh01,Outstanding DH Award,2021,nan,nan,nan;ohtansh01,Outstanding DH Award,2021,AL,nan,nan
+cruzne02,Outstanding DH Award,2019,nan,nan,nan;cruzne02,Outstanding DH Award,2019,AL,nan,nan
+daviskh01,Outstanding DH Award,2018,nan,nan,nan;daviskh01,Outstanding DH Award,2018,AL,nan,nan
+Appearances.csv:yearID,teamID,leagueID,playerID,G,GS,G_batting,G_defense,G_p,G_c,G_1b,G_2b,G_3b,G_ss,G_lf,G_cf,G_rf,G_of,G_dh,G_ph,G_pr
+2023,ANA,AL,adelljo01,16,15.0,17,15.0,0,0,0,0,0,0,2,7,9,18,1.0,1.0,0.0;2023,ANA,AL,adelljo01,17,15.0,17,15.0,0,0,0,0,0,0,2,7,9,16,1.0,1.0,0.0
+2023,ARI,NL,carroco02,155,146.0,155,149.0,0,0,0,0,0,0,74,44,64,182,3.0,5.0,0.0;2023,ARI,NL,carroco02,155,146.0,155,149.0,0,0,0,0,0,0,74,44,64,149,3.0,5.0,0.0
+HallofFame.csv:playerID,yearID,wasInducted
+bavasbu99,2007,nan;bavasbu99,2007,N
+buschgu99,2007,nan;buschgu99,2007,N

@@ -1,5 +1,11 @@
-AwardsPlayers.csv:playerID,awardID,yearID,leagueID
-ozunama01,Outstanding DH Award,2020,NaN
-ohtansh01,Outstanding DH Award,2021,NaN
-cruzne02,Outstanding DH Award,2019,NaN
-daviskh01,Outstanding DH Award,2018,NaN
+AllstarFull.csv:playerID,yearID,gameNumber,teamID,leagueID,playedInGame,startingPosition
+freesda01,2012,0,SLN,AL,1,nan
+ohtansh01,2021,0,LAA,AL,1,10.0
+contrwi02,2022,0,CHN,NL,1,10.0
+Appearances.csv:yearID,teamID,leagueID,playerID,G,GS,G_batting,G_defense,G_p,G_c,G_1b,G_2b,G_3b,G_ss,G_lf,G_cf,G_rf,G_of,G_dh,G_ph,G_pr
+1875,WS6,nan,thompan01,11,nan,11,nan,0,11,0,0,0,0,0,0,1,1,0.0,nan,nan
+AwardsPlayers.csv:playerID,awardID,yearID,leagueID,didTie,note
+martijd02,Silver Slugger,2018,AL,nan,DH
+sandopa01,Babe Ruth Award,2012,NL,nan,P
+HallofFame.csv:playerID,yearID,wasInducted
+fowlebu99,2022,Y

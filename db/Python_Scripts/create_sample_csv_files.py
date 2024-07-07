@@ -46,7 +46,7 @@ conditions = {
         {'playerID': 'broutda01', 'yearID': '1890', 'teamID': 'BSP'},
         {'playerID': 'broutda01', 'yearID': '1891', 'teamID': 'BS2'},
         {'playerID': 'daleybi01', 'yearID': '1890', 'teamID': 'BSP'},
-        {'playerID': 'daleybi01', 'yearID': '1891', 'teamID': 'BS2'},
+        {'playerID': 'daleybi01', 'yearID': '1891', 'teamID': 'BS2'}
     ],
     'AwardsPlayers.csv': [
         {'playerID': 'guerrvl02', 'awardID': 'Gold Glove', 'yearID': '2022', 'leagueID': 'AL'},
@@ -54,7 +54,7 @@ conditions = {
         {'playerID': 'bettsmo01', 'awardID': 'TSN All-Star', 'yearID': '2023', 'leagueID': 'NL'},
         {'playerID': 'bettsmo01', 'awardID': 'Silver Slugger', 'yearID': '2022', 'leagueID': 'NL'},
         {'playerID': 'bettsmo01', 'awardID': 'Silver Slugger', 'yearID': '2023', 'leagueID': 'NL'},
-        {'playerID': 'bettsmo01', 'awardID': 'Gold Glove', 'yearID': '2022', 'leagueID': 'NL'},
+        {'playerID': 'bettsmo01', 'awardID': 'Gold Glove', 'yearID': '2022', 'leagueID': 'NL'}
     ],
     'Batting.csv': [
         {'playerID': 'guerrvl02', 'yearID': '2022', 'stint': '1'},
@@ -75,8 +75,15 @@ conditions = {
         {'playerID': 'broutda01', 'yearID': '1890', 'stint': '1'},
         {'playerID': 'broutda01', 'yearID': '1891', 'stint': '1'},
         {'playerID': 'daleybi01', 'yearID': '1890', 'stint': '1'},
-        {'playerID': 'daleybi01', 'yearID': '1891', 'stint': '1'},
-    ],    
+        {'playerID': 'daleybi01', 'yearID': '1891', 'stint': '1'}
+    ], 
+    'BattingPost.csv': [   
+        {'playerID': 'guerrvl02', 'yearID': '2022', 'round': 'ALWC2'},
+        {'playerID': 'guerrvl02', 'yearID': '2023', 'round': 'ALWC2'},
+        {'playerID': 'biggica01', 'yearID': '2023', 'round': 'ALWC2'},
+        {'playerID': 'bettsmo01', 'yearID': '2022', 'round': 'NLDS2'},
+        {'playerID': 'bettsmo01', 'yearID': '2023', 'round': 'NLDS2'}
+    ],
     'Fielding.csv': [
         {'playerID': 'guerrvl02', 'yearID': '2022', 'stint': '1', 'position': '1B'},
         {'playerID': 'guerrvl02', 'yearID': '2022', 'stint': '1', 'position': '3B'},
@@ -132,12 +139,28 @@ conditions = {
         {'playerID': 'daleybi01', 'yearID': '1891', 'stint': '1', 'position': 'OF'},
         {'playerID': 'daleybi01', 'yearID': '1891', 'stint': '1', 'position': 'P'}
     ],
-    'FieldingOFsplit.csv': [
+    'FieldingPost.csv': [
+        {'playerID': 'guerrvl02', 'yearID': '2022', 'round': 'ALWC2', 'position': '1B'},
+        {'playerID': 'guerrvl02', 'yearID': '2023', 'round': 'ALWC2', 'position': '1B'},
+
+        {'playerID': 'biggica01', 'yearID': '2023', 'round': 'ALWC2', 'position': 'LF'},
+        {'playerID': 'biggica01', 'yearID': '2023', 'round': 'ALWC2', 'position': '2B'},
+
+        {'playerID': 'kikucyu01', 'yearID': '2023', 'round': 'ALWC2', 'position': 'P'},
+
+        {'playerID': 'bettsmo01', 'yearID': '2022', 'round': 'NLDS2', 'position': 'RF'},
+        {'playerID': 'bettsmo01', 'yearID': '2023', 'round': 'NLDS2', 'position': '2B'},
+        {'playerID': 'bettsmo01', 'yearID': '2023', 'round': 'NLDS2', 'position': 'RF'},
+        
+        {'playerID': 'kershcl01', 'yearID': '2022', 'round': 'NLDS2', 'position': 'P'},
+        {'playerID': 'kershcl01', 'yearID': '2023', 'round': 'NLDS2', 'position': 'P'}
+    ],
+    'FieldingOFSplit.csv': [
         {'playerID': 'biggica01', 'yearID': '2022', 'stint': '1', 'position': 'LF'},
         {'playerID': 'biggica01', 'yearID': '2022', 'stint': '1', 'position': 'RF'},
         {'playerID': 'biggica01', 'yearID': '2023', 'stint': '1', 'position': 'RF'},
         {'playerID': 'bettsmo01', 'yearID': '2022', 'stint': '1', 'position': 'RF'},
-        {'playerID': 'bettsmo01', 'yearID': '2023', 'stint': '1', 'position': 'RF'},
+        {'playerID': 'bettsmo01', 'yearID': '2023', 'stint': '1', 'position': 'RF'}
     ],
     'HallOfFame.csv': [
         {'yearID': '1936', 'playerID': 'broutda01'},
@@ -151,7 +174,7 @@ conditions = {
         {'yearID': '2022', 'teamID': 'TOR', 'parkID': 'TOR02'},
         {'yearID': '2023', 'teamID': 'TOR', 'parkID': 'TOR02'},
         {'yearID': '1890', 'teamID': 'BSP', 'parkID': 'BOS04'},
-        {'yearID': '1891', 'teamID': 'BS2', 'parkID': 'BOS04'},
+        {'yearID': '1891', 'teamID': 'BS2', 'parkID': 'BOS04'}
     ],
     'Parks.csv': [
         {'parkID': 'NYC15'},
@@ -170,9 +193,14 @@ conditions = {
         {'playerID': 'webbele01', 'yearID': '1944', 'stint': '1'},
         {'playerID': 'webbele01', 'yearID': '1945', 'stint': '1'},
         {'playerID': 'daleybi01', 'yearID': '1890', 'stint': '1'},
-        {'playerID': 'daleybi01', 'yearID': '1891', 'stint': '1'},
+        {'playerID': 'daleybi01', 'yearID': '1891', 'stint': '1'}
     ],
-    'People.csv': [
+    'PitchingPost.csv': [
+        {'playerID': 'kikucyu01', 'yearID': '2023', 'round': 'ALWC2'},
+        {'playerID': 'kershcl01', 'yearID': '2022', 'round': 'NLDS2'},
+        {'playerID': 'kershcl01', 'yearID': '2023', 'round': 'NLDS2'}
+    ],
+    'Players.csv': [
         {'playerID': 'guerrvl02'},
         {'playerID': 'biggica01'},
         {'playerID': 'kikucyu01'},
@@ -196,11 +224,25 @@ conditions = {
         {'yearID': '2023', 'teamID': 'TOR'},
         {'yearID': '1890', 'teamID': 'BSP'},
         {'yearID': '1891', 'teamID': 'BS2'},
+        {'yearID': '2022', 'teamID': 'SDN'},
+        {'yearID': '2022', 'teamID': 'SEA'},
+        {'yearID': '2023', 'teamID': 'ARI'},
+        {'yearID': '2023', 'teamID': 'MIN'}
     ],
-    'TeamsFranchises.csv': [
+    'Franchises.csv': [
         {'franchiseID': 'TOR'},
         {'franchiseID': 'LAD'},
         {'franchiseID': 'BRS'},
+        {'franchiseID': 'ARI'},
+        {'franchiseID': 'SDP'},
+        {'franchiseID': 'MIN'},
+        {'franchiseID': 'SEA'}
+    ],
+    'SeriesPost.csv': [
+        {'yearID': '2022', 'round': 'NLDS2', 'winningTeamID': 'SDN', 'losingTeamID': 'LAN'},
+        {'yearID': '2023', 'round': 'NLDS2', 'winningTeamID': 'ARI', 'losingTeamID': 'LAN'},
+        {'yearID': '2022', 'round': 'ALWC2', 'winningTeamID': 'SEA', 'losingTeamID': 'TOR'},
+        {'yearID': '2023', 'round': 'ALWC2', 'winningTeamID': 'MIN', 'losingTeamID': 'TOR'}
     ]
 }
 
@@ -217,21 +259,25 @@ def main():
     input_directory = args.input_directory
     output_directory = args.output_directory
 
-    # Defin e paths to original CSV files
+    # Define paths to original CSV files
     csv_files = [
         'AllstarFull.csv',
         'Appearances.csv',
         'AwardsPlayers.csv',
         'Batting.csv',
+        'BattingPost.csv',
         'Fielding.csv',
-        'FieldingOFsplit.csv',
+        'FieldingPost.csv',
+        'FieldingOFSplit.csv',
         'HallOfFame.csv',
         'HomeGames.csv',
         'Parks.csv',
         'Pitching.csv',
-        'People.csv',
+        'PitchingPost.csv',
+        'Players.csv',
         'Teams.csv',
-        'TeamsFranchises.csv'
+        'Franchises.csv',
+        'SeriesPost.csv'
     ]
 
     # Create the output directory if it doesn't exist
