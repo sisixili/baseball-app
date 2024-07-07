@@ -1,0 +1,17 @@
+People.csv
+Teams.csv
+TeamFranchises.csv
+Parks.csv
+Batting.csv
+Pitching.csv
+Fielding.csv
+FieldingOFsplit.csv
+Appearances.csv
+AllStarFull.csv
+BattingPost.csv
+PitchingPost.csv
+FieldingPost.csv
+SeriesPost.csv
+HomeGames.csv
+AwardsPlayers.csv
+HallofFame.csv
