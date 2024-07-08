@@ -15,14 +15,14 @@ const db = knex({
         password: process.env.MYSQL_PASSWORD,
         database: process.env.MYSQL_DATABASE,
     },
-    //pool: {min: 0, max: 100} // set max/min on size of connection pool
+    pool: {min: 0, max: 30} // set max/min on size of connection pool
 });
 
 //------------Queries-------------//
 
 
 /**
- * Register user stuff
+ * Register user 
  */
 export const findUserID = async(userID) => {
     const existingUser = await db("users").where({ userID }).first()
@@ -30,7 +30,7 @@ export const findUserID = async(userID) => {
         return existingUser
     }
     else {
-        return null
+        return null 
     }
 } 
 
@@ -53,10 +53,10 @@ export const RegisterNewUser = async (userID, nameFirst, nameLast, pwd) => {
 }
 
 
-export const getAllPlayers = async (limit) => {
+export const getAllPlayers = async () => {
     return await db('Players')
         .select('*')
-        .limit(limit);
+        //.limit(limit);
 }
 
 export const getBattingLeaders = async (hittingStatistic, yearID, orderDirection) => {
@@ -64,7 +64,8 @@ export const getBattingLeaders = async (hittingStatistic, yearID, orderDirection
         .select('Batting.playerID', hittingStatistic, 'Players.nameFirst', 'Players.nameLast')
         .join('Players', 'Batting.playerID', 'Players.playerID')
         .where('Batting.yearID', yearID)
-        .orderBy(hittingStatistic, orderDirection);
+        .orderBy(hittingStatistic, orderDirection)
+        .limit(25);
 }
 
 export const getPitchingLeaders = async (pitchingStatistic, yearID, orderDirection) => {
@@ -72,7 +73,8 @@ export const getPitchingLeaders = async (pitchingStatistic, yearID, orderDirecti
         .select('Pitching.playerID', pitchingStatistic, 'Players.nameFirst', 'Players.nameLast')
         .join('Players', 'Pitching.playerID', 'Players.playerID')
         .where('Pitching.yearID', yearID)
-        .orderBy(pitchingStatistic, orderDirection);
+        .orderBy(pitchingStatistic, orderDirection)
+        .limit(25);
 }
 
 
@@ -104,57 +106,68 @@ const PLAYER_SINGLE_SEASON_HITTING = [  'G', 'AB', 'R', 'H', '2B', '3B', 'HR', '
 
 
 export const getFranchises = async (isActive) => {
-    const franchiseTotals = await db('Franchises')
-        .join('Teams', 'Franchises.franchiseID', 'Teams.franchiseID')
-        .select(
-            'Franchises.franchiseID',
-            'Franchises.franchiseName',
-            ...FRANCHISE_TOTALS.map(column => db.raw(`SUM(${column}) as ${column}`)),
-            db.raw('SUM(outsRecorded) / 3 AS IP')
-        )
-        .where('Franchises.isActive', isActive)
-        .groupBy('Franchises.franchiseID')
-        .orderBy(db.raw('SUM(W)'), 'desc');
+  const franchiseTotals = await db("Franchises")
+    .join("Teams", "Franchises.franchiseID", "Teams.franchiseID")
+    .select(
+      "Franchises.franchiseID",
+      "Franchises.franchiseName",
+      ...FRANCHISE_TOTALS.map((column) =>
+        db.raw(`SUM(${column}) as ${column}`)
+      ),
+      db.raw("SUM(outsRecorded) / 3 AS IP")
+    )
+    .where("Franchises.isActive", isActive)
+    .groupBy("Franchises.franchiseID")
+    .orderBy(db.raw("SUM(W)"), "desc");
 
-    return franchiseTotals;
-}
+  return franchiseTotals;
+};
 
 export const getFanchiseBio = async (franchiseID) => {
-    return await db('Franchises')
-        .select('franchiseName', 'isActive')
-        .where('franchiseID', franchiseID);
-}
+  return await db("Franchises")
+    .select("franchiseName", "isActive")
+    .where("franchiseID", franchiseID);
+};
 
 export const getFranchiseTotals = async (franchiseID) => {
-    return await db('Teams')
-        .select(
-            ...FRANCHISE_TOTALS.map(column => db.raw(`SUM(${column}) as ${column}`)),
-            db.raw('SUM(outsRecorded) / 3 AS IP')
-        )
-        .where('franchiseID', franchiseID);
-}
+  return await db("Teams")
+    .select(
+      ...FRANCHISE_TOTALS.map((column) =>
+        db.raw(`SUM(${column}) as ${column}`)
+      ),
+      db.raw("SUM(outsRecorded) / 3 AS IP")
+    )
+    .where("franchiseID", franchiseID);
+};
 
 export const getFranchiseTeams = async (franchiseID) => {
-    return await db('Teams')
-        .select(
-            'name',
-            'teamID',
-            'yearID',
-            ...TEAM_SINGLE_SEASON,
-            db.raw('outsRecorded / 3 AS IP')
-        )
-        .where('franchiseID', franchiseID)
-        .orderBy('yearID', 'asc');
-}
+  return await db("Teams")
+    .select(
+      "name",
+      "teamID",
+      "yearID",
+      ...TEAM_SINGLE_SEASON,
+      db.raw("outsRecorded / 3 AS IP")
+    )
+    .where("franchiseID", franchiseID)
+    .orderBy("yearID", "asc");
+};
+
 
 export const createFavouriteFranchise = async (franchiseID, userID) => {
-    const exists = await db('FavouriteFranchises')
-        .select('*')
-        .where({ userID, franchiseID });
-    if (!exists) {
-        await db('FavouriteFranchises').insert({ userID, franchiseID });
-    }
-}
+  const exists = await db("FavouriteFranchises")
+    .select("*")
+    .where({ userID, franchiseID })
+    .first();
+  if (exists) {
+    console.log("Favourite Franchise already exists: ", userID, franchiseID);
+    //console.log(exists);
+    throw "Favourite franchise already exists. ";
+  } else {
+    await db("FavouriteFranchises").insert({ userID, franchiseID });
+    //console.log('Successfully added favourite player ', franchiseID, ' for ', userID)
+  }
+};
 
 export const getFavouriteFranchises = async (userID) => {
     return await db('FavouriteFranchises')
@@ -200,13 +213,19 @@ export const getTeamBio = async (teamID, yearID) => {
 }
 
 export const createFavouriteTeam = async (teamID, yearID, userID) => {
-    const exists = await db('FavouriteTeams')
-        .select('*')
-        .where({ userID, yearID, teamID });
-    if (!exists) {
-        await db('FavouriteTeams').insert({ userID, yearID, teamID });
-    }
-}
+  const exists = await db("FavouriteTeams")
+    .select("*")
+    .where({ userID, yearID, teamID })
+    .first();
+  if (exists) {
+    console.log("Favourite Team already exists: ", userID, teamID, yearID);
+    //console.log(exists);
+    throw "Favourite Team already exists. ";
+  }
+  else {
+    await db('FavouriteTeams').insert({ userID, yearID, teamID });
+  }
+};
 
 export const getTotalBattersForTeam = async (teamID, yearID) => {
     const sumColumns = TEAM_SINGLE_SEASON_HITTING.map(column => db.raw(`SUM(${column}) as ${column}`));
@@ -252,13 +271,19 @@ export const getPlayerBio = async (playerID) => {
 }
 
 export const createFavouritePlayer = async (playerID, userID) => {
-    const exists = await db('FavouritePlayers')
-        .select('*')
-        .where({ userID, playerID });
-    if (!exists) {
-        await db('FavouritePlayers').insert({ userID, playerID });
-    }
-}
+  const exists = await db("FavouritePlayers")
+    .select("*")
+    .where({ userID, playerID })
+    .first();
+  if (exists) {
+    console.log("Favourite Player already exists: ", userID, playerID); // Does not return this msg to api
+    //console.log(exists);
+    throw "Favourite Player already exists. ";
+  } else {
+    await db("FavouritePlayers").insert({ userID, playerID });
+    //console.log("Successfully added favourite player ", playerID, " for ", userID);
+  }
+};
 
 export const getCareerPitchingTotals = async (playerID) => {
     const sumColumns = PLAYER_CAREER_PITCHING.map(column => db.raw(`SUM(??) AS ??`, [column, column]));

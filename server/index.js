@@ -40,7 +40,7 @@ app.use((err, req, res, next) => {
  * Players
  */
 app.get("/players", validateToken, async (req, res) => {
-  const players = await getAllPlayers(20);              // Placeholder constant 20, adjust later when dealing with production dataset
+  const players = await getAllPlayers();          
   res.send(players);
 });
 
@@ -134,6 +134,31 @@ app.get("/favourites/:userID", validateToken, async (req, res) => {
 })
 
 
+app.post("/favourite" , async (req, res) => {  //validateToken
+  const {type, id, userID} = req.body
+  try {
+    switch (type) {
+      case 'player':
+        await createFavouritePlayer(id, userID) // playerID, userID
+        break;
+      case 'team':
+        await createFavouriteTeam(id.team, id.year, userID) // teamID, yearID, userID
+        break;
+      case 'franchise':
+        await createFavouriteFranchise(id, userID) //franchiseID, userID
+        break;
+      default:
+        //console.log("ERROR: type of favourite ", type, " is not valid!")
+        throw("ERROR: type of favourite is not valid!")
+    }
+    res.status(201).json({ message: `Favourite ${type} registered successfully for ${userID}` });
+  } catch (error) {
+    res.status(500).json({ error: error + " failed to create favourite " + type + " for user " + userID})
+    console.log(error)
+  }
+  
+})
+
 /**
  * All franchises
  */
@@ -162,12 +187,6 @@ app.get("/franchises/:franchiseID", validateToken, async (req, res) => {
     res.send(franchiseProfile)
 })
 
-/**
- * Create favourite franchise
- */
-app.post("/createFavouriteFranchise/:franchiseID", validateToken, async (req, res) => {
-    await createFavouriteFranchise(req.params.franchiseID, req.params.userID)
-})
     
 
 /**
@@ -190,20 +209,6 @@ app.get("/teams/:teamID/:yearID", validateToken, async (req, res) => {
 })
 
 
-/**
- * Create favourite team
- */
-app.post("/createFavouriteTeam/:teamID/:yearID", validateToken, async (req, res) => {
-    await createFavouriteTeam(req.params.teamID, req.params.yearID, req.params.userID)
-})
-
-
-/**
- * Create favourite player
- */
-app.post("/createFavouritePlayer/:playerID", validateToken, async (req, res) => {
-    await createFavouritePlayer(req.params.playerID, req.params.userID)
-})
 
 
 
