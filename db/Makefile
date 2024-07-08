@@ -1,8 +1,8 @@
 # Setup
 
 # Determine which Python version to use
-PYTHON3 := $(shell command -v python3 2>/dev/null)
-PYTHON := $(if $(PYTHON3),$(PYTHON3),$(shell command -v python 2>/dev/null))
+# PYTHON3 := $(shell command -v python3 2>/dev/null)
+PYTHON := python 
 
 # Directories
 IMPORTED_CSV_FILE_DIRECTORY = lahman_1871-2023_csv
