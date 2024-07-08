@@ -11,6 +11,7 @@ import Leaderboard from './pages/Leaderboard.js'
 import Login from './pages/Login.js'
 import Register from './pages/Register.js'
 import Logout from './pages/Logout.js'
+import Favourites from './pages/Favourites.js'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -59,6 +60,8 @@ function App() {
             |
             <Link to="/franchises"> Search All Franchises </Link> 
             |
+            <Link to="/favourites"> Favourites </Link> 
+            |
             {isLoggedIn ? (
               <Link to="/logout"> Logout </Link>
             ):( 
@@ -80,6 +83,7 @@ function App() {
           <Route path='/' element={<Login/>} />
           <Route path='/register' element={<Register/>} />
           <Route path='/logout' element={<Logout/>} />
+          <Route path='/favourites' element={<Favourites/>} />
         </Routes>
       </Router>
     </div>
