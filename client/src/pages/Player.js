@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import FavouriteButton from '../components/FavouriteButton'
 
 function Player() {
   const { playerID } = useParams();
@@ -13,6 +14,7 @@ function Player() {
     careerBattingTotals: [],
     seasonBySeasonBattingStats: [0],
   });
+  const userID = sessionStorage.getItem("userID");
 
   useEffect(() => {
     fetch(`http://localhost:3001/players/${playerID}`, {
@@ -49,6 +51,11 @@ function Player() {
         </div>
         ))}
       </div>
+
+      <div>
+        <FavouriteButton userID={userID} type="player" id={playerID} />
+      </div>
+
       <div>
         {PlayerStats.playerBio.map((player, key) => (
         <div key={key}>

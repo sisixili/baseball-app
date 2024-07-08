@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import FavouriteButton from '../components/FavouriteButton'
 
 function Team() {
     const { teamID, yearID } = useParams();
@@ -10,6 +11,7 @@ function Team() {
         totalPitchersForTeam: [],
         allPitchersForTeam: []
     });
+    const userID = sessionStorage.getItem("userID");
   
     useEffect(() => {
       fetch(`http://localhost:3001/teams/${teamID}/${yearID}`, {
@@ -57,6 +59,10 @@ function Team() {
               </h3>
             </div>
           ))}
+        </div>
+
+        <div>
+          <FavouriteButton userID={userID} type="team" id={{team: teamID, year: yearID}} />
         </div>
 
         <div>

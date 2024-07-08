@@ -46,7 +46,7 @@ function Players() {
       <div className="pageTitle">
         <h2>Search All Players</h2>
       </div>
-      <input class="input"
+      <input className="input"
       onChange={handleChange}
       placeholder="Search by Last Name"
       />

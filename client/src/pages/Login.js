@@ -34,6 +34,7 @@ function Login() {
           alert(data.error);
         } else {
           sessionStorage.setItem("accessToken", data); // Using session storage for quick and dirty JWT auth
+          sessionStorage.setItem("userID", username);
           navigate("/home"); // go to home after login
         }
       }

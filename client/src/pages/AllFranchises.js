@@ -52,7 +52,7 @@ function Franchises() {
         <h2>Search All Franchises</h2>
       </div>
       <input
-        class="franchiseInput"
+        className="franchiseInput"
         onChange={handleChange}
         placeholder="Search by Franchise Name ..."
       />
