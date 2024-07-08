@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-// Search All Players page
-
-/* TODO: implement pagination
-*/
-
 function Players() {
     const [listOfPlayers, setListOfPlayers] = useState([]);
-    const [name, setName] = useState("");
+    const [name, setName] = useState('');
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
+    const [search, setSearch] = useState('');
 
     useEffect(() => {
-        fetch("http://localhost:3001/players", {
+        fetch(`http://localhost:3001/players?page=${page}&limit=25&search=${search}`, { // NOTE HARDCODED 25 limit
           headers: {
             accessToken: sessionStorage.getItem("accessToken"),
           },
@@ -27,39 +25,65 @@ function Players() {
             if (data.error) {
               console.log(data.error);
             } else {
-              setListOfPlayers(data);
+              setListOfPlayers(data.players);
+              setTotalPages(data.totalPages);
             }
           })
           .catch((error) => console.log("ERROR", error));
-      }, []);
+      }, [page, search]); // ,limit
 
     function handleChange(event) {
         setName(event.target.value);
     }
     
-    function checkName(player) {
-        return player.nameLast.toLowerCase().includes(name.toLowerCase());
-    }
+    const handleSearchSubmit = (event) => {
+      event.preventDefault();
+      setSearch(name);
+      setPage(1); // Reset to the first page on new search
+    };
+
+    const handlePreviousPage = () => {
+      setPage((prevPage) => Math.max(prevPage - 1, 1));
+    };
+  
+    const handleNextPage = () => {
+      setPage((prevPage) => Math.min(prevPage + 1, totalPages));
+    };
 
   return (
     <div>
       <div className="pageTitle">
         <h2>Search All Players</h2>
       </div>
-      <input className="input"
-      onChange={handleChange}
-      placeholder="Search by Last Name"
-      />
+      <form onSubmit={handleSearchSubmit}>
+        <input
+          className="input"
+          onChange={handleChange}
+          placeholder="Search by Last Name"
+        />
+        <button type="submit">Search</button>
+      </form>
       <div className="Players">
         <div className="NameList">
-          {listOfPlayers.filter(checkName).map((player) => (
+          {listOfPlayers.map((player) => (
             <div className="player" key={player.playerID}>
               <Link to={`/players/${player.playerID}`}>
                 {player.nameFirst} {player.nameLast}
-              </Link>    
+              </Link>
             </div>
           ))}
           <h4 className="ListWrap"> </h4>
+        </div>
+        <div className="pagination">
+          <button onClick={handlePreviousPage} disabled={page === 1}>
+            Previous
+          </button>
+          <span>
+            Page {page} of {totalPages}
+          </span>
+          <button onClick={handleNextPage} disabled={page === totalPages}>
+            Next
+          </button>
         </div>
       </div>
     </div>
