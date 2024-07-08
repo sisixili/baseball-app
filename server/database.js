@@ -15,7 +15,6 @@ const db = knex({
         password: process.env.MYSQL_PASSWORD,
         database: process.env.MYSQL_DATABASE,
     },
-    pool: {min: 0, max: 30} // set max/min on size of connection pool
 });
 
 //------------Queries-------------//
@@ -52,12 +51,31 @@ export const RegisterNewUser = async (userID, nameFirst, nameLast, pwd) => {
     });
 }
 
+export const getAllPlayers = async (page, limit, search) => {
 
-export const getAllPlayers = async () => {
-    return await db('Players')
-        .select('*')
-        //.limit(limit);
-}
+  const offset = (page - 1) * limit;
+
+  let query = db('Players')
+    .select('*')
+    .offset(offset)
+    .limit(limit);
+
+  if (search) {
+    query = query.where('nameLast', 'like', `%${search}%`);
+  }
+
+  const players = await query;
+
+  let countQuery = db('players').count('playerID as count').first();
+  if (search) {
+    countQuery = countQuery.where('nameLast', 'like', `%${search}%`);
+  }
+
+  const totalPlayers = await countQuery;
+  const totalPages = Math.ceil(totalPlayers.count / limit);
+
+  return {players, totalPages}
+};
 
 export const getBattingLeaders = async (hittingStatistic, yearID, orderDirection) => {
     return await db('Batting')

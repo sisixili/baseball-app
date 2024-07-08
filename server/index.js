@@ -39,9 +39,18 @@ app.use((err, req, res, next) => {
 /**
  * Players
  */
-app.get("/players", validateToken, async (req, res) => {
-  const players = await getAllPlayers();          
-  res.send(players);
+app.get("/players",  validateToken, async (req, res) => { 
+
+  const {page, limit, search} = req.query
+
+  try {
+    const players = await getAllPlayers(page, limit, search)
+    res.json(players)
+  } catch(error) {
+    console.log(error)
+    res.status(500).json({ error: 'Failed to fetch players' })
+  }
+          
 });
 
 app.get("/players/:playerID", validateToken, async (req, res) => {
