@@ -134,7 +134,7 @@ app.get("/favourites/:userID", validateToken, async (req, res) => {
 })
 
 
-app.post("/favourite" , async (req, res) => {  //validateToken
+app.post("/favourite", validateToken , async (req, res) => { 
   const {type, id, userID} = req.body
   try {
     switch (type) {
