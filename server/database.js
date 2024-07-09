@@ -378,7 +378,8 @@ export const getTeamAllPitchers = async (teamID, yearID) => {
             'Players.nameFirst',
             'Players.nameLast',
             'Pitching.playerID', 
-            ...PLAYER_PITCHING
+            ...PLAYER_PITCHING,
+            db.raw(`outsRecorded / 3 AS IP`)
         )
         .where('Pitching.yearID', yearID)
         .andWhere('Pitching.teamID', teamID)
@@ -403,7 +404,9 @@ export const getTeamAllBatters = async (teamID, yearID) => {
             'Players.nameFirst',
             'Players.nameLast',
             'Batting.playerID', 
-            ...PLAYER_BATTING)
+            ...PLAYER_BATTING,
+            db.raw('COALESCE(AB ,0) + COALESCE(BB ,0) + COALESCE(HBP ,0) + COALESCE(SH ,0) + COALESCE(SF ,0) AS PA')
+        )
         .where('Batting.yearID', yearID)
         .andWhere('Batting.teamID', teamID)
         .orderBy('nameLast', 'asc');
