@@ -34,8 +34,11 @@ function Favourites() {
 
   return (
     <div>
-      <div>
-        Favourite Franchises
+      <div className="pageTitle">
+        <h2>Your Favourites</h2>
+      </div>
+      <div className="subTitle">
+        <h3>Favourite Franchises</h3>
         {listOfFavourites.favouriteFranchises.map((franchise, key) => (
           <div key={key}>
             <Link to={`/franchises/${franchise.franchiseID}`}>
@@ -43,7 +46,7 @@ function Favourites() {
             </Link>
           </div>
         ))}
-        Favourite Teams
+        <h3>Favourite Teams</h3>
         {listOfFavourites.favouriteTeams.map((team, key) => (
           <div key={key}>
             <Link to={`/teams/${team.teamID}/${team.yearID}`}>
@@ -51,7 +54,7 @@ function Favourites() {
             </Link>
           </div>
         ))}
-        Favourite Players
+        <h3>Favourite Players</h3>
         {listOfFavourites.favouritePlayers.map((player, key) => (
           <div key={key}>
             <Link to={`/players/${player.playerID}`}>

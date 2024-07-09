@@ -30,7 +30,7 @@ body {
   flex-direction: column;
   margin-top: -20px;
   margin-bottom: 0px;
-  background-color: #F5FEFF;
+  background-color: transparent;
 }
 .SearchBar{
   width: auto + 30;
