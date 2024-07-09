@@ -38,6 +38,7 @@ function Favourites() {
         <h2>Your Favourites</h2>
       </div>
       <div className="subTitle">
+        <h3> </h3>
         <div className="favHeader"><h3 className="boxMargins">Favourite Franchises</h3></div>
         {listOfFavourites.favouriteFranchises.map((franchise, key) => (
           <div className="favList" key={key}>

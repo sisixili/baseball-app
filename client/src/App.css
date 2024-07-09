@@ -50,6 +50,11 @@ body {
   color: #F5FEFF;
   margin-bottom: 0;
 }
+.center{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 
 /*==========Images==========*/
 
