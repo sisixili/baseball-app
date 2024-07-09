@@ -84,24 +84,30 @@ function Leaderboard() {
         </select>
       </div>
 
-      <div className="Players"><div className="NameList">
-        {listOfPlayers.hittingLeaders.map((player) => (
-          <div className="player" key={player.playerID}>
-            <ul id="hittingList">
+      <div className="Players">
+        <div className="NameList">
+          {listOfPlayers.hittingLeaders.map((player) => (
+            <div className="player" key={player.playerID}>
+              {
+                console.log(listOfPlayers.hittingLeaders[0][hitColumn])
+              }
+              <ul id="hittingList">
                 <li> 
-                {player[hitColumn]}
-              </li>
-              <li>
-                <Link to={`/players/${player.playerID}`}>
-                    {player.nameFirst} {player.nameLast}
-                </Link> 
-              </li>
-              
-            </ul>
-          </div>
-        ))}
-        <h3 className="ListWrap"> </h3>
-      </div></div>
+                  {player[hitColumn]}
+                </li>
+                <li>
+                  <Link to={`/players/${player.playerID}`}>
+                      {player.nameFirst} {player.nameLast}
+                  </Link> 
+                </li>
+              </ul>
+            </div>
+          ))}
+          <h3 className="ListWrap"> </h3>
+        </div>
+      </div>
+
+{/* ==================================================================================== */}
 
       <div className="subTitle">
         <h4>Pitching</h4>

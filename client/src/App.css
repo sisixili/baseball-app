@@ -153,12 +153,26 @@ li {
 /* ==================== SEARCH ALL PLAYERS ==================== */
 .Players {
   background-color: #23B5D3;
+
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #000000; 
+
+  display: flex;
 }
 .NameList{
   margin-right: 15px;
   margin-left: 15px;
-  margin-top: 0px;
+  
   background-color: #23B5D3;
+
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #000000; 
+
+  display: flex;
+
+  font-size: 10;
 }
 .ListWrap{
   font-size: 10;
