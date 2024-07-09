@@ -37,23 +37,19 @@ function Franchise() {
     }, [franchiseID]);
 
     return (
-      <div>
+      <div className="center">
         <div className="pageTitle">
           {franchiseStats.franchiseBio.map((franchise, key) => (
             <div className="pageTitle" key={key}>
-              <h2>
+              <h2 className="center">
                 {franchise.franchiseName} Is Active: {franchise.isActive}
               </h2>
             </div>
           ))}
-        </div>
-
-        <div>
           <FavouriteButton userID={userID} type="franchise" id={franchiseID} />
         </div>
-
         <div>
-          <h3>All Time Franchise Stats</h3>
+          <h3 className="center">All Time Franchise Stats</h3>
           <table className="TableStyle">
             <thead>
               <tr>
@@ -123,7 +119,7 @@ function Franchise() {
         </div>
 
         <h3>Teams</h3>
-        <div>
+        <div  className="center">
           <table className="TableStyle">
             <thead>
               <tr>
