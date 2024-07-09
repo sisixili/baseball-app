@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-// Search All Frachises page
+// Search All Franchises page
 
 function Franchises() {
   const [listOfFranchises, setListOfFranchises] = useState({
     activeFranchises: [],
     nonActiveFranchises: [],
   });
-  const [name, setName] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3001/franchises", {
@@ -33,23 +32,6 @@ function Franchises() {
       .catch((error) => console.log("ERROR", error));
   }, []);
 
-  function handleChange(event) {
-    setName(event.target.value);
-  }
-
-  function filterFranchises(franchiseArray) {
-    return franchiseArray.filter((franchise) =>
-      franchise.franchiseName.toLowerCase().includes(name.toLowerCase())
-    );
-  }
-
-  const filteredActiveFranchises = filterFranchises(
-    listOfFranchises.activeFranchises
-  );
-  const filteredNonActiveFranchises = filterFranchises(
-    listOfFranchises.nonActiveFranchises
-  );
-
   return (
     <div>
       <div className="pageTitle">
@@ -58,7 +40,7 @@ function Franchises() {
 
       <div className="Players">
         <div className="NameList">
-          {filteredActiveFranchises.map((franchise, key) => (
+          {listOfFranchises.activeFranchises.map((franchise, key) => (
             <div className="player" key={key}>
               <Link to={`/franchises/${franchise.franchiseID}`}>
                 {franchise.franchiseName}
@@ -74,7 +56,7 @@ function Franchises() {
 
       <div className="Players">
         <div className="NameList">
-          {filteredNonActiveFranchises.map((franchise, key) => (
+          {listOfFranchises.nonActiveFranchises.map((franchise, key) => (
             <div className="player" key={key}>
               <Link to={`/franchises/${franchise.franchiseID}`}>
                 {franchise.franchiseName}
