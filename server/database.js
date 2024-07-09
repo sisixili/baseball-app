@@ -313,7 +313,7 @@ export const getFranchiseTeams = async (franchiseID) => {
         "w",
         "L",
         db.raw('W / G AS winPercentage'),
-        db.raw('(Teams.attendance / (SELECT SUM(gamesWithFans) FROM HomeGames WHERE HomeGames.teamID = Teams.teamID AND HomeGames.yearID = Teams.yearID)) AS averageAttendance')
+        db.raw('(Teams.attendance / (SELECT SUM(gamesWithFans) FROM HomeGames WHERE HomeGames.yearID = Teams.yearID AND HomeGames.teamID = Teams.teamID)) AS averageAttendance')
     )
     .where("franchiseID", franchiseID)
     .orderBy("yearID", "asc");
@@ -332,7 +332,7 @@ export const getTeamBio = async (teamID, yearID) => {
             'Teams.W',
             'Teams.L',
             'Teams.park',
-            db.raw('(Teams.attendance / (SELECT SUM(gamesWithFans) FROM HomeGames WHERE HomeGames.teamID = Teams.teamID AND HomeGames.yearID = Teams.yearID)) AS averageAttendance')
+            db.raw('(Teams.attendance / (SELECT SUM(gamesWithFans) FROM HomeGames WHERE HomeGames.yearID = Teams.yearID AND HomeGames.teamID = Teams.teamID)) AS averageAttendance')
         )
         .where('Teams.yearID', yearID)
         .andWhere('Teams.teamID', teamID);
@@ -465,7 +465,7 @@ export const getPlayerSeasonalPitchingTotals = async (playerID, playoffs) => {
     if (playoffs) {
         return await db('PitchingPost')
         .select('PitchingPost.yearID', 'PitchingPost.teamID', 
-                db.raw('(SELECT name FROM Teams WHERE Teams.teamID = PitchingPost.teamID AND Teams.yearID = PitchingPost.yearID) AS teamName'), 
+                db.raw('(SELECT name FROM Teams WHERE Teams.yearID = PitchingPost.yearID AND Teams.teamID = PitchingPost.teamID) AS teamName'), 
                 ...PLAYER_PITCHING.map(column => db.raw(`SUM(${column}) AS ${column}`)), 
                 db.raw('SUM(outsRecorded) / 3 AS IP'))
         .where('PitchingPost.playerID', playerID)
@@ -474,7 +474,7 @@ export const getPlayerSeasonalPitchingTotals = async (playerID, playoffs) => {
     } else {
         return await db('Pitching')
         .select('Pitching.yearID', 'Pitching.teamID', 
-                db.raw('(SELECT name FROM Teams WHERE Teams.teamID = Pitching.teamID AND Teams.yearID = Pitching.yearID) AS teamName'), 
+                db.raw('(SELECT name FROM Teams WHERE Teams.yearID = Pitching.yearID AND Teams.teamID = Pitching.teamID) AS teamName'), 
                 ...PLAYER_PITCHING, 
                 db.raw(`outsRecorded / 3 AS IP`))
         .where('Pitching.playerID', playerID)
@@ -495,7 +495,7 @@ export const getPlayerSeasonalBattingTotals = async (playerID, playoffs) => {
     if (playoffs) {
         return await db('BattingPost')
         .select('BattingPost.yearID', 'BattingPost.teamID', 
-                db.raw('(SELECT name FROM Teams WHERE Teams.teamID = BattingPost.teamID AND Teams.yearID = BattingPost.yearID) AS teamName'), 
+                db.raw('(SELECT name FROM Teams WHERE Teams.yearID = BattingPost.yearID AND Teams.teamID = BattingPost.teamID) AS teamName'), 
                 db.raw('SUM(COALESCE(AB, 0)) + SUM(COALESCE(BB, 0)) + SUM(COALESCE(HBP, 0)) + SUM(COALESCE(SH, 0)) + SUM(COALESCE(SF, 0)) AS PA'),
                 ...PLAYER_BATTING.map(column => db.raw(`SUM(${column}) AS ${column}`)))
         .where('BattingPost.playerID', playerID)
@@ -504,7 +504,7 @@ export const getPlayerSeasonalBattingTotals = async (playerID, playoffs) => {
     } else {
         return await db('Batting')
         .select('Batting.yearID', 'Batting.teamID', 
-                db.raw('(SELECT name FROM Teams WHERE Teams.teamID = Batting.teamID AND Teams.yearID = Batting.yearID) AS teamName'),
+                db.raw('(SELECT name FROM Teams WHERE Teams.yearID = Batting.yearID AND Teams.teamID = Batting.teamID) AS teamName'),
                 db.raw('COALESCE(AB ,0) + COALESCE(BB ,0) + COALESCE(HBP ,0) + COALESCE(SH ,0) + COALESCE(SF ,0) AS PA'), 
                 ...PLAYER_BATTING)
         .where('Batting.playerID', playerID)
@@ -525,7 +525,7 @@ export const getPlayerSeasonalFieldingTotals = async (playerID, playoffs) => {
     if (playoffs) {
         return await db('FieldingPost')
         .select('FieldingPost.yearID', 'FieldingPost.teamID', 
-                db.raw('(SELECT name FROM Teams WHERE Teams.teamID = FieldingPost.teamID AND Teams.yearID = FieldingPost.yearID) AS teamName'), 
+                db.raw('(SELECT name FROM Teams WHERE Teams.yearID = FieldingPost.yearID AND Teams.teamID = FieldingPost.teamID) AS teamName'), 
                 db.raw(`SUM(outsRecorded) / 3 AS Inn`),
                 ...PLAYER_FIELDING.map(column => db.raw(`SUM(${column}) AS ${column}`)))
         .where('FieldingPost.playerID', playerID)
@@ -534,7 +534,7 @@ export const getPlayerSeasonalFieldingTotals = async (playerID, playoffs) => {
     } else {
         return await db('Fielding')
         .select('Fielding.yearID', 'Fielding.teamID', 
-                db.raw('(SELECT name FROM Teams WHERE Teams.teamID = Fielding.teamID AND Teams.yearID = Fielding.yearID) AS teamName'), 
+                db.raw('(SELECT name FROM Teams WHERE Teams.yearID = Fielding.yearID AND Teams.teamID = Fielding.teamID) AS teamName'), 
                 db.raw(`SUM(outsRecorded) / 3 AS Inn`),
                 ...PLAYER_FIELDING.map(column => db.raw(`SUM(${column}) AS ${column}`)))
         .where('Fielding.playerID', playerID)
