@@ -38,44 +38,47 @@ function Franchises() {
   }
 
   function filterFranchises(franchiseArray) {
-    return franchiseArray.filter(franchise =>
+    return franchiseArray.filter((franchise) =>
       franchise.franchiseName.toLowerCase().includes(name.toLowerCase())
     );
-}
+  }
 
-  const filteredActiveFranchises = filterFranchises(listOfFranchises.activeFranchises);
-  const filteredNonActiveFranchises = filterFranchises(listOfFranchises.nonActiveFranchises);
+  const filteredActiveFranchises = filterFranchises(
+    listOfFranchises.activeFranchises
+  );
+  const filteredNonActiveFranchises = filterFranchises(
+    listOfFranchises.nonActiveFranchises
+  );
 
   return (
     <div>
       <div className="pageTitle">
-        <h2>Search All Franchises</h2>
+        <h2>All Active Franchises</h2>
       </div>
-      <input
-        className="franchiseInput"
-        onChange={handleChange}
-        placeholder="Search by Franchise Name ..."
-      />
+
       <div className="Players">
         <div className="NameList">
-        {filteredActiveFranchises.map((franchise, key) => (
+          {filteredActiveFranchises.map((franchise, key) => (
             <div className="player" key={key}>
               <Link to={`/franchises/${franchise.franchiseID}`}>
                 {franchise.franchiseName}
-              </Link>    
+              </Link>
             </div>
           ))}
-          </div>
-          </div>
+        </div>
+      </div>
 
-          <div className="Players">
-          <div className="NameList">
+      <div className="pageTitle">
+        <h2>All Non-Active Franchises</h2>
+      </div>
 
+      <div className="Players">
+        <div className="NameList">
           {filteredNonActiveFranchises.map((franchise, key) => (
             <div className="player" key={key}>
               <Link to={`/franchises/${franchise.franchiseID}`}>
                 {franchise.franchiseName}
-              </Link>    
+              </Link>
             </div>
           ))}
           <h4 className="ListWrap"> </h4>
