@@ -61,7 +61,7 @@ function Players() {
           onChange={handleChange}
           placeholder="Search by Last Name"
         />
-        <button type="submit">Search</button>
+        <button className="input" type="submit">Search</button>
       </form>
       <div className="Players">
         <div className="NameList">
@@ -72,18 +72,20 @@ function Players() {
               </Link>
             </div>
           ))}
-          <h4 className="ListWrap"> </h4>
+
         </div>
-        <div className="pagination">
-          <button onClick={handlePreviousPage} disabled={page === 1}>
-            Previous
-          </button>
-          <span>
-            Page {page} of {totalPages}
-          </span>
-          <button onClick={handleNextPage} disabled={page === totalPages}>
-            Next
-          </button>
+        <div className="pagMargins">
+          <div className="pagination">
+            <button onClick={handlePreviousPage} disabled={page === 1}>
+              Prev
+            </button>
+            <span>
+              Page {page} of {totalPages}
+            </span>
+            <button onClick={handleNextPage} disabled={page === totalPages}>
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>

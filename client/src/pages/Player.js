@@ -8,15 +8,15 @@ import FavouriteButton from '../components/FavouriteButton'
 function Player() {
   const { playerID } = useParams();
   const [PlayerStats, setPlayerStats] = useState({
-    playerBio: [],
-    playerPositions: [],
-    playerAwards:[],
-    playerCareerPitchingTotals: [],
+    playerBio: [0], // Init 0 to avoid error on first render
+    playerPositions: [0],
+    playerAwards:[0],
+    playerCareerPitchingTotals: [0],
     playerSeasonalPitchingTotals: [0], // Init 0 to avoid showing "No pitching..." on first render 
-    playerSeasonalBattingTotals: [],
+    playerSeasonalBattingTotals: [0],
     seasonBySeasonBattingStats: [0],
-    playerCareerFieldingTotals: [],
-    playerSeasonalFieldingTotals: [],
+    playerCareerFieldingTotals: [0],
+    playerSeasonalFieldingTotals: [0],
   });
   const userID = sessionStorage.getItem("userID");
 
