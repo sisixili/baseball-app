@@ -6,7 +6,8 @@ function Franchise() {
     const { franchiseID } = useParams();
     const [franchiseStats, setFranchiseStats] = useState({
       franchiseBio: [],
-      franchiseTotals: [],
+      franchiseTotalPitching: [],
+      franchiseTotalBatting: [],
       franchiseTeams: []
     });
     const userID = sessionStorage.getItem("userID");

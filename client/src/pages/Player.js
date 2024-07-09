@@ -9,10 +9,14 @@ function Player() {
   const { playerID } = useParams();
   const [PlayerStats, setPlayerStats] = useState({
     playerBio: [],
-    careerPitchingTotals: [],
-    seasonBySeasonPitchingStats: [0], // Init 0 to avoid showing "No pitching..." on first render 
-    careerBattingTotals: [],
+    playerPositions: [],
+    playerAwards:[],
+    playerCareerPitchingTotals: [],
+    playerSeasonalPitchingTotals: [0], // Init 0 to avoid showing "No pitching..." on first render 
+    playerSeasonalBattingTotals: [],
     seasonBySeasonBattingStats: [0],
+    playerCareerFieldingTotals: [],
+    playerSeasonalFieldingTotals: [],
   });
   const userID = sessionStorage.getItem("userID");
 
