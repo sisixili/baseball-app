@@ -443,8 +443,7 @@ export const wasElectedToHallOfFame = async(playerID) => {
         .select('yearID')
         .where('playerID', playerID)
         .andWhere('wasInducted', 'Y')
-        .orderBy('yearID', 'asc')
-        .first();
+        .orderBy('yearID', 'asc');
 }
 
 export const getPlayerAwards = async(playerID) => {
