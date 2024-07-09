@@ -253,6 +253,29 @@ export const getFranchises = async (isActive) => {
         .orderBy('Franchises.franchiseName', 'asc');
 };
 
+export const getNationalAssociationFranchises = async () => {
+    return await db('Franchises')
+        .join('Teams', 'Franchises.franchiseID', 'Teams.franchiseID')
+        .leftJoin('SeriesPost', function() {
+            this.on('Teams.yearID', '=', 'SeriesPost.yearID')
+                .andOn('SeriesPost.round', '=', db.raw("'WS'"))
+                .andOn('Teams.teamID', '=', 'SeriesPost.winningTeamID')
+        })
+        .select(
+            'Franchises.franchiseID',
+            'Franchises.franchiseName',
+            db.raw('SUM(Teams.G) AS totalGames'),
+            db.raw('SUM(Teams.W) AS totalWins'),
+            db.raw('SUM(Teams.L) AS totalLosses'),
+            db.raw('SUM(Teams.W) / SUM(Teams.G) AS winPercentage'),
+            db.raw('COUNT(SeriesPost.winningTeamID) AS worldSeriesWins')
+        )
+        .whereNull('Franchises.isActive')
+        .groupBy('Franchises.franchiseID')
+        .orderBy('Franchises.franchiseName', 'asc');
+};
+
+
 
 ///////////////////////////////////////////////// FRANCHISE PROFILE
 

@@ -14,7 +14,7 @@ import {
 
             getStandings,                                                                                       // Standings
 
-            getFranchises,                                                                                      // All franchises
+            getFranchises, getNationalAssociationFranchises,                                                    // All franchises
                                                                                                                                                        
             getFanchiseBio, getFranchiseTotalPitching, getFranchiseTotalBatting, getFranchiseTeams,             // Franchise profile
                                                                                       
@@ -188,12 +188,14 @@ app.get("/standings", validateToken, async (req, res) => {
  * All Franchises
  */
 app.get("/franchises", validateToken, async (req, res) => {
-    const activeFranchises = await getFranchises('Y');          // Active franchises
-    const nonActiveFranchises = await getFranchises('N');       // Nonactive franchises
+    const activeFranchises = await getFranchises('Y');                                  // Active franchises
+    const nonActiveFranchises = await getFranchises('N');                               // Nonactive franchises
+    const nationalAssociationFranchises = await getNationalAssociationFranchises();     // National Association franchises
 
     const franchises = {
         activeFranchises: activeFranchises,
-        nonActiveFranchises: nonActiveFranchises
+        nonActiveFranchises: nonActiveFranchises,
+        nationalAssociationFranchises: nationalAssociationFranchises
     };
     res.send(franchises);
 });
