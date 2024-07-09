@@ -13,8 +13,8 @@ function Leaderboard() {
   const [pitchColumn, setPitchColumn] = useState('W');
   const [hitYearID, setHitYearID] = useState(2023);
   const [pitchYearID, setPitchYearID] = useState(2023);
-  const [hitOrderDirection, setHitOrderDirection] = useState('asc');
-  const [pitchOrderDirection, setPitchOrderDirection] = useState('asc');
+  const [hitOrderDirection, setHitOrderDirection] = useState('desc');
+  const [pitchOrderDirection, setPitchOrderDirection] = useState('desc');
 
   useEffect(() => {
     const url = `http://localhost:3001/leaderboard?hittingStatistic=${encodeURIComponent(hitColumn)}`
@@ -79,8 +79,8 @@ function Leaderboard() {
           value={hitOrderDirection}
           onChange={(e) => setHitOrderDirection(e.target.value)}
         >
-          <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
+          <option value="asc">Ascending</option>
         </select>
       </div>
 
@@ -127,8 +127,8 @@ function Leaderboard() {
           value={pitchOrderDirection}
           onChange={(e) => setPitchOrderDirection(e.target.value)}
         >
+          <option value="desc">Descending</option>          
           <option value="asc">Ascending</option>
-          <option value="desc">Descending</option>
         </select>
       </div>
 
