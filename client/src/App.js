@@ -46,44 +46,46 @@ function App() {
       <img className="floatBall" src="ball.jpg" alt=""></img> */
   return (
     <div className="App">
-      
       <Router>
         <div className="NavBar">
-          <nav className = "navBar">
-          <div className = "NavText">
-            <h3>  ⚾  | 
-            <Link to="/home"> Home </Link> 
-            |
-            <Link to="/players"> Search All Players </Link> 
-            |
-            <Link to="/leaderboard"> Leaderboard </Link> 
-            |
-            <Link to="/franchises"> Search All Franchises </Link> 
-            |
-            <Link to="/favourites"> Favourites </Link> 
-            |
-            {isLoggedIn ? (
-              <Link to="/logout"> Logout </Link>
-            ):( 
-              <Link to="/"> Login </Link>
-            )}
-            |
-            </h3>
-          </div>
+          <nav className="navBar">
+            <div className="NavText">
+              <h3>
+                {" "}
+                ⚾ |<Link to="/home"> Home </Link>|
+                <Link to="/players"> Search All Players </Link>|
+                <Link to="/leaderboard"> Leaderboard </Link>|
+                <Link to="/franchises"> Search All Franchises </Link>|
+                <Link to="/favourites"> Favourites </Link>|
+                {isLoggedIn ? (
+                  <Link to="/logout"> Logout </Link>
+                ) : (
+                  <Link to="/"> Login </Link>
+                )}
+                |
+              </h3>
+            </div>
           </nav>
+        <div>
+        {isLoggedIn ? (
+                  []
+                ) : (
+                  "Please login to continue"
+                )}
+        </div>
         </div>
         <Routes>
-          <Route path='/home' element={<Home/>} />
+          <Route path="/home" element={<Home />} />
           <Route path="/players/:playerID" element={<Player />} />
-          <Route path='/players' element={<Players/>} />
+          <Route path="/players" element={<Players />} />
           <Route path="/franchises/:franchiseID" element={<Franchise />} />
-          <Route path='/franchises' element={<Franchises/>} />
+          <Route path="/franchises" element={<Franchises />} />
           <Route path="/teams/:teamID/:yearID" element={<Team />} />
-          <Route path='/leaderboard' element={<Leaderboard/>} />
-          <Route path='/' element={<Login/>} />
-          <Route path='/register' element={<Register/>} />
-          <Route path='/logout' element={<Logout/>} />
-          <Route path='/favourites' element={<Favourites/>} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/favourites" element={<Favourites />} />
         </Routes>
       </Router>
     </div>
