@@ -214,13 +214,16 @@ export const getFieldingLeaders = async (fieldingStatistic, yearID, orderDirecti
 export const getStandings = async (yearID) => {
     return await db('Teams')
         .select(
-            'teamID',
-            'name',
-            'yearID',
-            'G',
-            'W',
-            'L'
+            'Teams.teamID',
+            'Teams.name',
+            'Teams.yearID',
+            'Franchises.franchiseID',
+            'Franchises.franchiseName',
+            'Teams.G',
+            'Teams.W',
+            'Teams.L'
         )
+        .join('Franchises', 'Franchises.franchiseID', 'Teams.teamID')
         .where('yearID', yearID)
         .orderBy('W', 'desc');
 }
