@@ -35,36 +35,47 @@ function Franchises() {
   return (
     <div>
       <div className="pageTitle">
-        <h2>All Active Franchises</h2>
+        <h2>Franchises</h2>
       </div>
-
+      <div className="subTitle">
+      <div className="franHeader"><h3 className="boxMargins">All Active Franchises</h3></div>
+      
       <div className="Players">
-        <div className="NameList">
+        <div className="franList">
+        <div className="nameList">
           {listOfFranchises.activeFranchises.map((franchise, key) => (
             <div className="player" key={key}>
+              <div className="nameList">
               <Link to={`/franchises/${franchise.franchiseID}`}>
                 {franchise.franchiseName}
               </Link>
+              </div>
             </div>
           ))}
         </div>
+        </div>
       </div>
 
-      <div className="pageTitle">
-        <h2>All Non-Active Franchises</h2>
-      </div>
+      <h3> </h3>
+
+      <div className="franHeader"><h3 className="boxMargins">All Non-Active Franchises</h3></div>
 
       <div className="Players">
-        <div className="NameList">
+        <div className="franList">
+        <div className="nameList">
           {listOfFranchises.nonActiveFranchises.map((franchise, key) => (
             <div className="player" key={key}>
-              <Link to={`/franchises/${franchise.franchiseID}`}>
-                {franchise.franchiseName}
-              </Link>
+              <div className="nameList">
+                <Link to={`/franchises/${franchise.franchiseID}`}>
+                  {franchise.franchiseName}
+                </Link>
+              </div>
             </div>
           ))}
-          <h4 className="ListWrap"> </h4>
         </div>
+        </div>
+      </div>
+      <h3 className="ListWrap"> </h3>
       </div>
     </div>
   );

@@ -264,6 +264,18 @@ li {
   width: 230px;
   align-self: center;
 }
+.franHeader{
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #000000;
+  color: #F5FEFF; 
+  width: 320px;
+}
+.franList{
+  width: 320px;
+}
 
 /*=================Favourites==================*/
 .favHeader{

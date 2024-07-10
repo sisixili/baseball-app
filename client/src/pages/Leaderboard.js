@@ -88,9 +88,6 @@ function Leaderboard() {
         <div className="NameList">
           {listOfPlayers.hittingLeaders.map((player) => (
             <div className="player" key={player.playerID}>
-              {
-                console.log(listOfPlayers.hittingLeaders[0][hitColumn])
-              }
               <ul id="hittingList">
                 <li> 
                   {player[hitColumn]}
