@@ -1,0 +1,1 @@
+INSERT INTO Users(userID, nameFirst, nameLast, pwd) VALUES ('s77li', 'Sisi', 'Li', 'pwd@1234');
