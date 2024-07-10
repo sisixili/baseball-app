@@ -44,29 +44,27 @@ function Standings() {
     { name: "L"}
   ];
 
-  /* data:
-  [{"teamID":"ATL","name":"Atlanta Braves","yearID":2023,"franchiseID":"ATL","franchiseName":"Atlanta Braves","G":162,"W":104,"L":58},
-   {"teamID":"BAL","name":"Baltimore Orioles","yearID":2023,"franchiseID":"BAL","franchiseName":"Baltimore Orioles","G":162,"W":101,"L":61}]
-  */
-
 
   return (
     <div>
-      <select
-        className="dropdown"
-        value={year}
-        onChange={(e) => setYear(e.target.value)}
-      >
-        {allYears.map((year) => (
-          <option key={year} value={year}>
-            {" "}
-            {year}{" "}
-          </option>
-        ))}
-      </select>
 
-      <div>
+      <div className="pageTitle">
         <h1>Team and Franchise Stats</h1>
+
+        <select
+          className="dropdown"
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
+        >
+          {allYears.map((year) => (
+            <option key={year} value={year}>
+              {" "}
+              {year}{" "}
+            </option>
+          ))}
+        </select>
+        <h4> </h4>
+
         <DisplayTable columns={columns} data={listOfStandings} />
       </div>
 
