@@ -350,7 +350,7 @@ export const getTeamBio = async (teamID, yearID) => {
         .select(
             'Teams.name',
             'Teams.franchiseID',
-            db.raw('(SELECT franchiseName FROM Franchises WHERE Teams.franchiseID = Franchises.franchiseID)'), 
+            db.raw('(SELECT franchiseName FROM Franchises WHERE Teams.franchiseID = Franchises.franchiseID) AS franchiseName'), 
             'Teams.G',
             'Teams.W',
             'Teams.L',
