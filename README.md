@@ -32,3 +32,7 @@ To run the website:
 7. Team Profile: Team bio, total team hitting statistics, player by player hitting statistics, total team pitching statistics, player by player pitching statistics. Able to redirect to player profiles for players that played on the team, as well as the franchise profile that the current team falls under.
 8. Favourites: Add favourite franchises, teams, and players to your account. These are displayed on the favourites page with links the respecive profile pages.
 9. Standings: Show regular season standings for a user selected years. Links to redirect to team and franchise profile in the standings.
+
+# Walk Through Video
+
+Watch a full walk through (including installation + current feature demo) [here](https://drive.google.com/file/d/12cV85r6YciKXsfpJXKIk8sIaM75udl3H/view?usp=sharing)
