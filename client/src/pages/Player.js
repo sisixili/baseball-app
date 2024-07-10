@@ -59,29 +59,59 @@ function Player() {
 
   return (
     <div>
-      <FavouriteButton userID={userID} type="player" id={playerID} />
+      <h3> </h3>
+      <div id="TopBar"> {/*  className="TopGrid"*/}
+      <div id="TopLeft">
+        <div>
+          <FavouriteButton className="StatTypeButton" userID={userID} type="player" id={playerID} />
+        </div>
 
-      <h4>Player Bio</h4>
-      <SimpleTable
-        columns={Object.keys(PlayerStats.playerBio[0])}
-        data={PlayerStats.playerBio}
-      />
+        {/*<SimpleTable
+          columns={Object.keys(PlayerStats.playerBio[0])}
+          data={PlayerStats.playerBio}
+        /> */}
+        {PlayerStats.playerBio.map((player, key) => (
+          <div key={key}>
+            <h2>{player.nameFirst} {player.nameLast}</h2>
+            <head>
+            {player.nameFirst} {player.nameLast}
+            </head>
+            <ul className="BioStats">
+              <li className="BioStats">Bats: {player.bats}</li>
+              <li className="BioStatsR">Throws: {player.throws}</li>
+              <li className="BioStats">Birthday: {player.birthYear}-{player.birthMonth}-{player.birthDay}</li>
+              <li className="BioStatsR">Debut: {player.debut}</li>
+              <li className="BioStats">Height: {player.height}"</li>
+              <li className="BioStatsR">Weight: {player.weight}lbs</li>
+              <li className="BioStats">Born: {player.birthCountry}</li>
+            </ul>
+          </div>
+        ))}
 
-      <h4>Player Positions</h4>
-      <SimpleTable
-        columns={Object.keys(PlayerStats.playerPositions[0])}
-        data={PlayerStats.playerPositions}
-      />
+        {/* <SimpleTable
+          columns={Object.keys(PlayerStats.playerPositions[0])}
+          data={PlayerStats.playerPositions}
+        /> */}
+        Positions: 
+        {PlayerStats.playerPositions.map((player, key) => (
+          <div key={key}>
+              {player.position} 
+          </div>
+        ))} {/* Im not happy with this but im wasting time so moving on */}
+      </div>
+      <div id="TopRight">
+        <h4>Player Hall Of Fame</h4>
+        {PlayerStats?.playerHallOfFameStatus?.[0] ? (
+          <SimpleTable
+            columns={Object.keys(PlayerStats.playerHallOfFameStatus[0])}
+            data={PlayerStats.playerHallOfFameStatus}
+          />
+        ) : (
+          <p>Player was not inducted into the Hall Of Fame.</p>
+        )}
+      </div>
 
-      <h4>Player Hall Of Fame</h4>
-      {PlayerStats?.playerHallOfFameStatus?.[0] ? (
-        <SimpleTable
-          columns={Object.keys(PlayerStats.playerHallOfFameStatus[0])}
-          data={PlayerStats.playerHallOfFameStatus}
-        />
-      ) : (
-        <p>Player was not inducted into the Hall Of Fame.</p>
-      )}
+      </div>
 
       <h4>Player Awards</h4>
       {PlayerStats?.playerAwards?.[0] ? (

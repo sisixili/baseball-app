@@ -247,7 +247,40 @@ li {
   background-color: #23B5D3;
   color: #000000; 
 }
+.StatTypeButton{
+  font-size: inherit;
+  font-family: inherit;
+  background-color: #000000;
+  border-radius: 0px;
+  color: #F5FEFF;
+  margin-bottom: 0;
 
+  margin-left: 50px;
+}
+.BioStats{
+  margin-top: 1px;
+  margin-bottom: 1px;
+  margin-left: -20px;
+  margin-right: 0px;
+}
+.BioStatsR{
+  margin-top: 1px;
+  margin-bottom: 1px;
+  margin-left: -180px;
+  margin-right: 0px;
+}
+.horizontal-list-item{
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  align-items: center;
+}
+.TopGrid{
+  display: inline-block;
+  flex-direction: row;
+  margin: 5px;
+  align-items: grid;
+}
 
 /*===============Franchises================*/
 
@@ -314,4 +347,19 @@ li {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+/* ===== SimpleTable =====*/
+
+.SimpleTableHeader{
+  background-color: #000000;
+  color: #F5FEFF;
+}
+.blackBG{
+  background-color: #000000;
+  width: auto;
+}
+.SimpleTableListItem{
+  background-color: #23B5D3;
+  color: #000000; 
 }
