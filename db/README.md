@@ -1,11 +1,6 @@
 # Initializing database with Python and MySQL
 
-Install the following python modules:
-mysql-connector-python
-pandas
-numpy
-python-dotenv
-argparse
+Install the following python modules: mysql-connector-python, pandas, numpy, python-dotenv, argparse
 
 1. Create a .env file with your local MySQL db's login info and place it in `baseball-app/setupdb`, for example:
 ```
