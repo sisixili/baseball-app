@@ -4,7 +4,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import FavouriteButton from "../components/FavouriteButton";
-import DisplayTable from "../components/DisplayTable";
 import SimpleTable from "../components/SimpleTable";
 
 function Player() {
