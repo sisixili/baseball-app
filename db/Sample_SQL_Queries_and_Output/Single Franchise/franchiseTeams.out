@@ -1,0 +1,19 @@
++--------+----------------------+--------+------+------+------+---------------+-------------------+
+| yearID | name                 | teamID | G    | W    | L    | winPercentage | averageAttendance |
++--------+----------------------+--------+------+------+------+---------------+-------------------+
+|   1884 | Brooklyn Atlantics   | BR3    |  109 |   40 |   64 |        0.3670 |              NULL |
+|   1885 | Brooklyn Grays       | BR3    |  112 |   53 |   59 |        0.4732 |              NULL |
+|   1886 | Brooklyn Grays       | BR3    |  141 |   76 |   61 |        0.5390 |              NULL |
+|   1887 | Brooklyn Grays       | BR3    |  138 |   60 |   74 |        0.4348 |              NULL |
+|   1888 | Brooklyn Bridegrooms | BR3    |  143 |   88 |   52 |        0.6154 |              NULL |
+|   1889 | Brooklyn Bridegrooms | BR3    |  138 |   93 |   44 |        0.6739 |              NULL |
+|   1890 | Brooklyn Bridegrooms | BRO    |  129 |   86 |   43 |        0.6667 |        24282.4000 |
+|   1891 | Brooklyn Grooms      | BRO    |  137 |   61 |   76 |        0.4453 |         2668.7794 |
+|   1892 | Brooklyn Grooms      | BRO    |  158 |   95 |   59 |        0.6013 |         2516.8082 |
+|   1893 | Brooklyn Grooms      | BRO    |  130 |   65 |   63 |        0.5000 |         3852.4590 |
+|   1894 | Brooklyn Grooms      | BRO    |  135 |   70 |   61 |        0.5185 |         3451.6129 |
+|   1895 | Brooklyn Grooms      | BRO    |  133 |   71 |   60 |        0.5338 |         3593.7500 |
+|   1896 | Brooklyn Bridegrooms | BRO    |  133 |   58 |   73 |        0.4361 |         3295.0820 |
+|   1897 | Brooklyn Bridegrooms | BRO    |  136 |   61 |   71 |        0.4485 |         3450.4844 |
+|   1898 | Brooklyn Bridegrooms | BRO    |  149 |   54 |   91 |        0.3624 |         1801.6765 |
++--------+----------------------+--------+------+------+------+---------------+-------------------+

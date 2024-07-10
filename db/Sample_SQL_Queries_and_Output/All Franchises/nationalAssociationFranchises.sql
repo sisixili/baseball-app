@@ -1,6 +1,9 @@
 SELECT 
-    Franchises.franchiseName, Franchises.isActive,
-    SUM(Teams.G) AS totalGames, SUM(Teams.W) AS totalWins, SUM(Teams.L) AS totalLosses, 
+    Franchises.franchiseID,
+    Franchises.franchiseName,
+    SUM(Teams.G) AS totalGames,
+    SUM(Teams.W) AS totalWins,
+    SUM(Teams.L) AS totalLosses,
     SUM(Teams.W) / SUM(Teams.G) AS winPercentage,
     COUNT(SeriesPost.winningTeamID) AS worldSeriesWins
 FROM 
@@ -12,8 +15,8 @@ LEFT JOIN
     AND SeriesPost.round = 'WS'
     AND Teams.teamID = SeriesPost.winningTeamID
 WHERE 
-    Franchises.franchiseID = 'LAD'
+    Franchises.isActive IS NULL
 GROUP BY 
-    Franchises.franchiseID, 
-    Franchises.franchiseName, 
-    Franchises.isActive;
+    Franchises.franchiseID, Franchises.franchiseName
+ORDER BY 
+    Franchises.franchiseName ASC;
