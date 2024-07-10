@@ -64,12 +64,14 @@ function Players() {
         <button className="input" type="submit">Search</button>
       </form>
       <div className="Players">
-        <div className="NameList">
+        <div className="nameList">
           {listOfPlayers.map((player) => (
             <div className="player" key={player.playerID}>
+              <div className="nameList">
               <Link to={`/players/${player.playerID}`}>
                 {player.nameFirst} {player.nameLast}
               </Link>
+              </div>
             </div>
           ))}
 

@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import FavouriteButton from '../components/FavouriteButton'
+import SimpleTable from "../components/SimpleTable";
+
 
 function Franchise() {
     const { franchiseID } = useParams();
     const [franchiseStats, setFranchiseStats] = useState({
       franchiseBio: [],
-      franchiseTotalPitching: [],
-      franchiseTotalBatting: [],
+      franchiseTotalPitching: [0],
+      franchiseTotalBatting: [0],
       franchiseTeams: []
     });
     const userID = sessionStorage.getItem("userID");
@@ -48,78 +50,25 @@ function Franchise() {
           ))}
           <FavouriteButton userID={userID} type="franchise" id={franchiseID} />
         </div>
+
         <div>
-          <h3 className="center">All Time Franchise Stats</h3>
-          <table className="TableStyle">
-            <thead>
-              <tr>
-                <th>G</th>
-                <th>W</th>
-                <th>L</th>
-                <th>R</th>
-                <th>AB</th>
-                <th>H</th>
-                <th>2B</th>
-                <th>3B</th>
-                <th>HR</th>
-                <th>BB</th>
-                <th>SO</th>
-                <th>SB</th>
-                <th>CS</th>
-                <th>HBP</th>
-                <th>SF</th>
-                <th>RA</th>
-                <th>ER</th>
-                <th>CG</th>
-                <th>SHO</th>
-                <th>SV</th>
-                <th>HA</th>
-                <th>HRA</th>
-                <th>BBA</th>
-                <th>SOA</th>
-                <th>E</th>
-                <th>DP</th>
-                <th>IP</th>
-              </tr>
-            </thead>
-            <tbody className="TableResults">
-              {franchiseStats.franchiseTotals.map((franchise, key) => (
-                <tr key={key}>
-                  <td>{franchise.G} </td>
-                  <td>{franchise.W} </td>
-                  <td>{franchise.L} </td>
-                  <td>{franchise.R} </td>
-                  <td>{franchise.AB} </td>
-                  <td>{franchise.H} </td>
-                  <td>{franchise["2B"]} </td>
-                  <td>{franchise["3B"]} </td>
-                  <td>{franchise.HR}</td>
-                  <td>{franchise.BB} </td>
-                  <td>{franchise.SO} </td>
-                  <td>{franchise.SB} </td>
-                  <td>{franchise.CS} </td>
-                  <td>{franchise.HBP} </td>
-                  <td>{franchise.SF} </td>
-                  <td>{franchise.RA} </td>
-                  <td>{franchise.ER} </td>
-                  <td>{franchise.CG}</td>
-                  <td>{franchise.SHO} </td>
-                  <td>{franchise.SV} </td>
-                  <td>{franchise.HA} </td>
-                  <td>{franchise.HRA} </td>
-                  <td>{franchise.BBA} </td>
-                  <td>{franchise.SOA} </td>
-                  <td>{franchise.E} </td>
-                  <td>{franchise.DP} </td>
-                  <td>{franchise.IP}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <h3 className="center">Franchise Total Pitching Stats</h3>
+          <SimpleTable
+            columns={Object.keys(franchiseStats.franchiseTotalPitching[0])}
+            data={franchiseStats.franchiseTotalPitching}
+          />
+        </div>
+
+        <div>
+        <h3 className="center">Franchise Total Batting Stats</h3>
+          <SimpleTable
+            columns={Object.keys(franchiseStats.franchiseTotalBatting[0])}
+            data={franchiseStats.franchiseTotalBatting}
+          />
         </div>
 
         <h3>Teams</h3>
-        <div  className="center">
+        <div className="center">
           <table className="TableStyle">
             <thead>
               <tr>
@@ -127,31 +76,8 @@ function Franchise() {
                 <th>G</th>
                 <th>W</th>
                 <th>L</th>
-                <th>R</th>
-                <th>AB</th>
-                <th>H</th>
-                <th>2B</th>
-                <th>3B</th>
-                <th>HR</th>
-                <th>BB</th>
-                <th>SO</th>
-                <th>SB</th>
-                <th>CS</th>
-                <th>HBP</th>
-                <th>SF</th>
-                <th>RA</th>
-                <th>ER</th>
-                <th>CG</th>
-                <th>SHO</th>
-                <th>SV</th>
-                <th>HA</th>
-                <th>HRA</th>
-                <th>BBA</th>
-                <th>SOA</th>
-                <th>E</th>
-                <th>DP</th>
-                <th>FP</th>
-                <th>IP</th>
+                <th>winPercentage</th>
+                <th>averageAttendance</th>
               </tr>
             </thead>
             <tbody className="TableResults">
@@ -166,31 +92,8 @@ function Franchise() {
                   <td>{franchise.G}</td>
                   <td>{franchise.W}</td>
                   <td>{franchise.L}</td>
-                  <td>{franchise.R}</td>
-                  <td>{franchise.AB}</td>
-                  <td>{franchise.H}</td>
-                  <td>{franchise["2B"]}</td>
-                  <td>{franchise["3B"]}</td>
-                  <td>{franchise.HR}</td>
-                  <td>{franchise.BB}</td>
-                  <td>{franchise.SO}</td>
-                  <td>{franchise.SB}</td>
-                  <td>{franchise.CS}</td>
-                  <td>{franchise.HBP} </td>
-                  <td>{franchise.SF} </td>
-                  <td>{franchise.RA}</td>
-                  <td>{franchise.ER} </td>
-                  <td>{franchise.CG}</td>
-                  <td>{franchise.SHO}</td>
-                  <td>{franchise.SV}</td>
-                  <td>{franchise.HA}</td>
-                  <td>{franchise.HRA}</td>
-                  <td>{franchise.BBA}</td>
-                  <td>{franchise.SOA}</td>
-                  <td>{franchise.E}</td>
-                  <td>{franchise.DP}</td>
-                  <td>{franchise.FP}</td>
-                  <td>{franchise.IP}</td>
+                  <td>{franchise.winPercentage}</td>
+                  <td>{franchise.averageAttendance}</td>
                 </tr>
               ))}
             </tbody>

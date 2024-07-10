@@ -39,29 +39,32 @@ function Standings() {
   const columns = [
     { name: "name", displayName: "Team Name", link: "/teams/:teamID/:yearID" },
     { name: "franchiseName", displayName: "Franchise Name", link: "/franchises/:franchiseID" },
-    { name: "G", displayName: "G" },
-    { name: "W", displayName: "W" },
-    { name: "L", displayName: "L" }
+    { name: "G"},
+    { name: "W"},
+    { name: "L"}
   ];
 
 
   return (
     <div>
-      <select
-        className="dropdown"
-        value={year}
-        onChange={(e) => setYear(e.target.value)}
-      >
-        {allYears.map((year) => (
-          <option key={year} value={year}>
-            {" "}
-            {year}{" "}
-          </option>
-        ))}
-      </select>
 
-      <div>
+      <div className="pageTitle">
         <h1>Team and Franchise Stats</h1>
+
+        <select
+          className="dropdown"
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
+        >
+          {allYears.map((year) => (
+            <option key={year} value={year}>
+              {" "}
+              {year}{" "}
+            </option>
+          ))}
+        </select>
+        <h4> </h4>
+
         <DisplayTable columns={columns} data={listOfStandings} />
       </div>
 
