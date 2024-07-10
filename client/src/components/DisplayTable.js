@@ -15,15 +15,15 @@ const DisplayTable = ({ columns, data }) => {
   }
 
   return (
-    <table>
+    <table className="blackBG">
       <thead>
-        <tr>
+        <tr className="SimpleTableHeader">
           {columns.map((col, index) => (
             <th key={index}>{col.displayName || col.name}</th>
           ))}
         </tr>
       </thead>
-      <tbody>
+      <tbody className="SimpleTableListItem">
         {data.map((row, rowIndex) => (
           <tr key={rowIndex}>
             {columns.map((col, colIndex) => (

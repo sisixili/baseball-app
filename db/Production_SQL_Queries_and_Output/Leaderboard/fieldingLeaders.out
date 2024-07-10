@@ -1,0 +1,29 @@
++-----------+-----------+-----------+----------+------+------+------+------+------+
+| playerID  | nameFirst | nameLast  | Inn      | GS   | PO   | A    | E    | DP   |
++-----------+-----------+-----------+----------+------+------+------+------+------+
+| deverra01 | Rafael    | Devers    | 475.0000 |   55 |   30 |   84 |   14 |   12 |
+| solando01 | Donovan   | Solano    | 400.6667 |   46 |   63 |   88 |   11 |   20 |
+| storytr01 | Trevor    | Story     | 491.3333 |   57 |   88 |  161 |   10 |   49 |
+| mcmahry01 | Ryan      | McMahon   | 424.3333 |   48 |  130 |  123 |   10 |   38 |
+| torregl01 | Gleyber   | Torres    | 320.6667 |   40 |   40 |   86 |    9 |   13 |
+| adamewi01 | Willy     | Adames    | 450.0000 |   51 |   53 |  131 |    9 |   27 |
+| villajo01 | Jonathan  | Villar    | 362.6667 |   43 |   51 |   98 |    9 |   24 |
+| anderbr06 | Brian     | Anderson  | 468.0000 |   56 |   38 |  119 |    9 |   12 |
+| turnetr01 | Trea      | Turner    | 479.6667 |   59 |   77 |  120 |    9 |   33 |
+| newmake01 | Kevin     | Newman    | 343.3333 |   41 |   53 |   85 |    8 |   18 |
+| escobed01 | Eduardo   | Escobar   | 422.3333 |   49 |   32 |   94 |    8 |   15 |
+| seageco01 | Corey     | Seager    | 376.0000 |   43 |   46 |  113 |    8 |   16 |
+| baezja01  | Javier    | Baez      | 469.6667 |   56 |   86 |  159 |    8 |   34 |
+| crawfbr01 | Brandon   | Crawford  | 417.6667 |   47 |   69 |  124 |    8 |   24 |
+| ahmedni01 | Nick      | Ahmed     | 484.3333 |   56 |   61 |  121 |    7 |   33 |
+| gregodi01 | Didi      | Gregorius | 470.0000 |   56 |   79 |  132 |    7 |   34 |
+| rileyau01 | Austin    | Riley     | 431.3333 |   51 |   49 |   98 |    7 |    7 |
+| semiema01 | Marcus    | Semien    | 451.3333 |   53 |   59 |  147 |    7 |   17 |
+| edmanto01 | Tommy     | Edman     | 438.0000 |   54 |   65 |   74 |    7 |   10 |
+| anderti01 | Tim       | Anderson  | 417.3333 |   49 |   65 |  109 |    6 |   23 |
+| moncayo01 | Yoan      | Moncada   | 448.0000 |   51 |   33 |  101 |    6 |   17 |
+| hiurake01 | Keston    | Hiura     | 406.0000 |   49 |   66 |   83 |    6 |   15 |
+| francma02 | Maikel    | Franco    | 444.0000 |   52 |   37 |   89 |    6 |   19 |
+| gonzaer01 | Erik      | Gonzalez  | 404.6667 |   47 |   37 |  103 |    6 |   23 |
+| ruizri01  | Rio       | Ruiz      | 435.6667 |   50 |   37 |  101 |    6 |   13 |
++-----------+-----------+-----------+----------+------+------+------+------+------+

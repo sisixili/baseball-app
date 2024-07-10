@@ -13,24 +13,26 @@ const SimpleTable = ({ columns, data, links }) => {
   }
 
   return (
-    <table>
-      <thead>
-        <tr>
-          {columns.map((col, index) => (
-            <th key={index}>{col}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((row, rowIndex) => (
-          <tr key={rowIndex}>
-            {columns.map((col, colIndex) => (
-              <td key={colIndex}>{row[col]}</td>
+    <div>
+      <table className="blackBG">
+        <thead>
+          <tr className="SimpleTableHeader">
+            {columns.map((col, index) => (
+              <th key={index}>{col}</th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody className="SimpleTableListItem">
+          {data.map((row, rowIndex) => (
+            <tr key={rowIndex}>
+              {columns.map((col, colIndex) => (
+                <td key={colIndex}>{row[col]}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

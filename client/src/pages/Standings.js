@@ -47,21 +47,24 @@ function Standings() {
 
   return (
     <div>
-      <select
-        className="dropdown"
-        value={year}
-        onChange={(e) => setYear(e.target.value)}
-      >
-        {allYears.map((year) => (
-          <option key={year} value={year}>
-            {" "}
-            {year}{" "}
-          </option>
-        ))}
-      </select>
 
-      <div>
+      <div className="pageTitle">
         <h1>Team and Franchise Stats</h1>
+
+        <select
+          className="dropdown"
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
+        >
+          {allYears.map((year) => (
+            <option key={year} value={year}>
+              {" "}
+              {year}{" "}
+            </option>
+          ))}
+        </select>
+        <h4> </h4>
+
         <DisplayTable columns={columns} data={listOfStandings} />
       </div>
 
