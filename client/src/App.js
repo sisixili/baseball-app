@@ -74,7 +74,7 @@ function App() {
                 ⚾ |<Link to="/home"> Home </Link>|
                 <Link to="/players"> Search All Players </Link>|
                 <Link to="/leaderboard"> Leaderboard </Link>|
-                <Link to="/franchises"> Search All Franchises </Link>|
+                <Link to="/franchises"> All Franchises </Link>|
                 <Link to="/standings"> Search Standings </Link>|
                 <Link to="/favourites"> Favourites </Link>|
                 {isLoggedIn ? (
