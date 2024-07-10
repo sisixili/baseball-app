@@ -158,6 +158,9 @@ app.get("/leaderboard", validateToken, async (req, res) => {
             battingYearID, pitchingYearID, fieldingYearID, 
             battingOrderDirection, pitchingOrderDirection, fieldingOrderDirection } = req.query;
 
+    //const {battingStatistic, battingYearID, battingOrderDirection} = req.query;
+
+
     try {
         const battingLeaders = await getBattingLeaders(battingStatistic, battingYearID, battingOrderDirection);
         const pitchingLeaders = await getPitchingLeaders(pitchingStatistic, pitchingYearID, pitchingOrderDirection);
@@ -169,6 +172,7 @@ app.get("/leaderboard", validateToken, async (req, res) => {
         };
         res.send(leaders);
     } catch (error) {
+        console.log(error)
         res.status(500).json({ error: "Internal Server Error" });
     }
 });

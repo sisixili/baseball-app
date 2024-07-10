@@ -172,6 +172,7 @@ export const getPitchingLeaders = async (pitchingStatistic, yearID, orderDirecti
         .join('Players', 'Pitching.playerID', 'Players.playerID')
         .where('Pitching.yearID', yearID)
         .groupBy('Pitching.playerID', 'Players.nameFirst', 'Players.nameLast')
+        //.orderBy(db.raw(`SUM(${pitchingStatistic})`), orderDirection)
         .orderBy(pitchingStatistic, orderDirection)
         .limit(25);
 }
@@ -188,7 +189,8 @@ export const getBattingLeaders = async (battingStatistic, yearID, orderDirection
         .join('Players', 'Batting.playerID', 'Players.playerID')
         .where('Batting.yearID', yearID)
         .groupBy('Batting.playerID', 'Players.nameFirst', 'Players.nameLast')
-        .orderBy(battingStatistic, orderDirection)
+        //.orderBy(db.raw(`SUM(${battingStatistic})`), orderDirection)
+        .orderBy(db.raw(battingStatistic), orderDirection)
         .limit(25);
 }
 
@@ -204,7 +206,8 @@ export const getFieldingLeaders = async (fieldingStatistic, yearID, orderDirecti
         .join('Players', 'Fielding.playerID', 'Players.playerID')
         .where('Fielding.yearID', yearID)
         .groupBy('Fielding.playerID', 'Players.nameFirst', 'Players.nameLast')
-        .orderBy(fieldingStatistic, orderDirection)
+        //.orderBy(db.raw(`SUM(${fieldingStatistic})`), orderDirection)
+        .orderBy(db.raw(fieldingStatistic), orderDirection)
         .limit(25);
 }
 
@@ -223,7 +226,7 @@ export const getStandings = async (yearID) => {
             'Teams.W',
             'Teams.L'
         )
-        .join('Franchises', 'Franchises.franchiseID', 'Teams.teamID')
+        .join('Franchises', 'Franchises.franchiseID', 'Teams.franchiseID')
         .where('yearID', yearID)
         .orderBy('W', 'desc');
 }
