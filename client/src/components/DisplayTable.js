@@ -19,7 +19,7 @@ const DisplayTable = ({ columns, data }) => {
       <thead>
         <tr>
           {columns.map((col, index) => (
-            <th key={index}>{col.displayName}</th>
+            <th key={index}>{col.displayName || col.name}</th>
           ))}
         </tr>
       </thead>

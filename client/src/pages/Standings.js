@@ -39,10 +39,15 @@ function Standings() {
   const columns = [
     { name: "name", displayName: "Team Name", link: "/teams/:teamID/:yearID" },
     { name: "franchiseName", displayName: "Franchise Name", link: "/franchises/:franchiseID" },
-    { name: "G", displayName: "G" },
-    { name: "W", displayName: "W" },
-    { name: "L", displayName: "L" }
+    { name: "G"},
+    { name: "W"},
+    { name: "L"}
   ];
+
+  /* data:
+  [{"teamID":"ATL","name":"Atlanta Braves","yearID":2023,"franchiseID":"ATL","franchiseName":"Atlanta Braves","G":162,"W":104,"L":58},
+   {"teamID":"BAL","name":"Baltimore Orioles","yearID":2023,"franchiseID":"BAL","franchiseName":"Baltimore Orioles","G":162,"W":101,"L":61}]
+  */
 
 
   return (

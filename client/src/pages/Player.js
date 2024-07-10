@@ -3,18 +3,21 @@
 
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import FavouriteButton from '../components/FavouriteButton'
+import FavouriteButton from "../components/FavouriteButton";
+import DisplayTable from "../components/DisplayTable";
+import SimpleTable from "../components/SimpleTable";
 
 function Player() {
   const { playerID } = useParams();
   const [PlayerStats, setPlayerStats] = useState({
     playerBio: [0], // Init 0 to avoid error on first render
     playerPositions: [0],
-    playerAwards:[0],
+    playerHallOfFameStatus: [0],
+    playerAwards: [0],
     playerCareerPitchingTotals: [0],
-    playerSeasonalPitchingTotals: [0], // Init 0 to avoid showing "No pitching..." on first render 
+    playerSeasonalPitchingTotals: [0], // Init 0 to avoid showing "No pitching..." on first render
+    playerCareerBattingTotals: [0],
     playerSeasonalBattingTotals: [0],
-    seasonBySeasonBattingStats: [0],
     playerCareerFieldingTotals: [0],
     playerSeasonalFieldingTotals: [0],
   });
@@ -44,279 +47,243 @@ function Player() {
       .catch((error) => console.log("ERROR", error));
   }, [playerID]);
 
+  // Setting up column names
+  //const playerBiosCols = Object.keys(PlayerStats.playerBio[0]).map(key => ({ name: key }));
+
+  const seasonalPitchColumns = [
+    { name: "teamName", displayName: "Team", link: "/teams/:teamID/:yearID" },
+    { name: "G" },
+    { name: "W" },
+    { name: "L" },
+  ];
+
   return (
     <div>
-      <div className="pageTitle">
-        {PlayerStats.playerBio.map((player, key) => (
-        <div className="pageTitle" key={key}>
-          <h2>
-          {player.nameFirst} {player.nameLast}
-          </h2>
-        </div>
-        ))}
-      </div>
+      <FavouriteButton userID={userID} type="player" id={playerID} />
 
-      <div>
-        <FavouriteButton userID={userID} type="player" id={playerID} />
-      </div>
+      <h4>Player Bio</h4>
+      <SimpleTable
+        columns={Object.keys(PlayerStats.playerBio[0])}
+        data={PlayerStats.playerBio}
+      />
 
-      <div>
-        {PlayerStats.playerBio.map((player, key) => (
-        <div key={key}>
-          {player.weight} lbs, {Math.floor(player.height / 12)} ft{player.height % 12 !== 0 && ` ${player.height % 12} inches`}, Bats: {player.bats}, Throws: {player.throws}, Born: {player.birthCountry}
-        </div>
-        ))}
-      </div>
+      <h4>Player Positions</h4>
+      <SimpleTable
+        columns={Object.keys(PlayerStats.playerPositions[0])}
+        data={PlayerStats.playerPositions}
+      />
 
-      <div>
-      <h3>Career Pitching Totals</h3>
-    <table className="TableStyle">
-      <thead>
-        <tr>
-          <th>G</th>
-          <th>W</th>
-          <th>L</th>
-          <th>GS</th>
-          <th>CG</th>
-          <th>SHO</th>
-          <th>SV</th>
-          <th>H</th>
-          <th>R</th>
-          <th>ER</th>
-          <th>HR</th>
-          <th>BB</th>
-          <th>IBB</th>
-          <th>SO</th>
-          <th>HBP</th>
-          <th>BK</th>
-          <th>WP</th>
-          <th>IP</th>
-        </tr>
-      </thead>
-      <tbody className="TableResults">
-        {PlayerStats.careerPitchingTotals.length === 0 || PlayerStats.careerPitchingTotals.every(player => 
-          player.G === null && player.W === null && player.L === null && player.GS === null &&
-          player.CG === null && player.SHO === null && player.SV === null && player.H === null &&
-          player.R === null && player.ER === null && player.HR === null && player.BB === null &&
-          player.IBB === null && player.SO === null && player.HBP === null && player.BK === null &&
-          player.WP === null && player.IP === null
-        ) ? (
+      <h4>Player Hall Of Fame</h4>
+      {PlayerStats?.playerHallOfFameStatus?.[0] ? (
+        <SimpleTable
+          columns={Object.keys(PlayerStats.playerHallOfFameStatus[0])}
+          data={PlayerStats.playerHallOfFameStatus}
+        />
+      ) : (
+        <p>Player was not inducted into the Hall Of Fame.</p>
+      )}
+
+      <h4>Player Awards</h4>
+      {PlayerStats?.playerAwards?.[0] ? (
+        <SimpleTable
+          columns={Object.keys(PlayerStats.playerAwards[0])}
+          data={PlayerStats.playerAwards}
+        />
+      ) : (
+        <p>No awards for this player.</p>
+      )}
+
+      <h4>Career Pitching Totals</h4>
+      <SimpleTable
+        columns={Object.keys(PlayerStats.playerCareerPitchingTotals[0])}
+        data={PlayerStats.playerCareerPitchingTotals}
+      />
+
+      <h4>Seasonal Pitching Totals</h4>
+      <table className="TableStyle">
+        <thead>
           <tr>
-            <td colSpan="18">No pitching statistics available</td>
+            <th>Year</th>
+            <th>Team</th>
+            <th>G</th>
+            <th>W</th>
+            <th>L</th>
+            <th>GS</th>
+            <th>CG</th>
+            <th>SHO</th>
+            <th>SV</th>
+            <th>H</th>
+            <th>R</th>
+            <th>ER</th>
+            <th>HR</th>
+            <th>BB</th>
+            <th>IBB</th>
+            <th>SO</th>
+            <th>HBP</th>
+            <th>BK</th>
+            <th>WP</th>
+            <th>IP</th>
           </tr>
-        ) : (
-          PlayerStats.careerPitchingTotals.map((player, key) => (
-            <tr key={key}>
-              <td>{player.G}</td>
-              <td>{player.W}</td>
-              <td>{player.L}</td>
-              <td>{player.GS}</td>
-              <td>{player.CG}</td>
-              <td>{player.SHO}</td>
-              <td>{player.SV}</td>
-              <td>{player.H}</td>
-              <td>{player.R}</td>
-              <td>{player.ER}</td>
-              <td>{player.HR}</td>
-              <td>{player.BB}</td>
-              <td>{player.IBB}</td>
-              <td>{player.SO}</td>
-              <td>{player.HBP}</td>
-              <td>{player.BK}</td>
-              <td>{player.WP}</td>
-              <td>{player.IP}</td>
+        </thead>
+        <tbody className="TableResults">
+          {PlayerStats.playerSeasonalPitchingTotals.length > 0 ? (
+            PlayerStats.playerSeasonalPitchingTotals.map((player, key) => (
+              <tr key={key}>
+                <td>{player.yearID}</td>
+                <td>
+                  <Link to={`/teams/${player.teamID}/${player.yearID}`}>
+                    {" "}
+                    {player.teamName}{" "}
+                  </Link>
+                </td>
+                <td>{player.G}</td>
+                <td>{player.W}</td>
+                <td>{player.L}</td>
+                <td>{player.GS}</td>
+                <td>{player.CG}</td>
+                <td>{player.SHO}</td>
+                <td>{player.SV}</td>
+                <td>{player.H}</td>
+                <td>{player.R}</td>
+                <td>{player.ER}</td>
+                <td>{player.HR}</td>
+                <td>{player.BB}</td>
+                <td>{player.IBB}</td>
+                <td>{player.SO}</td>
+                <td>{player.HBP}</td>
+                <td>{player.BK}</td>
+                <td>{player.WP}</td>
+                <td>{player.IP}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="20">No pitching statistics available</td>
             </tr>
-          ))
-        )}
-      </tbody>
-    </table>
+          )}
+        </tbody>
+      </table>
 
-    <h3>Season by Season Pitching Stats</h3>
-    <table className="TableStyle">
-      <thead>
-        <tr>
-          <th>Year</th>
-          <th>Team</th>
-          <th>G</th>
-          <th>W</th>
-          <th>L</th>
-          <th>GS</th>
-          <th>CG</th>
-          <th>SHO</th>
-          <th>SV</th>
-          <th>H</th>
-          <th>R</th>
-          <th>ER</th>
-          <th>HR</th>
-          <th>BB</th>
-          <th>IBB</th>
-          <th>SO</th>
-          <th>HBP</th>
-          <th>BK</th>
-          <th>WP</th>
-          <th>IP</th>
-        </tr>
-      </thead>
-      <tbody className="TableResults">
-        {PlayerStats.seasonBySeasonPitchingStats.length > 0 ? (
-          PlayerStats.seasonBySeasonPitchingStats.map((player, key) => (
-            <tr key={key}>
-              <td><Link to={`/teams/${player.teamID}/${player.yearID}`}> {player.yearID} </Link></td>
-              <td>{player.teamID}</td>
-              <td>{player.G}</td>
-              <td>{player.W}</td>
-              <td>{player.L}</td>
-              <td>{player.GS}</td>
-              <td>{player.CG}</td>
-              <td>{player.SHO}</td>
-              <td>{player.SV}</td>
-              <td>{player.H}</td>
-              <td>{player.R}</td>
-              <td>{player.ER}</td>
-              <td>{player.HR}</td>
-              <td>{player.BB}</td>
-              <td>{player.IBB}</td>
-              <td>{player.SO}</td>
-              <td>{player.HBP}</td>
-              <td>{player.BK}</td>
-              <td>{player.WP}</td>
-              <td>{player.IP}</td>
-            </tr>
-          ))
-        ) : (
+      <h4>Career Batting Totals</h4>
+      <SimpleTable
+        columns={Object.keys(PlayerStats.playerCareerBattingTotals[0])}
+        data={PlayerStats.playerCareerBattingTotals}
+      />
+
+      <h4>Seasonal Batting Totals</h4>
+      <table className="TableStyle">
+        <thead>
           <tr>
-            <td colSpan="20">No pitching statistics available</td>
+            <th>Year</th>
+            <th>Team</th>
+            <th>PA</th>
+            <th>G</th>
+            <th>AB</th>
+            <th>R</th>
+            <th>H</th>
+            <th>2B</th>
+            <th>3B</th>
+            <th>HR</th>
+            <th>RBI</th>
+            <th>SB</th>
+            <th>CS</th>
+            <th>BB</th>
+            <th>SO</th>
+            <th>IBB</th>
+            <th>HBP</th>
+            <th>SH</th>
+            <th>SF</th>
+            <th>GIDP</th>
           </tr>
-        )}
-      </tbody>
-    </table>
-  </div>
+        </thead>
 
-  <h3>Career Hitting Totals</h3>
-    <table className="TableStyle">
-      <thead>
-        <tr>
-          <th>G</th>
-          <th>AB</th>
-          <th>R</th>
-          <th>H</th>
-          <th>2B</th>
-          <th>3B</th>
-          <th>HR</th>
-          <th>RBI</th>
-          <th>SB</th>
-          <th>CS</th>
-          <th>BB</th>
-          <th>SO</th>
-          <th>IBB</th>
-          <th>HBP</th>
-          <th>SH</th>
-          <th>SF</th>
-          <th>GIDP</th>
-          <th>PA</th>
-        </tr>
-      </thead>
-      <tbody className="TableResults">
-        {PlayerStats.careerBattingTotals.length === 0 || PlayerStats.careerBattingTotals.every(player => 
-          player.G == null && player.AB == null && player.R == null && player.H == null &&
-          player["2B"] == null && player["3B"] == null && player.HR == null && player.RBI == null &&
-          player.SB == null && player.CS == null && player.BB == null && player.SO == null &&
-          player.IBB == null && player.HBP == null && player.SH == null && player.SF == null &&
-          player.GIDP == null && player.PA == null
-        ) ? (
-          <tr>
-            <td colSpan="18">No hitting statistics available</td>
-          </tr>
-        ) : (
-          PlayerStats.careerBattingTotals.map((player, key) => (
-            <tr key={key}>
-              <td>{player.G}</td>
-              <td>{player.AB}</td>
-              <td>{player.R}</td>
-              <td>{player.H}</td>
-              <td>{player["2B"]}</td>
-              <td>{player["3B"]}</td>
-              <td>{player.HR}</td>
-              <td>{player.RBI}</td>
-              <td>{player.SB}</td>
-              <td>{player.CS}</td>
-              <td>{player.BB}</td>
-              <td>{player.SO}</td>
-              <td>{player.IBB}</td>
-              <td>{player.HBP}</td>
-              <td>{player.SH}</td>
-              <td>{player.SF}</td>
-              <td>{player.GIDP}</td>
-              <td>{player.PA}</td>
+        <tbody className="TableResults">
+          {PlayerStats.playerSeasonalBattingTotals.length > 0 ? (
+            PlayerStats.playerSeasonalBattingTotals.map((player, key) => (
+              <tr key={key}>
+                <td>{player.yearID}</td>
+                <td>
+                  <Link to={`/teams/${player.teamID}/${player.yearID}`}>
+                    {" "}
+                    {player.teamName}{" "}
+                  </Link>
+                </td>
+                <td>{player.PA}</td>
+                <td>{player.G}</td>
+                <td>{player.AB}</td>
+                <td>{player.R}</td>
+                <td>{player.H}</td>
+                <td>{player["2B"]}</td>
+                <td>{player["3B"]}</td>
+                <td>{player.HR}</td>
+                <td>{player.RBI}</td>
+                <td>{player.SB}</td>
+                <td>{player.CS}</td>
+                <td>{player.BB}</td>
+                <td>{player.SO}</td>
+                <td>{player.IBB}</td>
+                <td>{player.HBP}</td>
+                <td>{player.SH}</td>
+                <td>{player.SF}</td>
+                <td>{player.GIDP}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="20">No pitching statistics available</td>
             </tr>
-          ))
-        )}
-      </tbody>
-    </table>
+          )}
+        </tbody>
+      </table>
 
-    <h3>Season by Season Hitting Statistics</h3>
-    <table className="TableStyle">
-      <thead>
-        <tr>
-          <th>Year</th>
-          <th>Team</th>
-          <th>G</th>
-          <th>AB</th>
-          <th>R</th>
-          <th>H</th>
-          <th>2B</th>
-          <th>3B</th>
-          <th>HR</th>
-          <th>RBI</th>
-          <th>SB</th>
-          <th>CS</th>
-          <th>BB</th>
-          <th>SO</th>
-          <th>IBB</th>
-          <th>HBP</th>
-          <th>SH</th>
-          <th>SF</th>
-          <th>GIDP</th>
-          <th>PA</th>
-        </tr>
-      </thead>
-      <tbody className="TableResults">
-        {PlayerStats.seasonBySeasonBattingStats.length > 0 ? (
-          PlayerStats.seasonBySeasonBattingStats.map((player, key) => (
-            <tr key={key}>
-              <td><Link to={`/teams/${player.teamID}/${player.yearID}`}> {player.yearID} </Link></td>
-              <td>{player.teamID}</td>
-              <td>{player.G}</td>
-              <td>{player.AB}</td>
-              <td>{player.R}</td>
-              <td>{player.H}</td>
-              <td>{player["2B"]}</td>
-              <td>{player["3B"]}</td>
-              <td>{player.HR}</td>
-              <td>{player.RBI}</td>
-              <td>{player.SB}</td>
-              <td>{player.CS}</td>
-              <td>{player.BB}</td>
-              <td>{player.SO}</td>
-              <td>{player.IBB}</td>
-              <td>{player.HBP}</td>
-              <td>{player.SH}</td>
-              <td>{player.SF}</td>
-              <td>{player.GIDP}</td>
-              <td>{player.PA}</td>
-            </tr>
-          ))
-        ) : (
+      <h4>Career Fielding Totals</h4>
+      <SimpleTable
+        columns={Object.keys(PlayerStats.playerCareerFieldingTotals[0])}
+        data={PlayerStats.playerCareerFieldingTotals}
+      />
+
+      <h4>Seasonal Fielding Totals</h4>
+      <table className="TableStyle">
+        <thead>
           <tr>
-            <td colSpan="20">No hitting statistics available</td>
+            <th>Year</th>
+            <th>Team</th>
+            <th>Inn</th>
+            <th>GS</th>
+            <th>PO</th>
+            <th>A</th>
+            <th>E</th>
+            <th>DP</th>
           </tr>
-        )}
-      </tbody>
-    </table>
-
+        </thead>
+        <tbody className="TableResults">
+          {PlayerStats.playerSeasonalFieldingTotals.length > 0 ? (
+            PlayerStats.playerSeasonalFieldingTotals.map((player, key) => (
+              <tr key={key}>
+                <td>{player.yearID}</td>
+                <td>
+                  <Link to={`/teams/${player.teamID}/${player.yearID}`}>
+                    {" "}
+                    {player.teamName}{" "}
+                  </Link>
+                </td>
+                <td>{player.Inn}</td>
+                <td>{player.GS}</td>
+                <td>{player.PO}</td>
+                <td>{player.A}</td>
+                <td>{player.E}</td>
+                <td>{player.DP}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="20">No pitching statistics available</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
     </div>
   );
 }
 
 export default Player;
-
