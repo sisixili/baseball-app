@@ -28,7 +28,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: -20px;
+  margin-top: -10px;
   margin-bottom: 0px;
   background-color: transparent;
 }
@@ -177,6 +177,8 @@ li {
 .nameList{
   margin-right: 15px;
   margin-left: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   display: grid;
 }
 .ListWrap{

@@ -75,13 +75,11 @@ function Leaderboard() {
       </div>
 
       <div className="subTitle">
-        <h4>Batting</h4>
+        <h3>Batting</h3>
       </div>
+
       <div className="dropdown">
-        <select
-          value={battingStatistic}
-          onChange={(e) => setBattingStatistic(e.target.value)}
-        >
+        <select className="dropdown" value={battingStatistic} onChange={(e) => setBattingStatistic(e.target.value)}>
           <option value="G">G</option>
           <option value="PA">PA</option>
           <option value="AB">AB</option>
@@ -126,7 +124,7 @@ function Leaderboard() {
       </div>
 
       <div className="Players">
-        <div className="NameList">
+        <div className="nameList">
           {listOfPlayers.battingLeaders.map((player, key) => (
             <div className="player" key={key}>
               <ul id="hittingList">
@@ -139,18 +137,18 @@ function Leaderboard() {
               </ul>
             </div>
           ))}
-          <h3 className="ListWrap"> </h3>
         </div>
       </div>
 
       {/* ==================================================================================== */}
 
       <div className="subTitle">
-        <h4>Pitching</h4>
+        <h3>Pitching</h3>
       </div>
 
       <div className="dropdown">
         <select
+          className="dropdown"
           value={pitchingStatistic}
           onChange={(e) => setPitchingStatistic(e.target.value)}
         >
@@ -198,7 +196,7 @@ function Leaderboard() {
       </div>
 
       <div className="Players">
-        <div className="NameList">
+        <div className="nameList">
           {listOfPlayers.pitchingLeaders.map((player) => (
             <div className="player" key={player.playerID}>
               <ul id="pitchingList">
@@ -211,16 +209,16 @@ function Leaderboard() {
               </ul>
             </div>
           ))}
-          <h3 className="ListWrap"> </h3>
         </div>
       </div>
 
       <div className="subTitle">
-        <h4>Fielding</h4>
+        <h3>Fielding</h3>
       </div>
 
       <div className="dropdown">
         <select
+          className="dropdown"
           value={fieldingStatistic}
           onChange={(e) => setFieldingStatistic(e.target.value)}
         >
@@ -258,7 +256,7 @@ function Leaderboard() {
       </div>
 
       <div className="Players">
-        <div className="NameList">
+        <div className="nameList">
           {listOfPlayers.fieldingLeaders.map((player, key) => (
             <div className="player" key={key}>
               <ul>
@@ -271,7 +269,6 @@ function Leaderboard() {
               </ul>
             </div>
           ))}
-          <h3 className="ListWrap"> </h3>
         </div>
       </div>
     </div>
