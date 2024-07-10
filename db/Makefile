@@ -1,7 +1,6 @@
 # Setup
 
 # Determine which Python version to use
-# PYTHON3 := $(shell command -v python3 2>/dev/null)
 PYTHON := python 
 
 # Directories
