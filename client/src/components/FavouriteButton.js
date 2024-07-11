@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FavouriteButton = ({ userID, type, id }) => {
+const FavouriteButton = ({ userID, type, id, text }) => {
   const handleAddFavourite = async () => {
 
     try {
@@ -10,7 +10,7 @@ const FavouriteButton = ({ userID, type, id }) => {
           accessToken: sessionStorage.getItem("accessToken"),
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userID, type, id }),
+        body: JSON.stringify({ userID, type, id, text }),
       });
 
       if (response.ok) {
@@ -28,7 +28,7 @@ const FavouriteButton = ({ userID, type, id }) => {
 
   return (
     <button onClick={handleAddFavourite}>
-      Add Favourite {type.charAt(0).toUpperCase() + type.slice(1)}
+      {text} {/*type.charAt(0).toUpperCase() + type.slice(1)*/}
     </button>
   );
 };

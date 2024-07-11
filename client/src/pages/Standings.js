@@ -49,7 +49,7 @@ function Standings() {
     <div>
 
       <div className="pageTitle">
-        <h1>Team and Franchise Stats</h1>
+        <h1>Standings</h1>
 
         <select
           className="dropdown"

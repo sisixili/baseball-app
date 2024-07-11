@@ -48,7 +48,7 @@ function Franchise() {
               </h2>
             </div>
           ))}
-          <FavouriteButton userID={userID} type="franchise" id={franchiseID} />
+          <FavouriteButton userID={userID} type="franchise" id={franchiseID} text="Add Favourite Franchise" />
         </div>
 
         <div>

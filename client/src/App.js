@@ -86,13 +86,6 @@ function App() {
               </h3>
             </div>
           </nav>
-        <div>
-        {isLoggedIn ? (
-                  []
-                ) : (
-                  "Please login to continue"
-                )}
-        </div>
         </div>
         <Routes>
           <Route path="/home" element={<Home />} />
