@@ -32,8 +32,10 @@ function onRenderCallback(
 }
 
 
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [lightMode, setLightMode] = useState(true);
 
   // Check if user is logged in
   useEffect(() => {
@@ -47,9 +49,21 @@ function App() {
         console.log("User is not logged in, no token found.");
       }
     };
+    /*const checkLightModeStatus = () => {
+      var element = document.body;
+      if (lightMode) {
+        element.classList.toggle("lmbody");
+      } else {
+        element.classList.toggle("dmbody");
+      }
+    };*/
+
+    /* var element = document.body;
+  element.classList.toggle("dark-mode"); */
 
     // Check login status initially
     checkLoggedInStatus();
+    /*checkLightModeStatus();*/
 
     // Listen to storage events to update login status
     window.addEventListener('storage', checkLoggedInStatus);
@@ -58,63 +72,83 @@ function App() {
       window.removeEventListener('storage', checkLoggedInStatus);
     };
     
-  }, []);
+  }, [/*lightMode*/]);
+
+/*   function lightModeToggle() {
+    /*var element = document.body;
+    element.classList.toggle("dark-mode");
+    if(lightMode === true){
+      lightMode = false;
+    }else{
+      lightMode = true;
+    }
+  } 
+  */
 
 
   /**<img className="floatImg" src="batWball.jpg" alt=""></img>
       <img className="floatBall" src="ball.jpg" alt=""></img> */
   return (
-    <div className="App">
-      <Router>
-        <div className="NavBar">
-          <nav className="navBar">
-            <div className="NavText">
-              <h3>
-                {" "}
-                ⚾ |<Link to="/home"> Home </Link>|
-                <Link to="/players"> Search All Players </Link>|
-                <Link to="/leaderboard"> Leaderboard </Link>|
-                <Link to="/franchises"> All Franchises </Link>|
-                <Link to="/standings"> Search Standings </Link>|
-                <Link to="/favourites"> Favourites </Link>|
-                {isLoggedIn ? (
-                  <Link to="/logout"> Logout </Link>
-                ) : (
-                  <Link to="/"> Login </Link>
-                )}
-                |
-              </h3>
-            </div>
-          </nav>
-        <div>
-        {isLoggedIn ? (
-                  []
-                ) : (
-                  "Please login to continue"
-                )}
-        </div>
-        </div>
-        <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/players/:playerID" element={<Player />} />
-          <Route path="/players"
-            element={
-              <Profiler id="PlayersProfiler" onRender={onRenderCallback}>
-                <Players />
-              </Profiler>
-            }
-          />
-          <Route path="/franchises/:franchiseID" element={<Franchise />} />
-          <Route path="/franchises" element={<Franchises />} />
-          <Route path="/teams/:teamID/:yearID" element={<Team />} />
-          <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/favourites" element={<Favourites />} />
-          <Route path="/standings" element={<Standings />} />
-        </Routes>
-      </Router>
+    <div className={lightMode ? 'App' : 'DMApp'}>
+      <div className={lightMode ? 'lmbody' : 'dmbody'}>
+        {/*<body>*/}
+        <Router>
+          <div className="NavBar">
+            <nav className="navBar">
+              <div className="NavText">
+                <h3>
+                  {" "}
+                  ⚾ |<Link to="/home"> Home </Link>|
+                  <Link to="/players"> Search All Players </Link>|
+                  <Link to="/leaderboard"> Leaderboard </Link>|
+                  <Link to="/franchises"> All Franchises </Link>|
+                  <Link to="/standings"> Search Standings </Link>|
+                  <Link to="/favourites"> Favourites </Link>|
+                  {isLoggedIn ? (
+                    <Link to="/logout"> Logout </Link>
+                  ) : (
+                    <Link to="/"> Login </Link>
+                  )}
+                  |
+                  {lightMode ? (
+                    <button onClick={() => setLightMode(false)}>☾</button>
+                  ) : (
+                    <button onClick={() => setLightMode(true)}>☼</button>
+                  )}
+                </h3>
+              </div>
+            </nav>
+          <div>
+          {isLoggedIn ? (
+                    []
+                  ) : (
+                    "Please login to continue"
+                  )}
+          </div>
+          </div>
+          <Routes>
+            <Route path="/home" element={<Home lightMode={lightMode} setLightMode={setLightMode}/>} />
+            <Route path="/players/:playerID" element={<Player lightMode={lightMode} setLightMode={setLightMode}/>} />
+            <Route path="/players"
+              element={
+                <Profiler id="PlayersProfiler" onRender={onRenderCallback}>
+                  <Players lightMode={lightMode} setLightMode={setLightMode}/>
+                </Profiler>
+              }
+            />
+            <Route path="/franchises/:franchiseID" element={<Franchise lightMode={lightMode} setLightMode={setLightMode}/>} />
+            <Route path="/franchises" element={<Franchises lightMode={lightMode} setLightMode={setLightMode}/>} />
+            <Route path="/teams/:teamID/:yearID" element={<Team lightMode={lightMode} setLightMode={setLightMode}/>} />
+            <Route path="/leaderboard" element={<Leaderboard lightMode={lightMode} setLightMode={setLightMode}/>} />
+            <Route path="/" element={<Login lightMode={lightMode} setLightMode={setLightMode}/>} />
+            <Route path="/register" element={<Register lightMode={lightMode} setLightMode={setLightMode}/>} />
+            <Route path="/logout" element={<Logout lightMode={lightMode} setLightMode={setLightMode}/>} />
+            <Route path="/favourites" element={<Favourites lightMode={lightMode} setLightMode={setLightMode}/>} />
+            <Route path="/standings" element={<Standings lightMode={lightMode} setLightMode={setLightMode}/>} />
+          </Routes>
+        </Router>
+      {/*</body>*/}
+      </div>
     </div>
   ); // <Route path="/players" element={<Players />} />
 }

@@ -5,10 +5,36 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: #F5FEFF; /*BG Colour*/ 
+  background: #F5FEFF; /*BG Colour */
+}
+.DMApp {
+  width: 100vw;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: #000000; /*BG Colour */
 }
 body { 
-  background-color: #F5FEFF; /* BG Colour */
+  background-color: #000000; /* BG Colour */
+}
+.dmbody{
+  width: inherit;
+  height: inherit;
+  display: inherit;
+  align-items: inherit;
+  flex-direction: inherit;
+  background-color: #000000;
+  color: #F5FEFF;
+}
+.lmbody{
+  width: inherit;
+  height: inherit;
+  display: inherit;
+  align-items: inherit;
+  flex-direction: inherit;
+  background-color: #F5FEFF;
+  color: #000000;
 }
 .Centered {
   display: flex;
@@ -22,7 +48,7 @@ body {
   flex-direction: column;
   margin-top: 15px;
   margin-bottom: 10px;
-  background-color: #F5FEFF;
+  /*background-color: #F5FEFF;*/
 }
 .subTitle {
   display: flex;
@@ -40,6 +66,16 @@ body {
   color: #F5FEFF;
   margin-bottom: 0;
 } 
+.DMSearchBar{
+  width: auto + 30;
+  align-items: center;
+  background-color: #8CC04E; /* #F5FEFF <-blue-white #23B5D3 <-teal #8CC04E <-green */
+  background: transparent;
+  color: #000000;
+  margin-bottom: 0;
+} 
+
+
 .input{
   font-size: inherit;
   font-family: inherit;
@@ -50,6 +86,18 @@ body {
   color: #F5FEFF;
   margin-bottom: 0;
 }
+.DMinput{
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  background-color: #8CC04E; /* #F5FEFF <-blue-white #23B5D3 <-teal #8CC04E <-green */
+  border: 10px solid var(--input-border);
+  border-radius: 0px;
+  color: #000000;
+  margin-bottom: 0;
+}
+
+
 .center{
   display: flex;
   align-items: center;
@@ -138,6 +186,7 @@ li {
   margin-bottom: 15px;
   flex-direction: column;
   background: #23B5D3; /*Header Colour*/
+  color: #000000;
 }
 
 
@@ -268,7 +317,7 @@ li {
 .BioStatsR{
   margin-top: 1px;
   margin-bottom: 1px;
-  margin-left: -180px;
+  margin-left: -150px;
   margin-right: 0px;
 }
 .horizontal-list-item{
