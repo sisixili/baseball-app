@@ -62,6 +62,7 @@ function Team() {
           userID={userID}
           type="team"
           id={{ team: teamID, year: yearID }}
+          text="Add Favourite Team"
         />
       </div>
 

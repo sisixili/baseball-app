@@ -486,7 +486,8 @@ export const getPlayerCareerPitchingTotals = async (playerID, playoffs) => {
         .select(db.raw('COUNT(DISTINCT yearID) AS seasonsPlayed'),
                 ...PLAYER_PITCHING.map(column => db.raw(`SUM(${column}) AS ${column}`)), 
                 db.raw('SUM(outsRecorded) / 3 AS IP'))
-        .where('playerID', playerID);
+        .where('playerID', playerID)
+        .having(db.raw('SUM(outsRecorded) / 3'), '>', 0);
 }
 
 export const getPlayerSeasonalPitchingTotals = async (playerID, playoffs) => {
@@ -498,6 +499,7 @@ export const getPlayerSeasonalPitchingTotals = async (playerID, playoffs) => {
                 db.raw('SUM(outsRecorded) / 3 AS IP'))
         .where('PitchingPost.playerID', playerID)
         .groupBy('PitchingPost.yearID', 'PitchingPost.teamID')
+        .having(db.raw('SUM(outsRecorded) / 3'), '>', 0)
         .orderBy('PitchingPost.yearID', 'asc');
     } else {
         return await db('Pitching')
@@ -506,6 +508,7 @@ export const getPlayerSeasonalPitchingTotals = async (playerID, playoffs) => {
                 ...PLAYER_PITCHING, 
                 db.raw(`outsRecorded / 3 AS IP`))
         .where('Pitching.playerID', playerID)
+        .andWhere(db.raw('outsRecorded / 3'), '>', 0)
         .orderBy(['Pitching.yearID', 'Pitching.stint'], 'asc');
     }
 }
@@ -516,7 +519,8 @@ export const getPlayerCareerBattingTotals = async (playerID, playoffs) => {
         .select(db.raw('COUNT(DISTINCT yearID) AS seasonsPlayed'),
                 db.raw('SUM(COALESCE(AB, 0)) + SUM(COALESCE(BB, 0)) + SUM(COALESCE(HBP, 0)) + SUM(COALESCE(SH, 0)) + SUM(COALESCE(SF, 0)) AS PA'),
                 ...PLAYER_BATTING.map(column => db.raw(`SUM(${column}) AS ${column}`)))
-        .where('playerID', playerID);
+        .where('playerID', playerID)
+        .having(db.raw('SUM(COALESCE(AB, 0)) + SUM(COALESCE(BB, 0)) + SUM(COALESCE(HBP, 0)) + SUM(COALESCE(SH, 0)) + SUM(COALESCE(SF, 0))'), '>', 0);
 }
 
 export const getPlayerSeasonalBattingTotals = async (playerID, playoffs) => {
@@ -528,6 +532,7 @@ export const getPlayerSeasonalBattingTotals = async (playerID, playoffs) => {
                 ...PLAYER_BATTING.map(column => db.raw(`SUM(${column}) AS ${column}`)))
         .where('BattingPost.playerID', playerID)
         .groupBy('BattingPost.yearID', 'BattingPost.teamID')
+        .having(db.raw('SUM(COALESCE(AB, 0)) + SUM(COALESCE(BB, 0)) + SUM(COALESCE(HBP, 0)) + SUM(COALESCE(SH, 0)) + SUM(COALESCE(SF, 0))'), '>', 0)
         .orderBy('BattingPost.yearID', 'asc');
     } else {
         return await db('Batting')
@@ -536,6 +541,7 @@ export const getPlayerSeasonalBattingTotals = async (playerID, playoffs) => {
                 db.raw('COALESCE(AB ,0) + COALESCE(BB ,0) + COALESCE(HBP ,0) + COALESCE(SH ,0) + COALESCE(SF ,0) AS PA'), 
                 ...PLAYER_BATTING)
         .where('Batting.playerID', playerID)
+        .andWhere(db.raw('COALESCE(AB ,0) + COALESCE(BB ,0) + COALESCE(HBP ,0) + COALESCE(SH ,0) + COALESCE(SF ,0)'), '>', 0)
         .orderBy(['Batting.yearID', 'Batting.stint'], 'asc');
     }
 }
@@ -546,7 +552,8 @@ export const getPlayerCareerFieldingTotals = async (playerID, playoffs) => {
         .select(db.raw('COUNT(DISTINCT yearID) AS seasonsPlayed'),
                 ...PLAYER_FIELDING.map(column => db.raw(`SUM(${column}) AS ${column}`)), 
                 db.raw('SUM(outsRecorded) / 3 AS Inn'))
-        .where('playerID', playerID);
+        .where('playerID', playerID)
+        .having(db.raw('SUM(outsRecorded) / 3'), '>', 0);
 }
 
 export const getPlayerSeasonalFieldingTotals = async (playerID, playoffs) => {
@@ -558,6 +565,7 @@ export const getPlayerSeasonalFieldingTotals = async (playerID, playoffs) => {
                 ...PLAYER_FIELDING.map(column => db.raw(`SUM(${column}) AS ${column}`)))
         .where('FieldingPost.playerID', playerID)
         .groupBy('FieldingPost.yearID', 'FieldingPost.teamID')
+        .having(db.raw('SUM(outsRecorded) / 3'), '>', 0)
         .orderBy('FieldingPost.yearID', 'asc');
     } else {
         return await db('Fielding')
@@ -567,6 +575,7 @@ export const getPlayerSeasonalFieldingTotals = async (playerID, playoffs) => {
                 ...PLAYER_FIELDING.map(column => db.raw(`SUM(${column}) AS ${column}`)))
         .where('Fielding.playerID', playerID)
         .groupBy('Fielding.yearID', 'Fielding.teamID', 'Fielding.stint')
+        .having(db.raw('SUM(outsRecorded) / 3'), '>', 0)
         .orderBy(['Fielding.yearID', 'Fielding.stint'], 'asc');
     }
 }

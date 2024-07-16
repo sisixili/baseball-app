@@ -1,7 +1,6 @@
 # Setup
 
 # Determine which Python version to use
-# PYTHON3 := $(shell command -v python3 2>/dev/null)
 PYTHON := python 
 
 # Directories
@@ -16,7 +15,7 @@ PRODUCTION_CSV_CLEANUP = Production_CSV_Cleanup
 TRANSFER_IMPORTED_PRODUCTION_CSV_FILES = $(PYTHON_SCRIPTS)/Transfer_Imported_Production_CSV_Files/transfer_imported_production_csv_files.py
 TRANSFER_IMPORTED_PRODUCTION_CSV_FILES_ARGS = $(IMPORTED_CSV_FILE_DIRECTORY) $(PRODUCTION_CSV_FILES_DIRECTORY) $(PYTHON_SCRIPTS)/Transfer_Imported_Production_CSV_Files/imported_production_csv_files_to_use.txt
 
-# Rename files in Production CSV Files
+# Rename files in Production CSV files
 RENAME_FILES = $(PYTHON_SCRIPTS)/$(PRODUCTION_CSV_CLEANUP)/Rename_Files/rename_files.py
 RENAME_FILES_ARGS = $(PRODUCTION_CSV_FILES_DIRECTORY) $(PYTHON_SCRIPTS)/$(PRODUCTION_CSV_CLEANUP)/Rename_Files/file_renames.txt 
 
