@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 // Search All Franchises page
 
-function Franchises() {
+function Franchises({lightMode, setLightMode}) {
   const [listOfFranchises, setListOfFranchises] = useState({
     activeFranchises: [],
     nonActiveFranchises: [],
@@ -38,7 +38,7 @@ function Franchises() {
         <h2>Franchises</h2>
       </div>
       <div className="subTitle">
-      <div className="franHeader"><h3 className="boxMargins">All Active Franchises</h3></div>
+      <div className={lightMode ? "franHeader" : "DMfranHeader"}><h3 className="boxMargins">All Active Franchises</h3></div>
       
       <div className="Players">
         <div className="franList">
@@ -58,7 +58,7 @@ function Franchises() {
 
       <h3> </h3>
 
-      <div className="franHeader"><h3 className="boxMargins">All Non-Active Franchises</h3></div>
+      <div className={lightMode ? "franHeader" : "DMfranHeader"}><h3 className="boxMargins">All Non-Active Franchises</h3></div>
 
       <div className="Players">
         <div className="franList">

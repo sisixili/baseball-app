@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-function Players() {
+function Players({ lightMode, setLightMode }) {
     const [listOfPlayers, setListOfPlayers] = useState([]);
     const [name, setName] = useState('');
     const [page, setPage] = useState(1);
@@ -57,11 +57,11 @@ function Players() {
       </div>
       <form onSubmit={handleSearchSubmit}>
         <input
-          className="input"
+          className={lightMode ? "input" : "DMinput"}
           onChange={handleChange}
           placeholder="Search by Last Name"
         />
-        <button className="input" type="submit">Search</button>
+        <button className={lightMode ? "input" : "DMinput"} type="submit">Search</button>
       </form>
       <div className="Players">
         <div className="nameList">
@@ -89,6 +89,9 @@ function Players() {
             </button>
           </div>
         </div>
+      </div>
+      <div className="bottom-layer">
+          <h3> </h3>
       </div>
     </div>
   );

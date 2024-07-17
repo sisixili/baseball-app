@@ -86,7 +86,7 @@ function App() {
   */
 
 
-  /**<img className="floatImg" src="batWball.jpg" alt=""></img>
+  /**<img className="floatImg" src="batWballTransparent.jpg" alt=""></img>
       <img className="floatBall" src="ball.jpg" alt=""></img> */
   return (
     <div className={lightMode ? 'App' : 'DMApp'}>
