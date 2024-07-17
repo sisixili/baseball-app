@@ -1,6 +1,6 @@
 import React from "react";
 
-const SimpleTable = ({ columns, data, links }) => {
+const SimpleTable = ({ columns, data, links, lightMode, setLightMode }) => {
   // Function to check if all rows match the columns
   const isValidRow = (row) => {
     return columns.every((col) => col in row);
@@ -14,9 +14,9 @@ const SimpleTable = ({ columns, data, links }) => {
 
   return (
     <div>
-      <table className="blackBG">
+      <table className={lightMode ? "blackBG" : "whiteBG"}>
         <thead>
-          <tr className="SimpleTableHeader">
+          <tr className={lightMode ? "SimpleTableHeader" : "DMSimpleTableHeader"}>
             {columns.map((col, index) => (
               <th key={index}>{col}</th>
             ))}

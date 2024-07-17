@@ -6,7 +6,7 @@ import { useParams, Link } from "react-router-dom";
 import FavouriteButton from "../components/FavouriteButton";
 import SimpleTable from "../components/SimpleTable";
 
-function Player() {
+function Player({lightMode, setLightMode}) {
   const { playerID } = useParams();
   const [PlayerStats, setPlayerStats] = useState({
     playerBio: [0], // Init 0 to avoid error on first render
@@ -103,6 +103,8 @@ function Player() {
         <h4>Player Hall Of Fame</h4>
         {PlayerStats?.playerHallOfFameStatus?.[0] ? (
           <SimpleTable
+            lightMode={lightMode}
+            setLightMode={setLightMode}
             columns={Object.keys(PlayerStats.playerHallOfFameStatus[0])}
             data={PlayerStats.playerHallOfFameStatus}
           />
@@ -116,6 +118,8 @@ function Player() {
       <h4>Player Awards</h4>
       {PlayerStats?.playerAwards?.[0] ? (
         <SimpleTable
+        lightMode={lightMode}
+        setLightMode={setLightMode}
           columns={Object.keys(PlayerStats.playerAwards[0])}
           data={PlayerStats.playerAwards}
         />
@@ -125,12 +129,14 @@ function Player() {
 
       <h4>Career Pitching Totals</h4>
       <SimpleTable
+            lightMode={lightMode}
+            setLightMode={setLightMode}
         columns={Object.keys(PlayerStats.playerCareerPitchingTotals[0])}
         data={PlayerStats.playerCareerPitchingTotals}
       />
 
       <h4>Seasonal Pitching Totals</h4>
-      <table className="TableStyle">
+      <table className={lightMode ? "TableStyle" : "DMTableStyle"}>
         <thead>
           <tr>
             <th>Year</th>
@@ -196,12 +202,14 @@ function Player() {
 
       <h4>Career Batting Totals</h4>
       <SimpleTable
+            lightMode={lightMode}
+            setLightMode={setLightMode}
         columns={Object.keys(PlayerStats.playerCareerBattingTotals[0])}
         data={PlayerStats.playerCareerBattingTotals}
       />
 
       <h4>Seasonal Batting Totals</h4>
-      <table className="TableStyle">
+      <table className={lightMode ? "TableStyle" : "DMTableStyle"}>
         <thead>
           <tr>
             <th>Year</th>
@@ -268,12 +276,14 @@ function Player() {
 
       <h4>Career Fielding Totals</h4>
       <SimpleTable
+            lightMode={lightMode}
+            setLightMode={setLightMode}
         columns={Object.keys(PlayerStats.playerCareerFieldingTotals[0])}
         data={PlayerStats.playerCareerFieldingTotals}
       />
 
       <h4>Seasonal Fielding Totals</h4>
-      <table className="TableStyle">
+      <table className={lightMode ? "TableStyle" : "DMTableStyle"}>
         <thead>
           <tr>
             <th>Year</th>

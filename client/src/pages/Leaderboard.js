@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 // Leaderboard page
 
-function Leaderboard() {
+function Leaderboard({lightMode, setLightMode}) {
   const [listOfPlayers, setListOfPlayers] = useState({
     battingLeaders: [],
     pitchingLeaders: [],
@@ -78,8 +78,8 @@ function Leaderboard() {
         <h3>Batting</h3>
       </div>
 
-      <div className="dropdown">
-        <select className="dropdown" value={battingStatistic} onChange={(e) => setBattingStatistic(e.target.value)}>
+      <div className={lightMode ? "dropdown" : "DMdropdown"}>
+        <select className={lightMode ? "dropdown" : "DMdropdown"} value={battingStatistic} onChange={(e) => setBattingStatistic(e.target.value)}>
           <option value="G">G</option>
           <option value="PA">PA</option>
           <option value="AB">AB</option>
@@ -101,7 +101,7 @@ function Leaderboard() {
         </select>
 
         <select
-          className="dropdown"
+          className={lightMode ? "dropdown" : "DMdropdown"}
           value={batYearID}
           onChange={(e) => setBatYearID(parseInt(e.target.value, 10))}
         >
@@ -114,7 +114,7 @@ function Leaderboard() {
         </select>
 
         <select
-          className="dropdown"
+          className={lightMode ? "dropdown" : "DMdropdown"}
           value={batOrderDirection}
           onChange={(e) => setBatOrderDirection(e.target.value)}
         >
@@ -146,9 +146,9 @@ function Leaderboard() {
         <h3>Pitching</h3>
       </div>
 
-      <div className="dropdown">
+      <div className={lightMode ? "dropdown" : "DMdropdown"}>
         <select
-          className="dropdown"
+          className={lightMode ? "dropdown" : "DMdropdown"}
           value={pitchingStatistic}
           onChange={(e) => setPitchingStatistic(e.target.value)}
         >
@@ -173,7 +173,7 @@ function Leaderboard() {
         </select>
 
         <select
-          className="dropdown"
+          className={lightMode ? "dropdown" : "DMdropdown"}
           value={pitchYearID}
           onChange={(e) => setPitchYearID(parseInt(e.target.value, 10))}
         >
@@ -186,7 +186,7 @@ function Leaderboard() {
         </select>
 
         <select
-          className="dropdown"
+          className={lightMode ? "dropdown" : "DMdropdown"}
           value={pitchOrderDirection}
           onChange={(e) => setPitchOrderDirection(e.target.value)}
         >
@@ -216,9 +216,9 @@ function Leaderboard() {
         <h3>Fielding</h3>
       </div>
 
-      <div className="dropdown">
+      <div className={lightMode ? "dropdown" : "DMdropdown"}>
         <select
-          className="dropdown"
+          className={lightMode ? "dropdown" : "DMdropdown"}
           value={fieldingStatistic}
           onChange={(e) => setFieldingStatistic(e.target.value)}
         >
@@ -231,7 +231,7 @@ function Leaderboard() {
         </select>
 
         <select
-          className="dropdown"
+          className={lightMode ? "dropdown" : "DMdropdown"}
 
           
           value={fieldYearID}
@@ -246,7 +246,7 @@ function Leaderboard() {
         </select>
 
         <select
-          className="dropdown"
+          className={lightMode ? "dropdown" : "DMdropdown"}
           value={fieldingOrderDirection}
           onChange={(e) => setFieldingOrderDirection(e.target.value)}
         >

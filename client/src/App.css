@@ -180,9 +180,17 @@ li {
   margin-bottom: 0;
   border-radius: 0;
 }
-.dropdown option:hover{ /*not working :(*/
-  background-color: #8CC04E;
+.DMdropdown{
+  font-size: inherit;
+  font-family: inherit;
+  border: 10px solid var(--input-border);
+  border-radius: 0px;
+  background-color: #F5FEFF;
+  background: #F5FEFF;
   color: #000000;
+  padding: 0.25em 0.5em;
+  margin-bottom: 0;
+  border-radius: 0;
 }
 
 
@@ -311,6 +319,12 @@ li {
   background-color: #000000;
   color: #F5FEFF; 
 }
+.DMTableStyle{
+  margin-top: 0;
+  margin-bottom: 0;
+  background-color: #F5FEFF;
+  color: #000000; 
+}
 .TableResults{
   margin-top: 0;
   margin-bottom: 0;
@@ -389,6 +403,10 @@ li {
   width: 320px;
 }
 
+.bottom-chunk{
+  margin-bottom: 513px;
+}
+
 /*=================Favourites==================*/
 .favHeader{
   margin-top: 0;
@@ -434,8 +452,16 @@ li {
   background-color: #000000;
   color: #F5FEFF;
 }
+.DMSimpleTableHeader{
+  background-color: #F5FEFF;
+  color: #000000;
+}
 .blackBG{
   background-color: #000000;
+  width: auto;
+}
+.whiteBG{
+  background-color: #F5FEFF;
   width: auto;
 }
 .SimpleTableListItem{
