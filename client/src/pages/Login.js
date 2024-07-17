@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({lightMode, setLightMode}) {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -53,7 +53,7 @@ function Login() {
         <h2>Login</h2>
       </div>
       <div className="Centered">
-      <input className="input"
+      <input className={lightMode ? "input" : "dminput"}
         type="text"
         placeholder="Username"
         onChange={(event) => {
@@ -62,7 +62,7 @@ function Login() {
       />
       </div>
       <div className="Centered">
-      <input className="input"
+      <input className={lightMode ? "input" : "dminput"}
         type="password"
         placeholder="Password"
         onChange={(event) => {
@@ -76,11 +76,12 @@ function Login() {
         </div>
       </div>
       <h3> </h3>
-      <div className="CenteredWithMargins" >
-        <button className="LoginButton" onClick={login}>
+      <div className="center" >
+        <button className={lightMode ? "LoginButton" : "dmLoginButton"} onClick={login}>
           Login
         </button>
       </div>
+      <h3 className="login-footer"> </h3>
     </div>
   );
 }

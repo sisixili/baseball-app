@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-function Favourites() {
+function Favourites({lightMode, setLightMode}) {
   const [listOfFavourites, setListOfFavourites] = useState({
     favouriteFranchises: [],
     favouriteTeams: [],
@@ -39,7 +39,7 @@ function Favourites() {
       </div>
       <div className="subTitle">
         <h3> </h3>
-        <div className="favHeader"><h3 className="boxMargins">Favourite Franchises</h3></div>
+        <div className={lightMode ? "favHeader" : "dmfavHeader"}><h3 className="boxMargins">Favourite Franchises</h3></div>
         {listOfFavourites.favouriteFranchises.map((franchise, key) => (
           <div className="favList" key={key}>
             <div className="boxMargins">
@@ -50,7 +50,7 @@ function Favourites() {
           </div>
         ))}
         <h3> </h3>
-        <div className="favHeader"><h3 className="boxMargins">Favourite Teams</h3></div>
+        <div className={lightMode ? "favHeader" : "dmfavHeader"}><h3 className="boxMargins">Favourite Teams</h3></div>
         {listOfFavourites.favouriteTeams.map((team, key) => (
           <div className="favList" key={key}>
             <div className="boxMargins">
@@ -61,7 +61,7 @@ function Favourites() {
           </div>
         ))}
         <h3> </h3>
-        <div className="favHeader"><h3 className="boxMargins">Favourite Players</h3></div>
+        <div className={lightMode ? "favHeader" : "dmfavHeader"}><h3 className="boxMargins">Favourite Players</h3></div>
         {listOfFavourites.favouritePlayers.map((player, key) => (
           <div className="favList" key={key}>
             <div className="boxMargins">
@@ -72,6 +72,7 @@ function Favourites() {
           </div>
         ))}
       </div>
+      <h3 className="fav-footer"> </h3>
     </div>
   );
 }
