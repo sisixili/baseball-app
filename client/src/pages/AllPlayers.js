@@ -57,9 +57,9 @@ function Players({ lightMode, setLightMode }) {
       </div>
       <form onSubmit={handleSearchSubmit}>
         <input
-          className={lightMode ? "input" : "DMinput"}
-          onChange={handleChange}
-          placeholder="Search by Last Name"
+          className={lightMode ? "input" : "DMinput"} 
+          onChange={handleChange} 
+          placeholder="Search by Last Name" 
         />
         <button className={lightMode ? "input" : "DMinput"} type="submit">Search</button>
       </form>

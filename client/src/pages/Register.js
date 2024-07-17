@@ -106,6 +106,7 @@ function Register() {
           <button className="RegCenteredWithMargins" type="submit">Register</button>
         </form>
       </div>
+      <h4 className="reg-footer"> </h4>
     </div>
   );
 }

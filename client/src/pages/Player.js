@@ -62,8 +62,7 @@ function Player({lightMode, setLightMode}) {
       <div id="TopBar"> {/*  className="TopGrid"*/}
       <div id="TopLeft">
         <div>
-          <FavouriteButton className="StatTypeButton" userID={userID} type="player" id={playerID} text="Add Favourite Player" />
-          <FavouriteButton className="StatTypeButton" userID={userID} type="player" id={playerID} text="Regular Season"/>
+          <FavouriteButton userID={userID} type="player" id={playerID} text="Add Favourite Player" />
         </div>
 
         {/*<SimpleTable

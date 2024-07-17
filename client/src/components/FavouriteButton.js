@@ -28,7 +28,7 @@ const FavouriteButton = ({ userID, type, id, text }) => {
 
   return (
     <button onClick={handleAddFavourite}>
-      {text} {/*type.charAt(0).toUpperCase() + type.slice(1)*/}
+      Add Favourite {type.charAt(0).toUpperCase() + type.slice(1)} {/*text*/}
     </button>
   );
 };
