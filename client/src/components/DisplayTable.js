@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const DisplayTable = ({ columns, data }) => {
+const DisplayTable = ({ lightMode, columns, data }) => {
 
   // Function to check if all rows match the columns
   const isValidRow = (row) => {
@@ -15,9 +15,9 @@ const DisplayTable = ({ columns, data }) => {
   }
 
   return (
-    <table className="blackBG">
+    <table className={lightMode ? "blackBG" : "whiteBG"}>
       <thead>
-        <tr className="SimpleTableHeader">
+        <tr className={lightMode ? "SimpleTableHeader" : "DMSimpleTableHeader"}>
           {columns.map((col, index) => (
             <th key={index}>{col.displayName || col.name}</th>
           ))}

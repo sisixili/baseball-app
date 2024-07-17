@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import FavouriteButton from "../components/FavouriteButton";
 import SimpleTable from "../components/SimpleTable";
 
-function Team() {
+function Team({lightMode, setLightMode}) {
   const { teamID, yearID } = useParams();
   const [teamStats, setTeamStats] = useState({
     teamBio: [],
@@ -39,7 +39,7 @@ function Team() {
   }, [teamID, yearID]);
 
   return (
-    <div>
+    <div className="center">
       <div className="pageTitle">
         {teamStats.teamBio.map((team, key) => (
           <div className="pageTitle" key={key}>
@@ -73,7 +73,7 @@ function Team() {
       />
 
       <h3> All Pitchers</h3>
-      <table className="TableStyle">
+      <table className={lightMode ? "TableStyle" : "DMTableStyle"}>
         <thead>
           <tr>
             <th>Full Name</th>
@@ -135,7 +135,7 @@ function Team() {
       />
 
       <h3> All Batters</h3>
-      <table className="TableStyle">
+      <table className={lightMode ? "TableStyle" : "DMTableStyle"}>
         <thead>
           <tr>
             <th>Full Name</th>

@@ -468,3 +468,9 @@ li {
   background-color: #23B5D3;
   color: #000000; 
 }
+
+/* standings things */
+
+.standings-footer{
+  margin-bottom: 350px;
+}

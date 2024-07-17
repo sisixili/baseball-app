@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DisplayTable from '../components/DisplayTable'
 
-function Standings() {
+function Standings({lightMode, setLightMode}) {
   const [listOfStandings, setListOfStandings] = useState([]);
   const [year, setYear] = useState(1871); 
 
@@ -52,7 +52,7 @@ function Standings() {
         <h1>Standings</h1>
 
         <select
-          className="dropdown"
+          className={lightMode ? "dropdown" : "DMdropdown"}
           value={year}
           onChange={(e) => setYear(e.target.value)}
         >
@@ -65,9 +65,11 @@ function Standings() {
         </select>
         <h4> </h4>
 
-        <DisplayTable columns={columns} data={listOfStandings} />
+        <DisplayTable lightMode={lightMode} columns={columns} data={listOfStandings} />
       </div>
-
+      <div className="standings-footer">
+          <h4> </h4>
+      </div>
     </div>
   );
 }

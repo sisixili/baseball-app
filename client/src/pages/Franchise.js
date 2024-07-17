@@ -4,7 +4,7 @@ import FavouriteButton from '../components/FavouriteButton'
 import SimpleTable from "../components/SimpleTable";
 
 
-function Franchise() {
+function Franchise({lightMode, setLightMode}) {
     const { franchiseID } = useParams();
     const [franchiseStats, setFranchiseStats] = useState({
       franchiseBio: [],
@@ -69,7 +69,7 @@ function Franchise() {
 
         <h3>Teams</h3>
         <div className="center">
-          <table className="TableStyle">
+          <table className={lightMode ? "TableStyle" : "DMTableStyle"}>
             <thead>
               <tr>
                 <th>Name & Year</th>
