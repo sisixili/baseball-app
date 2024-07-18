@@ -292,6 +292,7 @@ function Player({lightMode, setLightMode}) {
         <p>No fielding totals for this player.</p>  
       )}
 
+
       <h4>Seasonal Fielding Totals</h4>
       <table className={lightMode ? "TableStyle" : "DMTableStyle"}>
         <thead>

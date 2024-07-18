@@ -53,6 +53,7 @@ function Franchise({lightMode, setLightMode}) {
         <div>
           <h3 className="center">Franchise Total Pitching Stats</h3>
           <SimpleTable
+            lightMode={lightMode}
             columns={Object.keys(franchiseStats.franchiseTotalPitching[0])}
             data={franchiseStats.franchiseTotalPitching}
           />
@@ -61,6 +62,7 @@ function Franchise({lightMode, setLightMode}) {
         <div>
         <h3 className="center">Franchise Total Batting Stats</h3>
           <SimpleTable
+            lightMode={lightMode}
             columns={Object.keys(franchiseStats.franchiseTotalBatting[0])}
             data={franchiseStats.franchiseTotalBatting}
           />

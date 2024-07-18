@@ -68,6 +68,7 @@ function Team({lightMode, setLightMode}) {
 
       <h3> Total Pitching Stats</h3>
       <SimpleTable
+      lightMode={lightMode}
         columns={Object.keys(teamStats.teamTotalPitching[0])}
         data={teamStats.teamTotalPitching}
       />
@@ -130,6 +131,7 @@ function Team({lightMode, setLightMode}) {
 
       <h3> Total Batting Stats</h3>
       <SimpleTable
+      lightMode={lightMode}
         columns={Object.keys(teamStats.teamTotalBatting[0])}
         data={teamStats.teamTotalBatting}
       />
