@@ -7,7 +7,10 @@ function Franchises({lightMode, setLightMode}) {
   const [listOfFranchises, setListOfFranchises] = useState({
     activeFranchises: [],
     nonActiveFranchises: [],
+    nationalAssociationFranchises:[],
   });
+
+  console.log(listOfFranchises)
 
   useEffect(() => {
     fetch("http://localhost:3001/franchises", {
@@ -38,44 +41,65 @@ function Franchises({lightMode, setLightMode}) {
         <h2>Franchises</h2>
       </div>
       <div className="subTitle">
-      <div className={lightMode ? "franHeader" : "DMfranHeader"}><h3 className="boxMargins">All Active Franchises</h3></div>
-      
-      <div className="Players">
-        <div className="franList">
-        <div className="nameList">
-          {listOfFranchises.activeFranchises.map((franchise, key) => (
-            <div className="player" key={key}>
-              <div className="nameList">
-              <Link to={`/franchises/${franchise.franchiseID}`}>
-                {franchise.franchiseName}
-              </Link>
-              </div>
+        <div className={lightMode ? "franHeader" : "DMfranHeader"}><h3 className="boxMargins">All Active Franchises</h3></div>
+        
+        <div className="Players">
+          <div className="franList">
+            <div className="nameList">
+              {listOfFranchises.activeFranchises.map((franchise, key) => (
+                <div className="player" key={key}>
+                  <div className="nameList">
+                  <Link to={`/franchises/${franchise.franchiseID}`}>
+                    {franchise.franchiseName}
+                  </Link>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
-        </div>
-      </div>
 
-      <h3> </h3>
+        <h3> </h3>
 
-      <div className={lightMode ? "franHeader" : "DMfranHeader"}><h3 className="boxMargins">All Non-Active Franchises</h3></div>
+        <div className={lightMode ? "franHeader" : "DMfranHeader"}><h3 className="boxMargins">All Non-Active Franchises</h3></div>
 
-      <div className="Players">
-        <div className="franList">
-        <div className="nameList">
-          {listOfFranchises.nonActiveFranchises.map((franchise, key) => (
-            <div className="player" key={key}>
-              <div className="nameList">
-                <Link to={`/franchises/${franchise.franchiseID}`}>
-                  {franchise.franchiseName}
-                </Link>
-              </div>
+        <div className="Players">
+          <div className="franList">
+            <div className="nameList">
+              {listOfFranchises.nonActiveFranchises.map((franchise, key) => (
+                <div className="player" key={key}>
+                  <div className="nameList">
+                    <Link to={`/franchises/${franchise.franchiseID}`}>
+                      {franchise.franchiseName}
+                    </Link>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
+
+        <h3> </h3>
+
+        <div className={lightMode ? "franHeader" : "DMfranHeader"}><h3 className="boxMargins">National Association Franchises</h3></div>
+
+        <div className="Players">
+          <div className="franList">
+            <div className="nameList">
+              {listOfFranchises.nationalAssociationFranchises.map((franchise, key) => (
+                <div className="player" key={key}>
+                  <div className="nameList">
+                    <Link to={`/franchises/${franchise.franchiseID}`}>
+                      {franchise.franchiseName}
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
-      <h3 className="ListWrap"> </h3>
+
+        <h3 className="ListWrap"> </h3>
       </div>
     </div>
   );
