@@ -58,6 +58,7 @@ function Player({lightMode, setLightMode}) {
 
   return (
     <div>
+      {console.log(PlayerStats)}
       <h3> </h3>
       <div id="TopBar"> {/*  className="TopGrid"*/}
       <div id="TopLeft">
@@ -76,13 +77,13 @@ function Player({lightMode, setLightMode}) {
             {player.nameFirst} {player.nameLast}
             </head>
             <ul className="BioStats">
-              <li className="BioStats">Bats: {player.bats}</li>
-              <li className="BioStatsR">Throws: {player.throws}</li>
-              <li className="BioStats">Birthday: {player.birthYear}-{player.birthMonth}-{player.birthDay}</li>
-              <li className="BioStatsR">Debut: {player.debut}</li>
-              <li className="BioStats">Height: {player.height}"</li>
-              <li className="BioStatsR">Weight: {player.weight}lbs</li>
-              <li className="BioStats">Born: {player.birthCountry}</li>
+              <li className="BioStats">Bats: {player.bats?player.bats: "N/A"}</li>
+              <li className="BioStatsR">Throws: {player.throws ? player.throws : "N/A"}</li>
+              <li className="BioStats">Birthday: {player.birthYear ? player.birthYear : "N/A"}-{player.birthMonth ? player.birthMonth : "N/A"}-{player.birthDay ? player.birthDay : "N/A"}</li>
+              <li className="BioStatsR">Debut: {player.debut ? player.debut : "N/A"}</li>
+              <li className="BioStats">Height: {player.height ? player.height : "N/A"}"</li>
+              <li className="BioStatsR">Weight: {player.weight ? player.weight+"lbs" : "N/A"}</li>
+              <li className="BioStats">Born: {player.birthCountry ? player.birthCountry : "N/A"}</li>
             </ul>
           </div>
         ))}
@@ -127,12 +128,16 @@ function Player({lightMode, setLightMode}) {
       )}
 
       <h4>Career Pitching Totals</h4>
+      {PlayerStats?.playerCareerPitchingTotals?.[0] ? (
       <SimpleTable
             lightMode={lightMode}
             setLightMode={setLightMode}
         columns={Object.keys(PlayerStats.playerCareerPitchingTotals[0])}
         data={PlayerStats.playerCareerPitchingTotals}
       />
+      ):(
+        <p>No pitching totals for this player.</p>  
+      )}
 
       <h4>Seasonal Pitching Totals</h4>
       <table className={lightMode ? "TableStyle" : "DMTableStyle"}>
@@ -200,12 +205,15 @@ function Player({lightMode, setLightMode}) {
       </table>
 
       <h4>Career Batting Totals</h4>
+      {PlayerStats?.playerCareerBattingTotals?.[0] ? (
       <SimpleTable
             lightMode={lightMode}
             setLightMode={setLightMode}
         columns={Object.keys(PlayerStats.playerCareerBattingTotals[0])}
         data={PlayerStats.playerCareerBattingTotals}
-      />
+      />):(
+        <p>No batting totals for this player.</p>  
+      )}
 
       <h4>Seasonal Batting Totals</h4>
       <table className={lightMode ? "TableStyle" : "DMTableStyle"}>
@@ -274,12 +282,15 @@ function Player({lightMode, setLightMode}) {
       </table>
 
       <h4>Career Fielding Totals</h4>
+      {PlayerStats?.playerCareerFieldingTotals?.[0] ? (
       <SimpleTable
             lightMode={lightMode}
             setLightMode={setLightMode}
         columns={Object.keys(PlayerStats.playerCareerFieldingTotals[0])}
         data={PlayerStats.playerCareerFieldingTotals}
-      />
+      />):(
+        <p>No fielding totals for this player.</p>  
+      )}
 
       <h4>Seasonal Fielding Totals</h4>
       <table className={lightMode ? "TableStyle" : "DMTableStyle"}>
