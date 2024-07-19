@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ButtonColTable from "../components/ButtonColTable";
 
 // Leaderboard page
 
@@ -73,6 +74,51 @@ function Leaderboard({lightMode, setLightMode}) {
       <div className="pageTitle">
         <h2>Leaderboard</h2>
       </div>
+
+      {/* console.log(listOfPlayers) */}
+      {/* console.log(listOfPlayers.battingLeaders) */}
+      <h3> Test Table </h3>
+      { listOfPlayers?.battingLeaders?.[0]? ( 
+
+          <div>
+            <table className={lightMode ? "blackBG" : "whiteBG"}>
+              <thead>
+                <tr className={lightMode ? "SimpleTableHeader" : "DMSimpleTableHeader"}>
+                  {Object.keys(listOfPlayers.battingLeaders[0]).map((col, index) => (
+                    <th key={index}><td> <button className={lightMode ? "input" : "DMinput"} onClick={() => setBattingStatistic(col.toString())}>{col}</button> </td></th> /* className={lightMode ? "input" : "DMinput"} */
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="SimpleTableListItem">
+                {listOfPlayers.battingLeaders.map((row, rowIndex) => (
+                  <tr key={rowIndex}>
+                    {Object.keys(listOfPlayers.battingLeaders[0]).map((col, colIndex) => (
+                      <td key={colIndex}>{row[col]}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div> 
+
+
+        /* <ButtonColTable 
+      
+        lightMode={lightMode}
+        columns={Object.keys(listOfPlayers.battingLeaders[0])}
+        data={listOfPlayers.battingLeaders}
+
+        value={battingStatistic} 
+        setValue={setBattingStatistic}
+
+        direction={batOrderDirection}
+        year={batYearID}
+      /> */
+
+
+      ) : (
+        <p>no lists</p>
+      )}
 
       <div className="subTitle">
         <h3>Batting</h3>

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import FavouriteButton from '../components/FavouriteButton'
-import SimpleTable from "../components/SimpleTable";
 import FranTotsTable from "../components/FranTotsTable";
 
 
@@ -70,7 +69,7 @@ function Franchise({lightMode, setLightMode}) {
         </div>
 
         <h3>Teams</h3>
-        {console.log(franchiseStats.franchiseTeams)}
+        {/* console.log(franchiseStats.franchiseTeams) */}
         <div className="center">
           <table className={lightMode ? "TableStyle" : "DMTableStyle"}>
             <thead>

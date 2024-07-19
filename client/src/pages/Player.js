@@ -58,7 +58,7 @@ function Player({lightMode, setLightMode}) {
 
   return (
     <div>
-      {console.log(PlayerStats)}
+      {/* console.log(PlayerStats) */}
       <h3> </h3>
       <div id="TopBar"> {/*  className="TopGrid"*/}
       <div id="TopLeft">
