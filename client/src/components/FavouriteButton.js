@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FavouriteButton = ({ userID, type, id, text }) => {
+const FavouriteButton = ({ userID, type, id, text, lightMode }) => {
   const handleAddFavourite = async () => {
 
     try {
@@ -27,7 +27,7 @@ const FavouriteButton = ({ userID, type, id, text }) => {
   };
 
   return (
-    <button onClick={handleAddFavourite}>
+    <button className="dmfavbutton" onClick={handleAddFavourite}> {/* lightMode ? "favbutton" : "dmfavbutton" */}
       Add Favourite {type.charAt(0).toUpperCase() + type.slice(1)} {/*text*/}
     </button>
   );

@@ -503,3 +503,14 @@ li {
 .reg-footer{
   margin-bottom: 356px;
 }
+
+/* fav button */
+
+.favbutton{
+  color:#8CC04E;
+  background-color: #000000;
+}
+.dmfavbutton{
+  color:#000000;
+  background-color: #8CC04E;
+}

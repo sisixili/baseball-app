@@ -63,7 +63,7 @@ function Player({lightMode, setLightMode}) {
       <div id="TopBar"> {/*  className="TopGrid"*/}
       <div id="TopLeft">
         <div>
-          <FavouriteButton userID={userID} type="player" id={playerID} text="Add Favourite Player" />
+          <FavouriteButton lightMode={lightMode} userID={userID} type="player" id={playerID} text="Add Favourite Player" />
         </div>
 
         {/*<SimpleTable
@@ -140,6 +140,16 @@ function Player({lightMode, setLightMode}) {
       )}
 
       <h4>Seasonal Pitching Totals</h4>
+      {/* PlayerStats?.playerSeasonalPitchingTotals?.[0] ? (
+      <SimpleTable
+            lightMode={lightMode}
+            setLightMode={setLightMode}
+        columns={Object.keys(PlayerStats.playerSeasonalPitchingTotals[0])}
+        data={PlayerStats.playerSeasonalPitchingTotals}
+      />
+      ):(
+        <p>No pitching totals for this player.</p>  
+      ) */}           {/* works but cant seem to include the links specifically */}
       <table className={lightMode ? "TableStyle" : "DMTableStyle"}>
         <thead>
           <tr>

@@ -49,7 +49,7 @@ function Franchise({lightMode, setLightMode}) {
             </div>
           ))}
         </div>
-        <FavouriteButton userID={userID} type="franchise" id={franchiseID} text="Add Favourite Franchise" />
+        <FavouriteButton lightMode={lightMode} userID={userID} type="franchise" id={franchiseID} text="Add Favourite Franchise" />
         <div>
           <h3 className="center">Franchise Total Pitching Stats</h3>
           <SimpleTable

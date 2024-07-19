@@ -59,6 +59,7 @@ function Team({lightMode, setLightMode}) {
 
       <div>
         <FavouriteButton
+          lightMode={lightMode} 
           userID={userID}
           type="team"
           id={{ team: teamID, year: yearID }}
