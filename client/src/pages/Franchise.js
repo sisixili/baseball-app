@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import FavouriteButton from '../components/FavouriteButton'
 import SimpleTable from "../components/SimpleTable";
+import FranTotsTable from "../components/FranTotsTable";
 
 
 function Franchise({lightMode, setLightMode}) {
@@ -52,7 +53,7 @@ function Franchise({lightMode, setLightMode}) {
         <FavouriteButton lightMode={lightMode} userID={userID} type="franchise" id={franchiseID} text="Add Favourite Franchise" />
         <div>
           <h3 className="center">Franchise Total Pitching Stats</h3>
-          <SimpleTable
+          <FranTotsTable
             lightMode={lightMode}
             columns={Object.keys(franchiseStats.franchiseTotalPitching[0])}
             data={franchiseStats.franchiseTotalPitching}
@@ -61,7 +62,7 @@ function Franchise({lightMode, setLightMode}) {
 
         <div>
         <h3 className="center">Franchise Total Batting Stats</h3>
-          <SimpleTable
+          <FranTotsTable
             lightMode={lightMode}
             columns={Object.keys(franchiseStats.franchiseTotalBatting[0])}
             data={franchiseStats.franchiseTotalBatting}
