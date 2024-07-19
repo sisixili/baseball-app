@@ -336,7 +336,7 @@ export const getFranchiseTeams = async (franchiseID) => {
         "name",
         "teamID",
         "G",
-        "w",
+        "W",
         "L",
         db.raw('W / G AS winPercentage'),
         db.raw('(Teams.attendance / (SELECT SUM(gamesWithFans) FROM HomeGames WHERE HomeGames.yearID = Teams.yearID AND HomeGames.teamID = Teams.teamID)) AS averageAttendance')
