@@ -10,7 +10,7 @@ function Franchise({lightMode, setLightMode}) {
       franchiseBio: [],
       franchiseTotalPitching: [0],
       franchiseTotalBatting: [0],
-      franchiseTeams: []
+      franchiseTeams: [0]
     });
     const userID = sessionStorage.getItem("userID");
   
@@ -69,6 +69,7 @@ function Franchise({lightMode, setLightMode}) {
         </div>
 
         <h3>Teams</h3>
+        {console.log(franchiseStats.franchiseTeams)}
         <div className="center">
           <table className={lightMode ? "TableStyle" : "DMTableStyle"}>
             <thead>

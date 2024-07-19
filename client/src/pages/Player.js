@@ -79,7 +79,7 @@ function Player({lightMode, setLightMode}) {
             <ul className="BioStats">
               <li className="BioStats">Bats: {player.bats?player.bats: "N/A"}</li>
               <li className="BioStatsR">Throws: {player.throws ? player.throws : "N/A"}</li>
-              <li className="BioStats">Birthday: {player.birthYear ? player.birthYear : "N/A"}-{player.birthMonth ? player.birthMonth : "N/A"}-{player.birthDay ? player.birthDay : "N/A"}</li>
+              <li className="BioStats">Birthday: {player.birthYear ? player.birthYear : "0000"}-{player.birthMonth ? player.birthMonth : "00"}-{player.birthDay ? player.birthDay : "00"}</li>
               <li className="BioStatsR">Debut: {player.debut ? player.debut : "N/A"}</li>
               <li className="BioStats">Height: {player.height ? player.height : "N/A"}"</li>
               <li className="BioStatsR">Weight: {player.weight ? player.weight+"lbs" : "N/A"}</li>
