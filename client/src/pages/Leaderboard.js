@@ -80,28 +80,43 @@ function Leaderboard({lightMode, setLightMode}) {
       <h3> Test Table </h3>
       { listOfPlayers?.battingLeaders?.[0]? ( 
 
-          <div>
-            <table className={lightMode ? "blackBG" : "whiteBG"}>
-              <thead>
-                <tr className={lightMode ? "SimpleTableHeader" : "DMSimpleTableHeader"}>
-
-                  {Object.keys(listOfPlayers.battingLeaders[0]).map((col, index) => (
-                      <th key={index}><td> <button className={lightMode ? "input" : "DMinput"} onClick={() => setBattingStatistic(col.toString())}>{col}</button> </td></th> /* className={lightMode ? "input" : "DMinput"} */
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="SimpleTableListItem">
-                {listOfPlayers.battingLeaders.map((row, rowIndex) => (                  
-                  <tr key={rowIndex}>
-                    {/* Delete nameFirst and nameLast from display, and add links */}
-                    {Object.keys(listOfPlayers.battingLeaders[0]).map((col, colIndex) => (
-                      <td key={colIndex}>{row[col]}</td>
-                    ))}
-                  </tr>
+        <div>
+        <table className={lightMode ? "blackBG" : "whiteBG"}>
+          <thead>
+            <tr className={lightMode ? "SimpleTableHeader" : "DMSimpleTableHeader"}>
+              {/* Merge the first three columns into one */}
+              <th>
+                <td>
+                  <button className={lightMode ? "input" : "DMinput"} onClick={() => setBattingStatistic("nameLast")}>Player</button>
+                </td>
+              </th>
+              {Object.keys(listOfPlayers.battingLeaders[0]).slice(3).map((col, index) => (
+                <th key={index + 1}>
+                  <td>
+                    <button className={lightMode ? "input" : "DMinput"} onClick={() => setBattingStatistic(col.toString())}>{col}</button>
+                  </td>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="SimpleTableListItem">
+            {listOfPlayers.battingLeaders.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                {/* Combine the first three columns into one cell */}
+                <td>
+                  <Link to={`/players/${row[Object.keys(listOfPlayers.battingLeaders[0])[0]]}`}>
+                    {row[Object.keys(listOfPlayers.battingLeaders[0])[1]]} {row[Object.keys(listOfPlayers.battingLeaders[0])[2]]}
+                  </Link>
+                </td>
+                {Object.keys(listOfPlayers.battingLeaders[0]).slice(3).map((col, colIndex) => (
+                  <td key={colIndex + 1}>{row[col]}</td>
                 ))}
-              </tbody>
-            </table>
-          </div> 
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        </div>
+
 
 
         /* <ButtonColTable 
