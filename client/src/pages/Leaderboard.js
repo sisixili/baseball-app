@@ -77,7 +77,7 @@ function Leaderboard({lightMode, setLightMode}) {
 
       {/* console.log(listOfPlayers) */}
       {/* console.log(listOfPlayers.battingLeaders) */}
-      {/* <h3> Test Table </h3>
+      <h3> Test Table </h3>
       { listOfPlayers?.battingLeaders?.[0]? ( 
 
           <div>
@@ -86,14 +86,14 @@ function Leaderboard({lightMode, setLightMode}) {
                 <tr className={lightMode ? "SimpleTableHeader" : "DMSimpleTableHeader"}>
 
                   {Object.keys(listOfPlayers.battingLeaders[0]).map((col, index) => (
-                      <th key={index}><td> <button className={lightMode ? "input" : "DMinput"} onClick={() => setBattingStatistic(col.toString())}>{col}</button> </td></th> /* className={lightMode ? "input" : "DMinput"} *//*
+                      <th key={index}><td> <button className={lightMode ? "input" : "DMinput"} onClick={() => setBattingStatistic(col.toString())}>{col}</button> </td></th> /* className={lightMode ? "input" : "DMinput"} */
                   ))}
                 </tr>
               </thead>
               <tbody className="SimpleTableListItem">
                 {listOfPlayers.battingLeaders.map((row, rowIndex) => (                  
                   <tr key={rowIndex}>
-                    {/* Delete nameFirst and nameLast from display, and add links *//*}
+                    {/* Delete nameFirst and nameLast from display, and add links */}
                     {Object.keys(listOfPlayers.battingLeaders[0]).map((col, colIndex) => (
                       <td key={colIndex}>{row[col]}</td>
                     ))}
@@ -115,12 +115,12 @@ function Leaderboard({lightMode, setLightMode}) {
 
         direction={batOrderDirection}
         year={batYearID}
-      /> *//*
+      /> */
 
 
       ) : (
         <p>no lists</p>
-      )} */}
+      )}
 
       <div className="subTitle">
         <h3>Batting</h3>

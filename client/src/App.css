@@ -1,6 +1,7 @@
 :root {
-  --DMContrast: #00819B;/*#A0EFFF;*/
-} /* var(--DMContrast) */
+  --DMContrast: #A0EFFF;/*#00819B;*/
+  --DMBackground: #001D42;
+} /* var(--DMContrast) var(--DMBackground)*/
 
 /* ==================== GENERAL ==================== */
 .App {
@@ -11,6 +12,8 @@
   align-items: center;
   flex-direction: column;
   background: #F5FEFF; /*BG Colour */
+
+  font-family: 'Trebuchet MS', sans-serif;
 }
 .DMApp {
   width: 100vw;
@@ -19,7 +22,9 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: #000000; /*BG Colour */
+  background: var(--DMBackground); /*BG Colour */
+
+  /*font-family: 'Tahoma';*/
 }
 body { 
   margin: 0px;
@@ -35,8 +40,8 @@ body {
   display: inherit;
   align-items: inherit;
   flex-direction: inherit;
-  background-color: #000000;
-  background: #000000;
+  background-color: var(--DMBackground);
+  background: var(--DMBackground);
   color: var(--DMContrast);
 }
 .lmbody{
@@ -77,7 +82,7 @@ body {
 .SearchBar{
   width: auto + 30;
   align-items: center;
-  background-color: #000000;
+  background-color: var(--DMBackground);
   background: transparent;
   color: #F5FEFF;
   margin-bottom: 0;
@@ -130,7 +135,7 @@ body {
 /*==========Images==========*/
 
 .floatImg {
-  background: #F5FEFF;
+  background: transparent;
   border: transparent;
   float: right;
   margin: 0 0 0 0;
@@ -143,7 +148,7 @@ body {
   height:250px;
 }
 .floatBall {
-  background: #F5FEFF;
+  background: transparent;
   border: transparent;
   float: right;
   margin: 0 0 0 0;
