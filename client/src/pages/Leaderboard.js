@@ -70,14 +70,41 @@ function Leaderboard({lightMode, setLightMode}) {
   }
 
   return (
-    <div>
+    <div className="center">
       <div className="pageTitle">
         <h2>Leaderboard</h2>
       </div>
 
+      <div className="center">
+      <p>To order the tables, click on the column header of the statistic you would like to sort by.</p>
+      <div className="pgInstr">
+      <p>Click again to toggle between ascending and descending order.</p>
+      </div>
+      </div>
+
       {/* console.log(listOfPlayers) */}
       {/* console.log(listOfPlayers.battingLeaders) */}
-      <h3> Batting </h3>
+      <div className="row">
+        <div className="inner-row-item">
+          <div> {/* className="subTitle" */}
+            <h3>Batting</h3>
+          </div>
+        </div>
+        <div className="inner-row-item">
+        <select
+            className={lightMode ? "dropdown" : "DMdropdown"}
+            value={batYearID}
+            onChange={(e) => setBatYearID(e.target.value)}
+          >
+            {allYears.map((year) => (
+              <option key={year} value={year}>
+                {" "}
+                {year}{" "}
+              </option>
+            ))}
+        </select>
+        </div>
+      </div>
       { listOfPlayers?.battingLeaders?.[0]? ( 
 
         <div>
@@ -163,7 +190,7 @@ function Leaderboard({lightMode, setLightMode}) {
       /> */
 
       ) : (
-        <p>no lists</p>
+        <p>No Batting Statistics Available</p>
       )}
 
       {/* <div className="subTitle">
@@ -234,10 +261,27 @@ function Leaderboard({lightMode, setLightMode}) {
 
       {/* ==================================================================================== */}
 
-      <div className="subTitle">
-        <h3>Pitching</h3>
+      <div className="row">
+        <div className="inner-row-item">
+          <div> {/* className="subTitle" */}
+            <h3>Pitching</h3>
+          </div>
+        </div>
+        <div className="inner-row-item">
+        <select
+            className={lightMode ? "dropdown" : "DMdropdown"}
+            value={pitchYearID}
+            onChange={(e) => setPitchYearID(e.target.value)}
+          >
+            {allYears.map((year) => (
+              <option key={year} value={year}>
+                {" "}
+                {year}{" "}
+              </option>
+            ))}
+        </select>
+        </div>
       </div>
-
 
       { listOfPlayers?.pitchingLeaders?.[0]? ( 
 
@@ -311,7 +355,7 @@ function Leaderboard({lightMode, setLightMode}) {
         </div>
 
         ) : (
-        <p>no lists</p>
+        <p>No Pitching Statistics Available</p>
         )}
 
 
@@ -381,11 +425,103 @@ function Leaderboard({lightMode, setLightMode}) {
         </div>
       </div> */}
 
-      <div className="subTitle">
-        <h3>Fielding</h3>
+<div className="row">
+        <div className="inner-row-item">
+          <div> {/* className="subTitle" */}
+            <h3>Fielding</h3>
+          </div>
+        </div>
+        <div className="inner-row-item">
+        <select
+            className={lightMode ? "dropdown" : "DMdropdown"}
+            value={fieldYearID}
+            onChange={(e) => setFieldYearID(e.target.value)}
+          >
+            {allYears.map((year) => (
+              <option key={year} value={year}>
+                {" "}
+                {year}{" "}
+              </option>
+            ))}
+        </select>
+        </div>
       </div>
 
-      <div className={lightMode ? "dropdown" : "DMdropdown"}>
+      { listOfPlayers?.fieldingLeaders?.[0]? ( 
+
+        <div>
+        <table className={lightMode ? "blackBG" : "whiteBG"}>
+          <thead>
+            <tr className={lightMode ? "SimpleTableHeader" : "DMSimpleTableHeader"}>
+              {/* Merge the first three columns into one */}
+              <th>
+                <td>
+                  <button 
+                    className={lightMode ? "input" : "DMinput"} 
+                    onClick={() => {
+                      if (fieldingStatistic === 'nameLast') {
+                        if (fieldingOrderDirection === 'asc'){
+                          setFieldingOrderDirection('desc');
+                        }
+                        else{
+                          setFieldingOrderDirection('asc')
+                        }
+                      } else {
+                        setFieldingStatistic('nameLast');
+                      }
+                    }}
+                  >
+                    Player
+                  </button>
+                </td>
+              </th>
+              {Object.keys(listOfPlayers.fieldingLeaders[0]).slice(3).map((col, index) => (
+                <th key={index + 1}>
+                  <td>
+                    <button
+                      className={lightMode ? "input" : "DMinput"}
+                      onClick={() => {
+                        if (fieldingStatistic === col.toString()) {
+                          if (fieldingOrderDirection === 'asc'){
+                            setFieldingOrderDirection('desc');
+                          }
+                          else{
+                            setFieldingOrderDirection('asc')
+                          }
+                        } else {
+                          setFieldingStatistic(col.toString());
+                        }
+                      }}
+                    >
+                      {col}
+                    </button>
+                  </td>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="SimpleTableListItem">
+            {listOfPlayers.fieldingLeaders.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                {/* Combine the first three columns into one cell */}
+                <td>
+                  <Link to={`/players/${row[Object.keys(listOfPlayers.battingLeaders[0])[0]]}`}>
+                    {row[Object.keys(listOfPlayers.fieldingLeaders[0])[1]]} {row[Object.keys(listOfPlayers.fieldingLeaders[0])[2]]}
+                  </Link>
+                </td>
+                {Object.keys(listOfPlayers.fieldingLeaders[0]).slice(3).map((col, colIndex) => (
+                  <td key={colIndex + 1}>{row[col]}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        </div>
+        ) : (
+        <p>No Fielding Statistics Available</p>
+        )}
+
+      {/* <div className={lightMode ? "dropdown" : "DMdropdown"}>
         <select
           className={lightMode ? "dropdown" : "DMdropdown"}
           value={fieldingStatistic}
@@ -439,7 +575,8 @@ function Leaderboard({lightMode, setLightMode}) {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
+      <h3> </h3>
     </div>
   );
 }

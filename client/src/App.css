@@ -523,3 +523,20 @@ li {
   color:#000000;
   background-color: #8CC04E;
 }
+
+/* Page Intructions */
+.pgInstr{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  margin-top: -25px;
+}
+.row{
+  display: flex;
+  align-items: center;
+  flex-direction: row; 
+}
+.inner-row-item{
+  margin-right: 10px;
+}
