@@ -238,7 +238,84 @@ function Leaderboard({lightMode, setLightMode}) {
         <h3>Pitching</h3>
       </div>
 
-      <div className={lightMode ? "dropdown" : "DMdropdown"}>
+
+      { listOfPlayers?.pitchingLeaders?.[0]? ( 
+
+        <div>
+        <table className={lightMode ? "blackBG" : "whiteBG"}>
+          <thead>
+            <tr className={lightMode ? "SimpleTableHeader" : "DMSimpleTableHeader"}>
+              {/* Merge the first three columns into one */}
+              <th>
+                <td>
+                  <button 
+                    className={lightMode ? "input" : "DMinput"} 
+                    onClick={() => {
+                      if (pitchingStatistic === 'nameLast') {
+                        if (pitchOrderDirection === 'asc'){
+                          setPitchOrderDirection('desc');
+                        }
+                        else{
+                          setPitchOrderDirection('asc')
+                        }
+                      } else {
+                        setPitchingStatistic('nameLast');
+                      }
+                    }}
+                  >
+                    Player
+                  </button>
+                </td>
+              </th>
+              {Object.keys(listOfPlayers.pitchingLeaders[0]).slice(3).map((col, index) => (
+                <th key={index + 1}>
+                  <td>
+                    <button
+                      className={lightMode ? "input" : "DMinput"}
+                      onClick={() => {
+                        if (pitchingStatistic === col.toString()) {
+                          if (pitchOrderDirection === 'asc'){
+                            setPitchOrderDirection('desc');
+                          }
+                          else{
+                            setPitchOrderDirection('asc')
+                          }
+                        } else {
+                          setPitchingStatistic(col.toString());
+                        }
+                      }}
+                    >
+                      {col}
+                    </button>
+                  </td>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="SimpleTableListItem">
+            {listOfPlayers.pitchingLeaders.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                {/* Combine the first three columns into one cell */}
+                <td>
+                  <Link to={`/players/${row[Object.keys(listOfPlayers.pitchingLeaders[0])[0]]}`}>
+                    {row[Object.keys(listOfPlayers.pitchingLeaders[0])[1]]} {row[Object.keys(listOfPlayers.pitchingLeaders[0])[2]]}
+                  </Link>
+                </td>
+                {Object.keys(listOfPlayers.pitchingLeaders[0]).slice(3).map((col, colIndex) => (
+                  <td key={colIndex + 1}>{row[col]}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        </div>
+
+        ) : (
+        <p>no lists</p>
+        )}
+
+
+      {/* <div className={lightMode ? "dropdown" : "DMdropdown"}>
         <select
           className={lightMode ? "dropdown" : "DMdropdown"}
           value={pitchingStatistic}
@@ -302,7 +379,7 @@ function Leaderboard({lightMode, setLightMode}) {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       <div className="subTitle">
         <h3>Fielding</h3>
