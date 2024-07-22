@@ -1,5 +1,5 @@
 :root {
-  --DMContrast: #F5FEFF;
+  --DMContrast: #00819B;/*#A0EFFF;*/
 } /* var(--DMContrast) */
 
 /* ==================== GENERAL ==================== */
@@ -485,7 +485,7 @@ li {
   width: auto;
 }
 .whiteBG{
-  background-color: #F5FEFF;
+  background-color: var(--DMContrast);
   width: auto;
 }
 .SimpleTableListItem{
