@@ -77,7 +77,7 @@ function Leaderboard({lightMode, setLightMode}) {
 
       {/* console.log(listOfPlayers) */}
       {/* console.log(listOfPlayers.battingLeaders) */}
-      <h3> Test Table </h3>
+      <h3> Batting </h3>
       { listOfPlayers?.battingLeaders?.[0]? ( 
 
         <div>
@@ -87,13 +87,45 @@ function Leaderboard({lightMode, setLightMode}) {
               {/* Merge the first three columns into one */}
               <th>
                 <td>
-                  <button className={lightMode ? "input" : "DMinput"} onClick={() => setBattingStatistic("nameLast")}>Player</button>
+                  <button 
+                    className={lightMode ? "input" : "DMinput"} 
+                    onClick={() => {
+                      if (battingStatistic === 'nameLast') {
+                        if (batOrderDirection === 'asc'){
+                          setBatOrderDirection('desc');
+                        }
+                        else{
+                          setBatOrderDirection('asc')
+                        }
+                      } else {
+                        setBattingStatistic('nameLast');
+                      }
+                    }}
+                  >
+                    Player
+                  </button>
                 </td>
               </th>
               {Object.keys(listOfPlayers.battingLeaders[0]).slice(3).map((col, index) => (
                 <th key={index + 1}>
                   <td>
-                    <button className={lightMode ? "input" : "DMinput"} onClick={() => setBattingStatistic(col.toString())}>{col}</button>
+                    <button
+                      className={lightMode ? "input" : "DMinput"}
+                      onClick={() => {
+                        if (battingStatistic === col.toString()) {
+                          if (batOrderDirection === 'asc'){
+                            setBatOrderDirection('desc');
+                          }
+                          else{
+                            setBatOrderDirection('asc')
+                          }
+                        } else {
+                          setBattingStatistic(col.toString());
+                        }
+                      }}
+                    >
+                      {col}
+                    </button>
                   </td>
                 </th>
               ))}
@@ -117,8 +149,6 @@ function Leaderboard({lightMode, setLightMode}) {
         </table>
         </div>
 
-
-
         /* <ButtonColTable 
       
         lightMode={lightMode}
@@ -132,12 +162,11 @@ function Leaderboard({lightMode, setLightMode}) {
         year={batYearID}
       /> */
 
-
       ) : (
         <p>no lists</p>
       )}
 
-      <div className="subTitle">
+      {/* <div className="subTitle">
         <h3>Batting</h3>
       </div>
 
@@ -201,7 +230,7 @@ function Leaderboard({lightMode, setLightMode}) {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* ==================================================================================== */}
 
