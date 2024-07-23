@@ -23,7 +23,8 @@ import {
             getPlayerBio, getPlayerPositions, wasElectedToHallOfFame, getPlayerAwards,                          // Player profile
                 getPlayerCareerPitchingTotals, getPlayerSeasonalPitchingTotals, 
                 getPlayerCareerBattingTotals, getPlayerSeasonalBattingTotals, 
-                getPlayerCareerFieldingTotals, getPlayerSeasonalFieldingTotals         
+                getPlayerCareerFieldingTotals, getPlayerSeasonalFieldingTotals,
+            getTopFranchises         
 } from "./database.js";
 
 import { validateToken } from "./middlewares/AuthMiddleware.js";
@@ -294,6 +295,13 @@ app.get("/players/:playerID", validateToken, async (req, res) => {
     };
     res.send(playerProfile);
 });
+
+// RACING BAR DISPLAY 
+
+app.get("/barleaders", async (req, res) => {
+    const { limit, yearID } = req.query;
+    res.send(await getTopFranchises(yearID, limit));
+})
 
 
 /**

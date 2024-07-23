@@ -579,3 +579,18 @@ export const getPlayerSeasonalFieldingTotals = async (playerID, playoffs) => {
         .orderBy(['Fielding.yearID', 'Fielding.stint'], 'asc');
     }
 }
+
+
+// RACING BAR DISPLAY
+
+// btw this is a temp function I made based off of getStandings (doesn't take into account national association)
+// This does not take the SUM of all years
+export const getTopFranchises = async (yearID, limit) => {
+  return await db("Teams")
+    .select("Franchises.franchiseName", db.raw("SUM(Teams.W) as totalWins"))
+    .join("Franchises", "Franchises.franchiseID", "Teams.franchiseID")
+    .where("Teams.yearID", "<=", yearID)
+    .groupBy("Franchises.franchiseName")
+    .orderBy("totalWins", "desc")
+    .limit(limit);
+};
