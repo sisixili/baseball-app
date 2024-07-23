@@ -172,7 +172,6 @@ export const getPitchingLeaders = async (pitchingStatistic, yearID, orderDirecti
         .join('Players', 'Pitching.playerID', 'Players.playerID')
         .where('Pitching.yearID', yearID)
         .groupBy('Pitching.playerID', 'Players.nameFirst', 'Players.nameLast')
-        //.orderBy(db.raw(`SUM(${pitchingStatistic})`), orderDirection)
         .orderBy(pitchingStatistic, orderDirection)
         .limit(25);
 }
@@ -189,7 +188,6 @@ export const getBattingLeaders = async (battingStatistic, yearID, orderDirection
         .join('Players', 'Batting.playerID', 'Players.playerID')
         .where('Batting.yearID', yearID)
         .groupBy('Batting.playerID', 'Players.nameFirst', 'Players.nameLast')
-        //.orderBy(db.raw(`SUM(${battingStatistic})`), orderDirection)
         .orderBy(db.raw(battingStatistic), orderDirection)
         .limit(25);
 }
@@ -206,7 +204,6 @@ export const getFieldingLeaders = async (fieldingStatistic, yearID, orderDirecti
         .join('Players', 'Fielding.playerID', 'Players.playerID')
         .where('Fielding.yearID', yearID)
         .groupBy('Fielding.playerID', 'Players.nameFirst', 'Players.nameLast')
-        //.orderBy(db.raw(`SUM(${fieldingStatistic})`), orderDirection)
         .orderBy(db.raw(fieldingStatistic), orderDirection)
         .limit(25);
 }
@@ -581,16 +578,15 @@ export const getPlayerSeasonalFieldingTotals = async (playerID, playoffs) => {
 }
 
 
-// RACING BAR DISPLAY
+///////////////////////////////////////////////// ALL TIME WINS RACING BAR ANIMATION  
 
-// btw this is a temp function I made based off of getStandings (doesn't take into account national association)
-// This does not take the SUM of all years
+// Returns franchises with the most wins in their existence up to and including yearID
 export const getTopFranchises = async (yearID, limit) => {
-  return await db("Teams")
+  return await db("Franchises")
     .select("Franchises.franchiseName", db.raw("SUM(Teams.W) as totalWins"))
-    .join("Franchises", "Franchises.franchiseID", "Teams.franchiseID")
+    .join("Teams", "Franchises.franchiseID", "Teams.franchiseID")
     .where("Teams.yearID", "<=", yearID)
-    .groupBy("Franchises.franchiseName")
+    .groupBy("Franchises.franchiseID", "Franchises.franchiseName")
     .orderBy("totalWins", "desc")
     .limit(limit);
 };
