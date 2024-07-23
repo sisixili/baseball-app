@@ -212,7 +212,7 @@ export const getFieldingLeaders = async (fieldingStatistic, yearID, orderDirecti
 ///////////////////////////////////////////////// STANDINGS
 
 export const getStandings = async (yearID) => {
-    return await db('Teams')
+    const teamRankings = await db('Teams')
         .select(
             'Teams.teamID',
             'Teams.name',
@@ -221,11 +221,17 @@ export const getStandings = async (yearID) => {
             'Franchises.franchiseName',
             'Teams.G',
             'Teams.W',
-            'Teams.L'
+            'Teams.L',
         )
         .join('Franchises', 'Franchises.franchiseID', 'Teams.franchiseID')
         .where('yearID', yearID)
         .orderBy('W', 'desc');
+
+    // Add rank in the application layer
+    return teamRankings.map((teamRankings, index) => ({
+        ...teamRankings,
+        rank: index + 1
+    }));
 }
 
 
@@ -378,11 +384,12 @@ export const getTeamAllPitchers = async (teamID, yearID) => {
             'Players.nameFirst',
             'Players.nameLast',
             'Pitching.playerID', 
-            ...PLAYER_PITCHING,
-            db.raw(`outsRecorded / 3 AS IP`)
+            ...PLAYER_PITCHING.map(column => db.raw(`SUM(${column}) as ${column}`)),
+            db.raw('SUM(outsRecorded) / 3 AS IP')
         )
         .where('Pitching.yearID', yearID)
         .andWhere('Pitching.teamID', teamID)
+        .groupBy('Pitching.playerID', 'Players.nameFirst', 'Players.nameLast')
         .orderBy('nameLast', 'asc');
 }
 
@@ -404,11 +411,12 @@ export const getTeamAllBatters = async (teamID, yearID) => {
             'Players.nameFirst',
             'Players.nameLast',
             'Batting.playerID', 
-            ...PLAYER_BATTING,
-            db.raw('COALESCE(AB ,0) + COALESCE(BB ,0) + COALESCE(HBP ,0) + COALESCE(SH ,0) + COALESCE(SF ,0) AS PA')
+            ...PLAYER_BATTING.map(column => db.raw(`SUM(${column}) as ${column}`)),
+            db.raw('SUM(COALESCE(AB, 0)) + SUM(COALESCE(BB, 0)) + SUM(COALESCE(HBP, 0)) + SUM(COALESCE(SH, 0)) + SUM(COALESCE(SF, 0)) AS PA')
         )
         .where('Batting.yearID', yearID)
         .andWhere('Batting.teamID', teamID)
+        .groupBy('Batting.playerID', 'Players.nameFirst', 'Players.nameLast')
         .orderBy('nameLast', 'asc');
 }
 
