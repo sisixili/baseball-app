@@ -166,8 +166,8 @@ export const getPitchingLeaders = async (pitchingStatistic, yearID, orderDirecti
             'Pitching.playerID', 
             'Players.nameFirst', 
             'Players.nameLast',
-            db.raw('SUM(outsRecorded) / 3 AS IP'),
-            ...PLAYER_PITCHING.map(stat => db.raw(`SUM(${stat}) AS ${stat}`))
+            db.raw('SUM(COALESCE(outsRecorded, 0)) / 3 AS IP'),
+            ...PLAYER_PITCHING.map(stat => db.raw(`SUM(COALESCE(${stat}, 0)) AS ${stat}`))
         )
         .join('Players', 'Pitching.playerID', 'Players.playerID')
         .where('Pitching.yearID', yearID)
@@ -183,7 +183,7 @@ export const getBattingLeaders = async (battingStatistic, yearID, orderDirection
             'Players.nameFirst', 
             'Players.nameLast',
             db.raw('SUM(COALESCE(AB, 0)) + SUM(COALESCE(BB, 0)) + SUM(COALESCE(HBP, 0)) + SUM(COALESCE(SH, 0)) + SUM(COALESCE(SF, 0)) AS PA'),
-            ...PLAYER_BATTING.map(stat => db.raw(`SUM(${stat}) AS ${stat}`))
+            ...PLAYER_BATTING.map(stat => db.raw(`SUM(COALESCE(${stat}, 0)) AS ${stat}`))
         )
         .join('Players', 'Batting.playerID', 'Players.playerID')
         .where('Batting.yearID', yearID)
@@ -314,7 +314,7 @@ export const getFranchiseTotalPitching = async (franchiseID) =>{
                 .andOn('Teams.teamID', '=', 'Pitching.teamID');
         })
         .select(
-            ...TEAM_TOTAL_PITCHING.map(column => db.raw(`SUM(Pitching.${column}) AS total_${column}`))
+            ...TEAM_TOTAL_PITCHING.map(column => db.raw(`COALESCE(SUM(Pitching.${column}), 0) AS total_${column}`))
         )
         .where('Franchises.franchiseID', franchiseID);
 }
@@ -327,7 +327,7 @@ export const getFranchiseTotalBatting = async (franchiseID) => {
                 .andOn('Teams.teamID', '=', 'Batting.teamID');
         })
         .select(
-            ...TEAM_TOTAL_BATTING.map(column => db.raw(`SUM(Batting.${column}) AS total_${column}`))
+            ...TEAM_TOTAL_BATTING.map(column => db.raw(`COALESCE(SUM(Batting.${column}), 0) AS total_${column}`))
         )
         .where('Franchises.franchiseID', franchiseID);
 }
@@ -370,8 +370,8 @@ export const getTeamBio = async (teamID, yearID) => {
 export const getTeamTotalPitching = async (teamID, yearID) => {
     return await db('Pitching')
         .select(
-            ...TEAM_TOTAL_PITCHING.map(column => db.raw(`SUM(${column}) as ${column}`)),
-            db.raw('SUM(outsRecorded) / 3 AS IP')
+            ...TEAM_TOTAL_PITCHING.map(column => db.raw(`COALESCE(SUM(${column}), 0) AS ${column}`)),
+            db.raw('COALESCE(SUM(outsRecorded), 0) / 3 AS IP')
         )
         .where('yearID', yearID)
         .andWhere('teamID', teamID);
@@ -384,24 +384,23 @@ export const getTeamAllPitchers = async (teamID, yearID) => {
             'Players.nameFirst',
             'Players.nameLast',
             'Pitching.playerID', 
-            ...PLAYER_PITCHING.map(column => db.raw(`SUM(${column}) as ${column}`)),
-            db.raw('SUM(outsRecorded) / 3 AS IP')
+            ...PLAYER_PITCHING.map(column => db.raw(`COALESCE(SUM(${column}), 0) AS ${column}`)),
+            db.raw('COALESCE(SUM(outsRecorded), 0) / 3 AS IP')
         )
         .where('Pitching.yearID', yearID)
         .andWhere('Pitching.teamID', teamID)
         .groupBy('Pitching.playerID', 'Players.nameFirst', 'Players.nameLast')
-        .orderBy('nameLast', 'asc');
+        .orderBy('Players.nameLast', 'asc');
 }
 
 export const getTeamTotalBatting = async (teamID, yearID) => {
     return await db('Batting')
         .select(
-            ...TEAM_TOTAL_BATTING.map(column => db.raw(`SUM(${column}) as ${column}`)),
-            db.raw('SUM(COALESCE(AB, 0)) + SUM(COALESCE(BB, 0)) + SUM(COALESCE(HBP, 0)) + SUM(COALESCE(SH, 0)) + SUM(COALESCE(SF, 0)) AS PA')
+            ...TEAM_TOTAL_BATTING.map(column => db.raw(`COALESCE(SUM(${column}), 0) as ${column}`)),
+            db.raw('COALESCE(SUM(AB), 0) + COALESCE(SUM(BB), 0) + COALESCE(SUM(HBP), 0) + COALESCE(SUM(SH), 0) + COALESCE(SUM(SF), 0) AS PA')
         )
         .where('yearID', yearID)
         .andWhere('teamID', teamID);
-        
 }
 
 export const getTeamAllBatters = async (teamID, yearID) => {
@@ -411,13 +410,13 @@ export const getTeamAllBatters = async (teamID, yearID) => {
             'Players.nameFirst',
             'Players.nameLast',
             'Batting.playerID', 
-            ...PLAYER_BATTING.map(column => db.raw(`SUM(${column}) as ${column}`)),
-            db.raw('SUM(COALESCE(AB, 0)) + SUM(COALESCE(BB, 0)) + SUM(COALESCE(HBP, 0)) + SUM(COALESCE(SH, 0)) + SUM(COALESCE(SF, 0)) AS PA')
+            ...PLAYER_BATTING.map(column => db.raw(`COALESCE(SUM(${column}), 0) as ${column}`)),
+            db.raw('COALESCE(SUM(AB), 0) + COALESCE(SUM(BB), 0) + COALESCE(SUM(HBP), 0) + COALESCE(SUM(SH), 0) + COALESCE(SUM(SF), 0) AS PA')
         )
         .where('Batting.yearID', yearID)
         .andWhere('Batting.teamID', teamID)
         .groupBy('Batting.playerID', 'Players.nameFirst', 'Players.nameLast')
-        .orderBy('nameLast', 'asc');
+        .orderBy('Players.nameLast', 'asc');
 }
 
 
@@ -488,75 +487,83 @@ export const getPlayerAwards = async(playerID) => {
 export const getPlayerCareerPitchingTotals = async (playerID, playoffs) => {
     const table = playoffs ? 'PitchingPost' : 'Pitching';
     return await db(table)
-        .select(db.raw('COUNT(DISTINCT yearID) AS seasonsPlayed'),
-                ...PLAYER_PITCHING.map(column => db.raw(`SUM(${column}) AS ${column}`)), 
-                db.raw('SUM(outsRecorded) / 3 AS IP'))
+        .select(
+            db.raw('COUNT(DISTINCT yearID) AS seasonsPlayed'),
+            ...PLAYER_PITCHING.map(column => db.raw(`COALESCE(SUM(${column}), 0) AS ${column}`)), 
+            db.raw('COALESCE(SUM(outsRecorded), 0) / 3 AS IP')
+        )
         .where('playerID', playerID)
-        .having(db.raw('SUM(outsRecorded) / 3'), '>', 0);
+        .having(db.raw('COALESCE(SUM(outsRecorded), 0) / 3'), '>', 0);
 }
 
 export const getPlayerSeasonalPitchingTotals = async (playerID, playoffs) => {
     if (playoffs) {
         return await db('PitchingPost')
-        .select('PitchingPost.yearID', 'PitchingPost.teamID', 
+            .select('PitchingPost.yearID', 'PitchingPost.teamID', 
                 db.raw('(SELECT name FROM Teams WHERE Teams.yearID = PitchingPost.yearID AND Teams.teamID = PitchingPost.teamID) AS teamName'), 
-                ...PLAYER_PITCHING.map(column => db.raw(`SUM(${column}) AS ${column}`)), 
-                db.raw('SUM(outsRecorded) / 3 AS IP'))
-        .where('PitchingPost.playerID', playerID)
-        .groupBy('PitchingPost.yearID', 'PitchingPost.teamID')
-        .having(db.raw('SUM(outsRecorded) / 3'), '>', 0)
-        .orderBy('PitchingPost.yearID', 'asc');
+                ...PLAYER_PITCHING.map(column => db.raw(`COALESCE(SUM(${column}), 0) AS ${column}`)), 
+                db.raw('COALESCE(SUM(outsRecorded), 0) / 3 AS IP'))
+            .where('PitchingPost.playerID', playerID)
+            .groupBy('PitchingPost.yearID', 'PitchingPost.teamID')
+            .having(db.raw('COALESCE(SUM(outsRecorded), 0) / 3'), '>', 0)
+            .orderBy('PitchingPost.yearID', 'asc');
     } else {
         return await db('Pitching')
-        .select('Pitching.yearID', 'Pitching.teamID', 
+            .select('Pitching.yearID', 'Pitching.teamID', 
                 db.raw('(SELECT name FROM Teams WHERE Teams.yearID = Pitching.yearID AND Teams.teamID = Pitching.teamID) AS teamName'), 
-                ...PLAYER_PITCHING, 
-                db.raw(`outsRecorded / 3 AS IP`))
-        .where('Pitching.playerID', playerID)
-        .andWhere(db.raw('outsRecorded / 3'), '>', 0)
-        .orderBy(['Pitching.yearID', 'Pitching.stint'], 'asc');
+                ...PLAYER_PITCHING.map(column => db.raw(`COALESCE(SUM(${column}), 0) AS ${column}`)), 
+                db.raw('COALESCE(SUM(outsRecorded), 0) / 3 AS IP'))
+            .where('Pitching.playerID', playerID)
+            .groupBy('Pitching.yearID', 'Pitching.teamID', 'Pitching.stint')
+            .having(db.raw('COALESCE(SUM(outsRecorded), 0) / 3'), '>', 0)
+            .orderBy(['Pitching.yearID', 'Pitching.stint'], 'asc');
     }
 }
 
 export const getPlayerCareerBattingTotals = async (playerID, playoffs) => {
     const table = playoffs ? 'BattingPost' : 'Batting';
     return await db(table)
-        .select(db.raw('COUNT(DISTINCT yearID) AS seasonsPlayed'),
-                db.raw('SUM(COALESCE(AB, 0)) + SUM(COALESCE(BB, 0)) + SUM(COALESCE(HBP, 0)) + SUM(COALESCE(SH, 0)) + SUM(COALESCE(SF, 0)) AS PA'),
-                ...PLAYER_BATTING.map(column => db.raw(`SUM(${column}) AS ${column}`)))
+        .select(
+            db.raw('COUNT(DISTINCT yearID) AS seasonsPlayed'),
+            db.raw('COALESCE(SUM(AB), 0) + COALESCE(SUM(BB), 0) + COALESCE(SUM(HBP), 0) + COALESCE(SUM(SH), 0) + COALESCE(SUM(SF), 0) AS PA'),
+            ...PLAYER_BATTING.map(column => db.raw(`COALESCE(SUM(${column}), 0) AS ${column}`))
+        )
         .where('playerID', playerID)
-        .having(db.raw('SUM(COALESCE(AB, 0)) + SUM(COALESCE(BB, 0)) + SUM(COALESCE(HBP, 0)) + SUM(COALESCE(SH, 0)) + SUM(COALESCE(SF, 0))'), '>', 0);
+        .having(db.raw('COALESCE(SUM(AB), 0) + COALESCE(SUM(BB), 0) + COALESCE(SUM(HBP), 0) + COALESCE(SUM(SH), 0) + COALESCE(SUM(SF), 0)'), '>', 0);
 }
 
 export const getPlayerSeasonalBattingTotals = async (playerID, playoffs) => {
     if (playoffs) {
         return await db('BattingPost')
-        .select('BattingPost.yearID', 'BattingPost.teamID', 
+            .select('BattingPost.yearID', 'BattingPost.teamID', 
                 db.raw('(SELECT name FROM Teams WHERE Teams.yearID = BattingPost.yearID AND Teams.teamID = BattingPost.teamID) AS teamName'), 
-                db.raw('SUM(COALESCE(AB, 0)) + SUM(COALESCE(BB, 0)) + SUM(COALESCE(HBP, 0)) + SUM(COALESCE(SH, 0)) + SUM(COALESCE(SF, 0)) AS PA'),
-                ...PLAYER_BATTING.map(column => db.raw(`SUM(${column}) AS ${column}`)))
-        .where('BattingPost.playerID', playerID)
-        .groupBy('BattingPost.yearID', 'BattingPost.teamID')
-        .having(db.raw('SUM(COALESCE(AB, 0)) + SUM(COALESCE(BB, 0)) + SUM(COALESCE(HBP, 0)) + SUM(COALESCE(SH, 0)) + SUM(COALESCE(SF, 0))'), '>', 0)
-        .orderBy('BattingPost.yearID', 'asc');
+                db.raw('COALESCE(SUM(AB), 0) + COALESCE(SUM(BB), 0) + COALESCE(SUM(HBP), 0) + COALESCE(SUM(SH), 0) + COALESCE(SUM(SF), 0) AS PA'),
+                ...PLAYER_BATTING.map(column => db.raw(`COALESCE(SUM(${column}), 0) AS ${column}`)))
+            .where('BattingPost.playerID', playerID)
+            .groupBy('BattingPost.yearID', 'BattingPost.teamID')
+            .having(db.raw('COALESCE(SUM(AB), 0) + COALESCE(SUM(BB), 0) + COALESCE(SUM(HBP), 0) + COALESCE(SUM(SH), 0) + COALESCE(SUM(SF), 0)'), '>', 0)
+            .orderBy('BattingPost.yearID', 'asc');
     } else {
         return await db('Batting')
-        .select('Batting.yearID', 'Batting.teamID', 
+            .select('Batting.yearID', 'Batting.teamID', 
                 db.raw('(SELECT name FROM Teams WHERE Teams.yearID = Batting.yearID AND Teams.teamID = Batting.teamID) AS teamName'),
-                db.raw('COALESCE(AB ,0) + COALESCE(BB ,0) + COALESCE(HBP ,0) + COALESCE(SH ,0) + COALESCE(SF ,0) AS PA'), 
-                ...PLAYER_BATTING)
-        .where('Batting.playerID', playerID)
-        .andWhere(db.raw('COALESCE(AB ,0) + COALESCE(BB ,0) + COALESCE(HBP ,0) + COALESCE(SH ,0) + COALESCE(SF ,0)'), '>', 0)
-        .orderBy(['Batting.yearID', 'Batting.stint'], 'asc');
+                db.raw('COALESCE(SUM(AB), 0) + COALESCE(SUM(BB), 0) + COALESCE(SUM(HBP), 0) + COALESCE(SUM(SH), 0) + COALESCE(SUM(SF), 0) AS PA'), 
+                ...PLAYER_BATTING.map(column => db.raw(`COALESCE(SUM(${column}), 0) AS ${column}`)))
+            .where('Batting.playerID', playerID)
+            .groupBy('Batting.yearID', 'Batting.teamID', 'Batting.stint')
+            .having(db.raw('COALESCE(SUM(AB), 0) + COALESCE(SUM(BB), 0) + COALESCE(SUM(HBP), 0) + COALESCE(SUM(SH), 0) + COALESCE(SUM(SF), 0)'), '>', 0)
+            .orderBy(['Batting.yearID', 'Batting.stint'], 'asc');
     }
 }
 
 export const getPlayerCareerFieldingTotals = async (playerID, playoffs) => {
     const table = playoffs ? 'FieldingPost' : 'Fielding';
     return await db(table)
-        .select(db.raw('COUNT(DISTINCT yearID) AS seasonsPlayed'),
-                ...PLAYER_FIELDING.map(column => db.raw(`SUM(${column}) AS ${column}`)), 
-                db.raw('SUM(outsRecorded) / 3 AS Inn'))
+        .select(
+            db.raw('COUNT(DISTINCT yearID) AS seasonsPlayed'),
+            ...PLAYER_FIELDING.map(column => db.raw(`SUM(${column}) AS ${column}`)), 
+            db.raw('SUM(outsRecorded) / 3 AS Inn')
+        )
         .where('playerID', playerID)
         .having(db.raw('SUM(outsRecorded) / 3'), '>', 0);
 }
@@ -564,24 +571,24 @@ export const getPlayerCareerFieldingTotals = async (playerID, playoffs) => {
 export const getPlayerSeasonalFieldingTotals = async (playerID, playoffs) => {
     if (playoffs) {
         return await db('FieldingPost')
-        .select('FieldingPost.yearID', 'FieldingPost.teamID', 
+            .select('FieldingPost.yearID', 'FieldingPost.teamID', 
                 db.raw('(SELECT name FROM Teams WHERE Teams.yearID = FieldingPost.yearID AND Teams.teamID = FieldingPost.teamID) AS teamName'), 
                 db.raw(`SUM(outsRecorded) / 3 AS Inn`),
                 ...PLAYER_FIELDING.map(column => db.raw(`SUM(${column}) AS ${column}`)))
-        .where('FieldingPost.playerID', playerID)
-        .groupBy('FieldingPost.yearID', 'FieldingPost.teamID')
-        .having(db.raw('SUM(outsRecorded) / 3'), '>', 0)
-        .orderBy('FieldingPost.yearID', 'asc');
+            .where('FieldingPost.playerID', playerID)
+            .groupBy('FieldingPost.yearID', 'FieldingPost.teamID')
+            .having(db.raw('SUM(outsRecorded) / 3'), '>', 0)
+            .orderBy('FieldingPost.yearID', 'asc');
     } else {
         return await db('Fielding')
-        .select('Fielding.yearID', 'Fielding.teamID', 
+            .select('Fielding.yearID', 'Fielding.teamID', 
                 db.raw('(SELECT name FROM Teams WHERE Teams.yearID = Fielding.yearID AND Teams.teamID = Fielding.teamID) AS teamName'), 
                 db.raw(`SUM(outsRecorded) / 3 AS Inn`),
                 ...PLAYER_FIELDING.map(column => db.raw(`SUM(${column}) AS ${column}`)))
-        .where('Fielding.playerID', playerID)
-        .groupBy('Fielding.yearID', 'Fielding.teamID', 'Fielding.stint')
-        .having(db.raw('SUM(outsRecorded) / 3'), '>', 0)
-        .orderBy(['Fielding.yearID', 'Fielding.stint'], 'asc');
+            .where('Fielding.playerID', playerID)
+            .groupBy('Fielding.yearID', 'Fielding.teamID', 'Fielding.stint')
+            .having(db.raw('SUM(outsRecorded) / 3'), '>', 0)
+            .orderBy(['Fielding.yearID', 'Fielding.stint'], 'asc');
     }
 }
 
