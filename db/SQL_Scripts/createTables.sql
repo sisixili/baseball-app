@@ -321,6 +321,8 @@ CREATE TABLE IF NOT EXISTS BattingPost (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX SinglePlayoffBatter ON BattingPost(playerID);
+CREATE INDEX SingleYearPlayoffBattersWithTeams ON BattingPost(yearID, teamID);
+
 
 
 CREATE TABLE IF NOT EXISTS Fielding (
@@ -360,6 +362,7 @@ CREATE TABLE IF NOT EXISTS Fielding (
     CHECK(CS IS NULL OR CS >= 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE INDEX SingleYearFieldersWithTeams ON Fielding(yearID, teamID);
 CREATE INDEX SingleFielderWithPositions ON Fielding(playerID, position);
 CREATE INDEX SingleYearFielders ON Fielding(yearID);
 
@@ -400,6 +403,7 @@ CREATE TABLE IF NOT EXISTS FieldingPost (
     CHECK(CS IS NULL OR CS >= 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE INDEX SingleYearPlayoffFieldersWithTeams ON FieldingPost(yearID, teamID);
 CREATE INDEX SinglePlayoffFielder ON FieldingPost(playerID);
 
 
@@ -469,6 +473,8 @@ CREATE TABLE IF NOT EXISTS HomeGames (
     CHECK(gamesWithFans IS NULL OR (gamesWithFans >= 0 AND gamesPlayedAtHome IS NOT NULL AND gamesWithFans <= gamesPlayedAtHome)),
     CHECK(totalAttendance IS NULL OR totalAttendance >= 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE INDEX TeamHomeGames ON HomeGames(yearID, teamID, gamesWithFans);
 
 
 CREATE TABLE IF NOT EXISTS Pitching (
@@ -599,6 +605,7 @@ CREATE TABLE IF NOT EXISTS PitchingPost (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX SinglePlayoffPitcher ON PitchingPost(playerID);
+CREATE INDEX SingleYearPlayoffPitchersWithTeams ON PitchingPost(yearID, teamID);
 
 
 CREATE TABLE IF NOT EXISTS SeriesPost (
