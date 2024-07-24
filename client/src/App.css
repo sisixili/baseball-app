@@ -364,6 +364,8 @@ li {
 
   margin-left: 50px;
 }
+
+/*
 .BioStats{
   margin-top: 1px;
   margin-bottom: 1px;
@@ -376,6 +378,7 @@ li {
   margin-left: -150px;
   margin-right: 0px;
 }
+  */
 .horizontal-list-item{
   display: flex;
   flex-direction: row;
@@ -387,6 +390,40 @@ li {
   flex-direction: row;
   margin: 5px;
   align-items: grid;
+}
+
+.player-info {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+  
+.player-details {
+    flex: 1;
+}
+  
+.player-headshot {
+    margin-left: 20px;
+}
+
+.player-headshot img {
+    border: 3px solid #23B5D3;
+    border-radius: 5px;           
+}
+  
+.BioStats {
+    list-style-type: none;
+    padding: 0;
+    margin: 5px 0;
+}
+  
+.BioStats li {
+    margin-bottom: 5px;
+}
+  
+.Positions {
+    margin-top: 10px;
 }
 
 /*===============Franchises================*/
