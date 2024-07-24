@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react';
 import RacingBarChart from '../components/RacingBarDisplay/RacingBarChart';
 import Timer from '../components/RacingBarDisplay/Timer';
+import addColours from '../components/RacingBarDisplay/ColourFinder';
 
 /*import { lightMode, setLightMode } from '../App.js';*/
 
@@ -8,7 +9,7 @@ function Home({ lightMode, setLightMode }) {
   /*const { lightMode, setLightMode } = useContext(lightMode);*/
 
   const [year, setYear] = useState(1871);
-  //const [limit, setLimit] = useState(10); // Currently hardcoded at 10
+  //const [limit, setLimit] = useState(10); // Currently hardcoded at 6
   const [start, setStart] = useState(false);
   const [data, setData] = useState([]); // list of leading franchises
 
@@ -29,7 +30,9 @@ function Home({ lightMode, setLightMode }) {
         if (data.error) {
           console.log(data.error);
         } else {
-          setData(data);
+          const dataWithColours = addColours(data);
+          setData(dataWithColours);
+          console.log(dataWithColours)
         }
       })
       .catch((error) => console.log("ERROR", error));
@@ -51,6 +54,9 @@ function Home({ lightMode, setLightMode }) {
     }
   };
 
+  const restart = () => {
+    setYear(1871)
+  }
 
   return (
     <div>
@@ -58,10 +64,13 @@ function Home({ lightMode, setLightMode }) {
         <h1>⚾ DataBaseBall ⚾</h1>
       </div>
       <div className="bottom-chunk">
-        <h1>Racing Bar Chart</h1>
+        <h1>Franchise Leaders Over The Years</h1>
         <RacingBarChart data={data} />
         <button onClick={handleStartStop}>
           {start ? "Stop" : "Start"}
+        </button>
+        <button onClick={restart}>
+          Restart
         </button>
         <p>Year: {year}</p>
       </div>
