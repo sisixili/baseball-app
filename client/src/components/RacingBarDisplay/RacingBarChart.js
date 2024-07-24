@@ -53,6 +53,7 @@ function RacingBarChart({ data }) {
         .text(entry => `${entry.franchiseName} (${entry.totalWins} wins)`)
         .attr("class", "label")
         .attr("x", 10)
+        .style("font-weight", "bold") // Make the text bold
         .transition()
         .attr("y", (entry, index) => yScale(index) + yScale.bandwidth() / 2 + 5);
     }, [data, dimensions]);
