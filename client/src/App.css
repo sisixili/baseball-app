@@ -1,9 +1,9 @@
 :root {
-  --DMContrast: #23B5D3;/*#A0EFFF #00819B;*/
+  --DMContrast: #A0EFFF;/*#23B5D3 #A0EFFF #00819B;*/
   --DMinputText: #001D42;
-  --DMBackground: #000000;
-  --DMtableDisplay: #001D42;
-  --DMtableText: #23B5D3;
+  --DMBackground: #001D42;
+  --DMtableDisplay: #23B5D3;
+  --DMtableText: #000000;
 } /* var(--DMContrast) var(--DMBackground)*/
 
 /* ==================== GENERAL ==================== */
