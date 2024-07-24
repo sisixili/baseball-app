@@ -626,6 +626,20 @@ export const getPlayerSeasonalFieldingTotals = async (playerID, playoffs) => {
     }
 }
 
+export const getBaseballReferenceID = async (playerID) => {
+    const baseballReferenceID = await db('Players')
+        .select('bbrefID')
+        .where('playerID', playerID)
+        .first();
+
+    if (baseballReferenceID && baseballReferenceID.bbrefID) {
+        return baseballReferenceID.bbrefID;
+    } else {
+        // Return an empty string if the Baseball Reference ID is not found
+        return ''; 
+    }
+};
+
 
 ///////////////////////////////////////////////// ALL TIME WINS RACING BAR ANIMATION  
 

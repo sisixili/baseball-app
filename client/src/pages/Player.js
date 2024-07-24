@@ -19,6 +19,7 @@ function Player({lightMode, setLightMode}) {
     playerSeasonalBattingTotals: [0],
     playerCareerFieldingTotals: [0],
     playerSeasonalFieldingTotals: [0],
+    headshotURL: ""     // Initialize the headshot URL
   });
   const userID = sessionStorage.getItem("userID");
 
@@ -65,6 +66,12 @@ function Player({lightMode, setLightMode}) {
         <div>
           <FavouriteButton lightMode={lightMode} userID={userID} type="player" id={playerID} text="Add Favourite Player" />
         </div>
+
+        {PlayerStats.headshotURL && (
+            <div>
+              <img src={PlayerStats.headshotURL} alt="Player headshot" />
+            </div>
+          )}
 
         {/*<SimpleTable
           columns={Object.keys(PlayerStats.playerBio[0])}
