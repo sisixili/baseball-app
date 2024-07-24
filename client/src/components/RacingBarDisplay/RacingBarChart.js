@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { select, scaleBand, scaleLinear, max } from "d3";
+import { select, scaleBand, scaleLinear } from "d3";
 import ResizedObserver from "./ResizedObserver";
 
 function RacingBarChart({ data }) {
@@ -29,7 +29,7 @@ function RacingBarChart({ data }) {
         .data(data, (entry, index) => entry.franchiseName)
         .join(enter =>
           enter.append("rect").attr("y", (entry, index) => yScale(index))
-          .attr("fill","#23B5D3")
+          .attr("fill", entry => entry.colour) 
         )       
         .attr("class", "bar")
         .attr("x", 0)
