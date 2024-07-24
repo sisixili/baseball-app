@@ -37,6 +37,7 @@ function Standings({lightMode, setLightMode}) {
 
 
   const columns = [
+    { name: "rank", displayName: "Rank" },
     { name: "name", displayName: "Team Name", link: "/teams/:teamID/:yearID" },
     { name: "franchiseName", displayName: "Franchise Name", link: "/franchises/:franchiseID" },
     { name: "G"},

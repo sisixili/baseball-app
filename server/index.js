@@ -24,7 +24,8 @@ import {
                 getPlayerCareerPitchingTotals, getPlayerSeasonalPitchingTotals, 
                 getPlayerCareerBattingTotals, getPlayerSeasonalBattingTotals, 
                 getPlayerCareerFieldingTotals, getPlayerSeasonalFieldingTotals,
-            getTopFranchises         
+            
+            getTopFranchises                                                                                    // All time wins racing bar animation     
 } from "./database.js";
 
 import { validateToken } from "./middlewares/AuthMiddleware.js";
@@ -296,8 +297,10 @@ app.get("/players/:playerID", validateToken, async (req, res) => {
     res.send(playerProfile);
 });
 
-// RACING BAR DISPLAY 
 
+/** 
+ * All time wins racing bar animation  
+ */
 app.get("/barleaders", async (req, res) => {
     const { limit, yearID } = req.query;
     res.send(await getTopFranchises(yearID, limit));
