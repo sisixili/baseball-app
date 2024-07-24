@@ -18,7 +18,7 @@ const db = knex({
 ///////////////////////////////////////////////// LOGIN/LOGOUT
 
 export const findUserID = async(userID) => {
-    const existingUser = await db("users").where({ userID }).first()
+    const existingUser = await db('Users').where({ userID }).first()
     if (existingUser) {
         return existingUser
     }
@@ -31,14 +31,14 @@ export const RegisterNewUser = async (userID, nameFirst, nameLast, pwd) => {
     // Check if the username already exists
     const existingUser = await findUserID(userID);
     if (existingUser) {
-        throw "Username already taken";
+        throw 'Username already taken';
     }
     
     // Hash the password
     const hashedPassword = await bcrypt.hash(pwd, 10);
 
     // Insert the new user into the database
-    await db("users").insert({
+    await db('Users').insert({
         userID: userID,
         nameFirst: nameFirst,
         nameLast: nameLast,
@@ -51,14 +51,19 @@ export const RegisterNewUser = async (userID, nameFirst, nameLast, pwd) => {
 
 export const getFavouriteFranchises = async (userID) => {
     return await db('FavouriteFranchises')
-        .select('Franchises.franchiseName', 'Franchises.franchiseID')
+        .select(
+            'Franchises.franchiseName', 
+            'Franchises.franchiseID')
         .join('Franchises', 'FavouriteFranchises.franchiseID', '=', 'Franchises.franchiseID')
         .where('FavouriteFranchises.userID', userID);
 }
 
 export const getFavouriteTeams = async (userID) => {
     return await db('FavouriteTeams')
-        .select('Teams.name', 'Teams.yearID', 'Teams.teamID')
+        .select(
+            'Teams.name', 
+            'Teams.yearID', 
+            'Teams.teamID')
         .join('Teams', function() {
             this.on('FavouriteTeams.yearID', '=', 'Teams.yearID')
                 .andOn('FavouriteTeams.teamID', '=', 'Teams.teamID'); 
@@ -68,35 +73,38 @@ export const getFavouriteTeams = async (userID) => {
 
 export const getFavouritePlayers = async (userID) => {
     return await db('FavouritePlayers')
-        .select('Players.nameFirst', 'Players.nameLast', 'Players.playerID')
+        .select(
+            'Players.nameFirst', 
+            'Players.nameLast', 
+            'Players.playerID')
         .join('Players', 'FavouritePlayers.playerID', '=', 'Players.playerID')
         .where('FavouritePlayers.userID', userID);
 }
 
 export const createFavouriteFranchise = async (franchiseID, userID) => {
-    const exists = await db("FavouriteFranchises")
-        .select("*")
+    const exists = await db('FavouriteFranchises')
+        .select('*')
         .where({ userID, franchiseID })
         .first();
     if (exists) {
-        console.log("Favourite Franchise already exists: ", userID, franchiseID);
+        console.log('Favourite Franchise already exists: ', userID, franchiseID);
         //console.log(exists);
-        throw "Favourite franchise already exists. ";
+        throw 'Favourite franchise already exists. ';
     } else {
-        await db("FavouriteFranchises").insert({ userID, franchiseID });
+        await db('FavouriteFranchises').insert({ userID, franchiseID });
         //console.log('Successfully added favourite player ', franchiseID, ' for ', userID)
     }
   };
 
 export const createFavouriteTeam = async (teamID, yearID, userID) => {
-    const exists = await db("FavouriteTeams")
-        .select("*")
+    const exists = await db('FavouriteTeams')
+        .select('*')
         .where({ userID, yearID, teamID })
         .first();
     if (exists) {
-        console.log("Favourite Team already exists: ", userID, teamID, yearID);
+        console.log('Favourite Team already exists: ', userID, teamID, yearID);
         //console.log(exists);
-        throw "Favourite Team already exists. ";
+        throw 'Favourite Team already exists. ';
     }
     else {
         await db('FavouriteTeams').insert({ userID, yearID, teamID });
@@ -104,16 +112,16 @@ export const createFavouriteTeam = async (teamID, yearID, userID) => {
 };
 
 export const createFavouritePlayer = async (playerID, userID) => {
-    const exists = await db("FavouritePlayers")
-        .select("*")
+    const exists = await db('FavouritePlayers')
+        .select('*')
         .where({ userID, playerID })
         .first();
     if (exists) {
-        console.log("Favourite Player already exists: ", userID, playerID); // Does not return this msg to api
+        console.log('Favourite Player already exists: ', userID, playerID); // Does not return this msg to api
         //console.log(exists);
-        throw "Favourite Player already exists. ";
+        throw 'Favourite Player already exists. ';
     } else {
-        await db("FavouritePlayers").insert({ userID, playerID });
+        await db('FavouritePlayers').insert({ userID, playerID });
         //console.log("Successfully added favourite player ", playerID, " for ", userID);
     }
 };
@@ -136,7 +144,7 @@ export const getAllPlayers = async (page, limit, search) => {
   
     const players = await query;
   
-    let countQuery = db('players').count('playerID as count').first();
+    let countQuery = db('Players').count('playerID as count').first();
     if (search) {
         countQuery = countQuery.where('nameLast', 'like', `%${search}%`);
     }
@@ -254,7 +262,7 @@ export const getFranchises = async (isActive) => {
             db.raw('SUM(Teams.W) / SUM(Teams.G) AS winPercentage'),
             db.raw('COUNT(SeriesPost.winningTeamID) AS worldSeriesWins')
         )
-        .where("Franchises.isActive", isActive)
+        .where('Franchises.isActive', isActive)
         .groupBy('Franchises.franchiseID')
         .orderBy('Franchises.franchiseName', 'asc');
 };
@@ -282,11 +290,10 @@ export const getNationalAssociationFranchises = async () => {
 };
 
 
-
 ///////////////////////////////////////////////// FRANCHISE PROFILE
 
 export const getFanchiseBio = async (franchiseID) => {
-    return await db("Franchises")
+    return await db('Franchises')
         .join('Teams', 'Franchises.franchiseID', 'Teams.franchiseID')
         .leftJoin('SeriesPost', function() {
             this.on('Teams.yearID', '=', 'SeriesPost.yearID')
@@ -294,16 +301,16 @@ export const getFanchiseBio = async (franchiseID) => {
                 .andOn('Teams.teamID', '=', 'SeriesPost.winningTeamID')
         })
         .select(
-            "Franchises.franchiseName", 
-            "Franchises.isActive",
+            'Franchises.franchiseName', 
+            'Franchises.isActive',
             db.raw('SUM(Teams.G) AS totalGames'),
             db.raw('SUM(Teams.W) AS totalWins'),
             db.raw('SUM(Teams.L) AS totalLosses'),
             db.raw('SUM(Teams.W) / SUM(Teams.G) AS winPercentage'),
             db.raw('COUNT(SeriesPost.winningTeamID) AS worldSeriesWins')
         )
-        .where("Franchises.franchiseID", franchiseID)
-        .groupBy("Franchises.franchiseID", "Franchises.franchiseName", "Franchises.isActive");
+        .where('Franchises.franchiseID', franchiseID)
+        .groupBy('Franchises.franchiseID', 'Franchises.franchiseName', 'Franchises.isActive');
 };
 
 export const getFranchiseTotalPitching = async (franchiseID) =>{
@@ -333,19 +340,19 @@ export const getFranchiseTotalBatting = async (franchiseID) => {
 }
 
 export const getFranchiseTeams = async (franchiseID) => {
-  return await db("Teams")
+  return await db('Teams')
     .select(
-        "yearID",
-        "name",
-        "teamID",
-        "G",
-        "W",
-        "L",
+        'yearID',
+        'name',
+        'teamID',
+        'G',
+        'W',
+        'L',
         db.raw('W / G AS winPercentage'),
         db.raw('(Teams.attendance / (SELECT SUM(gamesWithFans) FROM HomeGames WHERE HomeGames.yearID = Teams.yearID AND HomeGames.teamID = Teams.teamID)) AS averageAttendance')
     )
-    .where("franchiseID", franchiseID)
-    .orderBy("yearID", "asc");
+    .where('franchiseID', franchiseID)
+    .orderBy('yearID', 'asc');
 };
 
 
@@ -424,7 +431,18 @@ export const getTeamAllBatters = async (teamID, yearID) => {
 
 export const getPlayerBio = async (playerID) => {
     return await db('Players')
-        .select('nameFirst', 'nameLast', 'weight', 'height', 'bats', 'throws', 'birthDay', 'birthMonth', 'birthYear', 'birthCountry', 'debut')
+        .select(
+            'nameFirst', 
+            'nameLast', 
+            'weight', 
+            'height', 
+            'bats', 
+            'throws', 
+            'birthDay', 
+            'birthMonth', 
+            'birthYear', 
+            'birthCountry', 
+            'debut')
         .where('Players.playerID', playerID);
 }
 
@@ -447,7 +465,9 @@ export const getPlayerPositions = async(playerID) => {
 
 export const wasElectedToHallOfFame = async(playerID) => {
     return await db('HallOfFame')
-        .select('yearID')
+        .select(
+            'yearID'
+        )
         .where('playerID', playerID)
         .andWhere('wasInducted', 'Y')
         .orderBy('yearID', 'asc');
@@ -455,7 +475,11 @@ export const wasElectedToHallOfFame = async(playerID) => {
 
 export const getPlayerAwards = async(playerID) => {
     return await db
-        .select('awardID', 'note', 'leagueID', 'yearID')
+        .select(
+            'awardID', 
+            'note', 
+            'leagueID', 
+            'yearID')
         .from(function() {
             this.select(
                 db.raw('"All Star" AS awardID'),
@@ -499,7 +523,9 @@ export const getPlayerCareerPitchingTotals = async (playerID, playoffs) => {
 export const getPlayerSeasonalPitchingTotals = async (playerID, playoffs) => {
     if (playoffs) {
         return await db('PitchingPost')
-            .select('PitchingPost.yearID', 'PitchingPost.teamID', 
+            .select(
+                'PitchingPost.yearID', 
+                'PitchingPost.teamID', 
                 db.raw('(SELECT name FROM Teams WHERE Teams.yearID = PitchingPost.yearID AND Teams.teamID = PitchingPost.teamID) AS teamName'), 
                 ...PLAYER_PITCHING.map(column => db.raw(`COALESCE(SUM(${column}), 0) AS ${column}`)), 
                 db.raw('COALESCE(SUM(outsRecorded), 0) / 3 AS IP'))
@@ -509,7 +535,9 @@ export const getPlayerSeasonalPitchingTotals = async (playerID, playoffs) => {
             .orderBy('PitchingPost.yearID', 'asc');
     } else {
         return await db('Pitching')
-            .select('Pitching.yearID', 'Pitching.teamID', 
+            .select(
+                'Pitching.yearID', 
+                'Pitching.teamID', 
                 db.raw('(SELECT name FROM Teams WHERE Teams.yearID = Pitching.yearID AND Teams.teamID = Pitching.teamID) AS teamName'), 
                 ...PLAYER_PITCHING.map(column => db.raw(`COALESCE(SUM(${column}), 0) AS ${column}`)), 
                 db.raw('COALESCE(SUM(outsRecorded), 0) / 3 AS IP'))
@@ -535,7 +563,9 @@ export const getPlayerCareerBattingTotals = async (playerID, playoffs) => {
 export const getPlayerSeasonalBattingTotals = async (playerID, playoffs) => {
     if (playoffs) {
         return await db('BattingPost')
-            .select('BattingPost.yearID', 'BattingPost.teamID', 
+            .select(
+                'BattingPost.yearID', 
+                'BattingPost.teamID', 
                 db.raw('(SELECT name FROM Teams WHERE Teams.yearID = BattingPost.yearID AND Teams.teamID = BattingPost.teamID) AS teamName'), 
                 db.raw('COALESCE(SUM(AB), 0) + COALESCE(SUM(BB), 0) + COALESCE(SUM(HBP), 0) + COALESCE(SUM(SH), 0) + COALESCE(SUM(SF), 0) AS PA'),
                 ...PLAYER_BATTING.map(column => db.raw(`COALESCE(SUM(${column}), 0) AS ${column}`)))
@@ -571,7 +601,9 @@ export const getPlayerCareerFieldingTotals = async (playerID, playoffs) => {
 export const getPlayerSeasonalFieldingTotals = async (playerID, playoffs) => {
     if (playoffs) {
         return await db('FieldingPost')
-            .select('FieldingPost.yearID', 'FieldingPost.teamID', 
+            .select(
+                'FieldingPost.yearID', 
+                'FieldingPost.teamID', 
                 db.raw('(SELECT name FROM Teams WHERE Teams.yearID = FieldingPost.yearID AND Teams.teamID = FieldingPost.teamID) AS teamName'), 
                 db.raw(`SUM(outsRecorded) / 3 AS Inn`),
                 ...PLAYER_FIELDING.map(column => db.raw(`SUM(${column}) AS ${column}`)))
@@ -581,7 +613,9 @@ export const getPlayerSeasonalFieldingTotals = async (playerID, playoffs) => {
             .orderBy('FieldingPost.yearID', 'asc');
     } else {
         return await db('Fielding')
-            .select('Fielding.yearID', 'Fielding.teamID', 
+            .select(
+                'Fielding.yearID', 
+                'Fielding.teamID', 
                 db.raw('(SELECT name FROM Teams WHERE Teams.yearID = Fielding.yearID AND Teams.teamID = Fielding.teamID) AS teamName'), 
                 db.raw(`SUM(outsRecorded) / 3 AS Inn`),
                 ...PLAYER_FIELDING.map(column => db.raw(`SUM(${column}) AS ${column}`)))
@@ -597,11 +631,14 @@ export const getPlayerSeasonalFieldingTotals = async (playerID, playoffs) => {
 
 // Returns franchises with the most wins in their existence up to and including yearID
 export const getTopFranchises = async (yearID, limit) => {
-  return await db("Franchises")
-    .select("Franchises.franchiseName", db.raw("SUM(Teams.W) as totalWins"))
-    .join("Teams", "Franchises.franchiseID", "Teams.franchiseID")
-    .where("Teams.yearID", "<=", yearID)
-    .groupBy("Franchises.franchiseID", "Franchises.franchiseName")
-    .orderBy("totalWins", "desc")
+  return await db('Franchises')
+    .select(
+        'Franchises.franchiseName', 
+        db.raw('SUM(Teams.W) as totalWins')
+    )
+    .join('Teams', 'Franchises.franchiseID', 'Teams.franchiseID')
+    .where('Teams.yearID', '<=', yearID)
+    .groupBy('Franchises.franchiseID', 'Franchises.franchiseName')
+    .orderBy('totalWins', 'desc')
     .limit(limit);
 };
