@@ -23,11 +23,15 @@ import {
             getPlayerBio, getPlayerPositions, wasElectedToHallOfFame, getPlayerAwards,                          // Player profile
                 getPlayerCareerPitchingTotals, getPlayerSeasonalPitchingTotals, 
                 getPlayerCareerBattingTotals, getPlayerSeasonalBattingTotals, 
-                getPlayerCareerFieldingTotals, getPlayerSeasonalFieldingTotals         
+                getPlayerCareerFieldingTotals, getPlayerSeasonalFieldingTotals,
+                getBaseballReferenceID,
+            
+            getTopFranchises                                                                                    // All time franchise wins racing bar animation     
 } from "./database.js";
 
 import { validateToken } from "./middlewares/AuthMiddleware.js";
-
+import axios from 'axios';
+import { JSDOM } from 'jsdom';
 
 const app = express();
 const { sign } = jwt;
@@ -279,6 +283,28 @@ app.get("/players/:playerID", validateToken, async (req, res) => {
     // Fielding
     const playerCareerFieldingTotals = await getPlayerCareerFieldingTotals(playerID, playoffs);
     const playerSeasonalFieldingTotals = await getPlayerSeasonalFieldingTotals(playerID, playoffs);
+
+    // Player Profile Picture 
+    // Query the database to get the Baseball Reference ID
+    const baseballReferenceID = await getBaseballReferenceID(playerID);
+    let headshotURL = '';
+
+    if (baseballReferenceID) {
+        const firstLetter = baseballReferenceID[0];
+        const url = `https://www.baseball-reference.com/players/${firstLetter}/${baseballReferenceID}.shtml`;
+
+        // Fetch and parse the Baseball Reference page for headshot URLs
+        const response = await axios.get(url);
+        const { document } = (new JSDOM(response.data)).window;
+        const mediaDiv = document.querySelector('div.media-item');
+
+        if (mediaDiv) {
+            const imgTag = mediaDiv.querySelector('img');
+            if (imgTag) {
+                headshotURL = imgTag.src;
+            }
+        }
+    }
   
     const playerProfile = {
         playerBio: playerBio,
@@ -290,10 +316,20 @@ app.get("/players/:playerID", validateToken, async (req, res) => {
         playerCareerBattingTotals: playerCareerBattingTotals,
         playerSeasonalBattingTotals: playerSeasonalBattingTotals,
         playerCareerFieldingTotals: playerCareerFieldingTotals,
-        playerSeasonalFieldingTotals: playerSeasonalFieldingTotals
+        playerSeasonalFieldingTotals: playerSeasonalFieldingTotals,
+        headshotURL: headshotURL
     };
     res.send(playerProfile);
 });
+
+
+/** 
+ * All time wins racing bar animation  
+ */
+app.get("/barleaders", async (req, res) => {
+    const { limit, yearID } = req.query;
+    res.send(await getTopFranchises(yearID, limit));
+})
 
 
 /**

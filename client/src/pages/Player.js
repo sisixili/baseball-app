@@ -19,6 +19,7 @@ function Player({lightMode, setLightMode}) {
     playerSeasonalBattingTotals: [0],
     playerCareerFieldingTotals: [0],
     playerSeasonalFieldingTotals: [0],
+    headshotURL: ""     // Initialize the headshot URL
   });
   const userID = sessionStorage.getItem("userID");
 
@@ -66,39 +67,37 @@ function Player({lightMode, setLightMode}) {
           <FavouriteButton lightMode={lightMode} userID={userID} type="player" id={playerID} text="Add Favourite Player" />
         </div>
 
-        {/*<SimpleTable
-          columns={Object.keys(PlayerStats.playerBio[0])}
-          data={PlayerStats.playerBio}
-        /> */}
-        {PlayerStats.playerBio.map((player, key) => (
-          <div key={key}>
-            <h2>{player.nameFirst} {player.nameLast}</h2>
-            <head>
-            {player.nameFirst} {player.nameLast}
-            </head>
-            <ul className="BioStats">
-              <li className="BioStats">Bats: {player.bats?player.bats: "N/A"}</li>
-              <li className="BioStatsR">Throws: {player.throws ? player.throws : "N/A"}</li>
-              <li className="BioStats">Birthday: {player.birthYear ? player.birthYear : "0000"}-{player.birthMonth ? player.birthMonth : "00"}-{player.birthDay ? player.birthDay : "00"}</li>
-              <li className="BioStatsR">Debut: {player.debut ? player.debut : "N/A"}</li>
-              <li className="BioStats">Height: {player.height ? player.height : "N/A"}"</li>
-              <li className="BioStatsR">Weight: {player.weight ? player.weight+"lbs" : "N/A"}</li>
-              <li className="BioStats">Born: {player.birthCountry ? player.birthCountry : "N/A"}</li>
-            </ul>
+        <div className="player-info">
+        <div className="player-details">
+          {PlayerStats.playerBio.map((player, key) => (
+            <div key={key}>
+              <h2>{player.nameFirst} {player.nameLast}</h2>
+              <ul className="BioStats">
+                <li>Bats: {player.bats ? player.bats : "N/A"}</li>
+                <li>Throws: {player.throws ? player.throws : "N/A"}</li>
+                <li>Birthday: {player.birthYear ? player.birthYear : "0000"}-{player.birthMonth ? player.birthMonth : "00"}-{player.birthDay ? player.birthDay : "00"}</li>
+                <li>Debut: {player.debut ? player.debut : "N/A"}</li>
+                <li>Height: {player.height ? player.height : "N/A"}"</li>
+                <li>Weight: {player.weight ? player.weight + " lbs" : "N/A"}</li>
+                <li>Born: {player.birthCountry ? player.birthCountry : "N/A"}</li>
+              </ul>
+              <div className="Positions">
+                <h3>Positions:</h3>
+                {PlayerStats.playerPositions.map((position, posKey) => (
+                  <div key={posKey}>{position.position}</div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        {PlayerStats.headshotURL && (
+          <div className="player-headshot">
+            <img src={PlayerStats.headshotURL} alt="Player headshot" />
           </div>
-        ))}
-
-        {/* <SimpleTable
-          columns={Object.keys(PlayerStats.playerPositions[0])}
-          data={PlayerStats.playerPositions}
-        /> */}
-        Positions: 
-        {PlayerStats.playerPositions.map((player, key) => (
-          <div key={key}>
-              {player.position} 
-          </div>
-        ))} {/* Im not happy with this but im wasting time so moving on */}
+        )}
       </div>
+    </div>
+      
       <div id="TopRight">
         <h4>Player Hall Of Fame</h4>
         {PlayerStats?.playerHallOfFameStatus?.[0] ? (
