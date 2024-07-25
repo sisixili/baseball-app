@@ -21,17 +21,18 @@ function Player({lightMode, setLightMode}) {
     playerSeasonalFieldingTotals: [0],
     headshotURL: ""     // Initialize the headshot URL
   });
-  const userID = sessionStorage.getItem("userID");
+  const [playoff, setPlayoff] = useState(false)
+  const userID = sessionStorage.getItem("userID")
 
   useEffect(() => {
-    fetch(`http://localhost:3001/players/${playerID}`, {
+    fetch(`http://localhost:3001/players/${playerID}?showPlayoffs=${playoff}`, {
       credentials: 'include',
     })
       .then((res) => {
         if (res.ok) {
           return res.json();
         } else {
-          console.log("FETCH failed");
+          throw new Error("FETCH failed");
         }
       })
       .then((data) => {
@@ -39,32 +40,20 @@ function Player({lightMode, setLightMode}) {
           console.log(data.error);
         } else {
           setPlayerStats(data);
-          console.log("FETCHED: ", data, " from ", playerID);
         }
       })
       .catch((error) => console.log("ERROR", error));
-  }, [playerID]);
+  }, [playerID, playoff]);
 
-  // Setting up column names
-  //const playerBiosCols = Object.keys(PlayerStats.playerBio[0]).map(key => ({ name: key }));
+  const togglePlayoff = () => {
+    setPlayoff(!playoff)
+  }
 
-  const seasonalPitchColumns = [
-    { name: "teamName", displayName: "Team", link: "/teams/:teamID/:yearID" },
-    { name: "G" },
-    { name: "W" },
-    { name: "L" },
-  ];
 
   return (
     <div>
-      {/* console.log(PlayerStats) */}
-      <h3> </h3>
       <div id="TopBar"> {/*  className="TopGrid"*/}
       <div id="TopLeft">
-        { /*<div>
-          <FavouriteButton lightMode={lightMode} userID={userID} type="player" id={playerID} text="Add Favourite Player" />
-        </div>*/ }
-
         <div className="player-info">
         <div className="player-details">
           {PlayerStats.playerBio.map((player, key) => (
@@ -72,6 +61,7 @@ function Player({lightMode, setLightMode}) {
               <h2>{player.nameFirst} {player.nameLast}</h2>
               <div>
                 <FavouriteButton lightMode={lightMode} userID={userID} type="player" id={playerID} text="Add Favourite Player" />
+                <button onClick={togglePlayoff}>Showing {playoff ? "Playoffs" : "Regular Season"}</button>
               </div>
               <ul className="BioStats">
                 <li>Bats: {player.bats ? player.bats : "N/A"}</li>
