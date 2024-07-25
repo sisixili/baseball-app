@@ -63,14 +63,14 @@ function Player({lightMode, setLightMode}) {
       <h3> </h3>
       <div id="TopBar"> {/*  className="TopGrid"*/}
       <div id="TopLeft">
-        {/*<div>
+        { /*<div>
           <FavouriteButton lightMode={lightMode} userID={userID} type="player" id={playerID} text="Add Favourite Player" />
-        </div>*/}
+        </div>*/ }
 
         <div className="player-info">
         <div className="player-details">
           {PlayerStats.playerBio.map((player, key) => (
-            <div key={key}>
+            <div className={lightMode ? "bio":"DMbio"} key={key}>
               <h2>{player.nameFirst} {player.nameLast}</h2>
               <div>
                 <FavouriteButton lightMode={lightMode} userID={userID} type="player" id={playerID} text="Add Favourite Player" />
@@ -85,7 +85,7 @@ function Player({lightMode, setLightMode}) {
                 <li>Born: {player.birthCountry ? player.birthCountry : "N/A"}</li>
               </ul>
               <div className="Positions">
-                <h3>Positions:</h3>
+                <h3 className={lightMode? "tit":"DMtit"}>Positions:</h3>
                 {PlayerStats.playerPositions.map((position, posKey) => (
                   <div key={posKey}>{position.position}</div>
                 ))}
@@ -94,7 +94,7 @@ function Player({lightMode, setLightMode}) {
           ))}
         </div>
         {PlayerStats.headshotURL && (
-          <div className="player-headshot">
+          <div className={lightMode?"player-headshot":"DMplayer-headshot"}>
             <img src={PlayerStats.headshotURL} alt="Player headshot" />
           </div>
         )}
@@ -111,7 +111,7 @@ function Player({lightMode, setLightMode}) {
             data={PlayerStats.playerHallOfFameStatus}
           />
         ) : (
-          <p>Player was not inducted into the Hall Of Fame.</p>
+          <p className={lightMode ? "bio":"DMbio"}>Player was not inducted into the Hall Of Fame.</p>
         )}
       </div>
 
@@ -126,7 +126,7 @@ function Player({lightMode, setLightMode}) {
           data={PlayerStats.playerAwards}
         />
       ) : (
-        <p>No awards for this player.</p>
+        <p className={lightMode ? "bio":"DMbio"}>No awards for this player.</p>
       )}
 
       <h3>Career Pitching Totals</h3>
@@ -138,7 +138,7 @@ function Player({lightMode, setLightMode}) {
         data={PlayerStats.playerCareerPitchingTotals}
       />
       ):(
-        <p>No pitching totals for this player.</p>  
+        <p className={lightMode ? "bio":"DMbio"}>No pitching totals for this player.</p>  
       )}
 
       <h3>Seasonal Pitching Totals</h3>
@@ -150,7 +150,7 @@ function Player({lightMode, setLightMode}) {
         data={PlayerStats.playerSeasonalPitchingTotals}
       />
       ):(
-        <p>No pitching totals for this player.</p>  
+        <p className={lightMode ? "bio":"DMbio"}>No pitching totals for this player.</p>  
       ) */}           {/* works but cant seem to include the links specifically */}
       <table className={lightMode ? "TableStyle" : "DMTableStyle"}>
         <thead>
@@ -177,13 +177,13 @@ function Player({lightMode, setLightMode}) {
             <th>IP</th>
           </tr>
         </thead>
-        <tbody className="TableResults">
+        <tbody className={lightMode?"TableResults":"DMTableResults"}>
           {PlayerStats.playerSeasonalPitchingTotals.length > 0 ? (
             PlayerStats.playerSeasonalPitchingTotals.map((player, key) => (
               <tr key={key}>
                 <td>{player.yearID}</td>
                 <td>
-                  <Link to={`/teams/${player.teamID}/${player.yearID}`}>
+                  <Link className={lightMode?"tableLinks":"DMtableLinks"} to={`/teams/${player.teamID}/${player.yearID}`}>
                     {" "}
                     {player.teamName}{" "}
                   </Link>
@@ -224,7 +224,7 @@ function Player({lightMode, setLightMode}) {
         columns={Object.keys(PlayerStats.playerCareerBattingTotals[0])}
         data={PlayerStats.playerCareerBattingTotals}
       />):(
-        <p>No batting totals for this player.</p>  
+        <p className={lightMode ? "bio":"DMbio"}>No batting totals for this player.</p>  
       )}
 
       <h3>Seasonal Batting Totals</h3>
@@ -254,13 +254,13 @@ function Player({lightMode, setLightMode}) {
           </tr>
         </thead>
 
-        <tbody className="TableResults">
+        <tbody className={lightMode?"TableResults":"DMTableResults"}>
           {PlayerStats.playerSeasonalBattingTotals.length > 0 ? (
             PlayerStats.playerSeasonalBattingTotals.map((player, key) => (
               <tr key={key}>
                 <td>{player.yearID}</td>
                 <td>
-                  <Link to={`/teams/${player.teamID}/${player.yearID}`}>
+                  <Link className={lightMode?"tableLinks":"DMtableLinks"} to={`/teams/${player.teamID}/${player.yearID}`}>
                     {" "}
                     {player.teamName}{" "}
                   </Link>
@@ -301,7 +301,7 @@ function Player({lightMode, setLightMode}) {
         columns={Object.keys(PlayerStats.playerCareerFieldingTotals[0])}
         data={PlayerStats.playerCareerFieldingTotals}
       />):(
-        <p>No fielding totals for this player.</p>  
+        <p className={lightMode ? "bio":"DMbio"}>No fielding totals for this player.</p>  
       )}
 
 
@@ -319,13 +319,13 @@ function Player({lightMode, setLightMode}) {
             <th>DP</th>
           </tr>
         </thead>
-        <tbody className="TableResults">
+        <tbody className={lightMode?"TableResults":"DMTableResults"}>
           {PlayerStats.playerSeasonalFieldingTotals.length > 0 ? (
             PlayerStats.playerSeasonalFieldingTotals.map((player, key) => (
               <tr key={key}>
                 <td>{player.yearID}</td>
                 <td>
-                  <Link to={`/teams/${player.teamID}/${player.yearID}`}>
+                  <Link className={lightMode?"tableLinks":"DMtableLinks"} to={`/teams/${player.teamID}/${player.yearID}`}>
                     {" "}
                     {player.teamName}{" "}
                   </Link>

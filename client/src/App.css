@@ -1,10 +1,13 @@
 :root {
-  --DMContrast: #A0EFFF;/*#23B5D3 #A0EFFF #00819B;*/
-  --DMContrastHover: #80CFDF;
+  --DMContrast: #E0F9FA;/*#6497B6 #23B5D3 #A0EFFF #00819B;*/
+  --DMContrastHover: #C0D9DA;/*#447796 #80CFDF;*/
   --DMinputText: #001D42;
   --DMBackground: #001D42;
-  --DMtableDisplay: #23B5D3;
-  --DMtableText: #000000;
+  --DMtableDisplay: #18315B;
+  --DMtableText: #E0F9FA;/*#A0EFFF;/*#E0F9FA;*/
+  --DMNavBar: #325693;
+  --DMNavBarHover: #224683;
+  --NavBar: #23B5D3;
   --HoverColor: #1A9CB7;
 } /* var(--DMContrast) var(--DMBackground)*/
 
@@ -223,8 +226,8 @@ li {
   display: flex;
   align-items: start;
   flex-direction: column;
-  background: var(--DMContrast); /*Header Colour*/
-  color: var(--DMinputText);
+  background: var(--DMNavBar); /*Header Colour*/
+  color: var(--DMBackground);
 }
 .NavText {
   width: auto;
@@ -358,14 +361,20 @@ li {
 .DMTableStyle{
   margin-top: 0;
   margin-bottom: 0;
-  background-color: var(--DMContrast);
-  color: #000000; 
+  background-color: var(--DMNavBar);
+  color: var(--DMtableText); 
 }
 .TableResults{
   margin-top: 0;
   margin-bottom: 0;
   background-color: #23B5D3;
   color: #000000; 
+}
+.DMTableResults{
+  margin-top: 0;
+  margin-bottom: 0;
+  background-color: var(--DMtableDisplay);
+  color: var(--DMtableText); 
 }
 .StatTypeButton{
   font-size: inherit;
@@ -420,10 +429,17 @@ li {
     margin-left: 20px;
     margin-top: 20px;
 }
-
 .player-headshot img {
     border: 3px solid #23B5D3;
     border-radius: 5px;           
+}
+.DMplayer-headshot {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.DMplayer-headshot img {
+  border: 3px solid var(--DMNavBar);
+  border-radius: 5px;           
 }
   
 .BioStats {
@@ -534,22 +550,34 @@ li {
 .SimpleTableHeader{
   background-color: #000000;
   color: #F5FEFF;
+  border: none;
 }
 .DMSimpleTableHeader{
-  background-color: var(--DMContrast);
-  color: #000000;
+  background-color: var(--DMNavBar);
+  color: var(--DMtableText);
 }
 .blackBG{
   background-color: #000000;
   width: auto;
 }
 .whiteBG{
-  background-color: var(--DMContrast);
+  background-color: var(--DMNavBar);
   width: auto;
 }
 .SimpleTableListItem{
   background-color: #23B5D3;
   color: #000000; 
+}
+.DMSimpleTableListItem{
+  border: none;
+  background-color: var(--DMtableDisplay);
+  color: var(--DMtableText); 
+}
+.tableLinks{
+  color: #000000;
+}
+.DMtableLinks{
+  color: var(--DMtableText);
 }
 
 /* footers */
@@ -580,6 +608,10 @@ li {
   color: #000000; /* #8CC04E; */
   background-color: #8CC04E;/* #23B5D3;*/
 }
+.favbutton:hover{
+  color: #000000; /* #8CC04E; */
+  background-color: #6CA02E;/* #23B5D3;*/ 
+}
 .dmfavbutton{
   font-size: inherit;
   font-family: inherit;
@@ -588,8 +620,11 @@ li {
   border-radius: 7px;
   margin-bottom: 10px;
 
-  color: #000000; /* #8CC04E; */
-  background-color: #8CC04E;/* #23B5D3;*/
+  color: var(--DMBackground); /* #8CC04E; */
+  background-color: var(--DMNavBar);/*#7CB9DF;/*#8CC04E;/* #23B5D3;*/
+}
+.dmfavbutton:hover{
+  background-color: var(--DMNavBarHover);/*#7CB9DF;/*#8CC04E;/* #23B5D3;*/  
 }
 
 /* Page Intructions */
@@ -665,7 +700,7 @@ li {
   font-size: inherit;
   font-family: inherit;
   padding: 0.2em 0.5em;
-  background-color: var(--DMtableDisplay);
+  background-color: var(--NavBar);
   border: 2px solid var(--input-border);
   border-radius: 7px;
   color: #000000;
@@ -692,9 +727,22 @@ li {
   cursor: pointer;
   font-weight: "bold";
 
-  color: var(--DMinputText);
-  background-color: var(--DMContrast);
+  color: var(--DMBackground);
+  background-color: var(--DMNavBar);
 }
 .DMnavLinks:hover{
-  background-color: var(--DMContrastHover);
+  background-color: var(--DMNavBarHover);
+}
+
+.bio{
+  color: #000000;
+}
+.DMbio{
+  color: var(--DMtableText);
+}
+.tit{
+  color: #000000;
+}
+.DMtit{
+  color: var(--DMContrast);
 }
