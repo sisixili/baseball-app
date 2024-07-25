@@ -1,5 +1,6 @@
 :root {
   --DMContrast: #A0EFFF;/*#23B5D3 #A0EFFF #00819B;*/
+  --DMContrastHover: #C0FFFF;
   --DMinputText: #001D42;
   --DMBackground: #001D42;
   --DMtableDisplay: #23B5D3;
@@ -608,24 +609,31 @@ li {
   font-family: inherit;
   padding: 0.25em 0.5em;
   background-color: #000000;
-  border: 10px solid var(--input-border);
-  border-radius: 0px;
+  border: 2px solid var(--input-border);
+  border-radius: 7px;
   color: #F5FEFF;
   margin-bottom: 0;
   margin-right: 10px;
   margin-top: -10px;
 }
+.graphButton:hover{
+  background-color: #2F2F2F;
+}
 .DMgraphButton{
   font-size: inherit;
   font-family: inherit;
   padding: 0.25em 0.5em;
-  background-color: var(--DMContrast); /* #F5FEFF <-blue-white #23B5D3 <-teal #8CC04E <-green */
-  border: 10px solid var(--input-border);
-  border-radius: 0px;
-  color: #000000;
+  border: 2px solid var(--input-border);
+  border-radius: 7px;
   margin-bottom: 0;
   margin-right: 10px;
   margin-top: -10px;
+
+  background-color: var(--DMContrast); /* #F5FEFF <-blue-white #23B5D3 <-teal #8CC04E <-green */
+  color: #000000;
+}
+.DMgraphButton:hover{
+  background-color: var(--DMContrastHover);
 }
 
 .dmtogglebutton{
@@ -660,28 +668,3 @@ li {
   background-color: var(--HoverColor);
   color: #000000;
 }
-/* .navLinks span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.1s;
-  background-color: var(--DMtableDisplay);
-}
-.navLinks span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.1s;
-  background-color: var(--DMtableDisplay);
-}
-.navLinks:hover span {
-  padding-right: 25px;
-  background-color: var(--DMtableDisplay);
-}
-.navLinks:hover span:after {
-  opacity: 1;
-  right: 0;
-  background-color: var(--DMtableDisplay);
-} */
