@@ -41,13 +41,13 @@ function Franchises({lightMode, setLightMode}) {
       <div className="subTitle">
         <div className={lightMode ? "franHeader" : "DMfranHeader"}><h3 className="boxMargins">All Active Franchises</h3></div>
         
-        <div className="Players">
+        <div className={lightMode?"Players":"DMPlayers"}>
           <div className="franList">
             <div className="nameList">
               {listOfFranchises.activeFranchises.map((franchise, key) => (
                 <div className="player" key={key}>
                   <div className="nameList">
-                  <Link to={`/franchises/${franchise.franchiseID}`}>
+                  <Link className={lightMode?"tableLinks":"DMtableLinks"} to={`/franchises/${franchise.franchiseID}`}>
                     {franchise.franchiseName}
                   </Link>
                   </div>
@@ -61,13 +61,13 @@ function Franchises({lightMode, setLightMode}) {
 
         <div className={lightMode ? "franHeader" : "DMfranHeader"}><h3 className="boxMargins">All Non-Active Franchises</h3></div>
 
-        <div className="Players">
+        <div className={lightMode?"Players":"DMPlayers"}>
           <div className="franList">
             <div className="nameList">
               {listOfFranchises.nonActiveFranchises.map((franchise, key) => (
                 <div className="player" key={key}>
                   <div className="nameList">
-                    <Link to={`/franchises/${franchise.franchiseID}`}>
+                    <Link className={lightMode?"tableLinks":"DMtableLinks"} to={`/franchises/${franchise.franchiseID}`}>
                       {franchise.franchiseName}
                     </Link>
                   </div>
@@ -81,13 +81,13 @@ function Franchises({lightMode, setLightMode}) {
 
         <div className={lightMode ? "franHeader" : "DMfranHeader"}><h3 className="boxMargins">National Association Franchises</h3></div>
 
-        <div className="Players">
+        <div className={lightMode?"Players":"DMPlayers"}>
           <div className="franList">
             <div className="nameList">
               {listOfFranchises.nationalAssociationFranchises.map((franchise, key) => (
                 <div className="player" key={key}>
                   <div className="nameList">
-                    <Link to={`/franchises/${franchise.franchiseID}`}>
+                    <Link className={lightMode?"tableLinks":"DMtableLinks"} to={`/franchises/${franchise.franchiseID}`}>
                       {franchise.franchiseName}
                     </Link>
                   </div>

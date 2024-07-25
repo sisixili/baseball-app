@@ -80,7 +80,7 @@ function Players({ lightMode, setLightMode }) {
               Prev
             </button>
             <span>
-              Page {page} of {totalPages} &thinsp;
+              &thinsp;Page {page} of {totalPages} &thinsp;
             </span>
             <button className={lightMode ? "graphButton" : "DMgraphButton"} onClick={handleNextPage} disabled={page === totalPages}>
               Next
