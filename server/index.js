@@ -32,12 +32,18 @@ import {
 import { validateToken } from "./middlewares/AuthMiddleware.js";
 import axios from 'axios';
 import { JSDOM } from 'jsdom';
+import cookieParser from 'cookie-parser'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const app = express();
-const { sign } = jwt;
 
 app.use(express.json());
-app.use(cors());
+app.use(cookieParser());
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  }));
 
 app.use((err, req, res, next) => {
   // Express 5 middleware
@@ -77,18 +83,31 @@ app.post("/login", async (req, res) => {
     }
     
     bcrypt.compare(pwd, user.pwd).then((match) => {
-        
-        // Check if inputted password matches pwd associated with username
-        if (!match) {
-            return res.json({ error: "The username or password is incorrect" });
-        }
-        
-        // Create token with userID
-        const accessToken = sign({ userID: user.userID }, "8waH28nEHUwE");
-        return res.json(accessToken);
+      // Check if inputted password matches pwd associated with username
+      if (!match) {
+        return res.json({ error: "The username or password is incorrect" });
+      }
+
+      // Create token with userID
+      const accessToken = jwt.sign({ userID: user.userID }, process.env.ACCESS_TOKEN_SECRET);
+
+      return res
+        .cookie("accessToken", accessToken, {
+          httpOnly: true,
+          secure: true,
+        })
+        .status(200)
+        .json({ message: `${userID} Logged in successfully`, token:accessToken}); //, token:accessToken
     });
 
 });
+
+app.get("/logout", (req, res) => {
+    return res
+      .clearCookie("accessToken")
+      .status(200)
+      .json({ message: "Successfully logged out" });
+  });
 
 
 /**
@@ -326,7 +345,7 @@ app.get("/players/:playerID", validateToken, async (req, res) => {
 /** 
  * All time wins racing bar animation  
  */
-app.get("/barleaders", async (req, res) => {
+app.get("/barleaders", validateToken, async (req, res) => {
     const { limit, yearID } = req.query;
     res.send(await getTopFranchises(yearID, limit));
 })

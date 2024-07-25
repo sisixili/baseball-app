@@ -16,9 +16,7 @@ function Franchise({lightMode, setLightMode}) {
   
     useEffect(() => {
       fetch(`http://localhost:3001/franchises/${franchiseID}`, {
-        headers: {
-          accessToken: sessionStorage.getItem("accessToken"),
-        },
+        credentials: 'include',
       })
         .then((res) => {
           if (res.ok) {

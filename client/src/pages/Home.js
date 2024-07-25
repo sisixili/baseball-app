@@ -9,15 +9,12 @@ function Home({ lightMode, setLightMode }) {
   /*const { lightMode, setLightMode } = useContext(lightMode);*/
 
   const [year, setYear] = useState(1871);
-  //const [limit, setLimit] = useState(10); // Currently hardcoded at 6
   const [start, setStart] = useState(false);
   const [data, setData] = useState([]); // list of leading franchises
 
   useEffect(() => {
     fetch(`http://localhost:3001/barleaders?yearID=${year}&limit=6`, {
-      headers: {
-        accessToken: sessionStorage.getItem("accessToken"),
-      },
+      credentials: 'include',
     })
       .then((res) => {
         if (res.ok) {
@@ -32,11 +29,10 @@ function Home({ lightMode, setLightMode }) {
         } else {
           const dataWithColours = addColours(data);
           setData(dataWithColours);
-          console.log(dataWithColours)
         }
       })
       .catch((error) => console.log("ERROR", error));
-  }, [year]) //limit
+  }, [year]) 
 
   Timer(() => {
     if (start) {

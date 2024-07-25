@@ -25,9 +25,7 @@ function Player({lightMode, setLightMode}) {
 
   useEffect(() => {
     fetch(`http://localhost:3001/players/${playerID}`, {
-      headers: {
-        accessToken: sessionStorage.getItem("accessToken"),
-      },
+      credentials: 'include',
     })
       .then((res) => {
         if (res.ok) {

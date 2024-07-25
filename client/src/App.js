@@ -40,13 +40,13 @@ function App() {
   // Check if user is logged in
   useEffect(() => {
     const checkLoggedInStatus = () => {
-      const token = sessionStorage.getItem('accessToken');
+      const token = sessionStorage.getItem('userID');
       if (token) {
         setIsLoggedIn(true);
-        console.log("User is logged in, token found.");
+        console.log("User is logged in");
       } else {
         setIsLoggedIn(false);
-        console.log("User is not logged in, no token found.");
+        console.log("User is not logged in");
       }
     };
     /*const checkLightModeStatus = () => {
@@ -98,7 +98,7 @@ function App() {
               <div className="NavText">
                 <h3>
                   {" "}
-                  &emsp;⚾ <button className={lightMode? "navLinks":"DMnavLinks"}><Link class="NavText" to="/home"> Home </Link></button>
+                  &emsp;⚾ <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/home"> Home </Link></button>
                   <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/players"> Search All Players </Link></button>
                   <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/leaderboard"> Leaderboard </Link></button>
                   <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/franchises"> All Franchises </Link></button>
@@ -118,13 +118,6 @@ function App() {
                 </h3>
               </div>
             </nav>
-          <div>
-          {isLoggedIn ? (
-                    []
-                  ) : (
-                    "Please login to continue"
-                  )}
-          </div>
           </div>
           <Routes>
             <Route path="/home" element={<Home lightMode={lightMode} setLightMode={setLightMode}/>} />

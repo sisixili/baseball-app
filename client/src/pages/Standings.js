@@ -8,9 +8,7 @@ function Standings({lightMode, setLightMode}) {
 
   useEffect(() => {
     fetch(`http://localhost:3001/standings?yearID=${year}`, {
-      headers: {
-        accessToken: sessionStorage.getItem("accessToken"),
-      },
+      credentials: 'include',
     })
       .then((res) => {
         if (res.ok) {
