@@ -64,15 +64,20 @@ function Home({ lightMode, setLightMode }) {
         <h1>⚾ DataBaseBall ⚾</h1>
       </div>
       <div className="bottom-chunk">
-        <h1>Franchise Win Leaders Over The Years</h1>
-        <RacingBarChart data={data} />
-        <button onClick={handleStartStop}>
+        <h2>Franchise Win Leaders Over The Years</h2>
+
+        <h3>Year: {year}</h3>
+
+        <div className="graphText">
+          <RacingBarChart className="graphText" data={data} />
+        </div>
+
+        <button className={lightMode ? "graphButton" : "DMgraphButton"} onClick={handleStartStop}>
           {start ? "Stop" : "Start"}
         </button>
-        <button onClick={restart}>
+        <button className={lightMode ? "graphButton" : "DMgraphButton"} onClick={restart}>
           Restart
         </button>
-        <p>Year: {year}</p>
       </div>
     </div>
   );

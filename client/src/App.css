@@ -580,3 +580,32 @@ li {
 .inner-row-item{
   margin-right: 10px;
 }
+
+.graphText{
+  color:#A0EFFF;
+}
+
+.graphButton{
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  background-color: #000000;
+  border: 10px solid var(--input-border);
+  border-radius: 0px;
+  color: #F5FEFF;
+  margin-bottom: 0;
+  margin-right: 10px;
+  margin-top: -10px;
+}
+.DMgraphButton{
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  background-color: var(--DMContrast); /* #F5FEFF <-blue-white #23B5D3 <-teal #8CC04E <-green */
+  border: 10px solid var(--input-border);
+  border-radius: 0px;
+  color: #000000;
+  margin-bottom: 0;
+  margin-right: 10px;
+  margin-top: -10px;
+}

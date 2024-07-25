@@ -54,13 +54,14 @@ function RacingBarChart({ data }) {
         .attr("class", "label")
         .attr("x", 10)
         .style("font-weight", "bold") // Make the text bold
+        .style("color", "#A0EFFF")
         .transition()
         .attr("y", (entry, index) => yScale(index) + yScale.bandwidth() / 2 + 5);
     }, [data, dimensions]);
   
     return ( 
-      <div ref={wrapperRef} style={{ marginBottom: "2rem", width: "1200px", height: "300px"}}>
-      <svg ref={svgRef} width={dimensions ? dimensions.width : 0} height={dimensions ? dimensions.height : 0}></svg>
+      <div className="graphText" ref={wrapperRef} style={{ marginBottom: "2rem", width: "1200px", height: "300px"}}>
+      <svg className="graphText" ref={svgRef} width={dimensions ? dimensions.width : 0} height={dimensions ? dimensions.height : 0}></svg>
     </div>
     );
   }
