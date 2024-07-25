@@ -10,9 +10,7 @@ function Players({ lightMode, setLightMode }) {
 
     useEffect(() => {
         fetch(`http://localhost:3001/players?page=${page}&limit=25&search=${search}`, { // NOTE HARDCODED 25 limit
-          headers: {
-            accessToken: sessionStorage.getItem("accessToken"),
-          },
+          credentials: 'include',
         })
           .then((res) => {
             if (res.ok) {

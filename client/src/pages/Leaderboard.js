@@ -28,9 +28,7 @@ function Leaderboard({lightMode, setLightMode}) {
 
     try {
       fetch(url, {
-        headers: {
-          accessToken: sessionStorage.getItem("accessToken"),
-        },
+        credentials: 'include',
       })
         .then((res) => {
           if (res.ok) {

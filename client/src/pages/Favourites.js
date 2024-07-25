@@ -11,9 +11,7 @@ function Favourites({lightMode, setLightMode}) {
 
   useEffect(() => {
     fetch(`http://localhost:3001/favourites/${userID}`, {
-      headers: {
-        accessToken: sessionStorage.getItem("accessToken"),
-      },
+      credentials: 'include',
     })
       .then((res) => {
         if (res.ok) {

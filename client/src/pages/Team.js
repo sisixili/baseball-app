@@ -16,9 +16,7 @@ function Team({lightMode, setLightMode}) {
 
   useEffect(() => {
     fetch(`http://localhost:3001/teams/${teamID}/${yearID}`, {
-      headers: {
-        accessToken: sessionStorage.getItem("accessToken"),
-      },
+      credentials: 'include',
     })
       .then((res) => {
         if (res.ok) {

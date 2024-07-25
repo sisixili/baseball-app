@@ -9,7 +9,7 @@ function Login({lightMode, setLightMode}) {
   const navigate = useNavigate()
 
   const login = async () => {
-    const token = sessionStorage.getItem("accessToken");
+    const token = sessionStorage.getItem("userID");
     if (token) {
       alert("You have already logged in!");
       navigate("/home");
@@ -25,6 +25,7 @@ function Login({lightMode, setLightMode}) {
           userID: username,
           pwd: password,
         }),
+        credentials: 'include', // Important to include credentials
       });
 
       const data = await response.json();
@@ -33,7 +34,6 @@ function Login({lightMode, setLightMode}) {
         if (data.error) {
           alert(data.error);
         } else {
-          sessionStorage.setItem("accessToken", data); // Using session storage for quick and dirty JWT auth
           sessionStorage.setItem("userID", username);
           navigate("/home"); // go to home after login
         }
