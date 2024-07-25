@@ -210,6 +210,19 @@ li {
   border-radius: 0;
 }
 
+.DMdropdown2{
+  font-size: inherit;
+  font-family: inherit;
+  border: 10px solid var(--input-border);
+  border-radius: 0px;
+  background-color: var(--DMNavBar);
+  background: var(--DMNavBar);
+  color: var(--DMContrast);
+  padding: 0.25em 0.5em;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
 
 /* ==================== NAV BAR ==================== */
 .NavBar {
@@ -264,6 +277,14 @@ li {
 
   display: grid;
 }
+.DMPlayers {
+  background-color: var(--DMNavBar);
+  color: var(--DMContrast); 
+
+  margin-top: 0;
+  margin-bottom: 0;
+  display: grid;
+}
 .NameList{
   margin-right: 15px;
   margin-left: 15px;
@@ -277,6 +298,17 @@ li {
   display: flex;
 
   font-size: 10;
+}
+.DMNameList{
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: flex;
+  font-size: 10;
+
+  background-color: var(--DMNavBar);
+  color: var(--DMContrast); 
 }
 .nameList{
   margin-right: 15px;
@@ -657,7 +689,7 @@ li {
   border-radius: 7px;
   color: #F5FEFF;
   margin-bottom: 0;
-  margin-right: 10px;
+  margin-right: 0px;
   margin-top: -10px;
 }
 .graphButton:hover{
@@ -745,4 +777,25 @@ li {
 }
 .DMtit{
   color: var(--DMContrast);
+}
+
+.colButton{
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  background-color: #000000;
+  border: 10px solid var(--input-border);
+  border-radius: 0px;
+  color: #F5FEFF;
+  margin-bottom: 0;
+}
+.DMcolButton{
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  background-color: var(--DMNavBar); /* #F5FEFF <-blue-white #23B5D3 <-teal #8CC04E <-green */
+  border: 10px solid var(--input-border);
+  border-radius: 0px;
+  color: var(--DMContrast);
+  margin-bottom: 0;
 }

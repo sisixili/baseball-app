@@ -92,7 +92,7 @@ function Leaderboard({lightMode, setLightMode}) {
         </div>
         <div className="inner-row-item">
         <select
-            className={lightMode ? "dropdown" : "DMdropdown"}
+            className={lightMode ? "dropdown" : "DMdropdown2"}
             value={batYearID}
             onChange={(e) => setBatYearID(e.target.value)}
           >
@@ -115,7 +115,7 @@ function Leaderboard({lightMode, setLightMode}) {
               <th>
                 <td>
                   <button 
-                    className={lightMode ? "input" : "DMinput"} 
+                    className={lightMode ? "colButton" : "DMcolButton"} 
                     onClick={() => {
                       if (battingStatistic === 'nameLast') {
                         if (batOrderDirection === 'asc'){
@@ -137,7 +137,7 @@ function Leaderboard({lightMode, setLightMode}) {
                 <th key={index + 1}>
                   <td>
                     <button
-                      className={lightMode ? "input" : "DMinput"}
+                      className={lightMode ? "colButton" : "DMcolButton"} 
                       onClick={() => {
                         if (battingStatistic === col.toString()) {
                           if (batOrderDirection === 'asc'){
@@ -158,12 +158,12 @@ function Leaderboard({lightMode, setLightMode}) {
               ))}
             </tr>
           </thead>
-          <tbody className="SimpleTableListItem">
+          <tbody className={lightMode?"SimpleTableListItem":"DMSimpleTableListItem"}>
             {listOfPlayers.battingLeaders.map((row, rowIndex) => (
               <tr key={rowIndex}>
                 {/* Combine the first three columns into one cell */}
                 <td>
-                  <Link to={`/players/${row[Object.keys(listOfPlayers.battingLeaders[0])[0]]}`}>
+                  <Link className={lightMode?"tableLinks":"DMtableLinks"} to={`/players/${row[Object.keys(listOfPlayers.battingLeaders[0])[0]]}`}>
                     {row[Object.keys(listOfPlayers.battingLeaders[0])[1]]} {row[Object.keys(listOfPlayers.battingLeaders[0])[2]]}
                   </Link>
                 </td>
@@ -269,7 +269,7 @@ function Leaderboard({lightMode, setLightMode}) {
         </div>
         <div className="inner-row-item">
         <select
-            className={lightMode ? "dropdown" : "DMdropdown"}
+            className={lightMode ? "dropdown" : "DMdropdown2"}
             value={pitchYearID}
             onChange={(e) => setPitchYearID(e.target.value)}
           >
@@ -293,7 +293,7 @@ function Leaderboard({lightMode, setLightMode}) {
               <th>
                 <td>
                   <button 
-                    className={lightMode ? "input" : "DMinput"} 
+                    className={lightMode ? "colButton" : "DMcolButton"} 
                     onClick={() => {
                       if (pitchingStatistic === 'nameLast') {
                         if (pitchOrderDirection === 'asc'){
@@ -315,7 +315,7 @@ function Leaderboard({lightMode, setLightMode}) {
                 <th key={index + 1}>
                   <td>
                     <button
-                      className={lightMode ? "input" : "DMinput"}
+                      className={lightMode ? "colButton" : "DMcolButton"} 
                       onClick={() => {
                         if (pitchingStatistic === col.toString()) {
                           if (pitchOrderDirection === 'asc'){
@@ -336,12 +336,12 @@ function Leaderboard({lightMode, setLightMode}) {
               ))}
             </tr>
           </thead>
-          <tbody className="SimpleTableListItem">
+          <tbody className={lightMode?"SimpleTableListItem":"DMSimpleTableListItem"}>
             {listOfPlayers.pitchingLeaders.map((row, rowIndex) => (
               <tr key={rowIndex}>
                 {/* Combine the first three columns into one cell */}
                 <td>
-                  <Link to={`/players/${row[Object.keys(listOfPlayers.pitchingLeaders[0])[0]]}`}>
+                  <Link className={lightMode?"tableLinks":"DMtableLinks"} to={`/players/${row[Object.keys(listOfPlayers.pitchingLeaders[0])[0]]}`}>
                     {row[Object.keys(listOfPlayers.pitchingLeaders[0])[1]]} {row[Object.keys(listOfPlayers.pitchingLeaders[0])[2]]}
                   </Link>
                 </td>
@@ -433,7 +433,7 @@ function Leaderboard({lightMode, setLightMode}) {
         </div>
         <div className="inner-row-item">
         <select
-            className={lightMode ? "dropdown" : "DMdropdown"}
+            className={lightMode ? "dropdown" : "DMdropdown2"}
             value={fieldYearID}
             onChange={(e) => setFieldYearID(e.target.value)}
           >
@@ -457,7 +457,7 @@ function Leaderboard({lightMode, setLightMode}) {
               <th>
                 <td>
                   <button 
-                    className={lightMode ? "input" : "DMinput"} 
+                    className={lightMode ? "colButton" : "DMcolButton"} 
                     onClick={() => {
                       if (fieldingStatistic === 'nameLast') {
                         if (fieldingOrderDirection === 'asc'){
@@ -479,7 +479,7 @@ function Leaderboard({lightMode, setLightMode}) {
                 <th key={index + 1}>
                   <td>
                     <button
-                      className={lightMode ? "input" : "DMinput"}
+                      className={lightMode ? "colButton" : "DMcolButton"} 
                       onClick={() => {
                         if (fieldingStatistic === col.toString()) {
                           if (fieldingOrderDirection === 'asc'){
@@ -500,12 +500,12 @@ function Leaderboard({lightMode, setLightMode}) {
               ))}
             </tr>
           </thead>
-          <tbody className="SimpleTableListItem">
+          <tbody className={lightMode?"SimpleTableListItem":"DMSimpleTableListItem"}>
             {listOfPlayers.fieldingLeaders.map((row, rowIndex) => (
               <tr key={rowIndex}>
                 {/* Combine the first three columns into one cell */}
                 <td>
-                  <Link to={`/players/${row[Object.keys(listOfPlayers.battingLeaders[0])[0]]}`}>
+                  <Link className={lightMode?"tableLinks":"DMtableLinks"} to={`/players/${row[Object.keys(listOfPlayers.battingLeaders[0])[0]]}`}>
                     {row[Object.keys(listOfPlayers.fieldingLeaders[0])[1]]} {row[Object.keys(listOfPlayers.fieldingLeaders[0])[2]]}
                   </Link>
                 </td>

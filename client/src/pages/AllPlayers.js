@@ -63,12 +63,12 @@ function Players({ lightMode, setLightMode }) {
         />
         <button className={lightMode ? "input" : "DMinput"} type="submit">Search</button>
       </form>
-      <div className="Players">
+      <div className={lightMode?"Players":"DMPlayers"}>
         <div className="nameList">
           {listOfPlayers.map((player) => (
             <div className="player" key={player.playerID}>
               <div className="nameList">
-              <Link to={`/players/${player.playerID}`}>
+              <Link className={lightMode?"tableLinks":"DMtableLinks"} to={`/players/${player.playerID}`}>
                 {player.nameFirst} {player.nameLast}
               </Link>
               </div>
@@ -78,13 +78,13 @@ function Players({ lightMode, setLightMode }) {
         </div>
         <div className="pagMargins">
           <div className="pagination">
-            <button onClick={handlePreviousPage} disabled={page === 1}>
+            <button className={lightMode ? "graphButton" : "DMgraphButton"} onClick={handlePreviousPage} disabled={page === 1}>
               Prev
             </button>
             <span>
-              Page {page} of {totalPages}
+              Page {page} of {totalPages} &thinsp;
             </span>
-            <button onClick={handleNextPage} disabled={page === totalPages}>
+            <button className={lightMode ? "graphButton" : "DMgraphButton"} onClick={handleNextPage} disabled={page === totalPages}>
               Next
             </button>
           </div>

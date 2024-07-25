@@ -75,6 +75,7 @@ function Home({ lightMode, setLightMode }) {
         <button className={lightMode ? "graphButton" : "DMgraphButton"} onClick={handleStartStop}>
           {start ? "Stop" : "Start"}
         </button>
+        &ensp;
         <button className={lightMode ? "graphButton" : "DMgraphButton"} onClick={restart}>
           Restart
         </button>
