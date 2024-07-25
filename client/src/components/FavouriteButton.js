@@ -27,7 +27,7 @@ const FavouriteButton = ({ userID, type, id, text, lightMode }) => {
   };
 
   return (
-    <button className="dmfavbutton" onClick={handleAddFavourite}> {/* lightMode ? "favbutton" : "dmfavbutton" */}
+    <button className={lightMode? "favbutton":"dmfavbutton"} onClick={handleAddFavourite}> {/* lightMode ? "favbutton" : "dmfavbutton" */}
       Add Favourite {type.charAt(0).toUpperCase() + type.slice(1)} {/*text*/}
     </button>
   );

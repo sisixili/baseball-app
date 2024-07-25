@@ -63,15 +63,18 @@ function Player({lightMode, setLightMode}) {
       <h3> </h3>
       <div id="TopBar"> {/*  className="TopGrid"*/}
       <div id="TopLeft">
-        <div>
+        {/*<div>
           <FavouriteButton lightMode={lightMode} userID={userID} type="player" id={playerID} text="Add Favourite Player" />
-        </div>
+        </div>*/}
 
         <div className="player-info">
         <div className="player-details">
           {PlayerStats.playerBio.map((player, key) => (
             <div key={key}>
               <h2>{player.nameFirst} {player.nameLast}</h2>
+              <div>
+                <FavouriteButton lightMode={lightMode} userID={userID} type="player" id={playerID} text="Add Favourite Player" />
+              </div>
               <ul className="BioStats">
                 <li>Bats: {player.bats ? player.bats : "N/A"}</li>
                 <li>Throws: {player.throws ? player.throws : "N/A"}</li>
@@ -99,7 +102,7 @@ function Player({lightMode, setLightMode}) {
     </div>
       
       <div id="TopRight">
-        <h4>Player Hall Of Fame</h4>
+        <h3>Player Hall Of Fame</h3>
         {PlayerStats?.playerHallOfFameStatus?.[0] ? (
           <SimpleTable
             lightMode={lightMode}
@@ -114,7 +117,7 @@ function Player({lightMode, setLightMode}) {
 
       </div>
 
-      <h4>Player Awards</h4>
+      <h3>Player Awards</h3>
       {PlayerStats?.playerAwards?.[0] ? (
         <SimpleTable
         lightMode={lightMode}
@@ -126,7 +129,7 @@ function Player({lightMode, setLightMode}) {
         <p>No awards for this player.</p>
       )}
 
-      <h4>Career Pitching Totals</h4>
+      <h3>Career Pitching Totals</h3>
       {PlayerStats?.playerCareerPitchingTotals?.[0] ? (
       <SimpleTable
             lightMode={lightMode}
@@ -138,7 +141,7 @@ function Player({lightMode, setLightMode}) {
         <p>No pitching totals for this player.</p>  
       )}
 
-      <h4>Seasonal Pitching Totals</h4>
+      <h3>Seasonal Pitching Totals</h3>
       {/* PlayerStats?.playerSeasonalPitchingTotals?.[0] ? (
       <SimpleTable
             lightMode={lightMode}
@@ -213,7 +216,7 @@ function Player({lightMode, setLightMode}) {
         </tbody>
       </table>
 
-      <h4>Career Batting Totals</h4>
+      <h3>Career Batting Totals</h3>
       {PlayerStats?.playerCareerBattingTotals?.[0] ? (
       <SimpleTable
             lightMode={lightMode}
@@ -224,7 +227,7 @@ function Player({lightMode, setLightMode}) {
         <p>No batting totals for this player.</p>  
       )}
 
-      <h4>Seasonal Batting Totals</h4>
+      <h3>Seasonal Batting Totals</h3>
       <table className={lightMode ? "TableStyle" : "DMTableStyle"}>
         <thead>
           <tr>
@@ -290,7 +293,7 @@ function Player({lightMode, setLightMode}) {
         </tbody>
       </table>
 
-      <h4>Career Fielding Totals</h4>
+      <h3>Career Fielding Totals</h3>
       {PlayerStats?.playerCareerFieldingTotals?.[0] ? (
       <SimpleTable
             lightMode={lightMode}
@@ -302,7 +305,7 @@ function Player({lightMode, setLightMode}) {
       )}
 
 
-      <h4>Seasonal Fielding Totals</h4>
+      <h3>Seasonal Fielding Totals</h3>
       <table className={lightMode ? "TableStyle" : "DMTableStyle"}>
         <thead>
           <tr>

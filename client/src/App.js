@@ -98,22 +98,22 @@ function App() {
               <div className="NavText">
                 <h3>
                   {" "}
-                  ⚾ |<Link to="/home"> Home </Link>|
-                  <Link to="/players"> Search All Players </Link>|
-                  <Link to="/leaderboard"> Leaderboard </Link>|
-                  <Link to="/franchises"> All Franchises </Link>|
-                  <Link to="/standings"> Search Standings </Link>|
-                  <Link to="/favourites"> Favourites </Link>|
+                  {"   "}⚾ <button className="navLinks"><Link class="NavText" to="/home"> Home </Link></button>
+                  <button className="navLinks"><Link class="NavText" to="/players"> Search All Players </Link></button>
+                  <button className="navLinks"><Link class="NavText" to="/leaderboard"> Leaderboard </Link></button>
+                  <button className="navLinks"><Link class="NavText" to="/franchises"> All Franchises </Link></button>
+                  <button className="navLinks"><Link class="NavText" to="/standings"> Search Standings </Link></button>
+                  <button className="navLinks"><Link class="NavText" to="/favourites"> Favourites </Link></button>
                   {isLoggedIn ? (
-                    <Link to="/logout"> Logout </Link>
+                    <button className="navLinks"><Link class="NavText" to="/logout"> Logout </Link></button>
                   ) : (
-                    <Link to="/"> Login </Link>
+                    <button className="navLinks"><Link class="NavText" to="/"> Login </Link></button>
                   )}
-                  |
+                  
                   {lightMode ? (
-                    <button onClick={() => setLightMode(false)}>☾</button>
+                    <button className="navLinks" onClick={() => setLightMode(false)}>☾</button>
                   ) : (
-                    <button onClick={() => setLightMode(true)}>☼</button>
+                    <button className="navLinks" onClick={() => setLightMode(true)}>☼</button>
                   )}
                 </h3>
               </div>

@@ -4,6 +4,7 @@
   --DMBackground: #001D42;
   --DMtableDisplay: #23B5D3;
   --DMtableText: #000000;
+  --HoverColor: #1c92a9;
 } /* var(--DMContrast) var(--DMBackground)*/
 
 /* ==================== GENERAL ==================== */
@@ -220,12 +221,13 @@ li {
   height: auto;
   display: flex;
   align-items: start;
-  margin-left: 18px;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-left: 2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
   flex-direction: column;
-  background: #23B5D3; /*Header Colour*/
+  background: transparent; /*Header Colour*/
   color: #000000;
+  font-weight: "bold";
 }
 
 
@@ -405,6 +407,7 @@ li {
   
 .player-headshot {
     margin-left: 20px;
+    margin-top: 20px;
 }
 
 .player-headshot img {
@@ -556,12 +559,26 @@ li {
 /* fav button */
 
 .favbutton{
-  color:#8CC04E;
-  background-color: #000000;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.2em 0.5em;
+  border: 2px solid var(--input-border);
+  border-radius: 7px;
+  margin-bottom: 10px;
+
+  color: #000000; /* #8CC04E; */
+  background-color: #8CC04E;/* #23B5D3;*/
 }
 .dmfavbutton{
-  color:#000000;
-  background-color: #8CC04E;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.2em 0.5em;
+  border: 2px solid var(--input-border);
+  border-radius: 7px;
+  margin-bottom: 10px;
+
+  color: #000000; /* #8CC04E; */
+  background-color: #8CC04E;/* #23B5D3;*/
 }
 
 /* Page Intructions */
@@ -609,3 +626,61 @@ li {
   margin-right: 10px;
   margin-top: -10px;
 }
+
+.dmtogglebutton{
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.2em 0.5em;
+  background-color: #000000;
+  border: 2px solid var(--input-border);
+  border-radius: 7px;
+  color: #F5FEFF;
+  margin-bottom: 0;
+}
+
+.navLinks{
+  text-align: center;
+  width: auto;
+  transition: all 0.1s;
+  margin: 5px;
+
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.2em 0.5em;
+  background-color: var(--DMtableDisplay);
+  border: 2px solid var(--input-border);
+  border-radius: 7px;
+  color: #000000;
+  margin-bottom: 0;
+  cursor: pointer;
+  font-weight: "bold";
+}
+.navLinks:hover{
+  background-color: var(--HoverColor);
+  color: #000000;
+}
+/* .navLinks span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.1s;
+  background-color: var(--DMtableDisplay);
+}
+.navLinks span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.1s;
+  background-color: var(--DMtableDisplay);
+}
+.navLinks:hover span {
+  padding-right: 25px;
+  background-color: var(--DMtableDisplay);
+}
+.navLinks:hover span:after {
+  opacity: 1;
+  right: 0;
+  background-color: var(--DMtableDisplay);
+} */
