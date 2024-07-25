@@ -93,27 +93,27 @@ function App() {
       <div className={lightMode ? 'lmbody' : 'dmbody'}>
         {/*<body>*/}
         <Router>
-          <div className="NavBar">
+          <div className={lightMode ? 'NavBar' : 'DMNavBar'}>
             <nav className="navBar">
               <div className="NavText">
                 <h3>
                   {" "}
-                  &emsp;⚾ <button className="navLinks"><Link class="NavText" to="/home"> Home </Link></button>
-                  <button className="navLinks"><Link class="NavText" to="/players"> Search All Players </Link></button>
-                  <button className="navLinks"><Link class="NavText" to="/leaderboard"> Leaderboard </Link></button>
-                  <button className="navLinks"><Link class="NavText" to="/franchises"> All Franchises </Link></button>
-                  <button className="navLinks"><Link class="NavText" to="/standings"> Search Standings </Link></button>
-                  <button className="navLinks"><Link class="NavText" to="/favourites"> Favourites </Link></button>
+                  &emsp;⚾ <button className={lightMode? "navLinks":"DMnavLinks"}><Link class="NavText" to="/home"> Home </Link></button>
+                  <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/players"> Search All Players </Link></button>
+                  <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/leaderboard"> Leaderboard </Link></button>
+                  <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/franchises"> All Franchises </Link></button>
+                  <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/standings"> Search Standings </Link></button>
+                  <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/favourites"> Favourites </Link></button>
                   {isLoggedIn ? (
-                    <button className="navLinks"><Link class="NavText" to="/logout"> Logout </Link></button>
+                    <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/logout"> Logout </Link></button>
                   ) : (
-                    <button className="navLinks"><Link class="NavText" to="/"> Login </Link></button>
+                    <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/"> Login </Link></button>
                   )}
                   
                   {lightMode ? (
-                    <button className="navLinks" onClick={() => setLightMode(false)}>☾</button>
+                    <button className={lightMode? "navLinks":"DMnavLinks"} onClick={() => setLightMode(false)}>☾</button>
                   ) : (
-                    <button className="navLinks" onClick={() => setLightMode(true)}>☼</button>
+                    <button className={lightMode? "navLinks":"DMnavLinks"} onClick={() => setLightMode(true)}>☼</button>
                   )}
                 </h3>
               </div>
