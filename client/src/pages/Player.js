@@ -345,6 +345,7 @@ function Player({lightMode, setLightMode}) {
           )}
         </tbody>
       </table>
+      <h3> </h3>
     </div>
   );
 }

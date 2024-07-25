@@ -49,22 +49,21 @@ function Team({lightMode, setLightMode}) {
                 {team.franchiseID}
               </Link>
             </h2>
+            <div>
+              <FavouriteButton
+                lightMode={lightMode} 
+                userID={userID}
+                type="team"
+                id={{ team: teamID, year: yearID }}
+                text="Add Favourite Team"
+              />
+            </div>
             <h3>
               Games: {team.G}, Wins: {team.W}, Losses: {team.L}, Team Park:{" "}
               {team.park}, Avg Attendance: {team.averageAttendance}
             </h3>
           </div>
         ))}
-      </div>
-
-      <div>
-        <FavouriteButton
-          lightMode={lightMode} 
-          userID={userID}
-          type="team"
-          id={{ team: teamID, year: yearID }}
-          text="Add Favourite Team"
-        />
       </div>
 
       <h3> Total Pitching Stats</h3>
@@ -99,11 +98,11 @@ function Team({lightMode, setLightMode}) {
             <th>IP</th>
           </tr>
         </thead>
-        <tbody className="TableResults">
+        <tbody className={lightMode?"TableResults":"DMTableResults"}>
           {teamStats.teamAllPitchers.map((team, key) => (
             <tr key={key}>
               <td>
-                <Link to={`/players/${team.playerID}`}>
+                <Link className={lightMode?"tableLinks":"DMtableLinks"} to={`/players/${team.playerID}`}>
                   {team.nameFirst} {team.nameLast}
                 </Link>
               </td>
@@ -162,11 +161,11 @@ function Team({lightMode, setLightMode}) {
             <th>PA</th>
           </tr>
         </thead>
-        <tbody className="TableResults">
+        <tbody className={lightMode?"TableResults":"DMTableResults"}>
           {teamStats.teamAllBatters.map((team, key) => (
             <tr key={key}>
               <td>
-                <Link to={`/players/${team.playerID}`}>
+                <Link className={lightMode?"tableLinks":"DMtableLinks"} to={`/players/${team.playerID}`}>
                   {team.nameFirst} {team.nameLast}
                 </Link>
               </td>
@@ -192,6 +191,7 @@ function Team({lightMode, setLightMode}) {
           ))}
         </tbody>
       </table>
+      <h3> </h3>
     </div>
   );
 }
