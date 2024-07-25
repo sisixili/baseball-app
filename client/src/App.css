@@ -4,7 +4,7 @@
   --DMBackground: #001D42;
   --DMtableDisplay: #23B5D3;
   --DMtableText: #000000;
-  --HoverColor: #1c92a9;
+  --HoverColor: #1A9CB7;
 } /* var(--DMContrast) var(--DMBackground)*/
 
 /* ==================== GENERAL ==================== */
@@ -228,6 +228,7 @@ li {
   background: transparent; /*Header Colour*/
   color: #000000;
   font-weight: "bold";
+  text-decoration: none;
 }
 
 

@@ -98,7 +98,7 @@ function App() {
               <div className="NavText">
                 <h3>
                   {" "}
-                  {"   "}⚾ <button className="navLinks"><Link class="NavText" to="/home"> Home </Link></button>
+                  &emsp;⚾ <button className="navLinks"><Link class="NavText" to="/home"> Home </Link></button>
                   <button className="navLinks"><Link class="NavText" to="/players"> Search All Players </Link></button>
                   <button className="navLinks"><Link class="NavText" to="/leaderboard"> Leaderboard </Link></button>
                   <button className="navLinks"><Link class="NavText" to="/franchises"> All Franchises </Link></button>
