@@ -116,16 +116,20 @@ app.get("/logout", (req, res) => {
 app.get("/favourites/:userID", validateToken, async (req, res) => {
     const { userID } = req.params;
 
-    const favouriteFranchises = await getFavouriteFranchises(userID);     
-    const favouriteTeams = await getFavouriteTeams(userID);
-    const favouritePlayers = await getFavouritePlayers(userID);
-
-    const favourites = {
-        favouriteFranchises: favouriteFranchises,
-        favouriteTeams: favouriteTeams,
-        favouritePlayers: favouritePlayers
-    };
-    res.send(favourites);
+    try {
+        const favouriteFranchises = await getFavouriteFranchises(userID);     
+        const favouriteTeams = await getFavouriteTeams(userID);
+        const favouritePlayers = await getFavouritePlayers(userID);
+    
+        const favourites = {
+            favouriteFranchises: favouriteFranchises,
+            favouriteTeams: favouriteTeams,
+            favouritePlayers: favouritePlayers
+        };
+        res.send(favourites);
+    } catch(error) {
+        res.status(500).json({error: error});
+    }
 })
 
 
@@ -152,7 +156,6 @@ app.post("/favourite", validateToken , async (req, res) => {
         res.status(201).json({ message: `Favourite ${type} registered successfully for ${userID}` });
     } catch (error) {
         res.status(500).json({ error: error + " failed to create favourite " + type + " for user " + userID});
-        console.log(error);
     }
 });
 
@@ -167,7 +170,6 @@ app.get("/players",  validateToken, async (req, res) => {
         const players = await getAllPlayers(page, limit, search);
         res.json(players);
     } catch(error) {
-        console.log(error);
         res.status(500).json({ error: 'Failed to fetch players' });
     }    
 });
@@ -195,7 +197,6 @@ app.get("/leaderboard", validateToken, async (req, res) => {
         };
         res.send(leaders);
     } catch (error) {
-        console.log(error)
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
@@ -206,8 +207,13 @@ app.get("/leaderboard", validateToken, async (req, res) => {
  */
 app.get("/standings", validateToken, async (req, res) => {
     const { yearID } = req.query;
-    const standings = await getStandings(yearID);
-    res.send(standings);
+    try {
+        const standings = await getStandings(yearID);
+        res.send(standings);
+    } catch (error) {
+        res.status(500).json({error: error});
+    }
+    
 });
 
  
@@ -215,16 +221,22 @@ app.get("/standings", validateToken, async (req, res) => {
  * All Franchises
  */
 app.get("/franchises", validateToken, async (req, res) => {
-    const activeFranchises = await getFranchises('Y');                                  // Active franchises
-    const nonActiveFranchises = await getFranchises('N');                               // Nonactive franchises
-    const nationalAssociationFranchises = await getNationalAssociationFranchises();     // National Association franchises
 
-    const franchises = {
-        activeFranchises: activeFranchises,
-        nonActiveFranchises: nonActiveFranchises,
-        nationalAssociationFranchises: nationalAssociationFranchises
-    };
-    res.send(franchises);
+    try {
+        const activeFranchises = await getFranchises('Y');                                  // Active franchises
+        const nonActiveFranchises = await getFranchises('N');                               // Nonactive franchises
+        const nationalAssociationFranchises = await getNationalAssociationFranchises();     // National Association franchises
+
+        const franchises = {
+            activeFranchises: activeFranchises,
+            nonActiveFranchises: nonActiveFranchises,
+            nationalAssociationFranchises: nationalAssociationFranchises
+        };
+        res.send(franchises);
+    } catch (error) {
+        res.status(500).json({error: error});
+    }
+    
 });
 
 
@@ -232,20 +244,25 @@ app.get("/franchises", validateToken, async (req, res) => {
  * Franchise Profile
  */
 app.get("/franchises/:franchiseID", validateToken, async (req, res) => {
-    const { franchiseID } = req.params;
+  const { franchiseID } = req.params;
 
-    const franchiseBio = await getFanchiseBio(franchiseID);              
+  try {
+    const franchiseBio = await getFanchiseBio(franchiseID);
     const franchiseTotalPitching = await getFranchiseTotalPitching(franchiseID);
     const franchiseTotalBatting = await getFranchiseTotalBatting(franchiseID);
     const franchiseTeams = await getFranchiseTeams(franchiseID);
 
     const franchiseProfile = {
-        franchiseBio: franchiseBio,
-        franchiseTotalPitching: franchiseTotalPitching,
-        franchiseTotalBatting: franchiseTotalBatting,
-        franchiseTeams: franchiseTeams
+      franchiseBio: franchiseBio,
+      franchiseTotalPitching: franchiseTotalPitching,
+      franchiseTotalBatting: franchiseTotalBatting,
+      franchiseTeams: franchiseTeams,
     };
+
     res.send(franchiseProfile);
+  } catch (error) {
+    res.status(500).json({error: error});
+  }
 });
 
 
@@ -253,10 +270,11 @@ app.get("/franchises/:franchiseID", validateToken, async (req, res) => {
  * Team Profile
  */
 app.get("/teams/:teamID/:yearID", validateToken, async (req, res) => {
-    const { teamID, yearID } = req.params;
+  const { teamID, yearID } = req.params;
 
+  try {
     // Team bio
-    const teamBio = await getTeamBio(teamID, yearID);                             
+    const teamBio = await getTeamBio(teamID, yearID);
 
     // Pitching
     const teamTotalPitching = await getTeamTotalPitching(teamID, yearID);
@@ -267,13 +285,16 @@ app.get("/teams/:teamID/:yearID", validateToken, async (req, res) => {
     const teamAllBatters = await getTeamAllBatters(teamID, yearID);
 
     const teamProfile = {
-        teamBio: teamBio,
-        teamTotalPitching: teamTotalPitching,
-        teamAllPitchers: teamAllPitchers,
-        teamTotalBatting: teamTotalBatting,
-        teamAllBatters: teamAllBatters
+      teamBio: teamBio,
+      teamTotalPitching: teamTotalPitching,
+      teamAllPitchers: teamAllPitchers,
+      teamTotalBatting: teamTotalBatting,
+      teamAllBatters: teamAllBatters,
     };
     res.send(teamProfile);
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
 });
 
 
@@ -281,64 +302,85 @@ app.get("/teams/:teamID/:yearID", validateToken, async (req, res) => {
  * Player Profile
  */
 app.get("/players/:playerID", validateToken, async (req, res) => {
-    const { playerID } = req.params;
-    const { showPlayoffs } = req.query;
-    const playoffs = showPlayoffs === 'true';
-
+  const { playerID } = req.params;
+  const { showPlayoffs } = req.query;
+  const playoffs = showPlayoffs === "true";
+  try {
     // General player info
-    const playerBio = await getPlayerBio(playerID); 
+    const playerBio = await getPlayerBio(playerID);
     const playerPositions = await getPlayerPositions(playerID);
     const playerHallOfFameStatus = await wasElectedToHallOfFame(playerID);
     const playerAwards = await getPlayerAwards(playerID);
 
     // Pitching
-    const playerCareerPitchingTotals = await getPlayerCareerPitchingTotals(playerID, playoffs);
-    const playerSeasonalPitchingTotals = await getPlayerSeasonalPitchingTotals(playerID, playoffs);
+    const playerCareerPitchingTotals = await getPlayerCareerPitchingTotals(
+      playerID,
+      playoffs
+    );
+    const playerSeasonalPitchingTotals = await getPlayerSeasonalPitchingTotals(
+      playerID,
+      playoffs
+    );
 
     // Batting
-    const playerCareerBattingTotals = await getPlayerCareerBattingTotals(playerID, playoffs);
-    const playerSeasonalBattingTotals = await getPlayerSeasonalBattingTotals(playerID, playoffs);
+    const playerCareerBattingTotals = await getPlayerCareerBattingTotals(
+      playerID,
+      playoffs
+    );
+    const playerSeasonalBattingTotals = await getPlayerSeasonalBattingTotals(
+      playerID,
+      playoffs
+    );
 
     // Fielding
-    const playerCareerFieldingTotals = await getPlayerCareerFieldingTotals(playerID, playoffs);
-    const playerSeasonalFieldingTotals = await getPlayerSeasonalFieldingTotals(playerID, playoffs);
+    const playerCareerFieldingTotals = await getPlayerCareerFieldingTotals(
+      playerID,
+      playoffs
+    );
+    const playerSeasonalFieldingTotals = await getPlayerSeasonalFieldingTotals(
+      playerID,
+      playoffs
+    );
 
-    // Player Profile Picture 
+    // Player Profile Picture
     // Query the database to get the Baseball Reference ID
     const baseballReferenceID = await getBaseballReferenceID(playerID);
-    let headshotURL = '';
+    let headshotURL = "";
 
     if (baseballReferenceID) {
-        const firstLetter = baseballReferenceID[0];
-        const url = `https://www.baseball-reference.com/players/${firstLetter}/${baseballReferenceID}.shtml`;
+      const firstLetter = baseballReferenceID[0];
+      const url = `https://www.baseball-reference.com/players/${firstLetter}/${baseballReferenceID}.shtml`;
 
-        // Fetch and parse the Baseball Reference page for headshot URLs
-        const response = await axios.get(url);
-        const { document } = (new JSDOM(response.data)).window;
-        const mediaDiv = document.querySelector('div.media-item');
+      // Fetch and parse the Baseball Reference page for headshot URLs
+      const response = await axios.get(url);
+      const { document } = new JSDOM(response.data).window;
+      const mediaDiv = document.querySelector("div.media-item");
 
-        if (mediaDiv) {
-            const imgTag = mediaDiv.querySelector('img');
-            if (imgTag) {
-                headshotURL = imgTag.src;
-            }
+      if (mediaDiv) {
+        const imgTag = mediaDiv.querySelector("img");
+        if (imgTag) {
+          headshotURL = imgTag.src;
         }
+      }
     }
-  
+
     const playerProfile = {
-        playerBio: playerBio,
-        playerPositions: playerPositions,
-        playerHallOfFameStatus: playerHallOfFameStatus,
-        playerAwards: playerAwards,
-        playerCareerPitchingTotals: playerCareerPitchingTotals,
-        playerSeasonalPitchingTotals: playerSeasonalPitchingTotals,
-        playerCareerBattingTotals: playerCareerBattingTotals,
-        playerSeasonalBattingTotals: playerSeasonalBattingTotals,
-        playerCareerFieldingTotals: playerCareerFieldingTotals,
-        playerSeasonalFieldingTotals: playerSeasonalFieldingTotals,
-        headshotURL: headshotURL
+      playerBio: playerBio,
+      playerPositions: playerPositions,
+      playerHallOfFameStatus: playerHallOfFameStatus,
+      playerAwards: playerAwards,
+      playerCareerPitchingTotals: playerCareerPitchingTotals,
+      playerSeasonalPitchingTotals: playerSeasonalPitchingTotals,
+      playerCareerBattingTotals: playerCareerBattingTotals,
+      playerSeasonalBattingTotals: playerSeasonalBattingTotals,
+      playerCareerFieldingTotals: playerCareerFieldingTotals,
+      playerSeasonalFieldingTotals: playerSeasonalFieldingTotals,
+      headshotURL: headshotURL,
     };
     res.send(playerProfile);
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
 });
 
 
@@ -346,9 +388,13 @@ app.get("/players/:playerID", validateToken, async (req, res) => {
  * All time wins racing bar animation  
  */
 app.get("/barleaders", validateToken, async (req, res) => {
+  try {
     const { limit, yearID } = req.query;
     res.send(await getTopFranchises(yearID, limit));
-})
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+});
 
 
 /**
