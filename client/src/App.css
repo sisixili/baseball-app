@@ -1,4 +1,5 @@
 :root {
+  background-color: #000000;
   --DMContrast: #E0F9FA;/*#6497B6 #23B5D3 #A0EFFF #00819B;*/
   --DMContrastHover: #C0D9DA;/*#447796 #80CFDF;*/
   --DMinputText: #001D42;
