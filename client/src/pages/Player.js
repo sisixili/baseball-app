@@ -61,7 +61,8 @@ function Player({lightMode, setLightMode}) {
               <h2>{player.nameFirst} {player.nameLast}</h2>
               <div>
                 <FavouriteButton lightMode={lightMode} userID={userID} type="player" id={playerID} text="Add Favourite Player" />
-                <button onClick={togglePlayoff}>Showing {playoff ? "Playoffs" : "Regular Season"}</button>
+                &ensp;
+                <button className={lightMode? "favbutton":"dmfavbutton"} onClick={togglePlayoff}>Showing {playoff ? "Playoffs" : "Regular Season"}</button>
               </div>
               <ul className="BioStats">
                 <li>Bats: {player.bats ? player.bats : "N/A"}</li>
