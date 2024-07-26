@@ -33,7 +33,7 @@ function Favourites({lightMode, setLightMode}) {
   return (
     <div>
       <div className="pageTitle">
-        <h2>Your Favourites</h2>
+        <h2>Favourites</h2>
       </div>
       <div className="subTitle">
         <h3> </h3>
