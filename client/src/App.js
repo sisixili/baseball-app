@@ -99,10 +99,10 @@ function App() {
                 <h3>
                   {" "}
                   &emsp;⚾ <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/home"> Home </Link></button>
-                  <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/players"> Search All Players </Link></button>
+                  <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/players"> Player Search </Link></button>
                   <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/leaderboard"> Leaderboard </Link></button>
-                  <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/franchises"> All Franchises </Link></button>
-                  <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/standings"> Search Standings </Link></button>
+                  <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/franchises"> Franchises </Link></button>
+                  <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/standings"> Standings </Link></button>
                   <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/favourites"> Favourites </Link></button>
                   {isLoggedIn ? (
                     <button className={lightMode? "navLinks":"DMnavLinks"}><Link className="NavText" to="/logout"> Logout </Link></button>

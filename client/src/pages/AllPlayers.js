@@ -51,7 +51,7 @@ function Players({ lightMode, setLightMode }) {
   return (
     <div>
       <div className="pageTitle">
-        <h2>Search All Players</h2>
+        <h2>Player Search</h2>
       </div>
       <form onSubmit={handleSearchSubmit}>
         <input
