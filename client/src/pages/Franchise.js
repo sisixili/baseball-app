@@ -39,13 +39,16 @@ function Franchise({lightMode, setLightMode}) {
     return (
       <div className="center">
           {franchiseStats.franchiseBio.map((franchise, key) => (
-            <div className="pageTitle" key={key}>
-              <h2 className="center">
-                {franchise.franchiseName} Is Active: {franchise.isActive}
-              </h2>
+            <div className="center">
+              <div className="pageTitle" key={key}>
+                <h2 className="center">
+                  {franchise.franchiseName}
+                </h2>
+                <FavouriteButton lightMode={lightMode} userID={userID} type="franchise" id={franchiseID} text="Add Favourite Franchise" />
+              </div>
+              <h3>Is Active: {franchise.isActive}</h3>
             </div>
           ))}
-        <FavouriteButton lightMode={lightMode} userID={userID} type="franchise" id={franchiseID} text="Add Favourite Franchise" />
         <div>
           <h3 className="center">Franchise Total Pitching Stats</h3>
           <FranTotsTable
