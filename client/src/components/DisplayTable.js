@@ -23,13 +23,13 @@ const DisplayTable = ({ lightMode, columns, data }) => {
           ))}
         </tr>
       </thead>
-      <tbody className="SimpleTableListItem">
+      <tbody className={lightMode?"SimpleTableListItem":"DMSimpleTableListItem"}>
         {data.map((row, rowIndex) => (
           <tr key={rowIndex}>
             {columns.map((col, colIndex) => (
               <td key={colIndex}>
                 {col.link ? (
-                  <Link to={col.link.replace(":teamID", row.teamID).replace(":yearID", row.yearID).replace(":franchiseID", row.franchiseID)}>
+                  <Link className={lightMode?"tableLinks":"DMtableLinks"} to={col.link.replace(":teamID", row.teamID).replace(":yearID", row.yearID).replace(":franchiseID", row.franchiseID)}>
                     {row[col.name]}
                   </Link>
                 ) : (

@@ -51,7 +51,7 @@ function Standings({lightMode, setLightMode}) {
         <h1>Standings</h1>
 
         <select
-          className={lightMode ? "dropdown" : "DMdropdown"}
+          className={lightMode ? "dropdown2" : "DMdropdown2"}
           value={year}
           onChange={(e) => setYear(e.target.value)}
         >

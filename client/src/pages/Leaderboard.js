@@ -90,7 +90,7 @@ function Leaderboard({lightMode, setLightMode}) {
         </div>
         <div className="inner-row-item">
         <select
-            className={lightMode ? "dropdown" : "DMdropdown2"}
+            className={lightMode ? "dropdown2" : "DMdropdown2"}
             value={batYearID}
             onChange={(e) => setBatYearID(e.target.value)}
           >
@@ -267,7 +267,7 @@ function Leaderboard({lightMode, setLightMode}) {
         </div>
         <div className="inner-row-item">
         <select
-            className={lightMode ? "dropdown" : "DMdropdown2"}
+            className={lightMode ? "dropdown2" : "DMdropdown2"}
             value={pitchYearID}
             onChange={(e) => setPitchYearID(e.target.value)}
           >
@@ -431,7 +431,7 @@ function Leaderboard({lightMode, setLightMode}) {
         </div>
         <div className="inner-row-item">
         <select
-            className={lightMode ? "dropdown" : "DMdropdown2"}
+            className={lightMode ? "dropdown2" : "DMdropdown2"}
             value={fieldYearID}
             onChange={(e) => setFieldYearID(e.target.value)}
           >

@@ -210,6 +210,18 @@ li {
   border-radius: 0;
 }
 
+.dropdown2{
+  font-size: inherit;
+  font-family: inherit;
+  border: 10px solid var(--input-border);
+  border-radius: 0px;
+  background-color: #000000;
+  background: #000000;
+  color: #F5FEFF;
+  padding: 0.25em 0.5em;
+  margin-bottom: 0;
+  border-radius: 7px;
+}
 .DMdropdown2{
   font-size: inherit;
   font-family: inherit;
@@ -220,7 +232,7 @@ li {
   color: var(--DMContrast);
   padding: 0.25em 0.5em;
   margin-bottom: 0;
-  border-radius: 0;
+  border-radius: 7px;
 }
 
 
