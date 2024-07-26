@@ -62,48 +62,82 @@ function Register({lightMode, setLightMode}) {
       </div>
       <div className="FormSub">
         <form onSubmit={handleSubmit}>
-          <div>
-            <ul id="username">
+          <div className="regInputs" id="username">
+            {/* <ul id="username">
             <li>
             <label>Username</label>
             </li>
-            <li>
-              <input className="InputBox" type="text" name="username" value={formData.username} onChange={handleChange} required />
-            </li>
-            </ul>
+            <li> */}
+              <input 
+                className={lightMode ? "input" : "DMinput"} 
+                type="text" 
+                name="username" 
+                value={formData.username} 
+                onChange={handleChange} 
+                required
+                placeholder="Username"
+              />
+            {/* </li>
+            </ul> */}
           </div>
-          <div>
-          <ul id="FirstName">
+          <div className="regInputs" id="FirstName">
+          {/* <ul id="FirstName">
             <li>
             <label>First Name</label>
             </li>
-            <li>
-            <input className="InputBox" type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
-            </li>
-            </ul>
+            <li> */}
+            <input 
+              className={lightMode ? "input" : "DMinput"} 
+              type="text" 
+              name="firstName" 
+              value={formData.firstName} 
+              onChange={handleChange} 
+              required 
+              placeholder="First Name"
+            />
+            {/* </li>
+            </ul> */}
           </div>
-          <div>
-          <ul id="LastName">
+          <div className="regInputs" id="LastName">
+          {/* <ul id="LastName">
             <li>
             <label>Last Name</label>
             </li>
-            <li>
-            <input className="InputBox" type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
-            </li>
-            </ul>
+            <li> */}
+            <input 
+              className={lightMode ? "input" : "DMinput"} 
+              type="text" 
+              name="lastName" 
+              value={formData.lastName} 
+              onChange={handleChange} 
+              required 
+              placeholder="Last Name"
+            />
+            {/* </li>
+            </ul> */}
           </div>
-          <div>
-          <ul id="Password">
+          <div className="regInputs" id="Password">
+          {/* <ul id="Password">
             <li>
             <label>Password</label>
             </li>
-            <li>
-            <input className="InputBox" type="password" name="password" value={formData.password} onChange={handleChange} required />
-            </li>
-            </ul>
+            <li> */}
+            <input 
+              className={lightMode ? "input" : "DMinput"} 
+              type="password" 
+              placeholder="Password"
+              name="password" 
+              value={formData.password} 
+              onChange={handleChange} 
+              required 
+            />
+{/*             </li>
+            </ul> */}
           </div>
           <h2> </h2>
-          <button className={lightMode ? "RegCenteredWithMargins" : "DMRegCenteredWithMargins"} type="submit">Register</button>
+          <div className="center">
+            <button className={lightMode ? "RegCenteredWithMargins" : "DMRegCenteredWithMargins"} type="submit">Register</button>
+          </div>
         </form>
       </div>
       <h4 className="reg-footer"> </h4>
