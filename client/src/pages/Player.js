@@ -89,16 +89,18 @@ function Player({lightMode, setLightMode}) {
         )}
       </div>
     </div>
-      
-      <div id="TopRight">
-        <h3>Player Hall Of Fame</h3>
-        {PlayerStats?.playerHallOfFameStatus?.[0] ? (
-          <SimpleTable
+
+    {/* <SimpleTable
             lightMode={lightMode}
             setLightMode={setLightMode}
             columns={Object.keys(PlayerStats.playerHallOfFameStatus[0])}
             data={PlayerStats.playerHallOfFameStatus}
-          />
+          /> */}
+      
+      <div id="TopRight">
+        <h3>Inducted into the Player Hall Of Fame:</h3>
+        {PlayerStats?.playerHallOfFameStatus?.[0] ? (
+          <p>{PlayerStats.playerHallOfFameStatus[0].yearID}</p>
         ) : (
           <p className={lightMode ? "bio":"DMbio"}>Player was not inducted into the Hall Of Fame.</p>
         )}
@@ -106,6 +108,7 @@ function Player({lightMode, setLightMode}) {
 
       </div>
 
+      <div className="center">
       <h3>Player Awards</h3>
       {PlayerStats?.playerAwards?.[0] ? (
         <SimpleTable
@@ -334,6 +337,7 @@ function Player({lightMode, setLightMode}) {
           )}
         </tbody>
       </table>
+      </div>
       <h3> </h3>
     </div>
   );
