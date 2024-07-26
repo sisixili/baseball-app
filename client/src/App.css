@@ -9,6 +9,7 @@
   --DMNavBarHover: #224683;
   --NavBar: #23B5D3;
   --HoverColor: #1A9CB7;
+  --blackHover: #2F2F2F;
 } /* var(--DMContrast) var(--DMBackground)*/
 
 /* ==================== GENERAL ==================== */
@@ -353,10 +354,13 @@ li {
   padding: 0.25em 0.5em;
   background-color: #000000;
   border: 10px solid var(--input-border);
-  border-radius: 0px;
+  border-radius: 7px;
   color: #F5FEFF;
   margin-bottom: 0px;
   margin-top: 5px;
+}
+.LoginButton:hover{
+  background-color: var(--blackHover);
 }
 .dmLoginButton{
   font-size: inherit;
@@ -364,10 +368,13 @@ li {
   padding: 0.25em 0.5em;
   background-color: var(--DMContrast);
   border: 10px solid var(--input-border);
-  border-radius: 0px;
+  border-radius: 7px;
   color: #000000;
   margin-bottom: 0px;
   margin-top: 5px;
+}
+.dmLoginButton:hover{
+  background-color: var(--DMContrastHover);
 }
 .RegisterFontSize{
   font-size: 8;
@@ -385,12 +392,45 @@ li {
 .InputBox{
   width:100px;
 }
-.RegCenteredWithMargins {
+.RegCenteredWithMargins{
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  border: 10px solid var(--input-border);
+  border-radius: 7px;
+
   display: flex;
   align-items: table;
   margin-top: 5px;
   margin-bottom: 5px;
   margin-left: 92px;
+  border-radius: 7px;
+
+  color: #F5FEFF;
+  background-color: #000000;
+}
+.RegCenteredWithMargins:hover{
+  background-color: var(--blackHover);
+}
+.DMRegCenteredWithMargins{
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  border: 10px solid var(--input-border);
+  border-radius: 7px;
+
+  display: flex;
+  align-items: table;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 92px;
+  border-radius: 7px;
+  
+  color: var(--DMinputText);
+  background-color: var(--DMContrast);
+}
+.DMRegCenteredWithMargins:hover{
+  background-color: var(--DMContrastHover);
 }
 
 
@@ -648,10 +688,10 @@ li {
   margin-bottom: 335px;
 }
 .login-footer{
-  margin-bottom: 367px;
+  margin-bottom: 423px;
 }
 .reg-footer{
-  margin-bottom: 356px;
+  margin-bottom: 423px;
 }
 
 /* fav button */
@@ -720,7 +760,7 @@ li {
   margin-top: -10px;
 }
 .graphButton:hover{
-  background-color: #2F2F2F;
+  background-color: var(--blackHover);
 }
 .DMgraphButton{
   font-size: inherit;

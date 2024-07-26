@@ -53,7 +53,7 @@ function Login({lightMode, setLightMode}) {
         <h2>Login</h2>
       </div>
       <div className="Centered">
-      <input className={lightMode ? "input" : "dminput"}
+      <input className={lightMode ? "input" : "DMinput"}
         type="text"
         placeholder="Username"
         onChange={(event) => {
@@ -62,7 +62,7 @@ function Login({lightMode, setLightMode}) {
       />
       </div>
       <div className="Centered">
-      <input className={lightMode ? "input" : "dminput"}
+      <input className={lightMode ? "input" : "DMinput"}
         type="password"
         placeholder="Password"
         onChange={(event) => {
@@ -72,7 +72,7 @@ function Login({lightMode, setLightMode}) {
       </div>
       <div className="Centered">
         <div className="RegisterFontSize">
-          <Link to="/register">New? Register Here</Link>
+          <Link className={lightMode?"tableLinks":"DMtableLinks"} to="/register">New? Register Here</Link>
         </div>
       </div>
       <h3> </h3>

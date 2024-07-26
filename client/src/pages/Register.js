@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Register() {
+function Register({lightMode, setLightMode}) {
 
   const [formData, setFormData] = useState({
     username: '',
@@ -103,7 +103,7 @@ function Register() {
             </ul>
           </div>
           <h2> </h2>
-          <button className="RegCenteredWithMargins" type="submit">Register</button>
+          <button className={lightMode ? "RegCenteredWithMargins" : "DMRegCenteredWithMargins"} type="submit">Register</button>
         </form>
       </div>
       <h4 className="reg-footer"> </h4>
