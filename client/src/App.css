@@ -874,6 +874,9 @@ li {
   color: #F5FEFF;
   margin-bottom: 0;
 }
+.colButton:hover{
+  background-color: var(--blackHover);
+}
 .DMcolButton{
   font-size: inherit;
   font-family: inherit;
@@ -883,6 +886,9 @@ li {
   border-radius: 0px;
   color: var(--DMContrast);
   margin-bottom: 0;
+}
+.DMcolButton:hover{
+  background-color: var(--DMNavBarHover);
 }
 
 .searchbutton{
