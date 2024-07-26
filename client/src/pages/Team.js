@@ -40,13 +40,8 @@ function Team({lightMode, setLightMode}) {
     <div className="center">
       <div className="pageTitle">
         {teamStats.teamBio.map((team, key) => (
-          <div className="pageTitle" key={key}>
-            <h2>
-              {team.name} Franchise: &thinsp;
-              <Link className={lightMode?"tableLinks":"DMtableLinks"} to={`/franchises/${team.franchiseID}`}>
-                {team.franchiseID}
-              </Link>
-            </h2>
+          <div className="center" key={key}>
+            <h2>{team.name} {yearID}</h2>
             <div>
               <FavouriteButton
                 lightMode={lightMode} 
@@ -56,6 +51,12 @@ function Team({lightMode, setLightMode}) {
                 text="Add Favourite Team"
               />
             </div>
+            <h3>
+              Franchise: &thinsp;
+              <Link className={lightMode?"tableLinks":"DMtableLinks"} to={`/franchises/${team.franchiseID}`}>
+                {team.franchiseID}
+              </Link>
+            </h3>
             <h3>
               Games: {team.G}, Wins: {team.W}, Losses: {team.L}, Team Park:{" "}
               {team.park}, Avg Attendance: {team.averageAttendance}
