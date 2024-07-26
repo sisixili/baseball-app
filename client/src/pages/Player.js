@@ -69,7 +69,7 @@ function Player({lightMode, setLightMode}) {
                 <li>Throws: {player.throws ? player.throws : "N/A"}</li>
                 <li>Birthday: {player.birthYear ? player.birthYear : "0000"}-{player.birthMonth ? player.birthMonth : "00"}-{player.birthDay ? player.birthDay : "00"}</li>
                 <li>Debut: {player.debut ? player.debut : "N/A"}</li>
-                <li>Height: {player.height ? player.height : "N/A"}"</li>
+                <li>Height: {player.height ? `${Math.floor(player.height / 12)}' ${player.height % 12}"` : "N/A"}</li>
                 <li>Weight: {player.weight ? player.weight + " lbs" : "N/A"}</li>
                 <li>Born: {player.birthCountry ? player.birthCountry : "N/A"}</li>
               </ul>
