@@ -42,8 +42,8 @@ function Team({lightMode, setLightMode}) {
         {teamStats.teamBio.map((team, key) => (
           <div className="pageTitle" key={key}>
             <h2>
-              {team.name} Franchise:
-              <Link to={`/franchises/${team.franchiseID}`}>
+              {team.name} Franchise: &thinsp;
+              <Link className={lightMode?"tableLinks":"DMtableLinks"} to={`/franchises/${team.franchiseID}`}>
                 {team.franchiseID}
               </Link>
             </h2>

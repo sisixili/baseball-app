@@ -9,7 +9,7 @@
   --DMNavBarHover: #224683;
   --NavBar: #23B5D3;
   --HoverColor: #1A9CB7;
-  --blackHover: #2F2F2F;
+  --blackHover: #3F3F3F;
 } /* var(--DMContrast) var(--DMBackground)*/
 
 /* ==================== GENERAL ==================== */
@@ -675,8 +675,14 @@ li {
 .tableLinks{
   color: #000000;
 }
+.tableLinks:hover{
+  color: var(--blackHover);
+}
 .DMtableLinks{
-  color: var(--DMtableText);
+  color: var(--DMContrast);
+}
+.DMtableLinks:hover{
+  color: var(--DMContrastHover)
 }
 
 /* footers */
@@ -719,7 +725,7 @@ li {
   border-radius: 7px;
   margin-bottom: 10px;
 
-  color: var(--DMBackground); /* #8CC04E; */
+  color: #000000; /* #8CC04E; */
   background-color: var(--DMNavBar);/*#7CB9DF;/*#8CC04E;/* #23B5D3;*/
 }
 .dmfavbutton:hover{
@@ -865,4 +871,31 @@ li {
   border-radius: 0px;
   color: var(--DMContrast);
   margin-bottom: 0;
+}
+
+.searchbutton{
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  background-color: #000000;
+  border: 10px solid var(--input-border);
+  border-radius: 0px;
+  color: #F5FEFF;
+  margin-bottom: 0;
+}
+.searchbutton:hover{
+  background-color: var(--blackHover);
+}
+.DMsearchbutton{
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  background-color: var(--DMContrast); /* #F5FEFF <-blue-white #23B5D3 <-teal #8CC04E <-green */
+  border: 10px solid var(--input-border);
+  border-radius: 0px;
+  color: #000000;
+  margin-bottom: 0;
+}
+.DMsearchbutton:hover{
+  background-color: var(--DMContrastHover);
 }
