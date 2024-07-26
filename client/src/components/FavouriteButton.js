@@ -7,9 +7,9 @@ const FavouriteButton = ({ userID, type, id, text, lightMode }) => {
       const response = await fetch('http://localhost:3001/favourite', {
         method: 'POST',
         headers: {
-          accessToken: sessionStorage.getItem("accessToken"),
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({ userID, type, id, text }),
       });
 
