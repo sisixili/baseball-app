@@ -22,7 +22,7 @@ const FranTotsTable = ({ columns, data, links, lightMode, setLightMode }) => {
             ))}
           </tr>
         </thead>
-        <tbody className="SimpleTableListItem">
+        <tbody className={lightMode ? "SimpleTableListItem":"DMSimpleTableListItem"}>
           {data.map((row, rowIndex) => (
             <tr key={rowIndex}>
               {columns.map((col, colIndex) => (

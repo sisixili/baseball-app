@@ -38,7 +38,6 @@ function Franchise({lightMode, setLightMode}) {
 
     return (
       <div className="center">
-        <div className="pageTitle">
           {franchiseStats.franchiseBio.map((franchise, key) => (
             <div className="pageTitle" key={key}>
               <h2 className="center">
@@ -46,7 +45,6 @@ function Franchise({lightMode, setLightMode}) {
               </h2>
             </div>
           ))}
-        </div>
         <FavouriteButton lightMode={lightMode} userID={userID} type="franchise" id={franchiseID} text="Add Favourite Franchise" />
         <div>
           <h3 className="center">Franchise Total Pitching Stats</h3>
@@ -80,12 +78,12 @@ function Franchise({lightMode, setLightMode}) {
                 <th>averageAttendance</th>
               </tr>
             </thead>
-            <tbody className="TableResults">
+            <tbody className={lightMode?"TableResults":"DMTableResults"}>
               {franchiseStats.franchiseTeams.map((franchise, key) => (
                 <tr key={key}>
                   <td>
-                    <Link to={`/teams/${franchise.teamID}/${franchise.yearID}`}>
-                      {franchise.name}
+                    <Link className={lightMode?"tableLinks":"DMtableLinks"} to={`/teams/${franchise.teamID}/${franchise.yearID}`}>
+                      {franchise.name} &thinsp;
                       {franchise.yearID}
                     </Link>
                   </td>
@@ -99,6 +97,7 @@ function Franchise({lightMode, setLightMode}) {
             </tbody>
           </table>
         </div>
+        <h3> </h3>
       </div>
     );
 
