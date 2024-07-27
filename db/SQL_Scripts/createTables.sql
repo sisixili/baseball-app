@@ -160,7 +160,7 @@ CREATE TABLE IF NOT EXISTS AllstarFull (
     CHECK(startingPosition IS NULL OR (startingPosition >= 1 AND startingPosition <= 10))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE INDEX SingleYearAllStars ON AllstarFull(yearID);
+CREATE INDEX SingleYearAllStars ON AllstarFull(playerID);
 
 
 CREATE TABLE IF NOT EXISTS Appearances (
@@ -220,7 +220,7 @@ CREATE TABLE IF NOT EXISTS AwardsPlayers (
     FOREIGN KEY (playerID) REFERENCES Players(playerID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE INDEX SingleYearAwards ON AwardsPlayers(yearID);
+CREATE INDEX SingleYearAwards ON AwardsPlayers(playerID);
 
 
 CREATE TABLE IF NOT EXISTS Batting (
