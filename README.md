@@ -34,7 +34,7 @@ To run the website:
 8. Favourites: Add favourite franchises, teams, and players to your account. These are displayed on the favourites page with links the respecive profile pages.
 9. Standings: Show regular season standings for a user selected years. Links to redirect to team and franchise profile in the standings.
 
-# Walk Through Video
+# Walk Through Videos
 
 Watch a walk through of set up [here](https://drive.google.com/file/d/1X_w3iSUIZSOpsjB1Q-FAhmlAau5o5cmL/view?usp=sharing)
 
