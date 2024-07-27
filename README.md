@@ -36,4 +36,5 @@ To run the website:
 
 # Walk Through Video
 
-Watch a full walk through (including installation + current feature demo) [here](https://drive.google.com/file/d/12cV85r6YciKXsfpJXKIk8sIaM75udl3H/view?usp=sharing)
+Watch a walk through of set up [here](https://drive.google.com/file/d/1X_w3iSUIZSOpsjB1Q-FAhmlAau5o5cmL/view?usp=sharing)
+Watch a demo of all features [here](https://drive.google.com/file/d/16P-L0qlSNGKabFKaUxFZ9OpLhzYxTgnM/view?usp=sharing)
