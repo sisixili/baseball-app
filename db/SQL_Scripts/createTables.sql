@@ -364,7 +364,6 @@ CREATE TABLE IF NOT EXISTS Fielding (
 
 CREATE INDEX SingleYearFieldersWithTeams ON Fielding(yearID, teamID);
 CREATE INDEX SingleFielderWithPositions ON Fielding(playerID, position);
-CREATE INDEX SingleYearFielders ON Fielding(yearID);
 
 
 CREATE TABLE IF NOT EXISTS FieldingPost (
