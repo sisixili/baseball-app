@@ -69,6 +69,11 @@ function Standings({lightMode, setLightMode}) {
       <div className="standings-footer">
           <h4> </h4>
       </div>
+      <div className="center">
+        <h1> </h1>
+        <h1> </h1>
+        <p> </p>
+      </div>
     </div>
   );
 }

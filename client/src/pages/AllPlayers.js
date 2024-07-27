@@ -91,6 +91,7 @@ function Players({ lightMode, setLightMode }) {
       <div className="bottom-layer">
           <h3> </h3>
       </div>
+      <h3 className="center"> </h3>
     </div>
   );
 }

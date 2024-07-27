@@ -574,7 +574,13 @@ function Leaderboard({lightMode, setLightMode}) {
           ))}
         </div>
       </div> */}
-      <h3> </h3>
+      <div className="center">
+        <h3> </h3>
+        <h3> </h3>
+        <h3> </h3>
+        <h3> </h3>
+        <p> </p>
+      </div>
     </div>
   );
 }

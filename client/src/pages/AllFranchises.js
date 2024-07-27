@@ -99,6 +99,18 @@ function Franchises({lightMode, setLightMode}) {
 
         <h3 className="ListWrap"> </h3>
       </div>
+      <div className="center">
+        <h3> </h3>
+        <h3> </h3>
+        <h3> </h3>
+        <h3> </h3>
+        <h3> </h3>
+        <h3> </h3>
+        <h3> </h3>
+        <h3> </h3>
+        <h3> </h3>
+        <p> </p>
+      </div>
     </div>
   );
 }
