@@ -101,6 +101,8 @@ function Franchise({lightMode, setLightMode}) {
           </table>
         </div>
         <h3> </h3>
+        <h3> </h3>
+        <p> </p>
       </div>
     );
 
